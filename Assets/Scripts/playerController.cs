@@ -36,21 +36,43 @@ public class playerController : MonoBehaviour
 
     void Start()
     {
-        
+        MAXHP = HP;
+        setPlayerPos();
     }
 
     // Update is called once per frame
 
     void Update()
     {
-        
+        if (!gameManager.instance.isPaused)
+        {
+            movement();
+        }
     }
 
     //Movement----------------------------
 
     void movement()
     {
+        //Used for resetting jumps when grounded
+        if (controller.isGrounded && playerVelocity.y < 0)
+        {
+            currJumps = 0;
+            playerVelocity.y = 0f;
+        }
 
+        //Player Movement
+        move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
+        controller.Move(move * Time.deltaTime * playerSpeed);
+
+        if (Input.GetButtonDown("Jump") && currJumps < jumpsMax)
+        {
+            currJumps++;
+            playerVelocity.y = jumpHeight;
+        }
+
+        playerVelocity.y -= gravityValue * Time.deltaTime;
+        controller.Move(playerVelocity * Time.deltaTime);
     }
 
     //Coroutines--------------------------
@@ -79,7 +101,9 @@ public class playerController : MonoBehaviour
 
     public void setPlayerPos()
     {
-
+        controller.enabled = false;
+        transform.position = gameManager.instance.playerSpawnPoint.transform.position;
+        controller.enabled = true;
     }
 
     public void resetPlayerHP()
