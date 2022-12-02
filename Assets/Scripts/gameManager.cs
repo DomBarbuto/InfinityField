@@ -29,6 +29,7 @@ public class gameManager : MonoBehaviour
     public bool isPaused = false;
     float timeScaleOrig;
     public GameObject playerSpawnPoint;
+    public dynamicAudio composer;
 
     // Start is called before the first frame update
     void Awake()
@@ -37,6 +38,8 @@ public class gameManager : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player");
         playerSpawnPoint = GameObject.FindGameObjectWithTag("Player Spawn Point");
+        composer = GameObject.FindGameObjectWithTag("Composer").GetComponent<dynamicAudio>();
+
 
         playerController = player.GetComponent<playerController>();
         timeScaleOrig = Time.timeScale;
