@@ -51,9 +51,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 3867346382715989136}
   HP: 10
-  playerSpeed: 5
-  jumpHeight: 10
-  gravityValue: 25
+  currentMoveSpeed: 0
+  walkSpeed: 6
+  sprintMultiplier: 2
+  jumpHeight: 12
+  gravityValue: 30
   jumpsMax: 1
   damageFXLength: 0.1
   currDamage: 1

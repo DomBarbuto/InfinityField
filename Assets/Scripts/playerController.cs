@@ -9,7 +9,9 @@ public class playerController : MonoBehaviour
 
     [Header("---- Player Stats ----")]
     [SerializeField] int HP;
-    [Range(3, 8)] [SerializeField] float playerSpeed;
+    [SerializeField] float currentMoveSpeed;
+    [Range(3, 8)] [SerializeField] float walkSpeed;
+    [Range(1, 4)][SerializeField] float sprintMultiplier;
     [Range(10, 15)] [SerializeField] float jumpHeight;
     [Range(15, 35)] [SerializeField] float gravityValue;
     [Range(1, 3)] [SerializeField] int jumpsMax;
@@ -38,6 +40,7 @@ public class playerController : MonoBehaviour
     {
         MAXHP = HP;
         setPlayerPos();
+        currentMoveSpeed = walkSpeed;
     }
 
     // Update is called once per frame
@@ -68,9 +71,19 @@ public class playerController : MonoBehaviour
             playerVelocity.y = 0f;
         }
 
+        // Handle sprinting - TODO : 
+        if (controller.isGrounded && Input.GetButton("Sprint"))
+        {
+            currentMoveSpeed = walkSpeed * sprintMultiplier;
+        }
+        else if (Input.GetButtonUp("Sprint"))
+        {
+            currentMoveSpeed = walkSpeed;
+        }
+
         //Player Movement
         move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
-        controller.Move(move * Time.deltaTime * playerSpeed);
+        controller.Move(move * Time.deltaTime * currentMoveSpeed);
 
         if (Input.GetButtonDown("Jump") && currJumps < jumpsMax)
         {
@@ -91,8 +104,14 @@ public class playerController : MonoBehaviour
         {
             if (hit.collider.GetComponent<IDamage>() != null)
             {
+                // TODO: Delete
+                Debug.Log("Player hit " + hit.collider.name);
+
                 hit.collider.GetComponent<IDamage>().takeDamage(currDamage);
             }
+            else
+                // TODO: Delete
+                Debug.Log("Miss");
         }
 
         yield return new WaitForSeconds(currFireRate);
