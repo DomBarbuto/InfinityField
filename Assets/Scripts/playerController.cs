@@ -47,7 +47,14 @@ public class playerController : MonoBehaviour
         if (!gameManager.instance.isPaused)
         {
             movement();
+
+            if (!isFiring && Input.GetButton("Fire1"))
+            {
+                isFiring = true;
+                StartCoroutine(fire());
+            }
         }
+        
     }
 
     //Movement----------------------------
@@ -79,7 +86,18 @@ public class playerController : MonoBehaviour
 
     IEnumerator fire()
     {
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, currFireRange))
+        {
+            if (hit.collider.GetComponent<IDamage>() != null)
+            {
+                hit.collider.GetComponent<IDamage>().takeDamage(currDamage);
+            }
+        }
+
         yield return new WaitForSeconds(currFireRate);
+
+        isFiring = false;
     }
 
     IEnumerator playDamageFX()

@@ -59,9 +59,9 @@ public class gameManager : MonoBehaviour
 
     }
 
-    public void addCoins(int amount)
+    public void addCredits(int amount)
     {
-
+        credits += amount;
     }
 
     public void updateEnemyCount(int amount)
