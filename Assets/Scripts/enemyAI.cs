@@ -25,14 +25,15 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] float fireRate;
     [SerializeField] Transform muzzlePoint;
 
-    [Header("---- Editor Gizmos ----")]
+    [Header("---- Editor Debug Gizmos ----")]
+    [SerializeField] bool drawFieldOfView;
     [SerializeField] bool drawStoppingDistance;
     [SerializeField] bool drawPlayerInRangeRadius;
 
     int MAXHP;       // Current max HP
     int creditsHeld; // How many credits the enemy drops
     bool isAttacking;
-    public bool playerInRange;
+    bool playerInRange;
     Vector3 playerDir;
     float angleToPlayer;
     float origStoppingDistance;
@@ -56,7 +57,7 @@ public class enemyAI : MonoBehaviour, IDamage
             canSeePlayer();
         }
 
-        DrawDebugFieldOfView();
+        //DrawDebugFieldOfView();
     }
 
     //Player Detection-------------------
@@ -209,6 +210,9 @@ public class enemyAI : MonoBehaviour, IDamage
             Gizmos.color = Color.black;
             Gizmos.DrawWireSphere(transform.position, playerInRangeTrigger.radius);
         }
+
+        if (drawFieldOfView)
+            DrawDebugFieldOfView();
 
     }
 
