@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class bullet : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     [Header("---- Bullet Settings ----")]
     [SerializeField] int speed;
