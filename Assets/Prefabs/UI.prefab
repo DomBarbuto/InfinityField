@@ -295,6 +295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   playerController: {fileID: 0}
+  playerLastKnownPosition: {fileID: 3729662176865368105, guid: 9d86998320140c34cb59a9f18ccc8e77, type: 3}
   pauseMenu: {fileID: 3672651481608451705}
   activeMenu: {fileID: 3672651481608451705}
   inventoryMenu: {fileID: 3672651481608451705}
@@ -305,6 +306,8 @@ MonoBehaviour:
   enemyCount: 0
   isPaused: 0
   playerSpawnPoint: {fileID: 0}
+  composer: {fileID: 0}
+  playerLastKnownPositionTimeout: 5
 --- !u!1 &3672651481252536575
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5177060251654716938}
   - component: {fileID: 5177060251654716939}
   - component: {fileID: 5177060251654716940}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AudioTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,9 +25,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5177060251654716941}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.1099854, y: 1.1500244, z: -1.99}
-  m_LocalScale: {x: 0.52837, y: 2.340823, z: 2.0813}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -44,7 +44,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 300, y: 80, z: 300}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5177060251654716940
 MonoBehaviour:
@@ -58,4 +58,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58719a9cd81320f4c9475a1715be8ca7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackID: 1
+  trackID: 0

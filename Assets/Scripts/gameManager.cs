@@ -10,6 +10,7 @@ public class gameManager : MonoBehaviour
     [Header("---- Player Components ----")]
     public GameObject player; //Object reference for the player
     public playerController playerController; //Reference directly to the script
+    public GameObject playerLastKnownPosition; // Reference to prefab to be instantiated when player loses the enemy
 
     [Header("---- UI Components ----")]
     public GameObject pauseMenu;
@@ -30,6 +31,7 @@ public class gameManager : MonoBehaviour
     float timeScaleOrig;
     public GameObject playerSpawnPoint;
     public dynamicAudio composer;
+    [Range(1, 5)][SerializeField] float playerLastKnownPositionTimeout;
 
     // Start is called before the first frame update
     void Awake()
@@ -69,7 +71,14 @@ public class gameManager : MonoBehaviour
 
     public void updateEnemyCount(int amount)
     {
+        enemyCount += amount;
+    }
 
+    public IEnumerator DisplayPlayerLastKnownPosition()
+    {
+        GameObject lastKnown = Instantiate(playerLastKnownPosition, player.transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(playerLastKnownPositionTimeout);
+        Destroy(lastKnown);
     }
 
 }

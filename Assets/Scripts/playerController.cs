@@ -57,7 +57,6 @@ public class playerController : MonoBehaviour
                 StartCoroutine(fire());
             }
         }
-        
     }
 
     //Movement----------------------------
@@ -104,6 +103,7 @@ public class playerController : MonoBehaviour
         {
             if (hit.collider.GetComponent<IDamage>() != null)
             {
+                Debug.Log("Shot " + hit.collider.name);
                 // TODO: Delete
                 Debug.Log("Player hit " + hit.collider.name);
 
@@ -146,14 +146,6 @@ public class playerController : MonoBehaviour
     public void resetPlayerHP()
     {
 
-
-    }
-
-    public void setPlayerSpeed()
-    { }
-
-    public void addPlayerSpeed()
-    {
 
     }
 }
