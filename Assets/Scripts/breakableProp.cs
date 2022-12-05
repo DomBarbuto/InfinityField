@@ -29,10 +29,17 @@ public class breakableProp : MonoBehaviour, IDamage
 
         if (HP <= 0) //Checks health
         {
-            gameManager.instance.addCredits(creditsHeld); //Adds credits
+            dropCredits();
             unBrokenProp.SetActive(false);
             brokenProp.SetActive(true);
         }
+    }
+
+    private void dropCredits()
+    {
+        // Instantiate the collectableCredits gameObject as well as pass off this enemy's creditsHeld for the amount of credits it has.
+        GameObject collectableCredits = Instantiate(gameManager.instance.collectableCreditsPrefab, transform);
+        collectableCredits.GetComponent<collectableCredits>().setCredits(creditsHeld);
     }
 
     IEnumerator hitFlash()
