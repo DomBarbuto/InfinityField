@@ -15,11 +15,13 @@ public class gameManager : MonoBehaviour
     public GameObject[] menus;
     public GameObject activeMenu;
     public GameObject playerDamageFX;                    // Damage screen effect
+    public GameObject collectedCreditsFX;                // Collectable screen effect
     public enum UIMENUS { pauseMenu, winMenu, deathMenu, inventoryMenu, upgradeMenu }
 
-    [Header ("---- Inventory -----")]
-    public int credits; // Amount of currency the player has
-    public int upgradeCost; // Amount of credits required to purchase a base upgrade
+    [Header("---- Inventory -----")]
+    public GameObject collectableCreditsPrefab;         // Reference to the collectableCredits prefab
+    public int credits;                                 // Amount of currency the player has
+    public int upgradeCost;                             // Amount of credits required to purchase a base upgrade
 
     [Header("---- Scene Statistics ----")]
     public int enemyCount;

@@ -18,7 +18,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] float damageFXLength;
     [SerializeField] int facePlayerSpeed;
     [SerializeField] int fieldOfView;       
-    //[SerializeField] bool remembersPlayer;
+    public int creditsHeld; // How many credits the enemy drops
 
     [Header("---- Weapon Stats ----")]
     [SerializeField] GameObject projectile;
@@ -31,7 +31,6 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] bool drawPlayerInRangeRadius;
 
     int MAXHP;       // Current max HP
-    int creditsHeld; // How many credits the enemy drops
     bool isAttacking;
     bool playerInRange;
     Vector3 playerDir;
@@ -81,7 +80,6 @@ public class enemyAI : MonoBehaviour, IDamage
                     // Remember the player is there
                     if (!gameManager.instance.isPlayerDetected)
                         rememberPlayer();
-                        
                 }
             }
            
@@ -108,7 +106,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
                 // Attack if not already attacking
                 if (!isAttacking)
-                    StartCoroutine(Attack());
+                    StartCoroutine(attack());
                 
             }
         }
@@ -141,7 +139,7 @@ public class enemyAI : MonoBehaviour, IDamage
         // Check if this caused death
         if(HP <= 0)
         {
-            gameManager.instance.addCredits(creditsHeld);
+            dropCredits();
             gameManager.instance.updateEnemyCount(-1);
             Destroy(gameObject);
         }
@@ -170,6 +168,13 @@ public class enemyAI : MonoBehaviour, IDamage
         }
     }
 
+    private void dropCredits()
+    {
+        // Instantiate the collectableCredits gameObject as well as pass off this enemy's creditsHeld for the amount of credits it has.
+        GameObject collectableCredits = Instantiate(gameManager.instance.collectableCreditsPrefab, headPos.position, transform.rotation);
+        collectableCredits.GetComponent<collectableCredits>().setCredits(creditsHeld);
+    }
+
     //Coroutines-------------------------
 
     IEnumerator flashDamageFX()
@@ -185,7 +190,7 @@ public class enemyAI : MonoBehaviour, IDamage
         model.material.color = origColor;
     }
 
-    IEnumerator Attack()
+    IEnumerator attack()
     {
         isAttacking = true;
 
@@ -241,6 +246,7 @@ public class enemyAI : MonoBehaviour, IDamage
     private void DrawDebugFieldOfView()
     {
         // Taking into account the fieldOfView as well as the radius of the playerInRangeTrigger, draw the boundaries of vision
+        // Trigonometry at work
         Vector3 leftVisionEdge = transform.TransformDirection(new Vector3(Mathf.Sin((fieldOfView * -1 / 2) * Mathf.Deg2Rad),
                                                                                      0, 
                                                                                      Mathf.Cos((fieldOfView) * Mathf.Deg2Rad))).normalized;
