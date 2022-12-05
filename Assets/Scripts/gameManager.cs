@@ -17,7 +17,7 @@ public class gameManager : MonoBehaviour
     public GameObject activeMenu;
     public GameObject playerDamageFX;                    // Damage screen effect
     public GameObject collectedCreditsFX;                // Collectable screen effect
-    public TextMeshProUGUI creditCounter;
+    
     public enum UIMENUS { pauseMenu, winMenu, deathMenu, inventoryMenu, upgradeMenu }
 
     [Header("---- Inventory -----")]
@@ -52,7 +52,6 @@ public class gameManager : MonoBehaviour
 
     void Update()
     {
-        creditCounter.text = ("Credits: " + credits);
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
             isPaused = !isPaused;
@@ -97,13 +96,13 @@ public class gameManager : MonoBehaviour
     {
         enemyCount += amount;
 
-        //if (enemyCount <= 0)
-        //{
-        //    //End game
-        //    //Win screen activated
-        //    pause();
-        //    SetActiveMenu(UIMENUS.winMenu);
-        //}
+        if (enemyCount <= 0)
+        {
+            //End game
+            //Win screen activated
+            pause();
+            SetActiveMenu(UIMENUS.winMenu);
+        }
     }
 
     public IEnumerator DisplayPlayerLastKnownPosition()
