@@ -18,7 +18,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] float damageFXLength;
     [SerializeField] int facePlayerSpeed;
     [SerializeField] int fieldOfView;       
-    [SerializeField] bool remembersPlayer;
+    //[SerializeField] bool remembersPlayer;
 
     [Header("---- Weapon Stats ----")]
     [SerializeField] GameObject projectile;
@@ -79,13 +79,13 @@ public class enemyAI : MonoBehaviour, IDamage
                 if(angleToPlayer <= fieldOfView)
                 {
                     // Remember the player is there
-                    if (!remembersPlayer)
+                    if (!gameManager.instance.isPlayerDetected)
                         rememberPlayer();
                         
                 }
             }
            
-            if (remembersPlayer)
+            if (gameManager.instance.isPlayerDetected)
             {
                 // Important for making AI feel smarter
                 // Make the enemy still follow the player while within normal stopping distance
@@ -100,6 +100,9 @@ public class enemyAI : MonoBehaviour, IDamage
                     agent.stoppingDistance = origStoppingDistance;
                 }
 
+                // Face the player
+                facePlayer(); 
+
                 // Follow the player
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
@@ -107,8 +110,6 @@ public class enemyAI : MonoBehaviour, IDamage
                 if (!isAttacking)
                     StartCoroutine(Attack());
                 
-                // Face the player
-                facePlayer(); 
             }
         }
     }
@@ -148,25 +149,25 @@ public class enemyAI : MonoBehaviour, IDamage
 
     private void rememberPlayer()
     {
-        remembersPlayer = true;
+        gameManager.instance.isPlayerDetected = true;
 
-        /*// Destroy the lastKnownPositions if it is present
+        // Destroy the lastKnownPositions if it is present
         if (gameManager.instance.currentLastKnownPosition != null)
         {
             Destroy(gameManager.instance.currentLastKnownPosition);
             gameManager.instance.currentLastKnownPosition = null;
-        }*/
+        }
     }
 
     private void forgetPlayer()
     {
-        remembersPlayer = false;
+        gameManager.instance.isPlayerDetected = false;
 
-        /*if (gameManager.instance.currentLastKnownPosition == null)
+        if (gameManager.instance.currentLastKnownPosition == null)
         {
             // Display users last known position for a short duration
             StartCoroutine(gameManager.instance.DisplayPlayerLastKnownPosition());
-        }*/
+        }
     }
 
     //Coroutines-------------------------
@@ -211,7 +212,7 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             playerInRange = false;
 
-            if(remembersPlayer)
+            if(gameManager.instance.isPlayerDetected)
                 forgetPlayer();
         }
     }

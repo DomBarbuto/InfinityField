@@ -7,19 +7,19 @@ public class gameManager : MonoBehaviour
     public static gameManager instance;
 
     [Header("---- Player Components ----")]
-    public GameObject player;                            //Object reference for the player
-    public playerController playerController;            //Reference directly to the script
+    public GameObject player;                            // Object reference for the player
+    public playerController playerController;            // Reference directly to the script
     [SerializeField] GameObject playerLastKnownPosition; // Reference to prefab to be instantiated when player loses the enemy
 
     [Header("---- UI Components ----")]
     public GameObject[] menus;
     public GameObject activeMenu;
-    public GameObject playerDamageFX;                    //Damage screen effect
+    public GameObject playerDamageFX;                    // Damage screen effect
     public enum UIMENUS { pauseMenu, winMenu, deathMenu, inventoryMenu, upgradeMenu }
 
     [Header ("---- Inventory -----")]
-    public int credits; //Amount of currency the player has
-    public int upgradeCost; //Amount of credits required to purchase a base upgrade
+    public int credits; // Amount of currency the player has
+    public int upgradeCost; // Amount of credits required to purchase a base upgrade
 
     [Header("---- Scene Statistics ----")]
     public int enemyCount;
@@ -29,7 +29,10 @@ public class gameManager : MonoBehaviour
     float timeScaleOrig;
     public GameObject playerSpawnPoint;
     public dynamicAudio composer;
-    [Range(1, 5)][SerializeField] float playerLastKnownPositionTimeout;
+
+    public bool isPlayerDetected;
+    [Range(3, 5)][SerializeField] float playerLastKnownPositionTimeout;
+    public GameObject currentLastKnownPosition = null;
 
 
     void Awake()
@@ -100,9 +103,14 @@ public class gameManager : MonoBehaviour
 
     public IEnumerator DisplayPlayerLastKnownPosition()
     {
-        GameObject lastKnown = Instantiate(playerLastKnownPosition, player.transform.position, Quaternion.identity);
+        currentLastKnownPosition = Instantiate(playerLastKnownPosition, player.transform.position, Quaternion.identity);
         yield return new WaitForSeconds(playerLastKnownPositionTimeout);
-        Destroy(lastKnown);
+
+        if(currentLastKnownPosition != null && !isPlayerDetected)
+        {
+            Destroy(currentLastKnownPosition);
+            currentLastKnownPosition = null;
+        }
     }
 
     // Getters/Setters
