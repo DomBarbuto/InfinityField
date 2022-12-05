@@ -121,7 +121,9 @@ public class playerController : MonoBehaviour
 
     IEnumerator playDamageFX()
     {
+        gameManager.instance.playerDamageFX.SetActive(true);
         yield return new WaitForSeconds(damageFXLength);
+        gameManager.instance.playerDamageFX.SetActive(false);
     }
 
     //Statistic Modification--------------

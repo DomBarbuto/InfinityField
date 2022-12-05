@@ -90,6 +90,15 @@ public class gameManager : MonoBehaviour
     public void updateEnemyCount(int amount)
     {
         enemyCount += amount;
+
+        if (enemyCount <= 0)
+        {
+            //End game
+            //Win screen activated
+            winMenu.SetActive(true);
+            pause();
+            activeMenu = winMenu;
+        }
     }
 
     public IEnumerator DisplayPlayerLastKnownPosition()
