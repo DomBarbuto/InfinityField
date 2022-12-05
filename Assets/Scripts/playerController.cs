@@ -128,7 +128,15 @@ public class playerController : MonoBehaviour
 
     public void takeDamage(int dmg)
     {
+        HP -= dmg;
+        StartCoroutine(playDamageFX());
 
+        if (HP <= 0)
+        {
+            gameManager.instance.pause();
+            gameManager.instance.deathMenu.SetActive(true);
+            gameManager.instance.activeMenu = gameManager.instance.deathMenu;
+        }
     }
 
     public void addJump(int amount)
@@ -145,7 +153,7 @@ public class playerController : MonoBehaviour
 
     public void resetPlayerHP()
     {
-
+        HP = MAXHP;
 
     }
 }

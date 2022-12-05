@@ -56,8 +56,6 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             canSeePlayer();
         }
-
-        //DrawDebugFieldOfView();
     }
 
     //Player Detection-------------------
@@ -67,8 +65,6 @@ public class enemyAI : MonoBehaviour, IDamage
         // Find direction and angle to player
         playerDir = gameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
-
-        Debug.Log(angleToPlayer);
 
         Debug.DrawRay(headPos.position, playerDir);
 
@@ -84,7 +80,8 @@ public class enemyAI : MonoBehaviour, IDamage
                 {
                     // Remember the player is there
                     if (!remembersPlayer)
-                        remembersPlayer = true;
+                        rememberPlayer();
+                        
                 }
             }
            
@@ -149,6 +146,29 @@ public class enemyAI : MonoBehaviour, IDamage
         }
     }
 
+    private void rememberPlayer()
+    {
+        remembersPlayer = true;
+
+        /*// Destroy the lastKnownPositions if it is present
+        if (gameManager.instance.currentLastKnownPosition != null)
+        {
+            Destroy(gameManager.instance.currentLastKnownPosition);
+            gameManager.instance.currentLastKnownPosition = null;
+        }*/
+    }
+
+    private void forgetPlayer()
+    {
+        remembersPlayer = false;
+
+        /*if (gameManager.instance.currentLastKnownPosition == null)
+        {
+            // Display users last known position for a short duration
+            StartCoroutine(gameManager.instance.DisplayPlayerLastKnownPosition());
+        }*/
+    }
+
     //Coroutines-------------------------
 
     IEnumerator flashDamageFX()
@@ -190,12 +210,13 @@ public class enemyAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
-            remembersPlayer = false;
 
-            // Display users last known position for a short duration
-            StartCoroutine(gameManager.instance.DisplayPlayerLastKnownPosition());
+            if(remembersPlayer)
+                forgetPlayer();
         }
     }
+
+    //Gizmos----------------------------
 
     private void OnDrawGizmos()
     {
