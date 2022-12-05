@@ -68,6 +68,9 @@ public class gameManager : MonoBehaviour
 
     public void pause()
     {
+        if (!isPaused)
+            isPaused = true;
+
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
@@ -75,9 +78,13 @@ public class gameManager : MonoBehaviour
 
     public void unPause()
     {
+        if (isPaused)
+            isPaused = false;
+
         Time.timeScale = timeScaleOrig;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
         activeMenu.SetActive(false);
         activeMenu = null;
     }

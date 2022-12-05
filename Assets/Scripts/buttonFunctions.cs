@@ -8,7 +8,6 @@ public class buttonFunctions : MonoBehaviour
     public void resume()
     {
         gameManager.instance.unPause();
-        gameManager.instance.isPaused = !gameManager.instance.isPaused;
     }
 
     public void restart()
