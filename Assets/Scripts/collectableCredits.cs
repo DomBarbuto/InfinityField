@@ -11,6 +11,7 @@ public class collectableCredits : MonoBehaviour, ICollectable
     [SerializeField] int throwSpeed;
     [SerializeField] float damageFXLength;
     [SerializeField] int destroyTimer;
+    private bool hasCollected;
     private Rigidbody rb;
 
     private void Awake()
@@ -38,13 +39,16 @@ public class collectableCredits : MonoBehaviour, ICollectable
     {
         if(other.CompareTag("Player"))
         {
-            collect();
+            if(!hasCollected)
+                collect();
         }
     }
 
     public void collect()
-    { 
+    {
+        hasCollected = true;
         gameManager.instance.addCredits(credits);
+        gameManager.instance.creditsCounterText.text = gameManager.instance.credits.ToString();
 
         // TODO: Add SFX
 

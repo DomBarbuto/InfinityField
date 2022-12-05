@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class gameManager : MonoBehaviour
@@ -17,6 +18,7 @@ public class gameManager : MonoBehaviour
     public GameObject activeMenu;
     public GameObject playerDamageFX;                    // Damage screen effect
     public GameObject collectedCreditsFX;                // Collectable screen effect
+    public TextMeshProUGUI creditsCounterText;           // Text for collected credits
     
     public enum UIMENUS { pauseMenu, winMenu, deathMenu, inventoryMenu, upgradeMenu }
 
@@ -48,6 +50,11 @@ public class gameManager : MonoBehaviour
         playerSpawnPoint = GameObject.FindGameObjectWithTag("Player Spawn Point");
         composer = GameObject.FindGameObjectWithTag("Composer").GetComponent<dynamicAudio>();
         timeScaleOrig = Time.timeScale;
+    }
+
+    private void Start()
+    {
+        creditsCounterText.text = credits.ToString();
     }
 
     void Update()
