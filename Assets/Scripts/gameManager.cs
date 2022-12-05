@@ -15,6 +15,8 @@ public class gameManager : MonoBehaviour
     [Header("---- UI Components ----")]
     public GameObject pauseMenu;
     public GameObject activeMenu;
+    public GameObject winMenu;
+    public GameObject deathMenu;
     public GameObject inventoryMenu;//Where player can switch weapons
     public GameObject upgradeMenu;//Where player can upgrade Power Suit statistics such as speed and number of jumps
     public GameObject playerDamageFX;//Damage screen effect and SFX
@@ -51,17 +53,33 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetButtonDown("Cancel") && activeMenu == null)
+        {
+            isPaused = !isPaused;
+            activeMenu = pauseMenu;
+            activeMenu.SetActive(isPaused);
+
+            if (isPaused)
+                pause();
+            else
+                unPause();
+        }
     }
 
     public void pause()
     {
-
+        Time.timeScale = 0;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     public void unPause()
     {
-
+        Time.timeScale = timeScaleOrig;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        activeMenu.SetActive(false);
+        activeMenu = null;
     }
 
     public void addCredits(int amount)
