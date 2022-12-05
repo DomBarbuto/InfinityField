@@ -4,22 +4,18 @@ using UnityEngine;
 
 public class gameManager : MonoBehaviour
 {
-    //used for the singleton design pattern
     public static gameManager instance;
 
     [Header("---- Player Components ----")]
-    public GameObject player; //Object reference for the player
-    public playerController playerController; //Reference directly to the script
-    public GameObject playerLastKnownPosition; // Reference to prefab to be instantiated when player loses the enemy
+    public GameObject player;                            //Object reference for the player
+    public playerController playerController;            //Reference directly to the script
+    [SerializeField] GameObject playerLastKnownPosition; // Reference to prefab to be instantiated when player loses the enemy
 
     [Header("---- UI Components ----")]
-    public GameObject pauseMenu;
+    public GameObject[] menus;
     public GameObject activeMenu;
-    public GameObject winMenu;
-    public GameObject deathMenu;
-    public GameObject inventoryMenu;//Where player can switch weapons
-    public GameObject upgradeMenu;//Where player can upgrade Power Suit statistics such as speed and number of jumps
-    public GameObject playerDamageFX;//Damage screen effect and SFX
+    public GameObject playerDamageFX;                    //Damage screen effect
+    public enum UIMENUS { pauseMenu, winMenu, deathMenu, inventoryMenu, upgradeMenu }
 
     [Header ("---- Inventory -----")]
     public int credits; //Amount of currency the player has
@@ -35,29 +31,24 @@ public class gameManager : MonoBehaviour
     public dynamicAudio composer;
     [Range(1, 5)][SerializeField] float playerLastKnownPositionTimeout;
 
-    // Start is called before the first frame update
+
     void Awake()
     {
         instance = this;
 
         player = GameObject.FindGameObjectWithTag("Player");
+        playerController = player.GetComponent<playerController>();
         playerSpawnPoint = GameObject.FindGameObjectWithTag("Player Spawn Point");
         composer = GameObject.FindGameObjectWithTag("Composer").GetComponent<dynamicAudio>();
-
-
-        playerController = player.GetComponent<playerController>();
         timeScaleOrig = Time.timeScale;
-        
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
             isPaused = !isPaused;
-            activeMenu = pauseMenu;
-            activeMenu.SetActive(isPaused);
+            SetActiveMenu(UIMENUS.pauseMenu);
 
             if (isPaused)
                 pause();
@@ -102,9 +93,8 @@ public class gameManager : MonoBehaviour
         {
             //End game
             //Win screen activated
-            winMenu.SetActive(true);
             pause();
-            activeMenu = winMenu;
+            SetActiveMenu(UIMENUS.winMenu);
         }
     }
 
@@ -114,5 +104,18 @@ public class gameManager : MonoBehaviour
         yield return new WaitForSeconds(playerLastKnownPositionTimeout);
         Destroy(lastKnown);
     }
+
+    // Getters/Setters
+    public GameObject GetActiveMenu()
+    {
+        return activeMenu;
+    }
+
+    public void SetActiveMenu(UIMENUS newActiveMenu)
+    {
+        menus[(int)newActiveMenu].SetActive(true);
+        activeMenu = menus[(int)newActiveMenu];
+    }
+
 
 }

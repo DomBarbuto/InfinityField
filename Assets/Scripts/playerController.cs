@@ -132,12 +132,12 @@ public class playerController : MonoBehaviour
     {
         HP -= dmg;
         StartCoroutine(playDamageFX());
-
+        
+        // Player death
         if (HP <= 0)
         {
             gameManager.instance.pause();
-            gameManager.instance.deathMenu.SetActive(true);
-            gameManager.instance.activeMenu = gameManager.instance.deathMenu;
+            gameManager.instance.SetActiveMenu(gameManager.UIMENUS.deathMenu);
         }
     }
 

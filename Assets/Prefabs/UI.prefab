@@ -926,12 +926,11 @@ MonoBehaviour:
   player: {fileID: 0}
   playerController: {fileID: 0}
   playerLastKnownPosition: {fileID: 3729662176865368105, guid: 9d86998320140c34cb59a9f18ccc8e77, type: 3}
-  pauseMenu: {fileID: 5879097346677608978}
+  menus:
+  - {fileID: 5879097346677608978}
+  - {fileID: 3563937584318032215}
+  - {fileID: 9099528466530646048}
   activeMenu: {fileID: 0}
-  winMenu: {fileID: 3563937584318032215}
-  deathMenu: {fileID: 9099528466530646048}
-  inventoryMenu: {fileID: 0}
-  upgradeMenu: {fileID: 0}
   playerDamageFX: {fileID: 3672651481252536575}
   credits: 0
   upgradeCost: 0
