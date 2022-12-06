@@ -150,9 +150,10 @@ public class enemyAI : MonoBehaviour, IDamage
             if (isRagdoll)
             {
                 ragdoll.togglePhysics(true);
+                StartCoroutine(timedDeath());
             }
-            StartCoroutine(timedDeath());
-            //Destroy(gameObject);
+            else
+                Destroy(gameObject);
         }
     }
 
