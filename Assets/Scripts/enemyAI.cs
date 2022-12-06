@@ -11,13 +11,14 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform headPos;
     [SerializeField] Material damageFX;
     [SerializeField] SphereCollider playerInRangeTrigger;    // For displaying escape range - OnDrawGizmosSelected
-
+    [SerializeField] ragdollDeath ragdoll;
 
     [Header("---- Enemy Stats ----")]
     [SerializeField] int HP;
     [SerializeField] float damageFXLength;
     [SerializeField] int facePlayerSpeed;
-    [SerializeField] int fieldOfView;       
+    [SerializeField] int fieldOfView;
+    [SerializeField] bool isRagdoll;
     public int creditsHeld; // How many credits the enemy drops
 
     [Header("---- Weapon Stats ----")]
@@ -46,12 +47,15 @@ public class enemyAI : MonoBehaviour, IDamage
         origStoppingDistance = agent.stoppingDistance;
 
         gameManager.instance.updateEnemyCount(1);
+
+        if (isRagdoll)
+            ragdoll.togglePhysics(false);
     }
 
     void Update()
     {
         // If player is in range
-        if (playerInRange)
+        if (playerInRange && HP > 0)
         {
             canSeePlayer();
         }
@@ -139,9 +143,16 @@ public class enemyAI : MonoBehaviour, IDamage
         // Check if this caused death
         if(HP <= 0)
         {
+            gameObject.GetComponent<Collider>().enabled = false;
             dropCredits();
             gameManager.instance.updateEnemyCount(-1);
-            Destroy(gameObject);
+            agent.enabled = false;
+            if (isRagdoll)
+            {
+                ragdoll.togglePhysics(true);
+            }
+            StartCoroutine(timedDeath());
+            //Destroy(gameObject);
         }
     }
 
@@ -199,6 +210,12 @@ public class enemyAI : MonoBehaviour, IDamage
         yield return new WaitForSeconds(fireRate);
 
         isAttacking = false;
+    }
+
+    IEnumerator timedDeath()
+    {
+        yield return new WaitForSeconds(10);
+        Destroy(gameObject);
     }
 
     //Trigger----------------------------

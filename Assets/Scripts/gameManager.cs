@@ -107,8 +107,8 @@ public class gameManager : MonoBehaviour
         {
             //End game
             //Win screen activated
-            pause();
-            SetActiveMenu(UIMENUS.winMenu);
+            //pause();
+            //SetActiveMenu(UIMENUS.winMenu);
         }
     }
 
