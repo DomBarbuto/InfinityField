@@ -14,6 +14,7 @@ public class breakableProp : MonoBehaviour, IDamage
     [SerializeField] int creditsHeld; //How much loot is inside
 
     [SerializeField] float hitFXLength;
+    [SerializeField] float deathDelay;
 
     // Update is called once per frame
     void Update()
@@ -32,6 +33,8 @@ public class breakableProp : MonoBehaviour, IDamage
             dropCredits();
             unBrokenProp.SetActive(false);
             brokenProp.SetActive(true);
+            //brokenProp.transform.localScale = Vector3.Lerp(brokenProp.transform.localScale, Vector3.zero, deathDelay);
+            StartCoroutine(delayedDestroy());
         }
     }
 
@@ -50,5 +53,11 @@ public class breakableProp : MonoBehaviour, IDamage
         hitFX.SetActive(true);
         yield return new WaitForSeconds(hitFXLength);
         hitFX.SetActive(false);
+    }
+
+    IEnumerator delayedDestroy()
+    {
+        yield return new WaitForSeconds(deathDelay);
+        Destroy(gameObject);
     }
 }
