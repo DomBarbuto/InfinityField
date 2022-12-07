@@ -11,6 +11,7 @@ public class gameManager : MonoBehaviour
     [Header("---- Player Components ----")]
     public GameObject player;                            // Object reference for the player
     public playerController playerController;            // Reference directly to the script
+    public inventory inventory;
     [SerializeField] GameObject playerLastKnownPosition; // Reference to prefab to be instantiated when player loses the enemy
 
     [Header("---- UI Components ----")]
@@ -69,6 +70,22 @@ public class gameManager : MonoBehaviour
                 pause();
             else
                 unPause();
+        }
+        if(Input.GetButtonDown("Inventory"))
+        {
+
+            if(activeMenu != menus[(int)UIMENUS.inventoryMenu])
+            {
+                pause();
+                SetActiveMenu(UIMENUS.inventoryMenu);
+                inventory.updateInventory();
+            }
+            else
+            {
+                unPause();
+            }
+        
+            
         }
     }
 
@@ -136,5 +153,6 @@ public class gameManager : MonoBehaviour
         menus[(int)newActiveMenu].SetActive(true);
         activeMenu = menus[(int)newActiveMenu];
     }
+
 
 }

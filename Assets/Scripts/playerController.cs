@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class playerController : MonoBehaviour
 {
@@ -16,11 +18,14 @@ public class playerController : MonoBehaviour
     [Range(15, 35)] [SerializeField] float gravityValue;
     [Range(1, 3)] [SerializeField] int jumpsMax;
     [SerializeField] float damageFXLength;
+    [SerializeField] public List<weaponCreation> weaponInventory = new List<weaponCreation>();
+    [SerializeField] int maxSlots = 8;     //The max amount of weapons the player can have
 
     [Header("---- Active Weapon -----")]
     [SerializeField] int currDamage;
     [SerializeField] float currFireRate;
     [SerializeField] int currFireRange;
+    [SerializeField] GameObject weaponModel;
 
     //Private Variables------------------
     bool isFiring;
@@ -156,6 +161,32 @@ public class playerController : MonoBehaviour
     public void resetPlayerHP()
     {
         HP = MAXHP;
+
+    }
+
+    public void weaponPickUp(weaponCreation weapon)
+    {
+        weaponModel.GetComponent<MeshFilter>().sharedMesh = weapon.weaponsModel.GetComponent<MeshFilter>().sharedMesh;
+
+        for(int i = 0; i < maxSlots; i++)
+        {
+            if (weaponInventory[i] == weapon)
+            {
+                break;
+            }
+            else if(i == weaponInventory.Count && weaponInventory[i] != weapon)
+            {
+                weaponInventory.Add(weapon);
+
+            }
+        }
+        
+    }
+
+    public void openInventory()
+    {
+        gameManager.instance.pause();
+
 
     }
 }
