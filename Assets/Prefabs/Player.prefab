@@ -51,6 +51,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 3867346382715989136}
   HP: 100
+  energy: 100
+  energyDecreaseRate: 1
+  isSprinting: 0
   currentMoveSpeed: 0
   walkSpeed: 6
   sprintMultiplier: 2
@@ -58,9 +61,12 @@ MonoBehaviour:
   gravityValue: 30
   jumpsMax: 1
   damageFXLength: 0.1
+  weaponInventory: []
+  maxSlots: 8
   currDamage: 20
   currFireRate: 0.2
   currFireRange: 100
+  weaponModel: {fileID: 0}
 --- !u!143 &3867346382715989136
 CharacterController:
   m_ObjectHideFlags: 0
