@@ -21,6 +21,7 @@ public class gameManager : MonoBehaviour
     public GameObject collectedCreditsFX;                // Collectable screen effect
     public TextMeshProUGUI creditsCounterText;           // Text for collected credits
     public Image playerHPBar;
+    public Image playerEnergyBar;
     
     public enum UIMENUS { pauseMenu, winMenu, deathMenu, inventoryMenu, upgradeMenu }
 
@@ -120,6 +121,11 @@ public class gameManager : MonoBehaviour
     public void updatePlayerHPBar()
     {
         playerHPBar.fillAmount = (float)playerController.getHP() / (float)playerController.getMAXHP();
+    }
+
+    public void updatePlayerEnergyBar()
+    {
+        playerEnergyBar.fillAmount = playerController.getEnergy() / playerController.getMAXEnergy();
     }
 
     public void updateEnemyCount(int amount)

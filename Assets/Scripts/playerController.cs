@@ -11,6 +11,11 @@ public class playerController : MonoBehaviour
 
     [Header("---- Player Stats ----")]
     [SerializeField] int HP;
+    [SerializeField] float energy;
+    [SerializeField] float energyDecreaseRate;
+
+    [Header("---- Player Movement ----")]
+    [SerializeField] bool isSprinting;
     [SerializeField] float currentMoveSpeed;
     [Range(3, 8)] [SerializeField] float walkSpeed;
     [Range(1, 4)][SerializeField] float sprintMultiplier;
@@ -18,6 +23,8 @@ public class playerController : MonoBehaviour
     [Range(15, 35)] [SerializeField] float gravityValue;
     [Range(1, 3)] [SerializeField] int jumpsMax;
     [SerializeField] float damageFXLength;
+
+    [Header("Inventory")]
     [SerializeField] public List<weaponCreation> weaponInventory = new List<weaponCreation>();
     [SerializeField] int maxSlots = 8;     //The max amount of weapons the player can have
 
@@ -30,8 +37,9 @@ public class playerController : MonoBehaviour
     //Private Variables------------------
     bool isFiring;
 
-    int currJumps; //Times jumped since being grounded
-    int MAXHP; //Player's maximum health
+    int currJumps;  //Times jumped since being grounded
+    int MAXHP;      //Player's maximum health
+    float MAXEnergy;  //Player's maximum energy
 
     Vector3 playerVelocity;
     Vector3 move;
@@ -43,7 +51,10 @@ public class playerController : MonoBehaviour
 
     void Start()
     {
+        // Set orginal stats
         MAXHP = HP;
+        MAXEnergy = energy;
+
         setPlayerPos();
         currentMoveSpeed = walkSpeed;
     }
@@ -75,14 +86,25 @@ public class playerController : MonoBehaviour
             playerVelocity.y = 0f;
         }
 
-        // Handle sprinting - TODO : 
+        // Handle sprinting - Using GetButtonDown because of the lerp while holding
         if (controller.isGrounded && Input.GetButton("Sprint"))
         {
-            currentMoveSpeed = walkSpeed * sprintMultiplier;
+            // Only call if not sprinting
+            if (!isSprinting)
+            {
+                Debug.Log("Poop");
+                currentMoveSpeed = walkSpeed * sprintMultiplier;
+                isSprinting = true;
+            }
+
+            // Update energy and UI energy bar
+            energy -= Time.deltaTime * (energy * (1 / energyDecreaseRate));
+            gameManager.instance.updatePlayerEnergyBar();
         }
         else if (Input.GetButtonUp("Sprint"))
         {
             currentMoveSpeed = walkSpeed;
+            isSprinting = false;
         }
 
         //Player Movement
@@ -200,5 +222,15 @@ public class playerController : MonoBehaviour
     public int getMAXHP()
     {
         return MAXHP;
+    }
+
+    public float getEnergy()
+    {
+        return energy;
+    }
+
+    public float getMAXEnergy()
+    {
+        return MAXEnergy;
     }
 }
