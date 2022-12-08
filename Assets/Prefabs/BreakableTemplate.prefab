@@ -41,7 +41,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267663880}
   serializedVersion: 8
-  lengthInSec: 1
+  lengthInSec: 0.5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -169,7 +169,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 7
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1486,7 +1486,7 @@ ParticleSystem:
     flipU: 0
     flipV: 0
   VelocityModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -1966,9 +1966,9 @@ ParticleSystem:
         m_RotationOrder: 4
     radial:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
-      minScalar: 0
+      minMaxState: 3
+      scalar: 5
+      minScalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5429,10 +5429,16 @@ MonoBehaviour:
   unBrokenProp: {fileID: 375799024786597678}
   brokenProp: {fileID: 375799025145558591}
   hitFX: {fileID: 1267663880}
+  parentCollider: {fileID: 681929263}
   HP: 3
   creditsHeld: 10
   hitFXLength: 2
-  deathDelay: 3
+  randomForceMin: 10
+  randomForceMax: 10
+  waitToBeginScaling: 5
+  hasBegunScalingDown: 0
+  scaleDecreaseRate: 0.5
+  waitToDestroy: 2
 --- !u!1 &375799025145558591
 GameObject:
   m_ObjectHideFlags: 0

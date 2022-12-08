@@ -64,7 +64,7 @@ public class gameManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
-            //isPaused = !isPaused;
+            isPaused = !isPaused;
             SetActiveMenu(UIMENUS.pauseMenu);
 
             if (isPaused)
@@ -79,7 +79,7 @@ public class gameManager : MonoBehaviour
             {
                 pause();
                 SetActiveMenu(UIMENUS.inventoryMenu);
-                inventory.updateInventory();
+                //TODO: TEMP COMMENT BY DOM inventory.updateInventory();
             }
             else
             {
