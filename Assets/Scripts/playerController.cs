@@ -29,6 +29,7 @@ public class playerController : MonoBehaviour
     [SerializeField] int maxSlots = 8;     //The max amount of weapons the player can have
 
     [Header("---- Active Weapon -----")]
+    [SerializeField] public int currentWeapon;
     [SerializeField] int currDamage;
     [SerializeField] float currFireRate;
     [SerializeField] int currFireRange;

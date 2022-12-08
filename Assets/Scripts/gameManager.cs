@@ -22,7 +22,12 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI creditsCounterText;           // Text for collected credits
     public Image playerHPBar;
     public Image playerEnergyBar;
-    
+    [SerializeField] GameObject highlight1;
+    [SerializeField] GameObject highlight2;
+    [SerializeField] GameObject highlight3;
+    [SerializeField] GameObject highlight4;
+    [SerializeField] GameObject highlight5;
+
     public enum UIMENUS { pauseMenu, winMenu, deathMenu, inventoryMenu, upgradeMenu }
 
     [Header("---- Inventory -----")]
@@ -79,6 +84,7 @@ public class gameManager : MonoBehaviour
             {
                 pause();
                 SetActiveMenu(UIMENUS.inventoryMenu);
+                //menus[(int)UIMENUS.inventoryMenu].transform.Rotate(0.0f, 0.0f, 18 + (72 * playerController.currentWeapon));
                 //TODO: TEMP COMMENT BY DOM inventory.updateInventory();
             }
             else
@@ -87,6 +93,28 @@ public class gameManager : MonoBehaviour
             }
         
             
+        }
+
+
+        if(activeMenu == menus[(int)UIMENUS.inventoryMenu])
+        {
+            Debug.Log(menus[(int)UIMENUS.inventoryMenu].transform.rotation.z);
+            if (menus[(int)UIMENUS.inventoryMenu].transform.rotation.z < 36 && menus[(int)UIMENUS.inventoryMenu].transform.rotation.z > -36)
+            {
+                highlight1.SetActive(true);
+            }
+            else
+            {
+                highlight1.SetActive(false);
+            }
+            if(Input.GetAxis("Mouse ScrollWheel") > 0)
+            {
+                menus[(int)UIMENUS.inventoryMenu].transform.Rotate(Vector3.forward, +10);
+            }
+            else if(Input.GetAxis("Mouse ScrollWheel") < 0)
+            {
+                menus[(int)UIMENUS.inventoryMenu].transform.Rotate(Vector3.forward, -10);
+            }
         }
     }
 
