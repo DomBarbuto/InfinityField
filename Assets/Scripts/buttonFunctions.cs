@@ -24,6 +24,7 @@ public class buttonFunctions : MonoBehaviour
     public void respawnPlayer()
     {
         gameManager.instance.playerController.resetPlayerHP();
+        gameManager.instance.updatePlayerHPBar();
         gameManager.instance.unPause();
         gameManager.instance.playerController.setPlayerPos();
     }

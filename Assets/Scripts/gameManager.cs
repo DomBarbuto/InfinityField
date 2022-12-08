@@ -63,7 +63,7 @@ public class gameManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
-            isPaused = !isPaused;
+            //isPaused = !isPaused;
             SetActiveMenu(UIMENUS.pauseMenu);
 
             if (isPaused)
@@ -71,7 +71,7 @@ public class gameManager : MonoBehaviour
             else
                 unPause();
         }
-        if(Input.GetButtonDown("Inventory"))
+        else if(Input.GetButtonDown("Inventory"))
         {
 
             if(activeMenu != menus[(int)UIMENUS.inventoryMenu])
@@ -115,6 +115,11 @@ public class gameManager : MonoBehaviour
     public void addCredits(int amount)
     {
         credits += amount;
+    }
+
+    public void updatePlayerHPBar()
+    {
+        playerHPBar.fillAmount = (float)playerController.getHP() / (float)playerController.getMAXHP();
     }
 
     public void updateEnemyCount(int amount)

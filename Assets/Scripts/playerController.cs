@@ -137,6 +137,7 @@ public class playerController : MonoBehaviour
     {
         HP -= dmg;
         StartCoroutine(playDamageFX());
+        gameManager.instance.updatePlayerHPBar();
         
         // Player death
         if (HP <= 0)
@@ -161,7 +162,6 @@ public class playerController : MonoBehaviour
     public void resetPlayerHP()
     {
         HP = MAXHP;
-
     }
 
     public void weaponPickUp(weaponCreation weapon)
@@ -188,5 +188,17 @@ public class playerController : MonoBehaviour
         gameManager.instance.pause();
 
 
+    }
+
+    // Setters/Getters
+
+    public int getHP()
+    {
+        return HP;
+    }
+
+    public int getMAXHP()
+    {
+        return MAXHP;
     }
 }
