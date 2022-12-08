@@ -22,6 +22,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI creditsCounterText;           // Text for collected credits
     public Image playerHPBar;
     public Image playerEnergyBar;
+    [SerializeField] GameObject invWheelPointer;
     [SerializeField] GameObject highlight1;
     [SerializeField] GameObject highlight2;
     [SerializeField] GameObject highlight3;
@@ -84,12 +85,14 @@ public class gameManager : MonoBehaviour
             {
                 pause();
                 SetActiveMenu(UIMENUS.inventoryMenu);
+                invWheelPointer.SetActive(true);
                 //menus[(int)UIMENUS.inventoryMenu].transform.Rotate(0.0f, 0.0f, 18 + (72 * playerController.currentWeapon));
                 //TODO: TEMP COMMENT BY DOM inventory.updateInventory();
             }
             else
             {
                 unPause();
+                invWheelPointer.SetActive(false);
             }
         
             
@@ -98,15 +101,22 @@ public class gameManager : MonoBehaviour
 
         if(activeMenu == menus[(int)UIMENUS.inventoryMenu])
         {
-            Debug.Log(menus[(int)UIMENUS.inventoryMenu].transform.rotation.z);
-            if (menus[(int)UIMENUS.inventoryMenu].transform.rotation.z < 36 && menus[(int)UIMENUS.inventoryMenu].transform.rotation.z > -36)
-            {
-                highlight1.SetActive(true);
-            }
-            else
-            {
-                highlight1.SetActive(false);
-            }
+            //Debug.Log(menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z);
+            if (menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 36 || menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 324){  highlight1.SetActive(true); }
+            else { highlight1.SetActive(false);  }
+
+            if(menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 324 && menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 252) {  highlight2.SetActive(true);  }
+            else { highlight2.SetActive(false); }
+
+            if(menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 252 && menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 180) { highlight3.SetActive(true); }
+            else { highlight3.SetActive(false); }
+
+            if(menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 180 && menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 108) { highlight4.SetActive(true); }
+            else { highlight4.SetActive(false); }
+
+            if (menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 108 && menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 36) { highlight5.SetActive(true); }
+            else { highlight5.SetActive(false); }
+
             if(Input.GetAxis("Mouse ScrollWheel") > 0)
             {
                 menus[(int)UIMENUS.inventoryMenu].transform.Rotate(Vector3.forward, +10);

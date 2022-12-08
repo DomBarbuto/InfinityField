@@ -17,13 +17,13 @@ public class inventory : MonoBehaviour
     void Start()
     {
         slots = inventorySlots.GetComponentsInChildren<inventory>();
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void addWeapon(weaponCreation newWeapon)
@@ -38,10 +38,12 @@ public class inventory : MonoBehaviour
     {
         for (int i = 0; i < slots.Length; i++)
         {
-            if(i < gameManager.instance.playerController.weaponInventory.Count)
+            if (i < gameManager.instance.playerController.weaponInventory.Count)
             {
                 slots[i].addWeapon(gameManager.instance.playerController.weaponInventory[i]);
             }
         }
     }
+
+
 }
