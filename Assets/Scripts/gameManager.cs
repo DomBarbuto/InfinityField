@@ -22,12 +22,15 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI creditsCounterText;           // Text for collected credits
     public Image playerHPBar;
     public Image playerEnergyBar;
+
+    [Header("---- Inventory Menu ----")]
     [SerializeField] GameObject invWheelPointer;
     [SerializeField] GameObject highlight1;
     [SerializeField] GameObject highlight2;
     [SerializeField] GameObject highlight3;
     [SerializeField] GameObject highlight4;
     [SerializeField] GameObject highlight5;
+    [SerializeField] public GameObject[] slots;
 
     public enum UIMENUS { pauseMenu, winMenu, deathMenu, inventoryMenu, upgradeMenu }
 
@@ -102,20 +105,7 @@ public class gameManager : MonoBehaviour
         if(activeMenu == menus[(int)UIMENUS.inventoryMenu])
         {
             //Debug.Log(menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z);
-            if (menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 36 || menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 324){  highlight1.SetActive(true); }
-            else { highlight1.SetActive(false);  }
-
-            if(menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 324 && menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 252) {  highlight2.SetActive(true);  }
-            else { highlight2.SetActive(false); }
-
-            if(menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 252 && menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 180) { highlight3.SetActive(true); }
-            else { highlight3.SetActive(false); }
-
-            if(menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 180 && menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 108) { highlight4.SetActive(true); }
-            else { highlight4.SetActive(false); }
-
-            if (menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 108 && menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 36) { highlight5.SetActive(true); }
-            else { highlight5.SetActive(false); }
+            getSelectedItem();
 
             if(Input.GetAxis("Mouse ScrollWheel") > 0)
             {
@@ -202,6 +192,29 @@ public class gameManager : MonoBehaviour
         menus[(int)newActiveMenu].SetActive(true);
         activeMenu = menus[(int)newActiveMenu];
     }
+    
+    public void getSelectedItem()
+    {
+        if (menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 36 || menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 324) { highlight1.SetActive(true); //Leave the or statement. It's required
+            if (playerController.weaponInventory[0] != null) { playerController.currentWeapon = 0; }} 
+        else { highlight1.SetActive(false); }
 
+        if (menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 324 && menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 252) { highlight2.SetActive(true);
+            if (playerController.weaponInventory[1] != null) { playerController.currentWeapon = 1; }}
+        else { highlight2.SetActive(false); }
+
+        if (menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 252 && menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 180) { highlight3.SetActive(true);
+            if (playerController.weaponInventory[1] != null) { playerController.currentWeapon = 2; }}
+        else { highlight3.SetActive(false); }
+
+        if (menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 180 && menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 108) { highlight4.SetActive(true);
+            if (playerController.weaponInventory[1] != null) { playerController.currentWeapon = 3; }}
+        else { highlight4.SetActive(false); }
+
+        if (menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 108 && menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 36) { highlight5.SetActive(true);
+            if (playerController.weaponInventory[1] != null) { playerController.currentWeapon = 4; }}
+        else { highlight5.SetActive(false); }
+
+    }
 
 }

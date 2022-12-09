@@ -26,7 +26,7 @@ public class playerController : MonoBehaviour
 
     [Header("Inventory")]
     [SerializeField] public List<weaponCreation> weaponInventory = new List<weaponCreation>();
-    [SerializeField] int maxSlots = 8;     //The max amount of weapons the player can have
+    [SerializeField] int maxSlots = 5;     //The max amount of weapons the player can have
 
     [Header("---- Active Weapon -----")]
     [SerializeField] public int currentWeapon;
@@ -190,18 +190,24 @@ public class playerController : MonoBehaviour
     public void weaponPickUp(weaponCreation weapon)
     {
         weaponModel.GetComponent<MeshFilter>().sharedMesh = weapon.weaponsModel.GetComponent<MeshFilter>().sharedMesh;
+        weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weapon.weaponsModel.GetComponent<MeshRenderer>().sharedMaterial;
 
-        for(int i = 0; i < maxSlots; i++)
+        for (int i = 0; i < maxSlots; i++)
         {
+
             if (weaponInventory[i] == weapon)
             {
                 break;
             }
-            else if(i == weaponInventory.Count && weaponInventory[i] != weapon)
+            if (weaponInventory[i] == null)
             {
-                weaponInventory.Add(weapon);
-
+                weaponInventory[i] = weapon;
+                Debug.Log("poop");
+                gameManager.instance.slots[i].GetComponent<Image>().sprite = weapon.icon;
+                break;
             }
+                
+
         }
         
     }

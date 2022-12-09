@@ -8,7 +8,7 @@ public class weaponCreation : ScriptableObject
     public float atkRate;
     public int weaponDamage;
     public float weaponDist;
-    public Sprite icon = null;
+    public Sprite icon;
     public GameObject weaponsModel;
 
 }
