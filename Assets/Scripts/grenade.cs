@@ -9,8 +9,7 @@ public class grenade : MonoBehaviour
     [SerializeField] float explosionPushBack;
     [SerializeField] GameObject explosion;
     [SerializeField] float explosionRadius;
-    float timeOfCreation;
-    float timeofExplosion;
+    bool isPlayerGrenade;
 
 
     private void Awake()
@@ -44,7 +43,9 @@ public class grenade : MonoBehaviour
             Rigidbody RigBdy = inZone.GetComponent<Rigidbody>();
             if(RigBdy!= null )
             {
+
                 RigBdy.AddExplosionForce(explosionPushBack, transform.position, explosionRadius);
+                
             }
         }
     }
@@ -52,7 +53,6 @@ public class grenade : MonoBehaviour
     IEnumerator explodeTime(float time)
     {
         yield return new WaitForSeconds(time);
-
         explosionPush();
         Destroy(gameObject);
 

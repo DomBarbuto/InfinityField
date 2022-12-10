@@ -39,6 +39,10 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject weaponModel;
     [SerializeField] public Transform projectileStartPos;
 
+    [Header("---- RigidBodyMovement ----")]
+    [SerializeField] private Rigidbody playerRB;
+    private Vector3 playerMovementInput;
+    [SerializeField] public Transform onGround;
     //Private Variables------------------
     bool isFiring;
 
@@ -80,6 +84,10 @@ public class playerController : MonoBehaviour
                     StartCoroutine(fire());
                 }
             }
+
+            //Code for rigidBody Movement
+           /* playerMovementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+            rigidBodyMove();*/
         }
     }
 
@@ -100,7 +108,6 @@ public class playerController : MonoBehaviour
             // Only call if not sprinting
             if (!isSprinting)
             {
-                Debug.Log("Poop");
                 currentMoveSpeed = walkSpeed * sprintMultiplier;
                 isSprinting = true;
             }
@@ -169,7 +176,7 @@ public class playerController : MonoBehaviour
             {
                 direction = (hit.point - projectileStartPos.position).normalized;
             }
-            Vector3 force = Camera.main.transform.forward * weaponInventory[currentWeapon].launchForce + controller.transform.up * weaponInventory[currentWeapon].upLaunchForce;
+            Vector3 force = Camera.main.transform.forward * weaponInventory[currentWeapon].launchForce + playerRB.transform.up * weaponInventory[currentWeapon].upLaunchForce;
 
             projectileRB.AddForce(force, ForceMode.Impulse);
 
@@ -211,9 +218,9 @@ public class playerController : MonoBehaviour
 
     public void setPlayerPos()
     {
-        controller.enabled = false;
+        //controller.enabled = false;
         transform.position = gameManager.instance.playerSpawnPoint.transform.position;
-        controller.enabled = true;
+        //controller.enabled = true;
     }
 
     public void resetPlayerHP()
@@ -272,5 +279,28 @@ public class playerController : MonoBehaviour
     public float getMAXEnergy()
     {
         return MAXEnergy;
+    }
+
+    private void rigidBodyMove()
+    {
+        if(Input.GetButton("Sprint"))
+        {
+                Vector3 MoveVectorSprint = transform.TransformDirection(playerMovementInput) * (walkSpeed * sprintMultiplier);
+                playerRB.velocity = new Vector3(MoveVectorSprint.x, playerRB.velocity.y, MoveVectorSprint.z);
+        }
+        else
+        {
+                Vector3 MoveVector = transform.TransformDirection(playerMovementInput) * walkSpeed;
+                playerRB.velocity = new Vector3(MoveVector.x, playerRB.velocity.y, MoveVector.z);
+        }
+
+        if(Input.GetButtonDown("Jump"))
+        {
+            if(playerRB.velocity.y == 0)
+            {
+                playerRB.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+            }
+            
+        }
     }
 }
