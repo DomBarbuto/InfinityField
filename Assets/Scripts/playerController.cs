@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,6 +37,7 @@ public class playerController : MonoBehaviour
     [SerializeField] float currFireRate;
     [SerializeField] int currFireRange;
     [SerializeField] GameObject weaponModel;
+    [SerializeField] public Transform projectileStartPos;
 
     //Private Variables------------------
     bool isFiring;
@@ -70,8 +74,11 @@ public class playerController : MonoBehaviour
 
             if (!isFiring && Input.GetButton("Fire1"))
             {
-                isFiring = true;
-                StartCoroutine(fire());
+                if (weaponInventory[currentWeapon] != null)
+                {
+                    isFiring = true;
+                    StartCoroutine(fire());
+                }
             }
         }
     }
@@ -127,21 +134,48 @@ public class playerController : MonoBehaviour
     IEnumerator fire()
     {
         RaycastHit hit;
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, currFireRange))
+
+        if (weaponInventory[currentWeapon].isThrowable != true)
         {
-            if (hit.collider.GetComponent<IDamage>() != null)
+
+
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, currFireRange))
             {
-                Debug.Log("Shot " + hit.collider.name);
-                // TODO: Delete
-                Debug.Log("Player hit " + hit.collider.name);
+                if (hit.collider.GetComponent<IDamage>() != null)
+                {
+                    Debug.Log("Shot " + hit.collider.name);
+                    // TODO: Delete
+                    Debug.Log("Player hit " + hit.collider.name);
 
-                hit.collider.GetComponent<IDamage>().takeDamage(currDamage);
+                    hit.collider.GetComponent<IDamage>().takeDamage(currDamage);
+                }
+                else
+                    // TODO: Delete
+                    Debug.Log("Miss");
             }
-            else
-                // TODO: Delete
-                Debug.Log("Miss");
         }
+        else
+        {
+            //Thrown object
+            GameObject projectile = Instantiate(weaponInventory[currentWeapon].thrownObject, projectileStartPos.position, Camera.main.transform.rotation);
+            Rigidbody projectileRB = projectile.GetComponent<Rigidbody>();
 
+            Debug.Log("Grenade Fire Test");
+
+            //force and direction of thrown object
+            Vector3 direction = Camera.main.transform.forward;
+
+            if(Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, currFireRange))
+            {
+                direction = (hit.point - projectileStartPos.position).normalized;
+            }
+            Vector3 force = Camera.main.transform.forward * weaponInventory[currentWeapon].launchForce + controller.transform.up * weaponInventory[currentWeapon].upLaunchForce;
+
+            projectileRB.AddForce(force, ForceMode.Impulse);
+
+            
+
+        }
         yield return new WaitForSeconds(currFireRate);
 
         isFiring = false;
@@ -202,7 +236,6 @@ public class playerController : MonoBehaviour
             if (weaponInventory[i] == null)
             {
                 weaponInventory[i] = weapon;
-                Debug.Log("poop");
                 gameManager.instance.slots[i].GetComponent<Image>().sprite = weapon.icon;
                 break;
             }
