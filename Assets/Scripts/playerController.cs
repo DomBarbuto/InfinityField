@@ -230,6 +230,8 @@ public class playerController : MonoBehaviour
 
     public void weaponPickUp(weaponCreation weapon)
     {
+        gameManager.instance.showReticle();
+
         weaponModel.GetComponent<MeshFilter>().sharedMesh = weapon.weaponsModel.GetComponent<MeshFilter>().sharedMesh;
         weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weapon.weaponsModel.GetComponent<MeshRenderer>().sharedMaterial;
 

@@ -29,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1876569947559501105}
-  m_LocalRotation: {x: -0, y: 0.0000009685754, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -152.391, y: 0, z: 6.819171}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -72,6 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb8640303625924884d65fae7938d57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 1876569947559501107}
   skeleton:
   - {fileID: 4747715598868154533}
   - {fileID: 4747715599269366707}
@@ -833,6 +834,19 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!135 &1279325522
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2784385323202201888}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.0072246054
+  m_Center: {x: -0.000010436941, y: 0.003466609, z: 0.0015266106}
 --- !u!1 &4185051508719121851 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -290750445479886849, guid: 482559447cd0ee442b1fcfca9742ef2d, type: 3}

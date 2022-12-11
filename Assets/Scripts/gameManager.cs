@@ -15,6 +15,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject playerLastKnownPosition; // Reference to prefab to be instantiated when player loses the enemy
 
     [Header("---- UI Components ----")]
+    public GameObject reticle;
     public GameObject[] menus;
     public GameObject activeMenu;
     public GameObject playerDamageFX;                    // Damage screen effect
@@ -66,6 +67,9 @@ public class gameManager : MonoBehaviour
 
     private void Start()
     {
+        // Hide reticle on start. Reticle only shows when weapon is selected
+        hideReticle();
+
         creditsCounterText.text = credits.ToString();
     }
 
@@ -154,6 +158,18 @@ public class gameManager : MonoBehaviour
     public void updatePlayerEnergyBar()
     {
         playerEnergyBar.fillAmount = playerController.getEnergy() / playerController.getMAXEnergy();
+    }
+
+    public void hideReticle()
+    {
+        reticle.SetActive(false);
+    }
+
+    public void showReticle()
+    {
+        // Only call setActive if it is not active
+        if(!reticle.activeInHierarchy)
+            reticle.SetActive(true);
     }
 
     public void updateEnemyCount(int amount)

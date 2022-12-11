@@ -1641,7 +1641,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3672651480112506779
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1817,6 +1817,7 @@ MonoBehaviour:
   playerController: {fileID: 0}
   inventory: {fileID: 0}
   playerLastKnownPosition: {fileID: 3729662176865368105, guid: 9d86998320140c34cb59a9f18ccc8e77, type: 3}
+  reticle: {fileID: 3672651480112506778}
   menus:
   - {fileID: 5879097346677608978}
   - {fileID: 3563937584318032215}
@@ -2510,7 +2511,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6614218242885234017
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2587,7 +2588,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8176705354724412152
 RectTransform:
   m_ObjectHideFlags: 0
