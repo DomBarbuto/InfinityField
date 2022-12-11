@@ -258,6 +258,7 @@ GameObject:
   - component: {fileID: 2049278139227827889}
   - component: {fileID: 2049278139227827902}
   - component: {fileID: 2049278139227827890}
+  - component: {fileID: 3340467398012700460}
   m_Layer: 6
   m_Name: Enemy 1
   m_TagString: Untagged
@@ -272,7 +273,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2049278139227827898}
-  m_LocalRotation: {x: -0, y: -0.70710576, z: -0, w: 0.7071079}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 21.476944, y: 0.75, z: 5.804001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -302,6 +303,7 @@ MonoBehaviour:
   damageFX: {fileID: 2100000, guid: 80c224e0f63fd1441990fc5e9dbddb34, type: 2}
   playerInRangeTrigger: {fileID: 2049278139227827902}
   ragdoll: {fileID: 2049278139227827890}
+  anim: {fileID: 3340467398012700460}
   HP: 100
   damageFXLength: 0.1
   facePlayerSpeed: 15
@@ -387,6 +389,26 @@ MonoBehaviour:
   - {fileID: 1496885504004943829}
   - {fileID: 1496885503366770197}
   - {fileID: 1496885503536397266}
+--- !u!95 &3340467398012700460
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049278139227827898}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2049278139716847619
 GameObject:
   m_ObjectHideFlags: 0

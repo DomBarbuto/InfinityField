@@ -12,6 +12,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Material damageFX;
     [SerializeField] SphereCollider playerInRangeTrigger;    // For displaying escape range - OnDrawGizmosSelected
     [SerializeField] ragdollDeath ragdoll;
+    [SerializeField] Animator anim;
 
     [Header("---- Enemy Stats ----")]
     [SerializeField] int HP;
@@ -54,6 +55,9 @@ public class enemyAI : MonoBehaviour, IDamage
 
     void Update()
     {
+        // Animation
+        anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
+
         // If player is in range
         if (playerInRange && HP > 0)
         {
