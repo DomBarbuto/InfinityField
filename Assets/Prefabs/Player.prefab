@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 503212280}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.5869999, y: -0.358, z: 0.55600005}
-  m_LocalScale: {x: 0.23370126, y: 0.14468524, z: 0.19338389}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3867346384435211983}
@@ -156,6 +156,8 @@ MonoBehaviour:
   currFireRange: 100
   weaponModel: {fileID: 503212280}
   projectileStartPos: {fileID: 503212283}
+  playerRB: {fileID: 0}
+  onGround: {fileID: 0}
 --- !u!143 &3867346382715989136
 CharacterController:
   m_ObjectHideFlags: 0
