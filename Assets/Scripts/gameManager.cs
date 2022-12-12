@@ -49,7 +49,7 @@ public class gameManager : MonoBehaviour
     public GameObject playerSpawnPoint;
     public dynamicAudio composer;
 
-    public bool isPlayerDetected;
+    //public bool isPlayerDetected;
     [Range(3, 5)][SerializeField] float playerLastKnownPositionTimeout;
     public GameObject currentLastKnownPosition = null;
 
@@ -190,11 +190,11 @@ public class gameManager : MonoBehaviour
         currentLastKnownPosition = Instantiate(playerLastKnownPosition, player.transform.position, Quaternion.identity);
         yield return new WaitForSeconds(playerLastKnownPositionTimeout);
 
-        if(currentLastKnownPosition != null && !isPlayerDetected)
+        /*if(currentLastKnownPosition != null && !isPlayerDetected)
         {
             Destroy(currentLastKnownPosition);
             currentLastKnownPosition = null;
-        }
+        }*/
     }
 
     // Getters/Setters

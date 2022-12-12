@@ -19,8 +19,11 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] float damageFXLength;
     [SerializeField] int facePlayerSpeed;
     [SerializeField] int fieldOfView;
+    [SerializeField] int requiredShootAngle;
     [SerializeField] bool isRagdoll;
-    public int creditsHeld; // How many credits the enemy drops
+    [SerializeField] bool isPlayerDetected;
+    public int creditsHeld;                 // How many credits the enemy sends over to collectable on death
+    [SerializeField] int animTransSpeed;
 
     [Header("---- Weapon Stats ----")]
     [SerializeField] GameObject projectile;
@@ -56,7 +59,7 @@ public class enemyAI : MonoBehaviour, IDamage
     void Update()
     {
         // Animation
-        anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
+        anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed));
 
         // If player is in range
         if (playerInRange && HP > 0)
@@ -67,7 +70,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     //Player Detection-------------------
 
-    void canSeePlayer() 
+    void canSeePlayer()
     {
         // Find direction and angle to player
         playerDir = gameManager.instance.player.transform.position - headPos.position;
@@ -78,44 +81,42 @@ public class enemyAI : MonoBehaviour, IDamage
         // If enemy can see player without obstruction
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, playerDir, out hit))
-        { 
+        {
             // If what was hit was the player
-            if(hit.collider.CompareTag("Player"))
+            if (hit.collider.CompareTag("Player"))
             {
                 // If player is within field of view
-                if(angleToPlayer <= fieldOfView)
+                if (angleToPlayer <= fieldOfView)
                 {
                     // Remember the player is there
-                    if (!gameManager.instance.isPlayerDetected)
-                        rememberPlayer();
+                    if (!isPlayerDetected)
+                        detectPlayer();
                 }
             }
-           
-            if (gameManager.instance.isPlayerDetected)
-            {
-                // Important for making AI feel smarter
-                // Make the enemy still follow the player while within normal stopping distance
-                // This is needed because navMeshAgent cannot rotate when remaining distance < stopping distance
-                if (agent.remainingDistance < origStoppingDistance)
-                {
-                    agent.stoppingDistance = 3; 
-                }
-                else
-                {
-                    // Return stopping distance to normal
-                    agent.stoppingDistance = origStoppingDistance;
-                }
 
+            // Return stopping distance to original if player has already attacked enemy from up close and has gone out of regular stopping distance
+            if (agent.remainingDistance > origStoppingDistance && agent.stoppingDistance != origStoppingDistance)
+            {
+                // Return stopping distance to normal
+                agent.stoppingDistance = origStoppingDistance;
+            }
+
+            if (isPlayerDetected)
+            {
                 // Face the player
-                facePlayer(); 
+                facePlayer();
 
                 // Follow the player
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
-                // Attack if not already attacking
-                if (!isAttacking)
-                    StartCoroutine(attack());
-                
+                // Only shoot when aiming near player OR when player is below or above enemy
+                if (angleToPlayer <= requiredShootAngle ||
+                    Vector3.Dot(transform.forward, playerDir.normalized) > 0.5f)
+                {
+                    // Attack if not already attacking
+                    if (!isAttacking)
+                        StartCoroutine(attack());
+                }
             }
         }
     }
@@ -135,13 +136,18 @@ public class enemyAI : MonoBehaviour, IDamage
         // Reduce enemy health
         HP -= dmg;
 
-        // If player is undetected, within stopping distance, and attacks the enemy - reduce stopping distance to have him attack back
-        if(Vector3.Distance(transform.position, gameManager.instance.player.transform.position) < agent.stoppingDistance)
+        // Makes enemy chase player more closely if shot from up close - until player goes back outside of original stopping distance (this is reset in canSeePlayer)
+        // If player is undetected, within stopping distance, and attacks the enemy - reduce stopping distance
+        //NOTE: The +1 in condition ensures enemy chases in the case of player being right on the stoppingDistance line.
+        if(!isPlayerDetected && Vector3.Distance(transform.position, gameManager.instance.player.transform.position) < agent.stoppingDistance + 1f)
+        {
+            isPlayerDetected = true;
             agent.stoppingDistance = 3;
+        }
 
         // Start moving to where enemy was shot from
         agent.SetDestination(gameManager.instance.player.transform.position);
-
+        
         StartCoroutine(flashDamageFX());
 
         // Check if this caused death
@@ -161,9 +167,9 @@ public class enemyAI : MonoBehaviour, IDamage
         }
     }
 
-    private void rememberPlayer()
+    private void detectPlayer()
     {
-        gameManager.instance.isPlayerDetected = true;
+        isPlayerDetected = true;
 
         // Destroy the lastKnownPositions if it is present
         if (gameManager.instance.currentLastKnownPosition != null)
@@ -173,9 +179,9 @@ public class enemyAI : MonoBehaviour, IDamage
         }
     }
 
-    private void forgetPlayer()
+    private void undetectPlayer()
     {
-        gameManager.instance.isPlayerDetected = false;
+        isPlayerDetected = false;
 
         if (gameManager.instance.currentLastKnownPosition == null)
         {
@@ -210,8 +216,11 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         isAttacking = true;
 
+        // Animation - Trigger shoot
+        anim.SetTrigger("Shoot");
+
         // Create bullet, which is added velocity within its start
-        Instantiate(projectile, muzzlePoint.position, transform.rotation);
+        Instantiate(projectile, muzzlePoint.position, muzzlePoint.transform.rotation);
         yield return new WaitForSeconds(fireRate);
 
         isAttacking = false;
@@ -239,8 +248,8 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             playerInRange = false;
 
-            if(gameManager.instance.isPlayerDetected)
-                forgetPlayer();
+            if (isPlayerDetected)
+                undetectPlayer();
         }
     }
 
