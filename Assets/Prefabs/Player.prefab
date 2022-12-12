@@ -132,13 +132,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 3867346382715989136}
-  HP: 100
+  HP: 2000
   energy: 100
   energyDecreaseRate: 1
   isSprinting: 0
   currentMoveSpeed: 0
   walkSpeed: 6
-  sprintMultiplier: 2
+  sprintMultiplier: 1.5
   jumpHeight: 12
   gravityValue: 30
   jumpsMax: 1
@@ -315,7 +315,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 100
   orthographic: 0

@@ -150,15 +150,23 @@ public class playerController : MonoBehaviour
             {
                 if (hit.collider.GetComponent<IDamage>() != null)
                 {
-                    Debug.Log("Shot " + hit.collider.name);
-                    // TODO: Delete
-                    Debug.Log("Player hit " + hit.collider.name);
+                    // TODO: HEADSHOT
+                    //Vector3 worldHitPosition = hit.point;
+                    //Vector3 localHitPosition = hit.collider.transform.InverseTransformPoint(worldHitPosition);
+                    //Vector3 localHitPosition = hit.collider.transform.worldToLocalMatrix.MultiplyPoint3x4(worldHitPosition);
+
+                    /* if (localHitPosition.y > transform.localPosition.y + 0.1f)
+                     {
+                         Debug.Log("headshot");
+                         hit.collider.GetComponent<IDamage>().takeDamage(currDamage * 5);
+                     }
+                     else
+                         hit.collider.GetComponent<IDamage>().takeDamage(currDamage);*/
 
                     hit.collider.GetComponent<IDamage>().takeDamage(currDamage);
                 }
-                else
-                    // TODO: Delete
-                    Debug.Log("Miss");
+                
+                    
             }
         }
         else

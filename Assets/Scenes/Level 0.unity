@@ -1921,6 +1921,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3553741586400377481, guid: 1add005e7b0933b40a2548b0446e8628, type: 3}
+      propertyPath: drawFieldOfView
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3553741586400377482, guid: 1add005e7b0933b40a2548b0446e8628, type: 3}
       propertyPath: m_RootOrder
       value: 28
@@ -2327,17 +2331,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1876569947559501111, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
-      propertyPath: drawFieldOfView
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1876569947559501111, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
-      propertyPath: drawStoppingDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1876569947559501111, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
-      propertyPath: drawPlayerInRangeRadius
-      value: 0
+    - target: {fileID: 7627479870926684032, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
@@ -3969,6 +3965,10 @@ PrefabInstance:
     - target: {fileID: 7191330914639572764, guid: 8d4362965894ad74cb13ae88838432f9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7191330914639572767, guid: 8d4362965894ad74cb13ae88838432f9, type: 3}
+      propertyPath: drawFieldOfView
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d4362965894ad74cb13ae88838432f9, type: 3}
@@ -14991,9 +14991,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 736810912873909563, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 359.7193
+      objectReference: {fileID: 0}
+    - target: {fileID: 736810912873909563, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 359.9794
+      objectReference: {fileID: 0}
+    - target: {fileID: 736810912873909563, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 2.5597591
+      objectReference: {fileID: 0}
     - target: {fileID: 1876569947559501105, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
       propertyPath: m_Name
       value: Enemy_CleanUpCrew_Red (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1876569947559501105, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1876569947559501108, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
       propertyPath: m_RootOrder
@@ -15041,15 +15057,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1876569947559501111, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
       propertyPath: drawFieldOfView
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1876569947559501111, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
       propertyPath: drawStoppingDistance
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1876569947559501111, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
       propertyPath: drawPlayerInRangeRadius
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511748060589373956, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 358.5428
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511748060589373956, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 3.9798787
+      objectReference: {fileID: 0}
+    - target: {fileID: 3511748060589373956, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 178.80128
+      objectReference: {fileID: 0}
+    - target: {fileID: 7090687571831567431, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 344.41394
+      objectReference: {fileID: 0}
+    - target: {fileID: 7090687571831567431, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 346.91928
+      objectReference: {fileID: 0}
+    - target: {fileID: 7090687571831567431, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 170.42934
+      objectReference: {fileID: 0}
+    - target: {fileID: 7627479870926684032, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
@@ -16122,6 +16166,10 @@ PrefabInstance:
     - target: {fileID: 5820137189991134305, guid: 331247316fb1c8e429fa2af2622c0791, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820137189991134306, guid: 331247316fb1c8e429fa2af2622c0791, type: 3}
+      propertyPath: drawFieldOfView
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5820137189991134308, guid: 331247316fb1c8e429fa2af2622c0791, type: 3}
       propertyPath: m_Name
@@ -18258,6 +18306,10 @@ PrefabInstance:
     - target: {fileID: 5820137189991134305, guid: 331247316fb1c8e429fa2af2622c0791, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820137189991134306, guid: 331247316fb1c8e429fa2af2622c0791, type: 3}
+      propertyPath: drawFieldOfView
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5820137189991134308, guid: 331247316fb1c8e429fa2af2622c0791, type: 3}
       propertyPath: m_Name
