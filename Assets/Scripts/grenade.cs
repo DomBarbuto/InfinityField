@@ -43,8 +43,19 @@ public class grenade : MonoBehaviour
             Rigidbody RigBdy = inZone.GetComponent<Rigidbody>();
             if(RigBdy!= null )
             {
-
                 RigBdy.AddExplosionForce(explosionPushBack, transform.position, explosionRadius);
+            }
+            else if(inZone.CompareTag("Player"))
+            {
+                Vector3 pushVector;
+                pushVector.x = (1 * explosionPushBack) / ((transform.position.x + inZone.transform.position.x) / explosionPushBack);
+                pushVector.y = (1 * explosionPushBack) / ((transform.position.y + inZone.transform.position.y) / explosionPushBack);
+                pushVector.z = (1 * explosionPushBack) / ((transform.position.z + inZone.transform.position.z) / explosionPushBack);
+
+                gameManager.instance.playerController.pushBackInput(pushVector);
+            }
+            else if(inZone.CompareTag("Enemy"))
+            {
                 
             }
         }

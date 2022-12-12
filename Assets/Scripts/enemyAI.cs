@@ -24,6 +24,8 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] bool isPlayerDetected;
     public int creditsHeld;                 // How many credits the enemy sends over to collectable on death
     [SerializeField] int animTransSpeed;
+    [SerializeField] Vector3 pushBack;
+    [SerializeField] float pushBackTime;
 
     [Header("---- Weapon Stats ----")]
     [SerializeField] GameObject projectile;
@@ -289,5 +291,9 @@ public class enemyAI : MonoBehaviour, IDamage
         // Draw Vision Boundary 
         Debug.DrawRay(headPos.position, leftVisionEdge * playerInRangeTrigger.radius, Color.red);
         Debug.DrawRay(headPos.position, rightVisionEdge * playerInRangeTrigger.radius, Color.red);
+    }
+    public void pushBackInput(Vector3 dir)
+    {
+        pushBack = dir;
     }
 }

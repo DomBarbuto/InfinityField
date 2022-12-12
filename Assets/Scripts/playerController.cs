@@ -26,6 +26,8 @@ public class playerController : MonoBehaviour
     [Range(15, 35)] [SerializeField] float gravityValue;
     [Range(1, 3)] [SerializeField] int jumpsMax;
     [SerializeField] float damageFXLength;
+    [SerializeField] public Vector3 pushBack;
+    [SerializeField] float pushBackTime;
 
     [Header("Inventory")]
     [SerializeField] public List<weaponCreation> weaponInventory = new List<weaponCreation>();
@@ -74,6 +76,9 @@ public class playerController : MonoBehaviour
     {
         if (!gameManager.instance.isPaused)
         {
+            pushBack.x = Mathf.Lerp(pushBack.x, 0, Time.deltaTime * pushBackTime);
+            pushBack.y = Mathf.Lerp(pushBack.y, 0, Time.deltaTime * pushBackTime);
+            pushBack.z = Mathf.Lerp(pushBack.z, 0, Time.deltaTime * pushBackTime);
             movement();
 
             if (!isFiring && Input.GetButton("Fire1"))
@@ -133,7 +138,7 @@ public class playerController : MonoBehaviour
         }
 
         playerVelocity.y -= gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
+        controller.Move(playerVelocity + pushBack * Time.deltaTime);
     }
 
     //Coroutines--------------------------
@@ -184,7 +189,7 @@ public class playerController : MonoBehaviour
             {
                 direction = (hit.point - projectileStartPos.position).normalized;
             }
-            Vector3 force = Camera.main.transform.forward * weaponInventory[currentWeapon].launchForce + playerRB.transform.up * weaponInventory[currentWeapon].upLaunchForce;
+            Vector3 force = Camera.main.transform.forward * weaponInventory[currentWeapon].launchForce + Camera.main.transform.up * weaponInventory[currentWeapon].upLaunchForce;
 
             projectileRB.AddForce(force, ForceMode.Impulse);
 
@@ -312,5 +317,11 @@ public class playerController : MonoBehaviour
             }
             
         }
+    }
+
+    public void pushBackInput(Vector3 dir)
+    {
+        pushBack = dir;
+        
     }
 }
