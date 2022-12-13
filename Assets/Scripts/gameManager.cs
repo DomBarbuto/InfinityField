@@ -110,8 +110,10 @@ public class gameManager : MonoBehaviour
         {
             //Debug.Log(menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z);
             getSelectedItem();
+            gameManager.instance.playerController.weaponOBJ.GetComponent<MeshFilter>().sharedMesh = gameManager.instance.playerController.weaponInventory[gameManager.instance.playerController.currentWeapon].weaponsModel.GetComponentInChildren<MeshFilter>().sharedMesh;
+            gameManager.instance.playerController.weaponOBJ.GetComponent<MeshRenderer>().sharedMaterial = gameManager.instance.playerController.weaponInventory[gameManager.instance.playerController.currentWeapon].weaponsModel.GetComponentInChildren<MeshRenderer>().sharedMaterial;
 
-            if(Input.GetAxis("Mouse ScrollWheel") > 0)
+            if (Input.GetAxis("Mouse ScrollWheel") > 0)
             {
                 menus[(int)UIMENUS.inventoryMenu].transform.Rotate(Vector3.forward, +10);
             }
@@ -220,15 +222,15 @@ public class gameManager : MonoBehaviour
         else { highlight2.SetActive(false); }
 
         if (menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 252 && menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 180) { highlight3.SetActive(true);
-            if (playerController.weaponInventory[1] != null) { playerController.currentWeapon = 2; }}
+            if (playerController.weaponInventory[2] != null) { playerController.currentWeapon = 2; }}
         else { highlight3.SetActive(false); }
 
         if (menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 180 && menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 108) { highlight4.SetActive(true);
-            if (playerController.weaponInventory[1] != null) { playerController.currentWeapon = 3; }}
+            if (playerController.weaponInventory[3] != null) { playerController.currentWeapon = 3; }}
         else { highlight4.SetActive(false); }
 
         if (menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 108 && menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 36) { highlight5.SetActive(true);
-            if (playerController.weaponInventory[1] != null) { playerController.currentWeapon = 4; }}
+            if (playerController.weaponInventory[4] != null) { playerController.currentWeapon = 4; }}
         else { highlight5.SetActive(false); }
 
     }

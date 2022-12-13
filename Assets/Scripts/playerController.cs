@@ -38,10 +38,10 @@ public class playerController : MonoBehaviour
 
     [Header("---- Active Weapon -----")]
     [SerializeField] public int currentWeapon;
-    [SerializeField] int currWeaponDamage;
+/*    [SerializeField] int currWeaponDamage;
     [SerializeField] float currShootRate;
-    [SerializeField] int currShootDistance;
-    [SerializeField] GameObject weaponOBJ;
+    [SerializeField] int currShootDistance;*/
+    [SerializeField] public GameObject weaponOBJ;
     public Transform currMuzzlePoint;
 
     [Header("---- Audio -----")]
@@ -85,6 +85,10 @@ public class playerController : MonoBehaviour
         if (!gameManager.instance.isPaused)
         {
             pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackTime);
+
+            pushBack.x = Mathf.Lerp(pushBack.x, 0f, Time.deltaTime * pushBackTime);
+            pushBack.y = Mathf.Lerp(pushBack.y, 0f, Time.deltaTime * (pushBackTime));
+            pushBack.z = Mathf.Lerp(pushBack.z, 0f, Time.deltaTime * pushBackTime);
             movement();
 
             if (!isFiring && Input.GetButton("Fire1"))
@@ -157,17 +161,17 @@ public class playerController : MonoBehaviour
         // For every other weapon that does raycasting
         else
         {
-            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, currShootDistance))
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, weaponInventory[currentWeapon].shootDistance))
             {
                 if (hit.collider.GetComponent<IDamage>() != null)
                 {
-                    hit.collider.GetComponent<IDamage>().takeDamage(currWeaponDamage);
+                    hit.collider.GetComponent<IDamage>().takeDamage(weaponInventory[currentWeapon].weaponDamage);
                 }
             }      
 
         }
 
-        yield return new WaitForSeconds(currShootRate);
+        yield return new WaitForSeconds(weaponInventory[currentWeapon].shootRate);
         isFiring = false;
     }
 
@@ -239,13 +243,13 @@ public class playerController : MonoBehaviour
 
                 // Transfer mesh and material 
                 //Here, doing getComponentInChildren!!!
-                weaponOBJ.gameObject.GetComponent<MeshFilter>().sharedMesh = weapon.weaponsModel.GetComponentInChildren<MeshFilter>().sharedMesh;
-                weaponOBJ.gameObject.GetComponent<MeshRenderer>().sharedMaterial = weapon.weaponsModel.GetComponentInChildren<MeshRenderer>().sharedMaterial;
-
+                currentWeapon = i;
+                weaponOBJ.GetComponent<MeshFilter>().sharedMesh = weaponInventory[currentWeapon].weaponsModel.GetComponentInChildren<MeshFilter>().sharedMesh;
+                weaponOBJ.GetComponent<MeshRenderer>().sharedMaterial = weaponInventory[currentWeapon].weaponsModel.GetComponentInChildren<MeshRenderer>().sharedMaterial;
                 // Transfer stats to weapon
-                currWeaponDamage = weapon.weaponDamage;
-                currShootRate = weapon.shootRate;
-                currShootDistance = weapon.shootDistance;
+                /*                currWeaponDamage = weapon.weaponDamage;
+                                currShootRate = weapon.shootRate;
+                                currShootDistance = weapon.shootDistance;*/
                 gameManager.instance.slots[i].GetComponent<Image>().sprite = weapon.icon;
 
                 // Select currMuzzlePoint

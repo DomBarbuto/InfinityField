@@ -15,10 +15,10 @@ public class explosion : MonoBehaviour
     {
         Destroy(gameObject, explosionTimer);
     }
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         
-    }
+    }*/
 
     private void OnTriggerStay(Collider other)
     {
@@ -26,6 +26,8 @@ public class explosion : MonoBehaviour
 
         if (other.gameObject.CompareTag("Player"))
         {
+            float forceMultiplier = (explosionRadius - Vector3.Distance(transform.position, other.transform.position)) / 10;
+            explosionPushBack = ((other.transform.position - transform.position) * 25) * forceMultiplier;
             gameManager.instance.playerController.pushBackInput(explosionPushBack);
         }
 
