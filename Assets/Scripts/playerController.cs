@@ -138,7 +138,7 @@ public class playerController : MonoBehaviour
         }
 
         playerVelocity.y -= gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity + pushBack * Time.deltaTime);
+        controller.Move((playerVelocity + pushBack) * Time.deltaTime);
     }
 
     //Coroutines--------------------------
