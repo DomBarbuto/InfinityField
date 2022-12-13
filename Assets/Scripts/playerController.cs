@@ -13,7 +13,7 @@ public class playerController : MonoBehaviour
     [SerializeField] CharacterController controller;
 
     [Header("---- Player Stats ----")]
-    [SerializeField] int HP;
+    [SerializeField] float HP;
     [SerializeField] float energy;
     [SerializeField] float energyDecreaseRate;
 
@@ -57,7 +57,7 @@ public class playerController : MonoBehaviour
     //Private Variables------------------
     bool isFiring;
     int currJumps;  //Times jumped since being grounded
-    int MAXHP;      //Player's maximum health
+    float MAXHP;      //Player's maximum health
     float MAXEnergy;  //Player's maximum energy
 
     Vector3 playerVelocity;
@@ -124,7 +124,8 @@ public class playerController : MonoBehaviour
             }
 
             // Update energy and UI energy bar
-            energy -= Time.deltaTime * (energy * (1 / energyDecreaseRate));
+            energy -= Time.deltaTime * energyDecreaseRate;
+            Debug.Log(energy);
             gameManager.instance.updatePlayerEnergyBar();
         }
         else if (Input.GetButtonUp("Sprint"))
@@ -211,9 +212,34 @@ public class playerController : MonoBehaviour
         //controller.enabled = true;
     }
 
+    public void addPlayerHP(float amount)
+    {
+        HP += amount;
+
+        if(HP > MAXHP)
+        {
+            HP = MAXHP;
+        }
+    }
+
     public void resetPlayerHP()
     {
         HP = MAXHP;
+    }
+
+    public void addPlayerEnergy(float amount)
+    {
+        energy += amount;
+
+        if(energy > MAXEnergy)
+        {
+            energy = MAXEnergy;
+        }
+    }
+
+    public void resetPlayerEnergy()
+    {
+        energy = MAXEnergy;
     }
 
     public void weaponPickUp(weaponCreation weapon)
@@ -285,12 +311,12 @@ public class playerController : MonoBehaviour
 
     // Setters/Getters
 
-    public int getHP()
+    public float getHP()
     {
         return HP;
     }
 
-    public int getMAXHP()
+    public float getMAXHP()
     {
         return MAXHP;
     }

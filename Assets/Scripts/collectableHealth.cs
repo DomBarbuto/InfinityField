@@ -1,16 +1,16 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class collectableCredits : MonoBehaviour, ICollectable
+public class collectableHealth : MonoBehaviour, ICollectable
 {
-    // This is the default credits that will be given to gameManager on collection (for the case of it being a findable in scene).
-    // If this collectable was dropped by enemy or breakable prop, credits will be overwritten via the entity dropping it (setCredits).
-    [SerializeField] int credits;
+    [SerializeField] float hpPickupRatio;  // Tunable Percentage of maxhp that gets added on collect
     [SerializeField] int throwSpeed;
     [SerializeField] float UIFXLength;
     [SerializeField] int destroyTimer;
+
+    float healthToAdd;
     private bool hasCollected;
     private Rigidbody rb;
 
@@ -21,6 +21,8 @@ public class collectableCredits : MonoBehaviour, ICollectable
 
     private void Start()
     {
+        
+
         // Will get thrown up and forward on instantiation
         rb.velocity = transform.forward + (transform.up * throwSpeed);
 
@@ -28,27 +30,22 @@ public class collectableCredits : MonoBehaviour, ICollectable
         Destroy(gameObject, destroyTimer);
     }
 
-    // Called via the dropper on instantiation of this object
-    public void setCredits(int amount)
-    {
-        credits = amount;
-    }
-
     // Call collect on trigger enter
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            if(!hasCollected)
+            if (!hasCollected)
                 collect();
         }
     }
 
     public void collect()
     {
+        healthToAdd = gameManager.instance.playerController.getMAXHP() * hpPickupRatio;
         hasCollected = true;
-        gameManager.instance.addCredits(credits);
-        gameManager.instance.creditsCounterText.text = gameManager.instance.credits.ToString();
+        gameManager.instance.playerController.addPlayerHP(healthToAdd);
+        gameManager.instance.updatePlayerHPBar();
 
         // TODO: Add SFX
 
@@ -65,4 +62,5 @@ public class collectableCredits : MonoBehaviour, ICollectable
         gameManager.instance.collectedCreditsFX.SetActive(false);
         Destroy(gameObject);
     }
+
 }
