@@ -38,6 +38,11 @@ public class enemyAI : MonoBehaviour
     [SerializeField] bool drawStoppingDistance;
     [SerializeField] bool drawPlayerInRangeRadius;
 
+    [Header("---- Audio -----")]
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] enemyHurt;
+    [Range(0, 1)][SerializeField] float enemyHurtVol;
+
     int MAXHP;       // Current max HP
     bool isAttacking;
     bool playerInRange;
@@ -139,10 +144,12 @@ public class enemyAI : MonoBehaviour
         // Reduce enemy health
         HP -= dmg;
 
+        aud.PlayOneShot(enemyHurt[Random.Range(0, enemyHurt.Length)], enemyHurtVol);
+
         // Makes enemy chase player more closely if shot from up close - until player goes back outside of original stopping distance (this is reset in canSeePlayer)
         // If player is undetected, within stopping distance, and attacks the enemy - reduce stopping distance
         //NOTE: The +1 in condition ensures enemy chases in the case of player being right on the stoppingDistance line.
-        if(!isPlayerDetected && Vector3.Distance(transform.position, gameManager.instance.player.transform.position) < agent.stoppingDistance + 1f)
+        if (!isPlayerDetected && Vector3.Distance(transform.position, gameManager.instance.player.transform.position) < agent.stoppingDistance + 1f)
         {
             isPlayerDetected = true;
             agent.stoppingDistance = 3;
