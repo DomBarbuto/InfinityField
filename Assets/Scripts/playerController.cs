@@ -44,6 +44,11 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject weaponOBJ;
     public Transform currMuzzlePoint;
 
+    [Header("---- Audio -----")]
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] playerHurt;
+    [Range(0, 1)][SerializeField] float playerHurtVol;
+
     /*[Header("---- RigidBodyMovement ----")]
     [SerializeField] private Rigidbody playerRB;
     private Vector3 playerMovementInput;
@@ -178,6 +183,7 @@ public class playerController : MonoBehaviour
     public void takeDamage(int dmg)
     {
         HP -= dmg;
+        aud.PlayOneShot(playerHurt[Random.Range(0, playerHurt.Length)], playerHurtVol);
         StartCoroutine(playDamageFX());
         gameManager.instance.updatePlayerHPBar();
         
