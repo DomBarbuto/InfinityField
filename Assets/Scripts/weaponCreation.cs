@@ -6,12 +6,16 @@ using UnityEngine;
 [CreateAssetMenu]
 public class weaponCreation : ScriptableObject
 {
-    public float atkRate;
+    public enum WeaponType { pistol, rifle, grenadeLauncher }
+
+    [Header("---- Weapon Transfer Stats ----")]
+    public WeaponType weaponMuzzleType;   // Used for selecting which muzzle point on the player to use
     public int weaponDamage;
-    public float weaponDist;
+    public float shootRate;
+    public int shootDistance;
     public Sprite icon;
     public GameObject weaponsModel;
-    public Transform muzzlePoint;
+    public Vector3 weaponPositionOffset;
 
     [Header("---- Stats only for throwables ----")]
 

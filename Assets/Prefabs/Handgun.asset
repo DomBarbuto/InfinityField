@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b460d889077954facf0f71537ae262, type: 3}
   m_Name: Handgun
   m_EditorClassIdentifier: 
-  atkRate: 1
-  weaponDamage: 1
-  weaponDist: 100
+  weaponMuzzleType: 0
+  weaponDamage: 20
+  shootRate: 1
+  shootDistance: 50
   icon: {fileID: 21300000, guid: 2394d2c38be04264381e1d07ab750180, type: 3}
-  weaponsModel: {fileID: 919132149155446097, guid: e6efe674338ad4a49866fd7e5c2ba6b4, type: 3}
+  weaponsModel: {fileID: 8400426075658176271, guid: 5bcc17183a396a14cb98e8236d85f7da, type: 3}
+  isThrowable: 0
+  thrownObject: {fileID: 0}
+  launchForce: 0
+  upLaunchForce: 0

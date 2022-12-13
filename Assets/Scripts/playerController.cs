@@ -31,24 +31,26 @@ public class playerController : MonoBehaviour
 
     [Header("Inventory")]
     [SerializeField] public List<weaponCreation> weaponInventory = new List<weaponCreation>();
-    [SerializeField] int maxSlots = 5;     //The max amount of weapons the player can have
+    [SerializeField] int maxSlots = 5;                      //The max amount of weapons the player can have
+    [SerializeField] Transform laserPistolMuzzlePoint;
+    [SerializeField] Transform laserRifleMuzzlePoint;
+    [SerializeField] Transform grenadeLauncherMuzzlePoint;
 
     [Header("---- Active Weapon -----")]
     [SerializeField] public int currentWeapon;
-    [SerializeField] int currDamage;
-    [SerializeField] float currFireRate;
-    [SerializeField] int currFireRange;
-    [SerializeField] GameObject weaponModel;
-    [SerializeField] public Transform projectileStartPos;
-    public Transform muzzlePoint;
+    [SerializeField] int currWeaponDamage;
+    [SerializeField] float currShootRate;
+    [SerializeField] int currShootDistance;
+    [SerializeField] GameObject weaponOBJ;
+    public Transform currMuzzlePoint;
 
-    [Header("---- RigidBodyMovement ----")]
+    /*[Header("---- RigidBodyMovement ----")]
     [SerializeField] private Rigidbody playerRB;
     private Vector3 playerMovementInput;
-    [SerializeField] public Transform onGround;
+    [SerializeField] public Transform onGround;*/
+
     //Private Variables------------------
     bool isFiring;
-
     int currJumps;  //Times jumped since being grounded
     int MAXHP;      //Player's maximum health
     float MAXEnergy;  //Player's maximum energy
@@ -88,10 +90,6 @@ public class playerController : MonoBehaviour
                     StartCoroutine(fire());
                 }
             }
-
-            //Code for rigidBody Movement
-           /* playerMovementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-            rigidBodyMove();*/
         }
     }
 
@@ -146,25 +144,25 @@ public class playerController : MonoBehaviour
     {
         RaycastHit hit;
 
+        // For grenade launcher
         if (weaponInventory[currentWeapon].isThrowable)
         {
-            Instantiate(weaponInventory[currentWeapon].thrownObject, muzzlePoint.position, muzzlePoint.rotation);
+            Instantiate(weaponInventory[currentWeapon].thrownObject, currMuzzlePoint.transform.position, currMuzzlePoint.transform.rotation);
         }
+        // For every other weapon that does raycasting
         else
         {
-            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, currFireRange))
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, currShootDistance))
             {
                 if (hit.collider.GetComponent<IDamage>() != null)
                 {
-                    hit.collider.GetComponent<IDamage>().takeDamage(currDamage);
+                    hit.collider.GetComponent<IDamage>().takeDamage(currWeaponDamage);
                 }
-
-
             }      
 
         }
-        yield return new WaitForSeconds(currFireRate);
 
+        yield return new WaitForSeconds(currShootRate);
         isFiring = false;
     }
 
@@ -210,34 +208,68 @@ public class playerController : MonoBehaviour
 
     public void weaponPickUp(weaponCreation weapon)
     {
+        // Shows reticle if not already showing
         gameManager.instance.showReticle();
 
-        weaponModel.GetComponent<MeshFilter>().sharedMesh = weapon.weaponsModel.GetComponent<MeshFilter>().sharedMesh;
-        weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weapon.weaponsModel.GetComponent<MeshRenderer>().sharedMaterial;
-
+        // Update weapon inventory
         for (int i = 0; i < maxSlots; i++)
         {
-
+            // If we already have this weapon, dont duplicate
             if (weaponInventory[i] == weapon)
             {
+                Debug.Log("already had weapon");
+                // TODO: Grab ammo from weapon
+                // TODO: Play ammo pickup audio clip
                 break;
             }
-            if (weaponInventory[i] == null)
-            {
-                weaponInventory[i] = weapon;
-                gameManager.instance.slots[i].GetComponent<Image>().sprite = weapon.icon;
-                break;
-            }
-                
 
+            // First time picking up weapon, "Add" weapon to weapon inventory and select the weapon
+            else if (weaponInventory[i] == null)
+            {
+                Debug.Log("add weapon to inventory");
+
+                // Set weapon inventory slot[i] to this weapon
+                weaponInventory[i] = weapon;
+
+                // Transfer mesh and material 
+                //Here, doing getComponentInChildren!!!
+                weaponOBJ.gameObject.GetComponent<MeshFilter>().sharedMesh = weapon.weaponsModel.GetComponentInChildren<MeshFilter>().sharedMesh;
+                weaponOBJ.gameObject.GetComponent<MeshRenderer>().sharedMaterial = weapon.weaponsModel.GetComponentInChildren<MeshRenderer>().sharedMaterial;
+
+                // Transfer stats to weapon
+                currWeaponDamage = weapon.weaponDamage;
+                currShootRate = weapon.shootRate;
+                currShootDistance = weapon.shootDistance;
+                gameManager.instance.slots[i].GetComponent<Image>().sprite = weapon.icon;
+
+                // Select currMuzzlePoint
+                switch (weapon.weaponMuzzleType)
+                {
+                    case weaponCreation.WeaponType.pistol:
+                        currMuzzlePoint = laserPistolMuzzlePoint;
+                        break;
+
+                    case weaponCreation.WeaponType.rifle:
+                        currMuzzlePoint = laserRifleMuzzlePoint;
+                        break;
+
+                    case weaponCreation.WeaponType.grenadeLauncher:
+                        currMuzzlePoint = grenadeLauncherMuzzlePoint;
+                        break;
+                    default:
+                        break;
+                }
+
+                break;
+            }
         }
         
     }
 
+    // This isn't being called from anywhere?
     public void openInventory()
     {
         gameManager.instance.pause();
-
 
     }
 
@@ -263,7 +295,7 @@ public class playerController : MonoBehaviour
         return MAXEnergy;
     }
 
-    private void rigidBodyMove()
+    /*private void rigidBodyMove()
     {
         if(Input.GetButton("Sprint"))
         {
@@ -284,7 +316,7 @@ public class playerController : MonoBehaviour
             }
             
         }
-    }
+    }*/
 
     public void pushBackInput(Vector3 dir)
     {
