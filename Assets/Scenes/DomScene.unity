@@ -1697,6 +1697,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_CleanUpCrew_White
       objectReference: {fileID: 0}
+    - target: {fileID: 5820137189991134310, guid: 331247316fb1c8e429fa2af2622c0791, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+        'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
+        'mixamorig:LeftHandPinky2'\n\tTransform 'mixamorig:RightHandRing2'\n\tTransform
+        'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:LeftHandThumb3'\n\tTransform
+        'mixamorig:RightArm'\n\tand more ...\n\tFrom animation clip 'Pistol Idle'\n\tFrom
+        animation clip 'Pistol Walk'\n\tFrom animation clip 'Shooting'"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 331247316fb1c8e429fa2af2622c0791, type: 3}
 --- !u!1001 &4605125807642680703
@@ -1750,6 +1761,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3553741586400377485, guid: 1add005e7b0933b40a2548b0446e8628, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+        'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
+        'mixamorig:LeftHandPinky2'\n\tTransform 'mixamorig:RightHandRing2'\n\tTransform
+        'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:LeftHandThumb3'\n\tTransform
+        'mixamorig:RightArm'\n\tand more ...\n\tFrom animation clip 'Pistol Idle'\n\tFrom
+        animation clip 'Pistol Walk'\n\tFrom animation clip 'Shooting'"
+      objectReference: {fileID: 0}
     - target: {fileID: 3553741586400377487, guid: 1add005e7b0933b40a2548b0446e8628, type: 3}
       propertyPath: m_Name
       value: Enemy_CleanUpCrew_Yellow
@@ -1763,9 +1785,32 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 736810912873909563, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 359.7193
+      objectReference: {fileID: 0}
+    - target: {fileID: 736810912873909563, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 359.9794
+      objectReference: {fileID: 0}
+    - target: {fileID: 736810912873909563, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 2.5597591
+      objectReference: {fileID: 0}
     - target: {fileID: 1876569947559501105, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
       propertyPath: m_Name
       value: Enemy_CleanUpCrew_Red
+      objectReference: {fileID: 0}
+    - target: {fileID: 1876569947559501107, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+        'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
+        'mixamorig:LeftHandPinky2'\n\tTransform 'mixamorig:RightHandRing2'\n\tTransform
+        'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:LeftHandThumb3'\n\tTransform
+        'mixamorig:RightArm'\n\tand more ...\n\tFrom animation clip 'Pistol Idle'\n\tFrom
+        animation clip 'Pistol Walk'\n\tFrom animation clip 'Shooting'"
       objectReference: {fileID: 0}
     - target: {fileID: 1876569947559501108, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
       propertyPath: m_RootOrder
@@ -1811,7 +1856,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1876569947559501114, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
 --- !u!1001 &5478556837664710090
 PrefabInstance:
@@ -1937,6 +1983,17 @@ PrefabInstance:
     - target: {fileID: 7191330914639572761, guid: 8d4362965894ad74cb13ae88838432f9, type: 3}
       propertyPath: m_Name
       value: Enemy_CleanUpCrew_Black
+      objectReference: {fileID: 0}
+    - target: {fileID: 7191330914639572763, guid: 8d4362965894ad74cb13ae88838432f9, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+        'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
+        'mixamorig:LeftHandPinky2'\n\tTransform 'mixamorig:RightHandRing2'\n\tTransform
+        'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:LeftHandThumb3'\n\tTransform
+        'mixamorig:RightArm'\n\tand more ...\n\tFrom animation clip 'Pistol Idle'\n\tFrom
+        animation clip 'Pistol Walk'\n\tFrom animation clip 'Shooting'"
       objectReference: {fileID: 0}
     - target: {fileID: 7191330914639572764, guid: 8d4362965894ad74cb13ae88838432f9, type: 3}
       propertyPath: m_RootOrder
