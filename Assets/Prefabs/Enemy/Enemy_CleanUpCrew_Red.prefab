@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1268964590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1268964591}
+  - component: {fileID: 1268964593}
+  - component: {fileID: 1268964592}
+  m_Layer: 13
+  m_Name: HitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1268964591
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268964590}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.872, z: 0}
+  m_LocalScale: {x: 0.71716, y: 1.8703532, z: 0.71716}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1876569947559501108}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1268964593
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268964590}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 0.9366522
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.03167392, z: 0}
+--- !u!114 &1268964592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268964590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c52421e7f600e7408c2c5eaf94fc8f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brain: {fileID: 1876569947559501111}
 --- !u!1 &1876569947559501105
 GameObject:
   m_ObjectHideFlags: 0
@@ -15,6 +75,7 @@ GameObject:
   - component: {fileID: 1876569947559501110}
   - component: {fileID: 1876569947559501114}
   - component: {fileID: 1876569947559501109}
+  - component: {fileID: 1268558383}
   m_Layer: 6
   m_Name: Enemy_CleanUpCrew_Red
   m_TagString: Untagged
@@ -37,6 +98,7 @@ Transform:
   - {fileID: 1876569947687177228}
   - {fileID: 1876569947588705777}
   - {fileID: 5073867189903519151}
+  - {fileID: 1268964591}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -104,6 +166,7 @@ MonoBehaviour:
   playerInRangeTrigger: {fileID: 1876569947559501109}
   ragdoll: {fileID: 1876569947559501104}
   anim: {fileID: 1876569947559501107}
+  hitDetection: {fileID: 1268964590}
   HP: 100
   damageFXLength: 0.1
   facePlayerSpeed: 15
@@ -113,6 +176,8 @@ MonoBehaviour:
   isPlayerDetected: 0
   creditsHeld: 5
   animTransSpeed: 3
+  pushBack: {x: 0, y: 0, z: 0}
+  pushBackTime: 0
   projectile: {fileID: 185111370099596839, guid: 2197e594567554749812477fe2675b4e, type: 3}
   fireRate: 0.75
   muzzlePoint: {fileID: 1876569947588705777}
@@ -168,6 +233,22 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 15
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1268558383
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876569947559501105}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1876569947588705776
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +612,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2898355158428612036, guid: 482559447cd0ee442b1fcfca9742ef2d, type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2916570863362053800, guid: 482559447cd0ee442b1fcfca9742ef2d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -579,15 +660,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5465940246521907071, guid: 482559447cd0ee442b1fcfca9742ef2d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 340.2807
+      value: 359.7193
       objectReference: {fileID: 0}
     - target: {fileID: 5465940246521907071, guid: 482559447cd0ee442b1fcfca9742ef2d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 357.99338
+      value: 359.9794
       objectReference: {fileID: 0}
     - target: {fileID: 5465940246521907071, guid: 482559447cd0ee442b1fcfca9742ef2d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 353.26044
+      value: 2.5597591
       objectReference: {fileID: 0}
     - target: {fileID: 6000407479487422213, guid: 482559447cd0ee442b1fcfca9742ef2d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

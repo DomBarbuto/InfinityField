@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class enemyAI : MonoBehaviour, IDamage
+public class enemyAI : MonoBehaviour
 {
     [Header("---- External Components ----")]
     [SerializeField] Renderer model;
@@ -13,6 +13,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] SphereCollider playerInRangeTrigger;    // For displaying escape range - OnDrawGizmosSelected
     [SerializeField] ragdollDeath ragdoll;
     [SerializeField] Animator anim;
+    [SerializeField] GameObject hitDetection;
 
     [Header("---- Enemy Stats ----")]
     [SerializeField] int HP;
@@ -161,6 +162,7 @@ public class enemyAI : MonoBehaviour, IDamage
             agent.enabled = false;
             if (isRagdoll)
             {
+                hitDetection.SetActive(false);
                 ragdoll.togglePhysics(true);
                 StartCoroutine(timedDeath());
             }
