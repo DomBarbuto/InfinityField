@@ -19,7 +19,7 @@ public class gameManager : MonoBehaviour
     public GameObject[] menus;
     public GameObject activeMenu;
     public GameObject playerDamageFX;                    // Damage screen effect
-    public GameObject collectedCreditsFX;                // Collectable screen effect
+    public GameObject[] collectableUIFX;                 // Collectable ui effects
     public TextMeshProUGUI creditsCounterText;           // Text for collected credits
     public Image playerHPBar;
     public Image playerEnergyBar;
@@ -150,6 +150,28 @@ public class gameManager : MonoBehaviour
     public void addCredits(int amount)
     {
         credits += amount;
+    }
+
+    // calls coroutine to prevent errors from object calling it being destroyed
+    public void startCollectableUIFX(float UIFXLength, int index)
+    {
+        StartCoroutine(playCollectableUIFX(UIFXLength, index));
+    }
+
+    public IEnumerator playCollectableUIFX(float UIFXLength, int index)
+    {
+        collectableUIFX[index].SetActive(true);
+
+        yield return new WaitForSeconds(UIFXLength);
+        collectableUIFX[index].SetActive(false);
+    }
+    public void playHealthUIFX()
+    {
+
+    }
+    public void playEnergyUIFX()
+    {
+
     }
 
     public void updatePlayerHPBar()
