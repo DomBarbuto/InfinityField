@@ -11,6 +11,7 @@ public class weaponCreation : ScriptableObject
     public float weaponDist;
     public Sprite icon;
     public GameObject weaponsModel;
+    public Transform muzzlePoint;
 
     [Header("---- Stats only for throwables ----")]
 
