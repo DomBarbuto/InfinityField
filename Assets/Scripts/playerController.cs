@@ -40,6 +40,7 @@ public class playerController : MonoBehaviour
     [SerializeField] int currFireRange;
     [SerializeField] GameObject weaponModel;
     [SerializeField] public Transform projectileStartPos;
+    public Transform muzzlePoint;
 
     [Header("---- RigidBodyMovement ----")]
     [SerializeField] private Rigidbody playerRB;
@@ -76,9 +77,7 @@ public class playerController : MonoBehaviour
     {
         if (!gameManager.instance.isPaused)
         {
-            pushBack.x = Mathf.Lerp(pushBack.x, 0, Time.deltaTime * pushBackTime);
-            pushBack.y = Mathf.Lerp(pushBack.y, 0, Time.deltaTime * pushBackTime);
-            pushBack.z = Mathf.Lerp(pushBack.z, 0, Time.deltaTime * pushBackTime);
+            pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackTime);
             movement();
 
             if (!isFiring && Input.GetButton("Fire1"))
@@ -147,53 +146,21 @@ public class playerController : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (weaponInventory[currentWeapon].isThrowable != true)
+        if (weaponInventory[currentWeapon].isThrowable)
         {
-
-
+            Instantiate(weaponInventory[currentWeapon].thrownObject, muzzlePoint.position, muzzlePoint.rotation);
+        }
+        else
+        {
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, currFireRange))
             {
                 if (hit.collider.GetComponent<IDamage>() != null)
                 {
-                    // TODO: HEADSHOT
-                    //Vector3 worldHitPosition = hit.point;
-                    //Vector3 localHitPosition = hit.collider.transform.InverseTransformPoint(worldHitPosition);
-                    //Vector3 localHitPosition = hit.collider.transform.worldToLocalMatrix.MultiplyPoint3x4(worldHitPosition);
-
-                    /* if (localHitPosition.y > transform.localPosition.y + 0.1f)
-                     {
-                         Debug.Log("headshot");
-                         hit.collider.GetComponent<IDamage>().takeDamage(currDamage * 5);
-                     }
-                     else
-                         hit.collider.GetComponent<IDamage>().takeDamage(currDamage);*/
-
                     hit.collider.GetComponent<IDamage>().takeDamage(currDamage);
                 }
-                
-                    
-            }
-        }
-        else
-        {
-            //Thrown object
-            GameObject projectile = Instantiate(weaponInventory[currentWeapon].thrownObject, projectileStartPos.position, Camera.main.transform.rotation);
-            Rigidbody projectileRB = projectile.GetComponent<Rigidbody>();
 
-            Debug.Log("Grenade Fire Test");
 
-            //force and direction of thrown object
-            Vector3 direction = Camera.main.transform.forward;
-
-            if(Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, currFireRange))
-            {
-                direction = (hit.point - projectileStartPos.position).normalized;
-            }
-            Vector3 force = Camera.main.transform.forward * weaponInventory[currentWeapon].launchForce + Camera.main.transform.up * weaponInventory[currentWeapon].upLaunchForce;
-
-            projectileRB.AddForce(force, ForceMode.Impulse);
-
-            
+            }      
 
         }
         yield return new WaitForSeconds(currFireRate);
