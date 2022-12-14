@@ -17,7 +17,7 @@ public class gameManager : MonoBehaviour
     [Header("---- UI Components ----")]
     public GameObject reticle;
     public GameObject[] menus;
-    public GameObject activeMenu;
+    [SerializeField] public GameObject activeMenu;
     public GameObject playerDamageFX;                    // Damage screen effect
     public GameObject[] collectableUIFX;                 // Collectable ui effects
     public TextMeshProUGUI creditsCounterText;           // Text for collected credits
@@ -85,21 +85,15 @@ public class gameManager : MonoBehaviour
             else
                 unPause();
         }
-        else if(Input.GetButtonDown("Inventory"))
+        else if(Input.GetAxis("Mouse ScrollWheel") > 0 || Input.GetAxis("Mouse ScrollWheel") < 0)
         {
-
             if(activeMenu != menus[(int)UIMENUS.inventoryMenu])
             {
-                pause();
+                
                 SetActiveMenu(UIMENUS.inventoryMenu);
                 invWheelPointer.SetActive(true);
-                //menus[(int)UIMENUS.inventoryMenu].transform.Rotate(0.0f, 0.0f, 18 + (72 * playerController.currentWeapon));
+                menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles = new Vector3(0, 0, (72 * playerController.currentWeapon));
                 //TODO: TEMP COMMENT BY DOM inventory.updateInventory();
-            }
-            else
-            {
-                unPause();
-                invWheelPointer.SetActive(false);
             }
         
             
@@ -109,7 +103,6 @@ public class gameManager : MonoBehaviour
         if(activeMenu == menus[(int)UIMENUS.inventoryMenu])
         {
             getSelectedItem();
-            //Debug.Log(menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z);
             if (playerController.weaponInventory[playerController.currentWeapon] != null)
             {
                 playerController.weaponOBJ.GetComponent<MeshFilter>().sharedMesh = playerController.weaponInventory[playerController.currentWeapon].weaponsModel.GetComponentInChildren<MeshFilter>().sharedMesh;
@@ -258,6 +251,14 @@ public class gameManager : MonoBehaviour
             if (playerController.weaponInventory[4] != null) { playerController.currentWeapon = 4; }}
         else { highlight5.SetActive(false); }
 
+        if(Input.GetButtonDown("Fire1") || Input.GetButtonDown("Inventory"))
+        {
+            unPause();
+            invWheelPointer.SetActive(false);
+            
+        }
     }
+
+    //can be used and customized as you wish. This was mainly theoery crafting for the time being
 
 }
