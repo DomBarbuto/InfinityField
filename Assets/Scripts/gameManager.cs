@@ -109,10 +109,13 @@ public class gameManager : MonoBehaviour
         if(activeMenu == menus[(int)UIMENUS.inventoryMenu])
         {
             //Debug.Log(menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z);
-            getSelectedItem();
-            gameManager.instance.playerController.weaponOBJ.GetComponent<MeshFilter>().sharedMesh = gameManager.instance.playerController.weaponInventory[gameManager.instance.playerController.currentWeapon].weaponsModel.GetComponentInChildren<MeshFilter>().sharedMesh;
-            gameManager.instance.playerController.weaponOBJ.GetComponent<MeshRenderer>().sharedMaterial = gameManager.instance.playerController.weaponInventory[gameManager.instance.playerController.currentWeapon].weaponsModel.GetComponentInChildren<MeshRenderer>().sharedMaterial;
-
+            if (playerController.weaponInventory[playerController.currentWeapon] != null)
+            {
+                getSelectedItem();
+                playerController.weaponOBJ.GetComponent<MeshFilter>().sharedMesh = playerController.weaponInventory[playerController.currentWeapon].weaponsModel.GetComponentInChildren<MeshFilter>().sharedMesh;
+                playerController.weaponOBJ.GetComponent<MeshRenderer>().sharedMaterial = playerController.weaponInventory[playerController.currentWeapon].weaponsModel.GetComponentInChildren<MeshRenderer>().sharedMaterial;
+            }
+            
             if (Input.GetAxis("Mouse ScrollWheel") > 0)
             {
                 menus[(int)UIMENUS.inventoryMenu].transform.Rotate(Vector3.forward, +10);
