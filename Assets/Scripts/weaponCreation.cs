@@ -16,6 +16,8 @@ public class weaponCreation : ScriptableObject
     public Sprite icon;
     public GameObject weaponsModel;
     public Vector3 weaponPositionOffset;
+    public GameObject hitFX;
+    public GameObject flashFX;
 
     [Header("---- Stats only for throwables ----")]
 
