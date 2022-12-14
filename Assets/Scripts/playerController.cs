@@ -154,30 +154,33 @@ public class playerController : MonoBehaviour
     {
         
         RaycastHit hit;
-
-        // For grenade launcher
-        if (weaponInventory[currentWeapon].isThrowable)
+        Debug.Log(gameManager.instance.activeMenu);
+        if (gameManager.instance.activeMenu == null)
         {
-            Instantiate(weaponInventory[currentWeapon].thrownObject, currMuzzlePoint.transform.position, currMuzzlePoint.transform.rotation);
-        }
-        // For every other weapon that does raycasting
-        else
-        {
-            // Creates muzzle flash effect
-            Instantiate(weaponInventory[currentWeapon].flashFX, currMuzzlePoint.transform.position, currMuzzlePoint.transform.rotation);
-            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, weaponInventory[currentWeapon].shootDistance))
+            // For grenade launcher
+            if (weaponInventory[currentWeapon].isThrowable)
             {
-                if (hit.collider.GetComponent<IDamage>() != null)
-                {
-                    hit.collider.GetComponent<IDamage>().takeDamage(weaponInventory[currentWeapon].weaponDamage);
-                }
+                Instantiate(weaponInventory[currentWeapon].thrownObject, currMuzzlePoint.transform.position, currMuzzlePoint.transform.rotation);
             }
-            // Creates impact effect
-            Instantiate(weaponInventory[currentWeapon].hitFX, hit.point, transform.rotation);
+            // For every other weapon that does raycasting
+            else
+            {
+                // Creates muzzle flash effect
+                Instantiate(weaponInventory[currentWeapon].flashFX, currMuzzlePoint.transform.position, currMuzzlePoint.transform.rotation);
+                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, weaponInventory[currentWeapon].shootDistance))
+                {
+                    if (hit.collider.GetComponent<IDamage>() != null)
+                    {
+                        hit.collider.GetComponent<IDamage>().takeDamage(weaponInventory[currentWeapon].weaponDamage);
+                    }
+                }
+                // Creates impact effect
+                Instantiate(weaponInventory[currentWeapon].hitFX, hit.point, transform.rotation);
+            }
         }
+            yield return new WaitForSeconds(weaponInventory[currentWeapon].shootRate);
+            isFiring = false;
 
-        yield return new WaitForSeconds(weaponInventory[currentWeapon].shootRate);
-        isFiring = false;
     }
 
     IEnumerator playDamageFX()
@@ -281,7 +284,6 @@ public class playerController : MonoBehaviour
                                 currShootRate = weapon.shootRate;
                                 currShootDistance = weapon.shootDistance;*/
                 gameManager.instance.slots[i].GetComponent<Image>().sprite = weapon.icon;
-
                 // Select currMuzzlePoint
                 switch (weapon.weaponMuzzleType)
                 {
