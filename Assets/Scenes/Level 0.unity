@@ -2336,6 +2336,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 424051072, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
+      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 424051072, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1876569947559501105, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
       propertyPath: m_Name
       value: Enemy_CleanUpCrew_Red
