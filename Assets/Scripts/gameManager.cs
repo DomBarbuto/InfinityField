@@ -108,10 +108,10 @@ public class gameManager : MonoBehaviour
 
         if(activeMenu == menus[(int)UIMENUS.inventoryMenu])
         {
+            getSelectedItem();
             //Debug.Log(menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z);
             if (playerController.weaponInventory[playerController.currentWeapon] != null)
             {
-                getSelectedItem();
                 playerController.weaponOBJ.GetComponent<MeshFilter>().sharedMesh = playerController.weaponInventory[playerController.currentWeapon].weaponsModel.GetComponentInChildren<MeshFilter>().sharedMesh;
                 playerController.weaponOBJ.GetComponent<MeshRenderer>().sharedMaterial = playerController.weaponInventory[playerController.currentWeapon].weaponsModel.GetComponentInChildren<MeshRenderer>().sharedMaterial;
             }
