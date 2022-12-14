@@ -152,6 +152,7 @@ public class playerController : MonoBehaviour
 
     IEnumerator fire()
     {
+        
         RaycastHit hit;
 
         // For grenade launcher
@@ -162,14 +163,17 @@ public class playerController : MonoBehaviour
         // For every other weapon that does raycasting
         else
         {
+            // Creates muzzle flash effect
+            Instantiate(weaponInventory[currentWeapon].flashFX, currMuzzlePoint.transform.position, currMuzzlePoint.transform.rotation);
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, weaponInventory[currentWeapon].shootDistance))
             {
                 if (hit.collider.GetComponent<IDamage>() != null)
                 {
                     hit.collider.GetComponent<IDamage>().takeDamage(weaponInventory[currentWeapon].weaponDamage);
                 }
-            }      
-
+            }
+            // Creates impact effect
+            Instantiate(weaponInventory[currentWeapon].hitFX, hit.point, transform.rotation);
         }
 
         yield return new WaitForSeconds(weaponInventory[currentWeapon].shootRate);

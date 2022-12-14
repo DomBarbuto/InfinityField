@@ -48,16 +48,10 @@ public class collectableEnergy : MonoBehaviour, ICollectable
 
         // TODO: Add VFX
 
-        // GameManager collectable screen FX
-        StartCoroutine(playUIFX());    // Destroy in inside
-    }
-
-    IEnumerator playUIFX()
-    {
-        gameManager.instance.collectedCreditsFX.SetActive(true);
-        yield return new WaitForSeconds(UIFXLength);
-        gameManager.instance.collectedCreditsFX.SetActive(false);
+        gameManager.instance.startCollectableUIFX(UIFXLength, 2);
         Destroy(gameObject);
     }
+
+   
 
 }
