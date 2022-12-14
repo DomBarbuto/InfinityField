@@ -7,6 +7,7 @@ public class launchedGrenade : MonoBehaviour
     [Header("---- Bullet Settings ----")]
     [SerializeField] int speed;
     [SerializeField] int damage;
+    [SerializeField] float upLaunchForce;
     [SerializeField] int destroyTime;
     [SerializeField] GameObject explosionOBJ;
     Rigidbody rb;
@@ -14,7 +15,7 @@ public class launchedGrenade : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
-        rb.AddForce((transform.forward + transform.up) * speed, ForceMode.Impulse);
+        rb.AddForce((transform.forward + (transform.up * upLaunchForce)) * speed, ForceMode.Impulse);
         StartCoroutine(timedExplosion());
     }
 
