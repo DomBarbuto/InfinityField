@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5569945172861464250}
   - component: {fileID: 5569945172861464253}
   - component: {fileID: 5569945172861464254}
+  - component: {fileID: 7495795597425576853}
   m_Layer: 12
   m_Name: Explosion
   m_TagString: Untagged
@@ -64,6 +65,20 @@ MonoBehaviour:
   explosionPushBack: {x: 50, y: 50, z: 50}
   explosionForce: 500
   explosionRadius: 5
+--- !u!114 &7495795597425576853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5569945172861464255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b9272094b4e20c4c8715a079933779a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 60
+  rotation: {x: 1, y: 1, z: 0}
 --- !u!1001 &8042506173207310625
 PrefabInstance:
   m_ObjectHideFlags: 0

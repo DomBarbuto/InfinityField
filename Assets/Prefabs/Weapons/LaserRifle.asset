@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7b460d889077954facf0f71537ae262, type: 3}
+  m_Name: LaserRifle
+  m_EditorClassIdentifier: 
+  weaponMuzzleType: 1
+  weaponDamage: 20
+  shootRate: 0.3
+  shootDistance: 80
+  icon: {fileID: 0}
+  weaponsModel: {fileID: 4625159799414711087, guid: ddd655e7bc0b3fd458a661b386e2efd6, type: 3}
+  weaponPositionOffset: {x: 0, y: 0, z: 0}
+  hitFX: {fileID: 1943573974307894, guid: 4857609a6c0625349a60bbb4b5fa5ec5, type: 3}
+  flashFX: {fileID: 1061512257540118, guid: 51a73670ac42b28429348012d7106c27, type: 3}
+  isThrowable: 0
+  thrownObject: {fileID: 0}
+  launchForce: 0
+  upLaunchForce: 0

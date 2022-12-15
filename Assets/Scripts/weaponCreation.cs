@@ -23,7 +23,6 @@ public class weaponCreation : ScriptableObject
 
     [SerializeField] public bool isThrowable;
     [SerializeField] public GameObject thrownObject;
-    [SerializeField] public float launchForce;
-    [SerializeField] public float upLaunchForce;
+
      
 }
