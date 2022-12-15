@@ -80,6 +80,7 @@ public class playerController : MonoBehaviour
 
         setPlayerPos();
         currentMoveSpeed = walkSpeed;
+        
     }
 
     // Update is called once per frame
@@ -229,7 +230,12 @@ public class playerController : MonoBehaviour
     public void takeDamage(int dmg)
     {
         HP -= dmg;
-        aud.PlayOneShot(playerHurt[Random.Range(0, playerHurt.Length)], playerHurtVol);
+        int playCheck = Random.Range(0, 2);
+        if(playCheck == 0)
+        {
+            aud.PlayOneShot(playerHurt[Random.Range(0, playerHurt.Length)], playerHurtVol);
+        }
+        
         StartCoroutine(playDamageFX());
         gameManager.instance.updatePlayerHPBar();
         
@@ -288,6 +294,10 @@ public class playerController : MonoBehaviour
         // Shows reticle if not already showing
         gameManager.instance.showReticle();
 
+        if(!gameManager.instance.currentWeaponUI.activeSelf)
+        {
+            gameManager.instance.currentWeaponUI.SetActive(true);
+        }
         // Update weapon inventory
         for (int i = 0; i < maxSlots; i++)
         {

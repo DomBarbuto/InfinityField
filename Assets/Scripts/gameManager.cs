@@ -24,6 +24,7 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI MagazineCurrent;              // Shows ammo in magazine
     public TextMeshProUGUI AmmoPoolCurrent;              // Shows ammo in ammo pool
     public GameObject currentWeaponIcon;
+    public GameObject currentWeaponUI;
     public Image playerHPBar;
     public Image playerEnergyBar;
 
@@ -66,6 +67,7 @@ public class gameManager : MonoBehaviour
         playerSpawnPoint = GameObject.FindGameObjectWithTag("Player Spawn Point");
         composer = GameObject.FindGameObjectWithTag("Composer").GetComponent<dynamicAudio>();
         timeScaleOrig = Time.timeScale;
+        currentWeaponUI.SetActive(false);
     }
 
     private void Start()

@@ -153,8 +153,12 @@ public class enemyAI : MonoBehaviour
     {
         // Reduce enemy health
         HP -= dmg;
-
-        aud.PlayOneShot(enemyHurt[Random.Range(0, enemyHurt.Length)], enemyHurtVol);
+        int playCheck = Random.Range(0, 2);
+        if(playCheck == 0)
+        {
+            aud.PlayOneShot(enemyHurt[Random.Range(0, enemyHurt.Length)], enemyHurtVol);
+        }
+        
 
         // Makes enemy chase player more closely if shot from up close - until player goes back outside of original stopping distance (this is reset in canSeePlayer)
         // If player is undetected, within stopping distance, and attacks the enemy - reduce stopping distance
