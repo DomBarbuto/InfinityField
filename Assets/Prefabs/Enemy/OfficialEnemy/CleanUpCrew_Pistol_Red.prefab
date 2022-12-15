@@ -2228,8 +2228,8 @@ MonoBehaviour:
   ragdoll: {fileID: 6095012202514495905}
   anim: {fileID: 6095012202514495906}
   hitDetection: {fileID: 5665316274660178047}
-  bodyGlow: {fileID: 0}
-  gunGlow: {fileID: 0}
+  bodyGlow: {fileID: 475170454}
+  gunGlow: {fileID: 475170463}
   HP: 60
   damageFXLength: 0.1
   facePlayerSpeed: 15
@@ -2420,7 +2420,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 0
-  maxValue: 1
   thisObjectsMaterial: {fileID: 2100000, guid: 22b9825dd569fdf4e9749d4506941c13, type: 2}
   currentBlinkRate: 1
   currentEmissionColor: {r: 1, g: 0, b: 0, a: 0.8117647}
@@ -2438,7 +2437,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 0
-  maxValue: 1
   thisObjectsMaterial: {fileID: 2100000, guid: bb45f987efc9fc149ae1c0316ba3fd6b, type: 2}
   currentBlinkRate: 1
   currentEmissionColor: {r: 0, g: 0, b: 0, a: 0}
