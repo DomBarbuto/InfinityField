@@ -21,6 +21,9 @@ public class gameManager : MonoBehaviour
     public GameObject playerDamageFX;                    // Damage screen effect
     public GameObject[] collectableUIFX;                 // Collectable ui effects
     public TextMeshProUGUI creditsCounterText;           // Text for collected credits
+    public TextMeshProUGUI MagazineCurrent;              // Shows ammo in magazine
+    public TextMeshProUGUI AmmoPoolCurrent;              // Shows ammo in ammo pool
+    public GameObject currentWeaponIcon;
     public Image playerHPBar;
     public Image playerEnergyBar;
 

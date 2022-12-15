@@ -38,9 +38,6 @@ public class playerController : MonoBehaviour
 
     [Header("---- Active Weapon -----")]
     [SerializeField] public int currentWeapon;
-/*    [SerializeField] int currWeaponDamage;
-    [SerializeField] float currShootRate;
-    [SerializeField] int currShootDistance;*/
     [SerializeField] public GameObject weaponOBJ;
     public Transform currMuzzlePoint;
 
@@ -105,7 +102,16 @@ public class playerController : MonoBehaviour
                 {
                     isFiring = true;
                     StartCoroutine(fire());
+                    
                 }
+            }
+            gameManager.instance.MagazineCurrent.text = weaponInventory[currentWeapon].magazineCurrent.ToString();
+            gameManager.instance.AmmoPoolCurrent.text = weaponInventory[currentWeapon].currentAmmoPool.ToString();
+            gameManager.instance.currentWeaponIcon.GetComponent<Image>().sprite = weaponInventory[currentWeapon].icon;
+
+            if (Input.GetButtonDown("Reload"))
+            {
+                reload();
             }
         }
     }
@@ -166,25 +172,33 @@ public class playerController : MonoBehaviour
         Debug.Log(gameManager.instance.activeMenu);
         if (gameManager.instance.activeMenu == null)
         {
-            // For grenade launcher
-            if (weaponInventory[currentWeapon].isThrowable)
+            if (weaponInventory[currentWeapon].magazineCurrent > 0)
             {
-                Instantiate(weaponInventory[currentWeapon].thrownObject, currMuzzlePoint.transform.position, currMuzzlePoint.transform.rotation);
+                // For grenade launcher
+                if (weaponInventory[currentWeapon].isThrowable)
+                {
+                    Instantiate(weaponInventory[currentWeapon].thrownObject, currMuzzlePoint.transform.position, currMuzzlePoint.transform.rotation);
+                }
+                // For every other weapon that does raycasting
+                else
+                {
+                    // Creates muzzle flash effect
+                    Instantiate(weaponInventory[currentWeapon].flashFX, currMuzzlePoint.transform.position, currMuzzlePoint.transform.rotation);
+                    if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, weaponInventory[currentWeapon].shootDistance))
+                    {
+                        if (hit.collider.GetComponent<IDamage>() != null)
+                        {
+                            hit.collider.GetComponent<IDamage>().takeDamage(weaponInventory[currentWeapon].weaponDamage);
+                        }
+                    }
+                    // Creates impact effect
+                    Instantiate(weaponInventory[currentWeapon].hitFX, hit.point, transform.rotation);
+                }
+                weaponInventory[currentWeapon].magazineCurrent -= 1;
             }
-            // For every other weapon that does raycasting
             else
             {
-                // Creates muzzle flash effect
-                Instantiate(weaponInventory[currentWeapon].flashFX, currMuzzlePoint.transform.position, currMuzzlePoint.transform.rotation);
-                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, weaponInventory[currentWeapon].shootDistance))
-                {
-                    if (hit.collider.GetComponent<IDamage>() != null)
-                    {
-                        hit.collider.GetComponent<IDamage>().takeDamage(weaponInventory[currentWeapon].weaponDamage);
-                    }
-                }
-                // Creates impact effect
-                Instantiate(weaponInventory[currentWeapon].hitFX, hit.point, transform.rotation);
+                //Add reload click if no ammo in magazine
             }
         }
             yield return new WaitForSeconds(weaponInventory[currentWeapon].shootRate);
@@ -385,5 +399,35 @@ public class playerController : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
 
         stepIsPlaying = false;
+    }
+
+    public void reload()
+    {
+        int reloadAmount = weaponInventory[currentWeapon].magazineMax - weaponInventory[currentWeapon].magazineCurrent;
+
+        if (weaponInventory[currentWeapon].currentAmmoPool > reloadAmount)
+        {
+            weaponInventory[currentWeapon].currentAmmoPool -= reloadAmount;
+            weaponInventory[currentWeapon].magazineCurrent += reloadAmount;
+        }
+        else if (weaponInventory[currentWeapon].currentAmmoPool > 0 && weaponInventory[currentWeapon].currentAmmoPool < reloadAmount)
+        {
+            reloadAmount = weaponInventory[currentWeapon].currentAmmoPool;
+            weaponInventory[currentWeapon].currentAmmoPool -= reloadAmount;
+            weaponInventory[currentWeapon].magazineCurrent += reloadAmount;
+        }
+
+        if (weaponInventory[currentWeapon].weaponMuzzleType == weaponCreation.WeaponType.pistol)
+        {
+            //add OneShotAudio
+        }
+        else if(weaponInventory[currentWeapon].weaponMuzzleType == weaponCreation.WeaponType.rifle)
+        {
+            //add OneShotAudio
+        }
+        else if (weaponInventory[currentWeapon].weaponMuzzleType == weaponCreation.WeaponType.grenadeLauncher)
+        {
+            //add OneShotAudio
+        }
     }
 }
