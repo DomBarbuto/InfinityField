@@ -4,11 +4,24 @@ using UnityEngine;
 
 public class OutOfBounds : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    [SerializeField] int dmg;
+    [SerializeField] float cooldown;
+
+    bool inCooldown;
+    private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !inCooldown)
         {
-            gameManager.instance.playerController.takeDamage(1000);
+            StartCoroutine(damage());
         }
+    }
+
+    IEnumerator damage()
+    {
+        inCooldown = true;
+        gameManager.instance.playerController.takeDamage(dmg);
+        yield return new WaitForSeconds(cooldown);
+        inCooldown = false;
+
     }
 }
