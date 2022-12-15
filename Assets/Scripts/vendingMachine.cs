@@ -31,6 +31,7 @@ public class vendingMachine : MonoBehaviour
     {
         canPurchase = false;
         gameManager.instance.credits -= cost;
+        gameManager.instance.updateCreditUI();
         Instantiate(collectable, trayPos.position, transform.rotation);
         speaker.PlayOneShot(jingle);
         yield return new WaitForSeconds(delay);

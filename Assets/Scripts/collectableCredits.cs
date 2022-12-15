@@ -51,7 +51,7 @@ public class collectableCredits : MonoBehaviour, ICollectable
     {
         hasCollected = true;
         gameManager.instance.addCredits(credits);
-        gameManager.instance.creditsCounterText.text = gameManager.instance.credits.ToString();
+        gameManager.instance.updateCreditUI();
 
         // TODO: Add SFX
         aud.PlayOneShot(pickupSound[Random.Range(0, pickupSound.Length)], pickupSoundVol);
