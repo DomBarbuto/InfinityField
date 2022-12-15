@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1876569947559501105, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
       propertyPath: m_Name
-      value: Enemy_CleanUpCrew_Black
+      value: Enemy_CleanUpCrew_Black Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1876569947559501108, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
       propertyPath: m_RootOrder
@@ -55,6 +55,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1876569947559501111, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
+      propertyPath: enemyHurt.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: a59143b15df81cb478b64b1b08a9a903, type: 3}
+    - target: {fileID: 1876569947559501111, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
+      propertyPath: enemyHurt.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: a161b407b5df08b4a8f1da036b1b8f59, type: 3}
+    - target: {fileID: 1876569947559501111, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
+      propertyPath: enemyHurt.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1ebb6e05ab6353a4db866201497e8aab, type: 3}
+    - target: {fileID: 1876569947559501111, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
+      propertyPath: enemyAlert.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 83daf342eb6753b49bfbcae306561c16, type: 3}
+    - target: {fileID: 1876569947559501111, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
+      propertyPath: enemyAlert.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: c113238579d332f4eb3084289ca6155b, type: 3}
+    - target: {fileID: 1876569947559501111, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
+      propertyPath: enemyAlert.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 125fcbe44d3ea7544ab6d2266911cf28, type: 3}
     - target: {fileID: 4553306205515932869, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

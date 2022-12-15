@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: LaserRifle
   m_EditorClassIdentifier: 
   weaponMuzzleType: 1
-  weaponDamage: 20
+  weaponDamage: 10
   shootRate: 0.3
   shootDistance: 80
-  icon: {fileID: 21300000, guid: dc3257761c77a20458ee4b44bc69e3a3, type: 3}
+  icon: {fileID: 0}
   weaponsModel: {fileID: 4625159799414711087, guid: ddd655e7bc0b3fd458a661b386e2efd6, type: 3}
   weaponPositionOffset: {x: 0, y: 0, z: 0}
   hitFX: {fileID: 1943573974307894, guid: 4857609a6c0625349a60bbb4b5fa5ec5, type: 3}
   flashFX: {fileID: 1061512257540118, guid: 51a73670ac42b28429348012d7106c27, type: 3}
-  magazineMax: 0
+  magazineMax: 30
   magazineCurrent: 0
-  maxAmmoPool: 0
-  currentAmmoPool: 0
+  maxAmmoPool: 270
+  currentAmmoPool: 135
   isThrowable: 0
   thrownObject: {fileID: 0}
