@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.Rendering;
 using UnityEditor.UIElements;
 using UnityEngine;
 
@@ -18,6 +19,10 @@ public class weaponCreation : ScriptableObject
     public Vector3 weaponPositionOffset;
     public GameObject hitFX;
     public GameObject flashFX;
+    public int magazineMax;
+    public int magazineCurrent;
+    public int maxAmmoPool;
+    public int currentAmmoPool;
 
     [Header("---- Stats only for throwables ----")]
 

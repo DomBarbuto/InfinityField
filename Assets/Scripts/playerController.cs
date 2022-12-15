@@ -38,9 +38,6 @@ public class playerController : MonoBehaviour
 
     [Header("---- Active Weapon -----")]
     [SerializeField] public int currentWeapon;
-/*    [SerializeField] int currWeaponDamage;
-    [SerializeField] float currShootRate;
-    [SerializeField] int currShootDistance;*/
     [SerializeField] public GameObject weaponOBJ;
     public Transform currMuzzlePoint;
 
@@ -48,6 +45,10 @@ public class playerController : MonoBehaviour
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] playerHurt;
     [Range(0, 1)][SerializeField] float playerHurtVol;
+    [SerializeField] AudioClip[] playerJump;
+    [Range(0, 1)][SerializeField] float playerJumpVol;
+    [SerializeField] AudioClip[] playerFootstep;
+    [Range(0, 1)][SerializeField] float playerFootstepVol;
 
     /*[Header("---- RigidBodyMovement ----")]
     [SerializeField] private Rigidbody playerRB;
@@ -56,6 +57,7 @@ public class playerController : MonoBehaviour
 
     //Private Variables------------------
     bool isFiring;
+    bool stepIsPlaying;
     int currJumps;  //Times jumped since being grounded
     float MAXHP;      //Player's maximum health
     float MAXEnergy;  //Player's maximum energy
@@ -91,13 +93,25 @@ public class playerController : MonoBehaviour
             pushBack.z = Mathf.Lerp(pushBack.z, 0f, Time.deltaTime * pushBackTime);
             movement();
 
+            if (!stepIsPlaying && move.magnitude > 0.3f && controller.isGrounded)
+                StartCoroutine(playSteps());
+
             if (!isFiring && Input.GetButton("Fire1"))
             {
                 if (weaponInventory[currentWeapon] != null)
                 {
                     isFiring = true;
                     StartCoroutine(fire());
+                    
                 }
+            }
+            gameManager.instance.MagazineCurrent.text = weaponInventory[currentWeapon].magazineCurrent.ToString();
+            gameManager.instance.AmmoPoolCurrent.text = weaponInventory[currentWeapon].currentAmmoPool.ToString();
+            gameManager.instance.currentWeaponIcon.GetComponent<Image>().sprite = weaponInventory[currentWeapon].icon;
+
+            if (Input.GetButtonDown("Reload"))
+            {
+                reload();
             }
         }
     }
@@ -142,6 +156,7 @@ public class playerController : MonoBehaviour
         {
             currJumps++;
             playerVelocity.y = jumpHeight;
+            aud.PlayOneShot(playerJump[Random.Range(0, playerJump.Length)], playerJumpVol);
         }
 
         playerVelocity.y -= gravityValue * Time.deltaTime;
@@ -157,25 +172,33 @@ public class playerController : MonoBehaviour
         Debug.Log(gameManager.instance.activeMenu);
         if (gameManager.instance.activeMenu == null)
         {
-            // For grenade launcher
-            if (weaponInventory[currentWeapon].isThrowable)
+            if (weaponInventory[currentWeapon].magazineCurrent > 0)
             {
-                Instantiate(weaponInventory[currentWeapon].thrownObject, currMuzzlePoint.transform.position, currMuzzlePoint.transform.rotation);
+                // For grenade launcher
+                if (weaponInventory[currentWeapon].isThrowable)
+                {
+                    Instantiate(weaponInventory[currentWeapon].thrownObject, currMuzzlePoint.transform.position, currMuzzlePoint.transform.rotation);
+                }
+                // For every other weapon that does raycasting
+                else
+                {
+                    // Creates muzzle flash effect
+                    Instantiate(weaponInventory[currentWeapon].flashFX, currMuzzlePoint.transform.position, currMuzzlePoint.transform.rotation);
+                    if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, weaponInventory[currentWeapon].shootDistance))
+                    {
+                        if (hit.collider.GetComponent<IDamage>() != null)
+                        {
+                            hit.collider.GetComponent<IDamage>().takeDamage(weaponInventory[currentWeapon].weaponDamage);
+                        }
+                    }
+                    // Creates impact effect
+                    Instantiate(weaponInventory[currentWeapon].hitFX, hit.point, transform.rotation);
+                }
+                weaponInventory[currentWeapon].magazineCurrent -= 1;
             }
-            // For every other weapon that does raycasting
             else
             {
-                // Creates muzzle flash effect
-                Instantiate(weaponInventory[currentWeapon].flashFX, currMuzzlePoint.transform.position, currMuzzlePoint.transform.rotation);
-                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, weaponInventory[currentWeapon].shootDistance))
-                {
-                    if (hit.collider.GetComponent<IDamage>() != null)
-                    {
-                        hit.collider.GetComponent<IDamage>().takeDamage(weaponInventory[currentWeapon].weaponDamage);
-                    }
-                }
-                // Creates impact effect
-                Instantiate(weaponInventory[currentWeapon].hitFX, hit.point, transform.rotation);
+                //Add reload click if no ammo in magazine
             }
         }
             yield return new WaitForSeconds(weaponInventory[currentWeapon].shootRate);
@@ -363,6 +386,48 @@ public class playerController : MonoBehaviour
     public void pushBackInput(Vector3 dir)
     {
         pushBack = dir;
-        
+    }
+
+    IEnumerator playSteps()
+    {
+        stepIsPlaying = true;
+        aud.PlayOneShot(playerFootstep[Random.Range(0, playerFootstep.Length)], playerFootstepVol);
+
+        if (isSprinting)
+            yield return new WaitForSeconds(0.3f);
+        else
+            yield return new WaitForSeconds(0.5f);
+
+        stepIsPlaying = false;
+    }
+
+    public void reload()
+    {
+        int reloadAmount = weaponInventory[currentWeapon].magazineMax - weaponInventory[currentWeapon].magazineCurrent;
+
+        if (weaponInventory[currentWeapon].currentAmmoPool > reloadAmount)
+        {
+            weaponInventory[currentWeapon].currentAmmoPool -= reloadAmount;
+            weaponInventory[currentWeapon].magazineCurrent += reloadAmount;
+        }
+        else if (weaponInventory[currentWeapon].currentAmmoPool > 0 && weaponInventory[currentWeapon].currentAmmoPool < reloadAmount)
+        {
+            reloadAmount = weaponInventory[currentWeapon].currentAmmoPool;
+            weaponInventory[currentWeapon].currentAmmoPool -= reloadAmount;
+            weaponInventory[currentWeapon].magazineCurrent += reloadAmount;
+        }
+
+        if (weaponInventory[currentWeapon].weaponMuzzleType == weaponCreation.WeaponType.pistol)
+        {
+            //add OneShotAudio
+        }
+        else if(weaponInventory[currentWeapon].weaponMuzzleType == weaponCreation.WeaponType.rifle)
+        {
+            //add OneShotAudio
+        }
+        else if (weaponInventory[currentWeapon].weaponMuzzleType == weaponCreation.WeaponType.grenadeLauncher)
+        {
+            //add OneShotAudio
+        }
     }
 }
