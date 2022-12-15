@@ -228,7 +228,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &91990020
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2858,6 +2858,7 @@ MonoBehaviour:
   MagazineCurrent: {fileID: 1273476155}
   AmmoPoolCurrent: {fileID: 11885443}
   currentWeaponIcon: {fileID: 632813894}
+  currentWeaponUI: {fileID: 91990019}
   playerHPBar: {fileID: 16425306}
   playerEnergyBar: {fileID: 3290870321256063968}
   invWheelPointer: {fileID: 5207469000921335572}
