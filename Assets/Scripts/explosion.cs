@@ -15,13 +15,30 @@ public class explosion : MonoBehaviour
 
     public bool cameFromPlayer;
     [SerializeField] bool canDamagePlayer = true;
+    bool canDamageEnemy = true;
+    bool damagedEnemy;
 
     // Start is called before the first frame update
 
     private void Start()
     {
-        aud.PlayOneShot(explosionSound[Random.Range(0, explosionSound.Length)], explosionVol);
+        if (cameFromPlayer)
+        Debug.Log("Explosion created");
+        Collider[] objects = Physics.OverlapSphere(transform.position, explosionRadius);
+
+        foreach (Collider inZone in objects)
+        {
+            //if (inZone.GetComponent<IDamage>() != null)
+            //{
+            //    if (cameFromPlayer)
+            //        inZone.GetComponent<IDamage>().takeDamage(explosionDamage);
+            //    else
+            //        inZone.GetComponent<IDamage>().takeDamage(explosionDamage/4);
+            //}
+        }
+            aud.PlayOneShot(explosionSound[Random.Range(0, explosionSound.Length)], explosionVol);
         Destroy(gameObject, explosionTimer);
+
     }
 
     private void OnTriggerStay(Collider other)
@@ -47,13 +64,23 @@ public class explosion : MonoBehaviour
             RigBdy.AddExplosionForce(explosionForce, transform.position, explosionRadius);
         }
 
-        if (other.GetComponent<IDamage>() != null)
+        if (other.GetComponent<IDamage>() != null && canDamageEnemy)
         {
-            other.GetComponent<IDamage>().takeDamage(explosionDamage);
+            StartCoroutine(giveEnemyDamage(other.GetComponent<IDamage>()));
         }
 
     }
-
+    IEnumerator giveEnemyDamage(IDamage enemy)
+    {
+        Debug.Log("Damage Dealt");
+        canDamageEnemy = false;
+        if (cameFromPlayer)
+            enemy.takeDamage(explosionDamage);
+        else
+            enemy.takeDamage(explosionDamage / 4);
+        yield return new WaitForSeconds(explosionTimer);
+        canDamageEnemy = true;
+    }
     IEnumerator givePlayerDamage()
     {
         canDamagePlayer = false;

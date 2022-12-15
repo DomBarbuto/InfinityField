@@ -90,7 +90,7 @@ public class gameManager : MonoBehaviour
             else
                 unPause();
         }
-        else if(Input.GetAxis("Mouse ScrollWheel") > 0 || Input.GetAxis("Mouse ScrollWheel") < 0)
+        else if((Input.GetAxis("Mouse ScrollWheel") > 0 || Input.GetAxis("Mouse ScrollWheel") < 0) && activeMenu == null)
         {
             if(activeMenu != menus[(int)UIMENUS.inventoryMenu])
             {
