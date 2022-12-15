@@ -14,12 +14,16 @@ public class vendingMachine : MonoBehaviour
 
     bool canPurchase = true;
     // Start is called before the first frame update
+
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player") && Input.GetButtonDown("Interact") && gameManager.instance.credits >= cost && canPurchase)
         {
             StartCoroutine(dispense());
-
+        }
+        else if (other.CompareTag("Player") && Input.GetButtonDown("Interact"))
+        {
+            speaker.PlayOneShot(failSound);
         }
     }
 
