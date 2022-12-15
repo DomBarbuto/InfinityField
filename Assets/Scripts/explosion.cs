@@ -64,7 +64,7 @@ public class explosion : MonoBehaviour
             RigBdy.AddExplosionForce(explosionForce, transform.position, explosionRadius);
         }
 
-        if (other.GetComponent<IDamage>() != null && canDamageEnemy)
+        if (other.GetComponent<IDamage>() != null)
         {
             StartCoroutine(giveEnemyDamage(other.GetComponent<IDamage>()));
         }
