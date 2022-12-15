@@ -49,6 +49,8 @@ public class playerController : MonoBehaviour
     [Range(0, 1)][SerializeField] float playerJumpVol;
     [SerializeField] AudioClip[] playerFootstep;
     [Range(0, 1)][SerializeField] float playerFootstepVol;
+    [SerializeField] AudioClip[] ricochetSound;
+    [Range(0, 1)][SerializeField] float ricochetSoundVol;
 
     /*[Header("---- RigidBodyMovement ----")]
     [SerializeField] private Rigidbody playerRB;
@@ -142,7 +144,6 @@ public class playerController : MonoBehaviour
 
             // Update energy and UI energy bar
             energy -= Time.deltaTime * energyDecreaseRate;
-            Debug.Log(energy);
             gameManager.instance.updatePlayerEnergyBar();
         }
         else if (Input.GetButtonUp("Sprint"))
@@ -192,6 +193,11 @@ public class playerController : MonoBehaviour
                         if (hit.collider.GetComponent<IDamage>() != null)
                         {
                             hit.collider.GetComponent<IDamage>().takeDamage(weaponInventory[currentWeapon].weaponDamage);
+                        }
+                        else if(hit.collider.gameObject.CompareTag("Environment"))
+                        {
+                            //aud.PlayOneShot(ricochetSound[Random.Range(0, ricochetSound.Length)], ricochetSoundVol);
+                            AudioSource.PlayClipAtPoint(ricochetSound[Random.Range(0, ricochetSound.Length)], hit.point);
                         }
                     }
                     // Creates impact effect
@@ -411,19 +417,21 @@ public class playerController : MonoBehaviour
     {
         int reloadAmount = weaponInventory[currentWeapon].magazineMax - weaponInventory[currentWeapon].magazineCurrent;
 
-        if (weaponInventory[currentWeapon].currentAmmoPool > reloadAmount)
+        if (weaponInventory[currentWeapon].currentAmmoPool >= reloadAmount && weaponInventory[currentWeapon].magazineCurrent != weaponInventory[currentWeapon].magazineMax)
         {
             weaponInventory[currentWeapon].currentAmmoPool -= reloadAmount;
             weaponInventory[currentWeapon].magazineCurrent += reloadAmount;
+            aud.PlayOneShot(weaponInventory[currentWeapon].reloadSound[Random.Range(0, weaponInventory[currentWeapon].reloadSound.Length)], weaponInventory[currentWeapon].reloadVol);
         }
         else if (weaponInventory[currentWeapon].currentAmmoPool > 0 && weaponInventory[currentWeapon].currentAmmoPool < reloadAmount)
         {
             reloadAmount = weaponInventory[currentWeapon].currentAmmoPool;
             weaponInventory[currentWeapon].currentAmmoPool -= reloadAmount;
             weaponInventory[currentWeapon].magazineCurrent += reloadAmount;
+            aud.PlayOneShot(weaponInventory[currentWeapon].reloadSound[Random.Range(0, weaponInventory[currentWeapon].reloadSound.Length)], weaponInventory[currentWeapon].reloadVol);
         }
-
-        aud.PlayOneShot(weaponInventory[currentWeapon].reloadSound[Random.Range(0, weaponInventory[currentWeapon].reloadSound.Length)], weaponInventory[currentWeapon].reloadVol);
+        
+        
 
         //PlayOneShot reload audio here
 
