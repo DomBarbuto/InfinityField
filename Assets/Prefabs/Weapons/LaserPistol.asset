@@ -24,6 +24,18 @@ MonoBehaviour:
   magazineMax: 10
   magazineCurrent: 10
   maxAmmoPool: 999
-  currentAmmoPool: 897
+  currentAmmoPool: 499
+  shootSound:
+  - {fileID: 8300000, guid: e70eb034c8ae4fe42b00d809716998e4, type: 3}
+  shootVol: 0.5
+  reloadSound:
+  - {fileID: 8300000, guid: f84a2bf3a6b43994a970dab1c4bc6fe8, type: 3}
+  reloadVol: 0.5
+  pickupSound:
+  - {fileID: 8300000, guid: 1ce7890406010c443a54576a00835e5a, type: 3}
+  pickupVol: 0.5
+  emptySound:
+  - {fileID: 8300000, guid: 913afccbd78c3c54f964754f09d90c4a, type: 3}
+  emptyVol: 0.5
   isThrowable: 0
   thrownObject: {fileID: 0}

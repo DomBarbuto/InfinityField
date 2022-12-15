@@ -195,11 +195,12 @@ public class playerController : MonoBehaviour
                     Instantiate(weaponInventory[currentWeapon].hitFX, hit.point, transform.rotation);
                 }
                 //Gun Shoot Sounds
+                aud.PlayOneShot(weaponInventory[currentWeapon].shootSound[Random.Range(0, weaponInventory[currentWeapon].shootSound.Length)], weaponInventory[currentWeapon].shootVol);
                 weaponInventory[currentWeapon].magazineCurrent -= 1;
             }
             else
             {
-                //Add reload click if no ammo in magazine
+                aud.PlayOneShot(weaponInventory[currentWeapon].emptySound[Random.Range(0, weaponInventory[currentWeapon].emptySound.Length)], weaponInventory[currentWeapon].emptyVol);
             }
         }
             yield return new WaitForSeconds(weaponInventory[currentWeapon].shootRate);
@@ -285,9 +286,10 @@ public class playerController : MonoBehaviour
             if (weaponInventory[i] == weapon)
             {
                 Debug.Log("already had weapon");
-                weaponInventory[currentWeapon].currentAmmoPool += weaponInventory[currentWeapon].maxAmmoPool / 5;   
+                weaponInventory[currentWeapon].currentAmmoPool += weaponInventory[currentWeapon].maxAmmoPool / 5;
                 // TODO: Grab ammo from weapon
                 // TODO: Play ammo pickup audio clip
+                aud.PlayOneShot(weaponInventory[currentWeapon].pickupSound[Random.Range(0, weaponInventory[currentWeapon].pickupSound.Length)], weaponInventory[currentWeapon].pickupVol);
                 break;
             }
 
@@ -295,7 +297,7 @@ public class playerController : MonoBehaviour
             else if (weaponInventory[i] == null)
             {
                 Debug.Log("add weapon to inventory");
-
+                
                 // Set weapon inventory slot[i] to this weapon
                 weaponInventory[i] = weapon;
 
@@ -307,6 +309,7 @@ public class playerController : MonoBehaviour
                 weaponInventory[currentWeapon].currentAmmoPool = weaponInventory[currentWeapon].maxAmmoPool / 2;
                 weaponInventory[currentWeapon].magazineCurrent = weaponInventory[currentWeapon].magazineMax;
                 gameManager.instance.slots[i].GetComponent<Image>().sprite = weapon.icon;
+                aud.PlayOneShot(weaponInventory[currentWeapon].pickupSound[Random.Range(0, weaponInventory[currentWeapon].pickupSound.Length)], weaponInventory[currentWeapon].pickupVol);
                 // Select currMuzzlePoint
                 switch (weapon.weaponMuzzleType)
                 {
@@ -416,6 +419,8 @@ public class playerController : MonoBehaviour
             weaponInventory[currentWeapon].currentAmmoPool -= reloadAmount;
             weaponInventory[currentWeapon].magazineCurrent += reloadAmount;
         }
+
+        aud.PlayOneShot(weaponInventory[currentWeapon].reloadSound[Random.Range(0, weaponInventory[currentWeapon].reloadSound.Length)], weaponInventory[currentWeapon].reloadVol);
 
         //PlayOneShot reload audio here
 
