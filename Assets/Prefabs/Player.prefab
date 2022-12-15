@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &348582361
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 348582362}
+  m_Layer: 3
+  m_Name: onGround
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &348582362
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348582361}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.21, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3867346382715989143}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &423215037
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,6 +211,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3867346384435211983}
+  - {fileID: 348582362}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -203,12 +235,12 @@ MonoBehaviour:
   currentMoveSpeed: 0
   walkSpeed: 6
   sprintMultiplier: 1.5
-  jumpHeight: 12
+  jumpHeight: 10
   gravityValue: 30
   jumpsMax: 1
   damageFXLength: 0.1
   pushBack: {x: 0, y: 0, z: 0}
-  pushBackTime: 1
+  pushBackTime: 5
   weaponInventory:
   - {fileID: 0}
   - {fileID: 0}
@@ -247,6 +279,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 637c33ccfec5b7148864764144c1ccfe, type: 3}
   - {fileID: 8300000, guid: 1d808b269d3c22a4ab6e1e86d958fe09, type: 3}
   playerFootstepVol: 0.2
+  ricochetSound: []
+  ricochetSoundVol: 0
 --- !u!143 &3867346382715989136
 CharacterController:
   m_ObjectHideFlags: 0
