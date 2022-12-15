@@ -19,7 +19,7 @@ public class BlinkGlow : MonoBehaviour
 
     private void Update()
     {
-        currentIntensityValue = Mathf.PingPong(Time.time * currentBlinkRate, 1);
+        currentIntensityValue = Mathf.PingPong(Time.time * currentBlinkRate, 2);
         if(isPlayer)
             currentEmissionColor.b = currentIntensityValue;
         else
