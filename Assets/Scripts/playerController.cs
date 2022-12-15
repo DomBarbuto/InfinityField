@@ -48,6 +48,10 @@ public class playerController : MonoBehaviour
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] playerHurt;
     [Range(0, 1)][SerializeField] float playerHurtVol;
+    [SerializeField] AudioClip[] playerJump;
+    [Range(0, 1)][SerializeField] float playerJumpVol;
+    [SerializeField] AudioClip[] playerFootstep;
+    [Range(0, 1)][SerializeField] float playerFootstepVol;
 
     /*[Header("---- RigidBodyMovement ----")]
     [SerializeField] private Rigidbody playerRB;
@@ -56,6 +60,7 @@ public class playerController : MonoBehaviour
 
     //Private Variables------------------
     bool isFiring;
+    bool stepIsPlaying;
     int currJumps;  //Times jumped since being grounded
     float MAXHP;      //Player's maximum health
     float MAXEnergy;  //Player's maximum energy
@@ -90,6 +95,9 @@ public class playerController : MonoBehaviour
             pushBack.y = Mathf.Lerp(pushBack.y, 0f, Time.deltaTime * (pushBackTime));
             pushBack.z = Mathf.Lerp(pushBack.z, 0f, Time.deltaTime * pushBackTime);
             movement();
+
+            if (!stepIsPlaying && move.magnitude > 0.3f && controller.isGrounded)
+                StartCoroutine(playSteps());
 
             if (!isFiring && Input.GetButton("Fire1"))
             {
@@ -142,6 +150,7 @@ public class playerController : MonoBehaviour
         {
             currJumps++;
             playerVelocity.y = jumpHeight;
+            aud.PlayOneShot(playerJump[Random.Range(0, playerJump.Length)], playerJumpVol);
         }
 
         playerVelocity.y -= gravityValue * Time.deltaTime;
@@ -363,6 +372,18 @@ public class playerController : MonoBehaviour
     public void pushBackInput(Vector3 dir)
     {
         pushBack = dir;
-        
+    }
+
+    IEnumerator playSteps()
+    {
+        stepIsPlaying = true;
+        aud.PlayOneShot(playerFootstep[Random.Range(0, playerFootstep.Length)], playerFootstepVol);
+
+        if (isSprinting)
+            yield return new WaitForSeconds(0.3f);
+        else
+            yield return new WaitForSeconds(0.5f);
+
+        stepIsPlaying = false;
     }
 }
