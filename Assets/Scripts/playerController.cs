@@ -49,6 +49,8 @@ public class playerController : MonoBehaviour
     [Range(0, 1)][SerializeField] float playerJumpVol;
     [SerializeField] AudioClip[] playerFootstep;
     [Range(0, 1)][SerializeField] float playerFootstepVol;
+    [SerializeField] AudioClip[] ricochetSound;
+    [Range(0, 1)][SerializeField] float ricochetSoundVol;
 
     /*[Header("---- RigidBodyMovement ----")]
     [SerializeField] private Rigidbody playerRB;
@@ -142,7 +144,6 @@ public class playerController : MonoBehaviour
 
             // Update energy and UI energy bar
             energy -= Time.deltaTime * energyDecreaseRate;
-            Debug.Log(energy);
             gameManager.instance.updatePlayerEnergyBar();
         }
         else if (Input.GetButtonUp("Sprint"))
@@ -192,6 +193,11 @@ public class playerController : MonoBehaviour
                         if (hit.collider.GetComponent<IDamage>() != null)
                         {
                             hit.collider.GetComponent<IDamage>().takeDamage(weaponInventory[currentWeapon].weaponDamage);
+                        }
+                        else if(hit.collider.gameObject.CompareTag("Environment"))
+                        {
+                            //aud.PlayOneShot(ricochetSound[Random.Range(0, ricochetSound.Length)], ricochetSoundVol);
+                            AudioSource.PlayClipAtPoint(ricochetSound[Random.Range(0, ricochetSound.Length)], hit.point);
                         }
                     }
                     // Creates impact effect

@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 24655360}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -403,18 +403,6 @@ PrefabInstance:
       propertyPath: aud
       value: 
       objectReference: {fileID: 1062693872}
-    - target: {fileID: 6898611378419991415, guid: b14f9d2a069a103469254569ceabe3c5, type: 3}
-      propertyPath: pickupSoundVol
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6898611378419991415, guid: b14f9d2a069a103469254569ceabe3c5, type: 3}
-      propertyPath: pickupSound.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6898611378419991415, guid: b14f9d2a069a103469254569ceabe3c5, type: 3}
-      propertyPath: pickupSound.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: a9a63a83642b34840a91c8b4bf07f04c, type: 3}
     - target: {fileID: 8447407072362973765, guid: b14f9d2a069a103469254569ceabe3c5, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1035,6 +1023,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3867346382715989139, guid: 96db1325beda7aa43af826710be15916, type: 3}
+      propertyPath: ricochetSoundVol
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3867346382715989139, guid: 96db1325beda7aa43af826710be15916, type: 3}
+      propertyPath: ricochetSound.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3867346382715989139, guid: 96db1325beda7aa43af826710be15916, type: 3}
+      propertyPath: ricochetSound.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 59af68e1341a9da44a736f648f4c9782, type: 3}
     - target: {fileID: 3867346382715989143, guid: 96db1325beda7aa43af826710be15916, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -1201,18 +1201,6 @@ PrefabInstance:
       propertyPath: aud
       value: 
       objectReference: {fileID: 1062693872}
-    - target: {fileID: 5668530924313611115, guid: 34f44fc7ddc25b844b37c6970217d276, type: 3}
-      propertyPath: pickupSoundVol
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5668530924313611115, guid: 34f44fc7ddc25b844b37c6970217d276, type: 3}
-      propertyPath: pickupSound.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5668530924313611115, guid: 34f44fc7ddc25b844b37c6970217d276, type: 3}
-      propertyPath: pickupSound.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: ecf76082f4302dc45a1fe09faa28f68e, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34f44fc7ddc25b844b37c6970217d276, type: 3}
 --- !u!1001 &1996881584
