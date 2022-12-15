@@ -164,6 +164,8 @@ public class enemyRCCar : MonoBehaviour, IDamage
         {
             playerInRange = true;
         }*/
+
+
     }
 
     public void OnTriggerExit(Collider other)
