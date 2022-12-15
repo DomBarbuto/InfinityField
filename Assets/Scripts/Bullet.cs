@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] int damage;
     [SerializeField] int destroyTime;
 
+    private bool hasCollided;
     private Rigidbody rb;
 
     private void Awake()
@@ -26,11 +27,16 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Bullet hit " + other.name);
-        if(other.CompareTag("Player"))
+        if(!hasCollided)
         {
-            gameManager.instance.playerController.takeDamage(damage);
+            hasCollided = true;
+            Debug.Log("Bullet hit " + other.name);
+            if(other.CompareTag("Player"))
+            {
+                gameManager.instance.playerController.takeDamage(damage);
+            }
         }
+
         Destroy(gameObject);
     }
 }
