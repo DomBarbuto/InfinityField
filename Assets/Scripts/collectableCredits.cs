@@ -11,6 +11,9 @@ public class collectableCredits : MonoBehaviour, ICollectable
     [SerializeField] int throwSpeed;
     [SerializeField] float UIFXLength;
     [SerializeField] int destroyTimer;
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] pickupSound;
+    [Range(0, 1)][SerializeField] float pickupSoundVol;
     private bool hasCollected;
     private Rigidbody rb;
 
@@ -51,9 +54,10 @@ public class collectableCredits : MonoBehaviour, ICollectable
         gameManager.instance.creditsCounterText.text = gameManager.instance.credits.ToString();
 
         // TODO: Add SFX
+        aud.PlayOneShot(pickupSound[Random.Range(0, pickupSound.Length)], pickupSoundVol);
 
         // TODO: Add VFX
-        
+
         // GameManager collectable screen FX
         gameManager.instance.startCollectableUIFX(UIFXLength, 0);
         Destroy(gameObject);

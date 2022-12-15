@@ -9,6 +9,9 @@ public class collectableHealth : MonoBehaviour, ICollectable
     [SerializeField] int throwSpeed;
     [SerializeField] float UIFXLength;
     [SerializeField] int destroyTimer;
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] pickupSound;
+    [Range(0, 1)][SerializeField] float pickupSoundVol;
 
     float healthToAdd;
     private bool hasCollected;
@@ -48,6 +51,7 @@ public class collectableHealth : MonoBehaviour, ICollectable
         gameManager.instance.updatePlayerHPBar();
 
         // TODO: Add SFX
+        aud.PlayOneShot(pickupSound[Random.Range(0, pickupSound.Length)], pickupSoundVol);
 
         // TODO: Add VFX
 
