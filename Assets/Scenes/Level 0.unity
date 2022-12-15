@@ -1416,6 +1416,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5440713911038952672, guid: 439cbd2073acbe340b546b6ae67fdc94, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728713314633355764, guid: 439cbd2073acbe340b546b6ae67fdc94, type: 3}
+      propertyPath: m_Volume
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 439cbd2073acbe340b546b6ae67fdc94, type: 3}
 --- !u!1001 &161198139
@@ -1429,6 +1437,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3867346382715989139, guid: 96db1325beda7aa43af826710be15916, type: 3}
+      propertyPath: playerHurtVol
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3867346382715989139, guid: 96db1325beda7aa43af826710be15916, type: 3}
+      propertyPath: playerHurt.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3867346382715989139, guid: 96db1325beda7aa43af826710be15916, type: 3}
+      propertyPath: playerHurt.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 7890a6c151b7f934598ce1c18e25d10b, type: 3}
+    - target: {fileID: 3867346382715989139, guid: 96db1325beda7aa43af826710be15916, type: 3}
+      propertyPath: playerHurt.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2f6f9cee510bb434f858b3e53d699540, type: 3}
+    - target: {fileID: 3867346382715989139, guid: 96db1325beda7aa43af826710be15916, type: 3}
+      propertyPath: playerHurt.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 339d0b0885d4f6749879081203902686, type: 3}
     - target: {fileID: 3867346382715989143, guid: 96db1325beda7aa43af826710be15916, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -1891,10 +1919,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3553741586400377481, guid: 1add005e7b0933b40a2548b0446e8628, type: 3}
-      propertyPath: drawFieldOfView
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3553741586400377482, guid: 1add005e7b0933b40a2548b0446e8628, type: 3}
       propertyPath: m_RootOrder
       value: 28
@@ -2302,14 +2326,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 424051072, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
-      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 424051072, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1876569947559501105, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
       propertyPath: m_Name
       value: Enemy_CleanUpCrew_Red
@@ -3945,10 +3961,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_CleanUpCrew_Black Variant (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 7191330914639572761, guid: 8d4362965894ad74cb13ae88838432f9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7191330914639572764, guid: 8d4362965894ad74cb13ae88838432f9, type: 3}
       propertyPath: m_RootOrder
       value: 26
@@ -3992,10 +4004,6 @@ PrefabInstance:
     - target: {fileID: 7191330914639572764, guid: 8d4362965894ad74cb13ae88838432f9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7191330914639572767, guid: 8d4362965894ad74cb13ae88838432f9, type: 3}
-      propertyPath: drawFieldOfView
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d4362965894ad74cb13ae88838432f9, type: 3}
@@ -15036,6 +15044,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1876569947559501111, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
+      propertyPath: enemyAlertVol
+      value: 0.75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4344920741986f84aacbcb9fa95cf638, type: 3}
 --- !u!4 &1099119164 stripped
@@ -15954,10 +15966,6 @@ PrefabInstance:
     - target: {fileID: 5820137189991134305, guid: 331247316fb1c8e429fa2af2622c0791, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5820137189991134306, guid: 331247316fb1c8e429fa2af2622c0791, type: 3}
-      propertyPath: drawFieldOfView
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5820137189991134308, guid: 331247316fb1c8e429fa2af2622c0791, type: 3}
       propertyPath: m_Name
@@ -17974,9 +17982,37 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5820137189991134306, guid: 331247316fb1c8e429fa2af2622c0791, type: 3}
+      propertyPath: enemyAlertVol
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820137189991134306, guid: 331247316fb1c8e429fa2af2622c0791, type: 3}
       propertyPath: drawFieldOfView
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5820137189991134306, guid: 331247316fb1c8e429fa2af2622c0791, type: 3}
+      propertyPath: enemyHurt.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 975717b19413b9a42bb0c2e7e48668ce, type: 3}
+    - target: {fileID: 5820137189991134306, guid: 331247316fb1c8e429fa2af2622c0791, type: 3}
+      propertyPath: enemyHurt.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: cff573e9bc995734795ad4594493f950, type: 3}
+    - target: {fileID: 5820137189991134306, guid: 331247316fb1c8e429fa2af2622c0791, type: 3}
+      propertyPath: enemyHurt.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 75e53213f92061742916c6f8a6d6ea56, type: 3}
+    - target: {fileID: 5820137189991134306, guid: 331247316fb1c8e429fa2af2622c0791, type: 3}
+      propertyPath: enemyAlert.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8164e2bf7c4f60c42a938832ef352579, type: 3}
+    - target: {fileID: 5820137189991134306, guid: 331247316fb1c8e429fa2af2622c0791, type: 3}
+      propertyPath: enemyAlert.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 67a6822b2c4c41644abb38973600b87e, type: 3}
+    - target: {fileID: 5820137189991134306, guid: 331247316fb1c8e429fa2af2622c0791, type: 3}
+      propertyPath: enemyAlert.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: b6e093be2e93bad4d9824fd46b2055dc, type: 3}
     - target: {fileID: 5820137189991134308, guid: 331247316fb1c8e429fa2af2622c0791, type: 3}
       propertyPath: m_Name
       value: Enemy_CleanUpCrew_White Variant
