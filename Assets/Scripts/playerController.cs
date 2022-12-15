@@ -417,19 +417,21 @@ public class playerController : MonoBehaviour
     {
         int reloadAmount = weaponInventory[currentWeapon].magazineMax - weaponInventory[currentWeapon].magazineCurrent;
 
-        if (weaponInventory[currentWeapon].currentAmmoPool > reloadAmount)
+        if (weaponInventory[currentWeapon].currentAmmoPool >= reloadAmount && weaponInventory[currentWeapon].magazineCurrent != weaponInventory[currentWeapon].magazineMax)
         {
             weaponInventory[currentWeapon].currentAmmoPool -= reloadAmount;
             weaponInventory[currentWeapon].magazineCurrent += reloadAmount;
+            aud.PlayOneShot(weaponInventory[currentWeapon].reloadSound[Random.Range(0, weaponInventory[currentWeapon].reloadSound.Length)], weaponInventory[currentWeapon].reloadVol);
         }
         else if (weaponInventory[currentWeapon].currentAmmoPool > 0 && weaponInventory[currentWeapon].currentAmmoPool < reloadAmount)
         {
             reloadAmount = weaponInventory[currentWeapon].currentAmmoPool;
             weaponInventory[currentWeapon].currentAmmoPool -= reloadAmount;
             weaponInventory[currentWeapon].magazineCurrent += reloadAmount;
+            aud.PlayOneShot(weaponInventory[currentWeapon].reloadSound[Random.Range(0, weaponInventory[currentWeapon].reloadSound.Length)], weaponInventory[currentWeapon].reloadVol);
         }
-
-        aud.PlayOneShot(weaponInventory[currentWeapon].reloadSound[Random.Range(0, weaponInventory[currentWeapon].reloadSound.Length)], weaponInventory[currentWeapon].reloadVol);
+        
+        
 
         //PlayOneShot reload audio here
 
