@@ -2135,6 +2135,8 @@ GameObject:
   - component: {fileID: 6095012202514495908}
   - component: {fileID: 5665316274660806334}
   - component: {fileID: 5665316275438462225}
+  - component: {fileID: 475170454}
+  - component: {fileID: 475170463}
   m_Layer: 6
   m_Name: CleanUpCrew_Pistol_Red
   m_TagString: Untagged
@@ -2226,6 +2228,8 @@ MonoBehaviour:
   ragdoll: {fileID: 6095012202514495905}
   anim: {fileID: 6095012202514495906}
   hitDetection: {fileID: 5665316274660178047}
+  bodyGlow: {fileID: 0}
+  gunGlow: {fileID: 0}
   HP: 60
   damageFXLength: 0.1
   facePlayerSpeed: 15
@@ -2237,6 +2241,7 @@ MonoBehaviour:
   animTransSpeed: 3
   pushBack: {x: 0, y: 0, z: 0}
   pushBackTime: 0
+  alertBlinkGlowSpeed: 0
   projectile: {fileID: 185111370099596839, guid: 09fa574f3b445b248888f144558108e7, type: 3}
   fireRate: 0.75
   muzzlePoint: {fileID: 6095012202552203616}
@@ -2402,6 +2407,42 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &475170454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6095012202514495904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18d4bcfc000d6944b8cc5bd95d5e49e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayer: 0
+  maxValue: 1
+  thisObjectsMaterial: {fileID: 2100000, guid: 22b9825dd569fdf4e9749d4506941c13, type: 2}
+  currentBlinkRate: 1
+  currentEmissionColor: {r: 1, g: 0, b: 0, a: 0.8117647}
+  currentIntensityValue: 0
+--- !u!114 &475170463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6095012202514495904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18d4bcfc000d6944b8cc5bd95d5e49e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayer: 0
+  maxValue: 1
+  thisObjectsMaterial: {fileID: 2100000, guid: bb45f987efc9fc149ae1c0316ba3fd6b, type: 2}
+  currentBlinkRate: 1
+  currentEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  currentIntensityValue: 0
 --- !u!1 &6095012202552203617
 GameObject:
   m_ObjectHideFlags: 0

@@ -14541,6 +14541,7 @@ GameObject:
   - component: {fileID: 6737772741631842003}
   - component: {fileID: 401301176981506264}
   - component: {fileID: -5671728583906955704}
+  - component: {fileID: 1845849045}
   m_Layer: 0
   m_Name: CreanUpCrew_RCCar
   m_TagString: Untagged
@@ -14604,6 +14605,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.45112872, z: 1}
   m_Center: {x: 0, y: 0.43368983, z: 0}
+--- !u!114 &1845849045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3303682641602174095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18d4bcfc000d6944b8cc5bd95d5e49e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayer: 0
+  maxValue: 1
+  thisObjectsMaterial: {fileID: 2100000, guid: 3ea2ae52f30b99041ae946323854a32c, type: 2}
+  currentBlinkRate: 3
+  currentEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  currentIntensityValue: 0
 --- !u!1 &6896373947488489164
 GameObject:
   m_ObjectHideFlags: 0

@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 4625159799414711074}
   - component: {fileID: 4625159799414711085}
   - component: {fileID: 4625159799414711084}
+  - component: {fileID: 6327651548268402343}
   m_Layer: 0
   m_Name: LaserRifle
   m_TagString: Untagged
@@ -144,3 +145,20 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6327651548268402343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4625159799414711087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18d4bcfc000d6944b8cc5bd95d5e49e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayer: 0
+  thisObjectsMaterial: {fileID: 2100000, guid: 9b69fe47d25514041a8e6d0f8dc4ab1e, type: 2}
+  currentBlinkRate: 1
+  currentEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  currentIntensityValue: 0

@@ -1690,6 +1690,8 @@ GameObject:
   - component: {fileID: 4635664049985776388}
   - component: {fileID: 6512140774352280606}
   - component: {fileID: 6512140775655012273}
+  - component: {fileID: 1730841740}
+  - component: {fileID: 1730841741}
   m_Layer: 6
   m_Name: CleanUpCrew_GrenadeLauncher_Black
   m_TagString: Untagged
@@ -1781,6 +1783,8 @@ MonoBehaviour:
   ragdoll: {fileID: 4635664049985776385}
   anim: {fileID: 4635664049985776386}
   hitDetection: {fileID: 6512140774352923359}
+  bodyGlow: {fileID: 1730841740}
+  gunGlow: {fileID: 1730841741}
   HP: 200
   damageFXLength: 0.1
   facePlayerSpeed: 15
@@ -1792,6 +1796,7 @@ MonoBehaviour:
   animTransSpeed: 3
   pushBack: {x: 0, y: 0, z: 0}
   pushBackTime: 0
+  alertBlinkGlowSpeed: 5
   projectile: {fileID: 4224026720798320963, guid: ef33ce140788b9a4e982d32412b39e4b, type: 3}
   fireRate: 2
   muzzlePoint: {fileID: 4635664050015226816}
@@ -1957,6 +1962,42 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1730841740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4635664049985776384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18d4bcfc000d6944b8cc5bd95d5e49e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayer: 0
+  maxValue: 1
+  thisObjectsMaterial: {fileID: 2100000, guid: e8d90ee96d4866a49b633e4c08278f5f, type: 2}
+  currentBlinkRate: 1
+  currentEmissionColor: {r: 1, g: 0, b: 0, a: 0.8117647}
+  currentIntensityValue: 0
+--- !u!114 &1730841741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4635664049985776384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18d4bcfc000d6944b8cc5bd95d5e49e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayer: 0
+  maxValue: 1
+  thisObjectsMaterial: {fileID: 2100000, guid: 9c62752eb9b053b41af6723554e75836, type: 2}
+  currentBlinkRate: 1
+  currentEmissionColor: {r: 0, g: 0, b: 0, a: 0}
+  currentIntensityValue: 0
 --- !u!1 &4635664050015226817
 GameObject:
   m_ObjectHideFlags: 0
