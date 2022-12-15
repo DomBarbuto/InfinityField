@@ -37,6 +37,7 @@ public class enemyRCCar : MonoBehaviour, IDamage
 
         // Pick random drive clip on start
         aud.clip = rcCarDriveClips[Random.Range(0, rcCarDriveClips.Length)];
+
     }
 
     private void Update()
@@ -45,6 +46,12 @@ public class enemyRCCar : MonoBehaviour, IDamage
         if (playerInRange && HP > 0)
         {
             canSeePlayer();
+        }
+        if(agent.stoppingDistance >= Vector3.Distance(transform.position, gameManager.instance.player.transform.position))
+        {
+            Instantiate(explosionOBJ, transform.position, transform.rotation);
+            gameManager.instance.updateEnemyCount(-1);
+            Destroy(gameObject);
         }
     }
 
@@ -141,16 +148,11 @@ public class enemyRCCar : MonoBehaviour, IDamage
 
     public void OnTriggerEnter(Collider other)
     {
-        /*if(other.CompareTag("Player") && agent.remainingDistance <= 1)
-        {
-            //Enemy Explosion VFX
-            Instantiate(explosionOBJ, transform.position, transform.rotation);
-            Destroy(gameObject);
-        }
-        else if(other.CompareTag("Player"))
+       
+        if (other.CompareTag("Player"))
         {
             playerInRange = true;
-        }*/
+        }
 
         /*if(other.CompareTag("Player") && agent.remainingDistance <= 1)
         {
