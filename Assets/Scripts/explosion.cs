@@ -9,16 +9,17 @@ public class explosion : MonoBehaviour
     [SerializeField] Vector3 explosionPushBack;
     [SerializeField] float explosionForce;
     [SerializeField] float explosionRadius;
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] explosionSound;
+    [Range(0, 1)][SerializeField] float explosionVol;
+
     // Start is called before the first frame update
 
     private void Start()
     {
+        aud.PlayOneShot(explosionSound[Random.Range(0, explosionSound.Length)], explosionVol);
         Destroy(gameObject, explosionTimer);
     }
-    /*private void OnTriggerEnter(Collider other)
-    {
-        
-    }*/
 
     private void OnTriggerStay(Collider other)
     {

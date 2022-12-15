@@ -11,8 +11,7 @@ public class launchedGrenade : MonoBehaviour
     [SerializeField] int destroyTime;
     [SerializeField] GameObject explosionOBJ;
     [SerializeField] AudioSource aud;
-    [SerializeField] AudioClip[] explosionSound;
-    [Range(0, 1)][SerializeField] float explosionVol;
+
     Rigidbody rb;
     // Start is called before the first frame update
     void Start()
@@ -24,7 +23,6 @@ public class launchedGrenade : MonoBehaviour
 
     void explode()
     {
-        aud.PlayOneShot(explosionSound[Random.Range(0, explosionSound.Length)], explosionVol);
         GameObject newExplosion = Instantiate(explosionOBJ, transform.position, transform.rotation);
         newExplosion.transform.SetParent(null);
         Destroy(gameObject);

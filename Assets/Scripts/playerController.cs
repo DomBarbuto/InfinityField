@@ -105,9 +105,12 @@ public class playerController : MonoBehaviour
                     
                 }
             }
-            gameManager.instance.MagazineCurrent.text = weaponInventory[currentWeapon].magazineCurrent.ToString();
-            gameManager.instance.AmmoPoolCurrent.text = weaponInventory[currentWeapon].currentAmmoPool.ToString();
-            gameManager.instance.currentWeaponIcon.GetComponent<Image>().sprite = weaponInventory[currentWeapon].icon;
+            if(weaponInventory[currentWeapon] != null)
+            {
+                gameManager.instance.MagazineCurrent.text = weaponInventory[currentWeapon].magazineCurrent.ToString();
+                gameManager.instance.AmmoPoolCurrent.text = weaponInventory[currentWeapon].currentAmmoPool.ToString();
+                gameManager.instance.currentWeaponIcon.GetComponent<Image>().sprite = weaponInventory[currentWeapon].icon;
+            }
 
             if (Input.GetButtonDown("Reload"))
             {
@@ -169,7 +172,7 @@ public class playerController : MonoBehaviour
     {
         
         RaycastHit hit;
-        Debug.Log(gameManager.instance.activeMenu);
+        //Debug.Log(gameManager.instance.activeMenu);
         if (gameManager.instance.activeMenu == null)
         {
             if (weaponInventory[currentWeapon].magazineCurrent > 0)
