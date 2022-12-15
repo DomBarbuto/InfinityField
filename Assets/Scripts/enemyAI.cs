@@ -32,6 +32,7 @@ public class enemyAI : MonoBehaviour
     [SerializeField] GameObject projectile;
     [SerializeField] float fireRate;
     [SerializeField] Transform muzzlePoint;
+    [SerializeField] bool hasPistolAnimation;
 
     [Header("---- Editor Debug Gizmos ----")]
     [SerializeField] bool drawFieldOfView;
@@ -55,6 +56,12 @@ public class enemyAI : MonoBehaviour
 
     void Start()
     {
+        // Set animation 
+        if (hasPistolAnimation)
+            anim.SetBool("HasPistol", true);
+        else
+            anim.SetBool("HasRifle", true);
+
         // Store current HP as maximum HP
         MAXHP = HP;
 
