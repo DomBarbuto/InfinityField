@@ -23,6 +23,14 @@ public class weaponCreation : ScriptableObject
     public int magazineCurrent;
     public int maxAmmoPool;
     public int currentAmmoPool;
+    public AudioClip[] shootSound;
+    [Range(0, 1)] public float shootVol;
+    public AudioClip[] reloadSound;
+    [Range(0, 1)] public float reloadVol;
+    public AudioClip[] pickupSound;
+    [Range(0, 1)] public float pickupVol;
+    public AudioClip[] emptySound;
+    [Range(0, 1)] public float emptyVol;
 
     [Header("---- Stats only for throwables ----")]
 
