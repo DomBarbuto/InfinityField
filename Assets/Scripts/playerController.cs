@@ -194,6 +194,7 @@ public class playerController : MonoBehaviour
                     // Creates impact effect
                     Instantiate(weaponInventory[currentWeapon].hitFX, hit.point, transform.rotation);
                 }
+                //Gun Shoot Sounds
                 weaponInventory[currentWeapon].magazineCurrent -= 1;
             }
             else
@@ -284,6 +285,7 @@ public class playerController : MonoBehaviour
             if (weaponInventory[i] == weapon)
             {
                 Debug.Log("already had weapon");
+                weaponInventory[currentWeapon].currentAmmoPool += weaponInventory[currentWeapon].maxAmmoPool / 5;   
                 // TODO: Grab ammo from weapon
                 // TODO: Play ammo pickup audio clip
                 break;
@@ -302,10 +304,8 @@ public class playerController : MonoBehaviour
                 currentWeapon = i;
                 weaponOBJ.GetComponent<MeshFilter>().sharedMesh = weaponInventory[currentWeapon].weaponsModel.GetComponentInChildren<MeshFilter>().sharedMesh;
                 weaponOBJ.GetComponent<MeshRenderer>().sharedMaterial = weaponInventory[currentWeapon].weaponsModel.GetComponentInChildren<MeshRenderer>().sharedMaterial;
-                // Transfer stats to weapon
-                /*                currWeaponDamage = weapon.weaponDamage;
-                                currShootRate = weapon.shootRate;
-                                currShootDistance = weapon.shootDistance;*/
+                weaponInventory[currentWeapon].currentAmmoPool = weaponInventory[currentWeapon].maxAmmoPool / 2;
+                weaponInventory[currentWeapon].magazineCurrent = weaponInventory[currentWeapon].magazineMax;
                 gameManager.instance.slots[i].GetComponent<Image>().sprite = weapon.icon;
                 // Select currMuzzlePoint
                 switch (weapon.weaponMuzzleType)
@@ -417,7 +417,9 @@ public class playerController : MonoBehaviour
             weaponInventory[currentWeapon].magazineCurrent += reloadAmount;
         }
 
-        if (weaponInventory[currentWeapon].weaponMuzzleType == weaponCreation.WeaponType.pistol)
+        //PlayOneShot reload audio here
+
+        /*if (weaponInventory[currentWeapon].weaponMuzzleType == weaponCreation.WeaponType.pistol)
         {
             //add OneShotAudio
         }
@@ -428,6 +430,6 @@ public class playerController : MonoBehaviour
         else if (weaponInventory[currentWeapon].weaponMuzzleType == weaponCreation.WeaponType.grenadeLauncher)
         {
             //add OneShotAudio
-        }
+        }*/
     }
 }
