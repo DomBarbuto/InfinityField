@@ -200,26 +200,6 @@ public class gameManager : MonoBehaviour
     public void updateEnemyCount(int amount)
     {
         enemyCount += amount;
-
-        if (enemyCount <= 0)
-        {
-            //End game
-            //Win screen activated
-            //pause();
-            //SetActiveMenu(UIMENUS.winMenu);
-        }
-    }
-
-    public IEnumerator DisplayPlayerLastKnownPosition()
-    {
-        currentLastKnownPosition = Instantiate(playerLastKnownPosition, player.transform.position, Quaternion.identity);
-        yield return new WaitForSeconds(playerLastKnownPositionTimeout);
-
-        /*if(currentLastKnownPosition != null && !isPlayerDetected)
-        {
-            Destroy(currentLastKnownPosition);
-            currentLastKnownPosition = null;
-        }*/
     }
 
     // Getters/Setters

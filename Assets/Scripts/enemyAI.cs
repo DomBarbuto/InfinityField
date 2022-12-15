@@ -215,12 +215,6 @@ public class enemyAI : MonoBehaviour
     {
         isPlayerDetected = false;
         alertPlayed = false;
-
-        if (gameManager.instance.currentLastKnownPosition == null)
-        {
-            // Display users last known position for a short duration
-            StartCoroutine(gameManager.instance.DisplayPlayerLastKnownPosition());
-        }
     }
 
     private void dropCredits()
