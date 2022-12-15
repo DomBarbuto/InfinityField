@@ -264,6 +264,10 @@ public class gameManager : MonoBehaviour
         }
     }
 
+    public void updateCreditUI()
+    {
+        creditsCounterText.text = gameManager.instance.credits.ToString();
+    }
     //can be used and customized as you wish. This was mainly theoery crafting for the time being
 
 }
