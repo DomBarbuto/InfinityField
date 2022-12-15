@@ -50,7 +50,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &627828780591769796
 Transform:
   m_ObjectHideFlags: 0
@@ -86,17 +86,31 @@ MonoBehaviour:
   headPos: {fileID: 627828780719946236}
   damageFX: {fileID: 2100000, guid: 80c224e0f63fd1441990fc5e9dbddb34, type: 2}
   playerInRangeTrigger: {fileID: 627828780591769797}
+  ragdoll: {fileID: 0}
+  anim: {fileID: 0}
+  hitDetection: {fileID: 0}
   HP: 100
   damageFXLength: 0.1
   facePlayerSpeed: 15
   fieldOfView: 70
+  requiredShootAngle: 0
+  isRagdoll: 0
+  isPlayerDetected: 0
   creditsHeld: 5
+  animTransSpeed: 0
+  pushBack: {x: 0, y: 0, z: 0}
+  pushBackTime: 0
   projectile: {fileID: 185111370099596839, guid: 2197e594567554749812477fe2675b4e, type: 3}
   fireRate: 0.75
   muzzlePoint: {fileID: 627828780554504193}
   drawFieldOfView: 1
   drawStoppingDistance: 1
   drawPlayerInRangeRadius: 1
+  aud: {fileID: 0}
+  enemyHurt: []
+  enemyHurtVol: 0
+  enemyAlert: []
+  enemyAlertVol: 0
 --- !u!195 &627828780591769798
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5779045453999647295}
   - component: {fileID: 2649812613593392552}
   m_Layer: 7
-  m_Name: Rifle Projectile
+  m_Name: Sniper Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa3ee383038987479909a33e46819e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
-  damage: 10
+  speed: 50
+  damage: 50
   destroyTime: 3
 --- !u!135 &5779045453999647295
 SphereCollider:

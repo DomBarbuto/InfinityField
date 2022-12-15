@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6703164076777475045}
   - component: {fileID: 3830617883854609421}
   m_Layer: 12
-  m_Name: Explosive
+  m_Name: ExplosivePlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,9 +119,7 @@ MonoBehaviour:
   destroyTime: 5
   explosionOBJ: {fileID: 5569945172861464255, guid: b454afa4f1180544d831f4a52b09fa5a, type: 3}
   aud: {fileID: 3830617883854609421}
-  explosionSound:
-  - {fileID: 8300000, guid: 5eb47c2e5bfc95b4caf44b65964a0522, type: 3}
-  explosionVol: 0.5
+  cameFromPlayer: 1
 --- !u!54 &4224026720798320962
 Rigidbody:
   m_ObjectHideFlags: 0
