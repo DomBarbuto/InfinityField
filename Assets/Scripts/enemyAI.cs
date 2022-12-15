@@ -42,9 +42,12 @@ public class enemyAI : MonoBehaviour
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] enemyHurt;
     [Range(0, 1)][SerializeField] float enemyHurtVol;
+    [SerializeField] AudioClip[] enemyAlert;
+    [Range(0, 1)][SerializeField] float enemyAlertVol;
 
     int MAXHP;       // Current max HP
     bool isAttacking;
+    bool alertPlayed;
     bool playerInRange;
     Vector3 playerDir;
     float angleToPlayer;
@@ -111,6 +114,13 @@ public class enemyAI : MonoBehaviour
 
             if (isPlayerDetected)
             {
+                //Plays alert sound once when player is spotted
+                if(!alertPlayed)
+                {
+                    aud.PlayOneShot(enemyAlert[Random.Range(0, enemyAlert.Length)], enemyAlertVol);
+                    alertPlayed = true;
+                }
+
                 // Face the player
                 facePlayer();
 
@@ -193,6 +203,7 @@ public class enemyAI : MonoBehaviour
     private void undetectPlayer()
     {
         isPlayerDetected = false;
+        alertPlayed = false;
 
         if (gameManager.instance.currentLastKnownPosition == null)
         {
