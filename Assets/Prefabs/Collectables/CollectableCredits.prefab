@@ -149,6 +149,10 @@ MonoBehaviour:
   throwSpeed: 3
   UIFXLength: 0.2
   destroyTimer: 30
+  aud: {fileID: 0}
+  pickupSound:
+  - {fileID: 8300000, guid: 6993c77bfb9ecf94fadc3e21b34ea7d1, type: 3}
+  pickupSoundVol: 0.5
 --- !u!65 &7833408565300422019
 BoxCollider:
   m_ObjectHideFlags: 0
