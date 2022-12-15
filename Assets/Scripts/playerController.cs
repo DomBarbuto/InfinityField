@@ -319,7 +319,7 @@ public class playerController : MonoBehaviour
                 
                 // Set weapon inventory slot[i] to this weapon
                 weaponInventory[i] = weapon;
-
+                gameManager.instance.slots[i].SetActive(true);
                 // Transfer mesh and material 
                 //Here, doing getComponentInChildren!!!
                 currentWeapon = i;
