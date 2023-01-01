@@ -18,6 +18,8 @@ public class ragdollDeath : MonoBehaviour
         foreach (Rigidbody bone in skeleton)
         {
             bone.isKinematic = !value;
+            if (bone.GetComponent<enemyHitDetection>() != null && value)
+                bone.GetComponent<enemyHitDetection>().alive = !value;
         }
     }
 

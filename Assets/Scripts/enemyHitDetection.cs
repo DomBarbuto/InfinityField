@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class enemyHitDetection : MonoBehaviour, IDamage
 {
-    [SerializeField] enemyAI brain;
+    [SerializeField] enemyDamageHandler brain;
+    [SerializeField] enemyDamageHandler.DamageGroup group;
+    public bool alive = true;
+
+    private void Start()
+    {
+        alive = true;
+    }
     // Start is called before the first frame update
     public void takeDamage(int dmg)
     {
-        brain.takeDamage(dmg);
+        if (alive)
+            brain.takeDamage(dmg, group);
     }
 }
