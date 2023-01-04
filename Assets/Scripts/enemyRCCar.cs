@@ -146,7 +146,7 @@ public class enemyRCCar : MonoBehaviour, IDamage
     }
 
 
-    public void OnTriggerEnter(Collider other)
+    public void TriggerEnter(Collider other)
     {
        
         if (other.CompareTag("Player"))
@@ -168,7 +168,7 @@ public class enemyRCCar : MonoBehaviour, IDamage
 
     }
 
-    public void OnTriggerExit(Collider other)
+    public void TriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
