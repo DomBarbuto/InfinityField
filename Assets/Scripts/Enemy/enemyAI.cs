@@ -14,8 +14,6 @@ public class enemyAI : MonoBehaviour
     [SerializeField] ragdollDeath ragdoll;
     [SerializeField] Animator anim;
     [SerializeField] GameObject hitDetection;
-    [SerializeField] BlinkGlow bodyGlow;
-    [SerializeField] BlinkGlow gunGlow;
 
     [Header("---- Enemy Stats ----")]
     [SerializeField] int HP;
@@ -29,8 +27,6 @@ public class enemyAI : MonoBehaviour
     [SerializeField] int animTransSpeed;
     [SerializeField] Vector3 pushBack;
     [SerializeField] float pushBackTime;
-    [SerializeField] int alertBlinkGlowSpeed;
-    private float originalBlinkGlowSpeed;
 
     [Header("---- Weapon Stats ----")]
     [SerializeField] GameObject projectile;
@@ -76,9 +72,6 @@ public class enemyAI : MonoBehaviour
 
         if (isRagdoll)
             ragdoll.togglePhysics(false);
-
-        // Remember beginning glow blink speed
-        originalBlinkGlowSpeed = GetComponent<BlinkGlow>().currentBlinkRate;
     }
 
     void Update()
@@ -209,16 +202,12 @@ public class enemyAI : MonoBehaviour
     private void detectPlayer()
     {
         isPlayerDetected = true;
-
-        increaseBlinkGlowSpeed();
     }
 
     private void undetectPlayer()
     {
         isPlayerDetected = false;
         alertPlayed = false;
-
-        decreaseBlinkGlowSpeed();
     }
 
     private void dropCredits()
@@ -226,17 +215,6 @@ public class enemyAI : MonoBehaviour
         // Instantiate the collectableCredits gameObject as well as pass off this enemy's creditsHeld for the amount of credits it has.
         GameObject collectableCredits = Instantiate(gameManager.instance.collectableCreditsPrefab, headPos.position, transform.rotation);
         collectableCredits.GetComponent<collectableCredits>().setCredits(creditsHeld);
-    }
-
-    private void increaseBlinkGlowSpeed()
-    {
-        bodyGlow.currentBlinkRate = alertBlinkGlowSpeed;
-        gunGlow.currentBlinkRate = alertBlinkGlowSpeed;
-    }
-    private void decreaseBlinkGlowSpeed()
-    {
-        bodyGlow.currentBlinkRate = originalBlinkGlowSpeed;
-        gunGlow.currentBlinkRate = originalBlinkGlowSpeed;
     }
 
     //Coroutines-------------------------
