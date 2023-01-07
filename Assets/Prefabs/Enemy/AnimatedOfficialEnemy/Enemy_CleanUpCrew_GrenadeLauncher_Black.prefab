@@ -344,8 +344,8 @@ MonoBehaviour:
   fireRate: 2
   muzzlePoint: {fileID: 1113826855102066241}
   hasPistolAnimation: 0
-  drawFieldOfView: 1
-  drawStoppingDistance: 1
+  drawFieldOfView: 0
+  drawStoppingDistance: 0
   drawPlayerInRangeRadius: 0
   aud: {fileID: 1549222824106922544}
   enemyHurt:
@@ -377,7 +377,7 @@ NavMeshAgent:
   m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: -0.06
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!135 &1113826855072403077
