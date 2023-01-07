@@ -775,7 +775,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1387233290}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.9, y: 1.474, z: -0.8299999}
+  m_LocalPosition: {x: 0.34, y: 1.474, z: -0.8299999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -869,7 +869,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1511981194}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.644, y: 1.474, z: 1.25}
+  m_LocalPosition: {x: 5.0839996, y: 1.474, z: 1.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1125,7 +1125,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1813024600}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.5200005, y: 1.474, z: 2.42}
+  m_LocalPosition: {x: 2.9600003, y: 1.474, z: 2.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1219,7 +1219,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2146595305}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.024, y: 1.474, z: -2}
+  m_LocalPosition: {x: 2.464, y: 1.474, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1302,6 +1302,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1075338214755888729, guid: 2e615a5f82098b24ca163ce4f2a15a65, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3158751612063946664, guid: 2e615a5f82098b24ca163ce4f2a15a65, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1346,21 +1350,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3158751612063946666, guid: 2e615a5f82098b24ca163ce4f2a15a65, type: 3}
-      propertyPath: m_BaseOffset
-      value: -0.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 3158751612063946667, guid: 2e615a5f82098b24ca163ce4f2a15a65, type: 3}
-      propertyPath: drawFieldOfView
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3158751612063946667, guid: 2e615a5f82098b24ca163ce4f2a15a65, type: 3}
-      propertyPath: drawStoppingDistance
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3158751612063946669, guid: 2e615a5f82098b24ca163ce4f2a15a65, type: 3}
       propertyPath: m_Name
       value: Enemy_CleanUpCrew_Rifle_White
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158751612063946669, guid: 2e615a5f82098b24ca163ce4f2a15a65, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9065556975757580129, guid: 2e615a5f82098b24ca163ce4f2a15a65, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e615a5f82098b24ca163ce4f2a15a65, type: 3}
