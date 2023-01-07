@@ -1284,8 +1284,6 @@ GameObject:
   - component: {fileID: 3158751612063946665}
   - component: {fileID: 3592968388154630323}
   - component: {fileID: 3592968386858978076}
-  - component: {fileID: 2244733541777259963}
-  - component: {fileID: 2244733541777259962}
   - component: {fileID: 2466031049808705226}
   m_Layer: 6
   m_Name: Enemy_CleanUpCrew_Rifle_White
@@ -1377,8 +1375,6 @@ MonoBehaviour:
   ragdoll: {fileID: 3158751612063946668}
   anim: {fileID: 3158751612063946671}
   hitDetection: {fileID: 3592968388153202290}
-  bodyGlow: {fileID: 2244733541777259963}
-  gunGlow: {fileID: 2244733541777259962}
   HP: 100
   damageFXLength: 0.1
   facePlayerSpeed: 15
@@ -1390,7 +1386,6 @@ MonoBehaviour:
   animTransSpeed: 3
   pushBack: {x: 0, y: 0, z: 0}
   pushBackTime: 0
-  alertBlinkGlowSpeed: 5
   projectile: {fileID: 185111370099596839, guid: 2197e594567554749812477fe2675b4e, type: 3}
   fireRate: 0.75
   muzzlePoint: {fileID: 3158751612026238829}
@@ -1556,40 +1551,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2244733541777259963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3158751612063946669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18d4bcfc000d6944b8cc5bd95d5e49e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPlayer: 0
-  thisObjectsMaterial: {fileID: 2100000, guid: 4bf101509c896874899a1c55aab354cc, type: 2}
-  currentBlinkRate: 1
-  currentEmissionColor: {r: 1, g: 0, b: 0, a: 0.8117647}
-  currentIntensityValue: 0
---- !u!114 &2244733541777259962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3158751612063946669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18d4bcfc000d6944b8cc5bd95d5e49e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPlayer: 0
-  thisObjectsMaterial: {fileID: 2100000, guid: 9486852d542548d40ac6f6712f0113ba, type: 2}
-  currentBlinkRate: 1
-  currentEmissionColor: {r: 0, g: 0, b: 0, a: 0}
-  currentIntensityValue: 0
 --- !u!114 &2466031049808705226
 MonoBehaviour:
   m_ObjectHideFlags: 0
