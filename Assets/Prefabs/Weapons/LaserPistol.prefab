@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8868102280265909417}
   - component: {fileID: 8868102280265909414}
-  - component: {fileID: 8868102280265909415}
+  - component: {fileID: 6765722765388805604}
   m_Layer: 0
   m_Name: LaserPistol
   m_TagString: Untagged
@@ -131,8 +131,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gun: {fileID: 11400000, guid: 78a74728192f4b14196b0b8cf087f622, type: 2}
   hasBeenPickedUp: 0
---- !u!135 &8868102280265909415
-SphereCollider:
+--- !u!65 &6765722765388805604
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -142,5 +142,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.35, y: 0.30420718, z: 0.587742}
+  m_Center: {x: 0, y: 0.17210363, z: -0.030902088}

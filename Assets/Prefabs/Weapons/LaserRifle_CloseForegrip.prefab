@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8723805351793023464}
   - component: {fileID: 2640142436070123682}
-  - component: {fileID: 5399901196832003112}
+  - component: {fileID: 932656165444890641}
   m_Layer: 0
   m_Name: LaserRifle_CloseForegrip
   m_TagString: Untagged
@@ -48,8 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gun: {fileID: 11400000, guid: b02b32e8695148b44b2a21c8f0db9b4b, type: 2}
   hasBeenPickedUp: 0
---- !u!135 &5399901196832003112
-SphereCollider:
+--- !u!65 &932656165444890641
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -59,8 +59,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.35, y: 0.47862387, z: 1.3700466}
+  m_Center: {x: 0, y: 0.259312, z: 0.054424286}
 --- !u!1001 &5591610742482484488
 PrefabInstance:
   m_ObjectHideFlags: 0
