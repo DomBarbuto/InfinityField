@@ -1440,7 +1440,7 @@ Transform:
   - {fileID: 8422033533743766635}
   m_Father: {fileID: 6630806993605639625}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.31166363, y: 359.84195, z: 18.987898}
+  m_LocalEulerAnglesHint: {x: 344.41394, y: 346.91928, z: 170.42934}
 --- !u!54 &1720287532689210177
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1820,7 +1820,7 @@ Transform:
   - {fileID: 6619565422391800940}
   m_Father: {fileID: 6630806993605639625}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0.31166363, y: 359.84195, z: 18.987898}
+  m_LocalEulerAnglesHint: {x: 358.5428, y: 3.9798787, z: 178.80128}
 --- !u!54 &1720287534076283744
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1968,7 +1968,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5491607751943552253}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0.561}
+  m_LocalPosition: {x: 0, y: 0.874, z: 0.351}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1993,7 +1993,7 @@ GameObject:
   - component: {fileID: 6214112389008699762}
   - component: {fileID: 1644157175455621445}
   m_Layer: 6
-  m_Name: Enemy_CleanUpCrew_Rifle_Yellow
+  m_Name: Enemy_CleanUpCrew_RailGun_Yellow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2083,10 +2083,13 @@ MonoBehaviour:
   anim: {fileID: 5491607752071720385}
   hitDetection: {fileID: 6214112388247186460}
   HP: 100
-  damageFXLength: 0.1
-  facePlayerSpeed: 15
-  fieldOfView: 70
-  requiredShootAngle: 10
+  damageFXLength: 0.2
+  facePlayerSpeed: 30
+  fieldOfView: 50
+  rayMask:
+    serializedVersion: 2
+    m_Bits: 16375
+  requiredShootAngle: 5
   isRagdoll: 1
   isPlayerDetected: 0
   creditsHeld: 5
@@ -2095,11 +2098,11 @@ MonoBehaviour:
   projectile: {fileID: 185111370099596839, guid: 9ae1d8c42311b2940be8b01955d994e9, type: 3}
   fireRate: 2
   muzzlePoint: {fileID: 5491607752109427971}
-  animTransSpeed: 4
+  animTransSpeed: 6
   thisEnemyWeaponType: 3
-  drawFieldOfView: 0
-  drawStoppingDistance: 0
-  drawPlayerInRangeRadius: 0
+  drawFieldOfView: 1
+  drawStoppingDistance: 1
+  drawPlayerInRangeRadius: 1
   aud: {fileID: 6214112389008699762}
   enemyHurt:
   - {fileID: 8300000, guid: 975717b19413b9a42bb0c2e7e48668ce, type: 3}
@@ -2125,7 +2128,7 @@ NavMeshAgent:
   m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 180
-  m_StoppingDistance: 30
+  m_StoppingDistance: 15
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
@@ -2144,7 +2147,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 35
+  m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6214112388248869597
 Rigidbody:
@@ -2283,7 +2286,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5491607752109427971}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MuzzlePoint
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -2434,7 +2437,7 @@ Transform:
   - {fileID: 2282903961551477962}
   m_Father: {fileID: 7386125533461449462}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.31166363, y: 359.84195, z: 18.987898}
+  m_LocalEulerAnglesHint: {x: 340.2807, y: 357.99338, z: 353.26044}
 --- !u!54 &1720287533496011298
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3743,9 +3746,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.59802246
       objectReference: {fileID: 0}
+    - target: {fileID: 6794960223940827883, guid: 80c42768c533a7543ba5cc46189e625e, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7175278597216061187, guid: 80c42768c533a7543ba5cc46189e625e, type: 3}
       propertyPath: m_Name
       value: RailGunEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7175278597216061187, guid: 80c42768c533a7543ba5cc46189e625e, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7175278597216061187, guid: 80c42768c533a7543ba5cc46189e625e, type: 3}
       propertyPath: m_IsActive

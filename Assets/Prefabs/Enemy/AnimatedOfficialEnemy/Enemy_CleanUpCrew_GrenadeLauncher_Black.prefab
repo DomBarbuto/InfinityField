@@ -245,7 +245,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1113826855072403076
 Transform:
   m_ObjectHideFlags: 0
@@ -329,11 +329,12 @@ MonoBehaviour:
   ragdoll: {fileID: 1113826855072403072}
   anim: {fileID: 1113826855072403075}
   hitDetection: {fileID: 1549222823324962654}
-  HP: 200
-  damageFXLength: 0.1
-  facePlayerSpeed: 15
-  fieldOfView: 70
-  requiredShootAngle: 10
+  HP: 5000
+  damageFXLength: 0.2
+  facePlayerSpeed: 30
+  fieldOfView: 50
+  waitUntilShoot: 0
+  requiredShootAngle: 5
   isRagdoll: 1
   isPlayerDetected: 0
   creditsHeld: 5
@@ -372,7 +373,7 @@ NavMeshAgent:
   m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 180
-  m_StoppingDistance: 12
+  m_StoppingDistance: 10
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
@@ -530,7 +531,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1113826855102066241}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MuzzlePoint
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -576,7 +577,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1113826855200612287}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0.561}
+  m_LocalPosition: {x: 0, y: 0.833, z: 0.323}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3501,7 +3502,7 @@ Transform:
   - {fileID: 8359849004389025733}
   m_Father: {fileID: 8581854504819402743}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 340.2807, y: 357.99338, z: 353.26044}
+  m_LocalEulerAnglesHint: {x: 330.9149, y: 12.06305, z: 357.79544}
 --- !u!54 &6096950157821213238
 Rigidbody:
   m_ObjectHideFlags: 0
