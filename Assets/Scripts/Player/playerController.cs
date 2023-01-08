@@ -332,15 +332,15 @@ public class playerController : MonoBehaviour
                 // Select currMuzzlePoint
                 switch (weapon.weaponMuzzleType)
                 {
-                    case weaponCreation.WeaponType.pistol:
+                    case weaponCreation.WeaponType.Pistol:
                         currMuzzlePoint = laserPistolMuzzlePoint;
                         break;
 
-                    case weaponCreation.WeaponType.rifle:
+                    case weaponCreation.WeaponType.Rifle:
                         currMuzzlePoint = laserRifleMuzzlePoint;
                         break;
 
-                    case weaponCreation.WeaponType.grenadeLauncher:
+                    case weaponCreation.WeaponType.GrenadeLauncher:
                         currMuzzlePoint = grenadeLauncherMuzzlePoint;
                         break;
                     default:

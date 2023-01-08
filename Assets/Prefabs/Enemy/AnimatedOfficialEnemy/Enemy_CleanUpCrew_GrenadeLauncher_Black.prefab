@@ -274,7 +274,7 @@ Animator:
   m_GameObject: {fileID: 1113826855072403073}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: d551d631179a9104a9c9d1dbdaff295d, type: 3}
-  m_Controller: {fileID: 9100000, guid: caab6dd9f61d1ce4caef5a48c041a33d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2273aa44c76a8b2449839217d590a96a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -337,16 +337,16 @@ MonoBehaviour:
   isRagdoll: 1
   isPlayerDetected: 0
   creditsHeld: 5
-  animTransSpeed: 3
   pushBack: {x: 0, y: 0, z: 0}
   pushBackTime: 0
   projectile: {fileID: 4224026720798320963, guid: ef33ce140788b9a4e982d32412b39e4b, type: 3}
   fireRate: 2
   muzzlePoint: {fileID: 1113826855102066241}
-  hasPistolAnimation: 0
-  drawFieldOfView: 0
-  drawStoppingDistance: 0
-  drawPlayerInRangeRadius: 0
+  animTransSpeed: 4
+  thisEnemyWeaponType: 2
+  drawFieldOfView: 1
+  drawStoppingDistance: 1
+  drawPlayerInRangeRadius: 1
   aud: {fileID: 1549222824106922544}
   enemyHurt:
   - {fileID: 8300000, guid: a59143b15df81cb478b64b1b08a9a903, type: 3}
@@ -391,7 +391,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 15
+  m_Radius: 18
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1549222823321942431
 Rigidbody:
@@ -545,7 +545,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1113826855102066240}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
-  m_LocalPosition: {x: -0, y: 0.342, z: -0.375}
+  m_LocalPosition: {x: 0, y: 0.342, z: -0.412}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

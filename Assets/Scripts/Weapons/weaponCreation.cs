@@ -7,7 +7,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class weaponCreation : ScriptableObject
 {
-    public enum WeaponType { pistol, rifle, grenadeLauncher }
+    public enum WeaponType { Pistol, Rifle, GrenadeLauncher, RailGun, ArcGun }
 
     [Header("---- Weapon Transfer Stats ----")]
     public WeaponType weaponMuzzleType;   // Used for selecting which muzzle point on the player to use

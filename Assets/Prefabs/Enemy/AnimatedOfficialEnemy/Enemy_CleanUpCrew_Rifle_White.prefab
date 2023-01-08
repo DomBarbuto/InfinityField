@@ -1287,7 +1287,7 @@ Animator:
   m_GameObject: {fileID: 3158751612063946669}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: d551d631179a9104a9c9d1dbdaff295d, type: 3}
-  m_Controller: {fileID: 9100000, guid: caab6dd9f61d1ce4caef5a48c041a33d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2273aa44c76a8b2449839217d590a96a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1349,14 +1349,14 @@ MonoBehaviour:
   requiredShootAngle: 10
   isRagdoll: 1
   isPlayerDetected: 0
-  creditsHeld: 5
-  animTransSpeed: 3
+  creditsHeld: 4
   pushBack: {x: 0, y: 0, z: 0}
   pushBackTime: 0
   projectile: {fileID: 185111370099596839, guid: 2197e594567554749812477fe2675b4e, type: 3}
   fireRate: 0.75
   muzzlePoint: {fileID: 3158751612026238829}
-  hasPistolAnimation: 0
+  animTransSpeed: 4
+  thisEnemyWeaponType: 1
   drawFieldOfView: 0
   drawStoppingDistance: 0
   drawPlayerInRangeRadius: 0

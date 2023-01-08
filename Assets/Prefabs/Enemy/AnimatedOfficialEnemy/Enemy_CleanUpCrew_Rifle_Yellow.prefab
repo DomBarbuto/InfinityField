@@ -695,7 +695,7 @@ Transform:
   - {fileID: 555235161744587202}
   - {fileID: 6630806993605639625}
   m_Father: {fileID: 5491607752071720390}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2321828763587645390
 GameObject:
@@ -2012,7 +2012,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5491607751943552254}
-  - {fileID: 5491607752109427971}
   - {fileID: 1176856880602176861}
   - {fileID: 6214112388247186461}
   m_Father: {fileID: 0}
@@ -2028,7 +2027,7 @@ Animator:
   m_GameObject: {fileID: 5491607752071720387}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: d551d631179a9104a9c9d1dbdaff295d, type: 3}
-  m_Controller: {fileID: 9100000, guid: caab6dd9f61d1ce4caef5a48c041a33d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2273aa44c76a8b2449839217d590a96a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2091,13 +2090,13 @@ MonoBehaviour:
   isRagdoll: 1
   isPlayerDetected: 0
   creditsHeld: 5
-  animTransSpeed: 3
   pushBack: {x: 0, y: 0, z: 0}
   pushBackTime: 0
   projectile: {fileID: 185111370099596839, guid: 9ae1d8c42311b2940be8b01955d994e9, type: 3}
   fireRate: 2
   muzzlePoint: {fileID: 5491607752109427971}
-  hasPistolAnimation: 0
+  animTransSpeed: 4
+  thisEnemyWeaponType: 3
   drawFieldOfView: 0
   drawStoppingDistance: 0
   drawPlayerInRangeRadius: 0
@@ -2298,14 +2297,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5491607752109427970}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.039, y: 1.319, z: 0.754}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
+  m_LocalPosition: {x: -0, y: 0.32, z: -0.728}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5491607752071720390}
+  m_Father: {fileID: 1687512013697832926}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &5600419641956808954
 GameObject:
   m_ObjectHideFlags: 0
@@ -2558,7 +2557,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5491607752071720390}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &6214112388247186435
 CapsuleCollider:

@@ -24,7 +24,6 @@ public class enemyAI : MonoBehaviour
     [SerializeField] bool isRagdoll;
     [SerializeField] bool isPlayerDetected;
     public int creditsHeld;                 // How many credits the enemy sends over to collectable on death
-    [SerializeField] int animTransSpeed;
     [SerializeField] Vector3 pushBack;
     [SerializeField] float pushBackTime;
 
@@ -32,7 +31,8 @@ public class enemyAI : MonoBehaviour
     [SerializeField] GameObject projectile;
     [SerializeField] float fireRate;
     [SerializeField] Transform muzzlePoint;
-    [SerializeField] bool hasPistolAnimation;
+    [SerializeField] int animTransSpeed;
+    [SerializeField] weaponCreation.WeaponType thisEnemyWeaponType;
 
     [Header("---- Editor Debug Gizmos ----")]
     [SerializeField] bool drawFieldOfView;
@@ -56,11 +56,24 @@ public class enemyAI : MonoBehaviour
 
     void Start()
     {
-        // Set animation 
-        if (hasPistolAnimation)
-            anim.SetBool("HasPistol", true);
-        else
-            anim.SetBool("HasRifle", true);
+        // Set animation set. Each animator bool depicts what blend tree to use.
+        switch (thisEnemyWeaponType)
+        {
+            case weaponCreation.WeaponType.Pistol:
+                anim.SetBool("HasPistol", true);
+                break;
+
+            case weaponCreation.WeaponType.Rifle:
+            case weaponCreation.WeaponType.RailGun:
+                anim.SetBool("HasRifleOrRailGun", true);
+                break;
+
+            case weaponCreation.WeaponType.GrenadeLauncher:
+                anim.SetBool("HasGrenadeLauncher", true);
+                break;
+            default:
+                break;
+        }
 
         // Store current HP as maximum HP
         MAXHP = HP;
