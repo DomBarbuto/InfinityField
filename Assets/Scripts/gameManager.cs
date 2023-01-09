@@ -74,7 +74,7 @@ public class gameManager : MonoBehaviour
     {
         // Hide reticle on start. Reticle only shows when weapon is selected
         hideReticle();
-
+        saveLoad.load();
         creditsCounterText.text = credits.ToString();
     }
 

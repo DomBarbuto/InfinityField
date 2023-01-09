@@ -13,9 +13,10 @@ public class playerController : MonoBehaviour
     [SerializeField] CharacterController controller;
 
     [Header("---- Player Stats ----")]
-    [SerializeField] float HP;
-    [SerializeField] float energy;
-    [SerializeField] float energyDecreaseRate;
+    [SerializeField] public float HP;
+    [SerializeField] public float energy;
+    [SerializeField] public float energyDecreaseRate;
+    [SerializeField] public int character;
 
     [Header("---- Player Movement ----")]
     [SerializeField] bool isSprinting;
