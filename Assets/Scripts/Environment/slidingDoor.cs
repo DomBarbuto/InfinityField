@@ -7,13 +7,40 @@ public class slidingDoor : MonoBehaviour
     [SerializeField] Transform endPos;
     [SerializeField] float doorSpeed;
     [SerializeField] AudioSource aud;
-
-    bool openDoor;
-
+    [SerializeField] Transform startPos;
+    
+    bool openDoor = false;
+    
+    
     public void Update()
     {
-        if (openDoor)
-            gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, endPos.position, doorSpeed);
+       
+    }
+
+    void OperateDoor()
+    {
+        StopAllCoroutines();
+        if (!openDoor)
+        {
+            StartCoroutine(MoveDoor(endPos.position));
+        }
+        else
+        {
+            StartCoroutine(MoveDoor(startPos.position));
+        }
+        openDoor = !openDoor;
+    }
+    IEnumerator MoveDoor(Vector3 targetPosition)
+    {
+        float timeElapsed = 0;
+        Vector3 startPosition = transform.position;
+        while (timeElapsed < doorSpeed)
+        {
+            transform.position = Vector3.Lerp(startPosition, targetPosition, timeElapsed / doorSpeed);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = targetPosition;
     }
 
     public void OnTriggerEnter(Collider other)
@@ -21,7 +48,16 @@ public class slidingDoor : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             aud.Play();
-            openDoor = true;
+            OperateDoor();
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            aud.Play();
+            OperateDoor();
         }
     }
 }
