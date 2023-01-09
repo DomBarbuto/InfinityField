@@ -130,13 +130,27 @@ public class playerController : MonoBehaviour
             {
                 if (interactHit.collider.gameObject.CompareTag("Interactable"))
                 {
+                    
+                    interactHit.collider.GetComponent<IInteractable>().showText();
+
                     if (Input.GetButtonDown("Interact"))
                     {
-                        if(!interactHit.collider.GetComponent<slidingDoor>().HasClosed)
+                        //If hit is door and it hasnt closed yet
+                        if(interactHit.collider.GetComponent<slidingDoor>() && !interactHit.collider.GetComponent<slidingDoor>().HasClosed)
                             interactHit.collider.GetComponent<IInteractable>().interact();
+
+                        // Else if hit is a vending machine
+                        else if (interactHit.collider.GetComponent<vendingMachine>())
+                        {
+                            interactHit.collider.GetComponent<IInteractable>().interact();
+                        }
+
                     }
 
+
                 }
+                
+
             }
         }
     }

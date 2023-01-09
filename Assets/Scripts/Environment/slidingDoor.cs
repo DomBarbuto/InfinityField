@@ -11,6 +11,7 @@ public class slidingDoor : MonoBehaviour, IInteractable
     [SerializeField]RoomEntry roomEntry;
     bool openDoor = false;
     public bool HasClosed = false;
+    [SerializeField] GameObject interactCanvas;
     
 
     void OperateDoor()
@@ -46,6 +47,7 @@ public class slidingDoor : MonoBehaviour, IInteractable
         {
             aud.Play();
             OperateDoor();
+            interactCanvas.SetActive(false);
             HasClosed = true;
         }
     }
@@ -63,5 +65,13 @@ public class slidingDoor : MonoBehaviour, IInteractable
     {
         aud.Play();
         OperateDoor();
+        interactCanvas.SetActive(false);
     }
+
+    public void showText()
+    {
+        interactCanvas.SetActive(true);
+    }
+
+   
 }
