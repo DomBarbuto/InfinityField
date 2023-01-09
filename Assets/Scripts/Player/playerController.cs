@@ -202,7 +202,7 @@ public class playerController : MonoBehaviour
                 // For grenade launcher
                 if (weaponInventory[currentWeapon].isThrowable)
                 {
-                    Instantiate(weaponInventory[currentWeapon].thrownObject, currMuzzlePoint.transform.position, currMuzzlePoint.transform.rotation);
+                    Instantiate(weaponInventory[currentWeapon].weaponProjectile, currMuzzlePoint.transform.position, currMuzzlePoint.transform.rotation);
                 }
                 // For every other weapon that does raycasting
                 else
