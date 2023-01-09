@@ -8,14 +8,9 @@ public class slidingDoor : MonoBehaviour
     [SerializeField] float doorSpeed;
     [SerializeField] AudioSource aud;
     [SerializeField] Transform startPos;
-    
+    [SerializeField]RoomEntry roomEntry;
     bool openDoor = false;
     
-    
-    public void Update()
-    {
-       
-    }
 
     void OperateDoor()
     {
@@ -23,6 +18,7 @@ public class slidingDoor : MonoBehaviour
         if (!openDoor)
         {
             StartCoroutine(MoveDoor(endPos.position));
+            roomEntry.playerEnterRoom();
         }
         else
         {

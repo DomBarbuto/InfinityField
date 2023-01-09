@@ -116,13 +116,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2128546042546800102}
-  - component: {fileID: 2128546042546799645}
   - component: {fileID: 2128546042546799642}
   - component: {fileID: 2128546042546799643}
-  - component: {fileID: 2128546042546799641}
-  - component: {fileID: 2128546042546799644}
   - component: {fileID: 2128546042546799647}
-  m_Layer: 0
+  - component: {fileID: 1821362170}
+  - component: {fileID: 1821362171}
+  m_Layer: 14
   m_Name: DoorModel&Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,215 +144,6 @@ Transform:
   m_Father: {fileID: 2128546043804735931}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2128546042546799645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2128546042546800103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1508455596, guid: 18036820e4eaef34a9ef9afc1a245ef1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  editableMesh_:
-    editMeshVersion: 1
-    mainPolygons_:
-    - vertices_:
-      - pos: {x: -0.125, y: 0, z: -2}
-        uv: {x: 2, y: 0}
-        color: {r: 1, g: 1, b: 1, a: 1}
-      - pos: {x: -0.125, y: 0, z: 0}
-        uv: {x: 0, y: 0}
-        color: {r: 1, g: 1, b: 1, a: 1}
-      - pos: {x: -0.125, y: 3.25, z: 0}
-        uv: {x: 0, y: 3.25}
-        color: {r: 1, g: 1, b: 1, a: 1}
-      - pos: {x: -0.125, y: 3.25, z: -2}
-        uv: {x: 2, y: 3.25}
-        color: {r: 1, g: 1, b: 1, a: 1}
-      edges_:
-      - i0_: 0
-        i1_: 1
-      - i0_: 1
-        i1_: 2
-      - i0_: 2
-        i1_: 3
-      - i0_: 3
-        i1_: 0
-      uvParams_:
-        shift: {x: 0, y: 0}
-        scale: {x: 1, y: 1}
-        rotation: 0
-      plane_:
-        normal_: {x: -1, y: 0, z: 0}
-        distance_: -0.125
-      matID_: 0
-      flags_: 0
-      instanceID_: 361252
-      groupID: 0
-    - vertices_:
-      - pos: {x: -0.125, y: 0, z: 0}
-        uv: {x: 0, y: 0}
-        color: {r: 1, g: 1, b: 1, a: 1}
-      - pos: {x: -0.125, y: 0, z: -2}
-        uv: {x: -2, y: 0}
-        color: {r: 1, g: 1, b: 1, a: 1}
-      - pos: {x: -0.125, y: 3.25, z: -2}
-        uv: {x: -2, y: 3.25}
-        color: {r: 1, g: 1, b: 1, a: 1}
-      - pos: {x: -0.125, y: 3.25, z: 0}
-        uv: {x: 0, y: 3.25}
-        color: {r: 1, g: 1, b: 1, a: 1}
-      edges_:
-      - i0_: 0
-        i1_: 1
-      - i0_: 1
-        i1_: 2
-      - i0_: 2
-        i1_: 3
-      - i0_: 3
-        i1_: 0
-      uvParams_:
-        shift: {x: 0, y: 0}
-        scale: {x: 1, y: 1}
-        rotation: 0
-      plane_:
-        normal_: {x: 1, y: 0, z: 0}
-        distance_: 0.125
-      matID_: 0
-      flags_: 0
-      instanceID_: 361248
-      groupID: 0
-    - vertices_:
-      - pos: {x: -0.125, y: 0, z: 0}
-        uv: {x: 0.125, y: 0}
-        color: {r: 1, g: 1, b: 1, a: 1}
-      - pos: {x: -0.125, y: 0, z: -2}
-        uv: {x: 0.125, y: 2}
-        color: {r: 1, g: 1, b: 1, a: 1}
-      edges_:
-      - i0_: 0
-        i1_: 1
-      - i0_: 1
-        i1_: 0
-      uvParams_:
-        shift: {x: 0, y: 0}
-        scale: {x: 1, y: 1}
-        rotation: 0
-      plane_:
-        normal_: {x: 0, y: -1, z: 0}
-        distance_: -0
-      matID_: 0
-      flags_: 0
-      instanceID_: 361186
-      groupID: 0
-    - vertices_:
-      - pos: {x: -0.125, y: 0, z: 0}
-        uv: {x: 0.125, y: 0}
-        color: {r: 1, g: 1, b: 1, a: 1}
-      - pos: {x: -0.125, y: 3.25, z: 0}
-        uv: {x: 0.125, y: 3.25}
-        color: {r: 1, g: 1, b: 1, a: 1}
-      edges_:
-      - i0_: 0
-        i1_: 1
-      - i0_: 1
-        i1_: 0
-      uvParams_:
-        shift: {x: 0, y: 0}
-        scale: {x: 1, y: 1}
-        rotation: 0
-      plane_:
-        normal_: {x: 0, y: 0, z: 1}
-        distance_: -0
-      matID_: 0
-      flags_: 0
-      instanceID_: 361254
-      groupID: 0
-    - vertices_:
-      - pos: {x: -0.125, y: 0, z: -2}
-        uv: {x: -0.125, y: 0}
-        color: {r: 1, g: 1, b: 1, a: 1}
-      - pos: {x: -0.125, y: 3.25, z: -2}
-        uv: {x: -0.125, y: 3.25}
-        color: {r: 1, g: 1, b: 1, a: 1}
-      edges_:
-      - i0_: 0
-        i1_: 1
-      - i0_: 1
-        i1_: 0
-      uvParams_:
-        shift: {x: 0, y: 0}
-        scale: {x: 1, y: 1}
-        rotation: 0
-      plane_:
-        normal_: {x: 0, y: 0, z: -1}
-        distance_: -2
-      matID_: 0
-      flags_: 0
-      instanceID_: 361250
-      groupID: 0
-    - vertices_:
-      - pos: {x: -0.125, y: 3.25, z: 0}
-        uv: {x: -0.125, y: 0}
-        color: {r: 1, g: 1, b: 1, a: 1}
-      - pos: {x: -0.125, y: 3.25, z: -2}
-        uv: {x: -0.125, y: -2}
-        color: {r: 1, g: 1, b: 1, a: 1}
-      edges_:
-      - i0_: 0
-        i1_: 1
-      - i0_: 1
-        i1_: 0
-      uvParams_:
-        shift: {x: 0, y: 0}
-        scale: {x: 1, y: 1}
-        rotation: 0
-      plane_:
-        normal_: {x: 0, y: 0, z: 0}
-        distance_: -0
-      matID_: 0
-      flags_: 0
-      instanceID_: 361246
-      groupID: 0
-    mainPolygonsStream: 
-    subPolygons_: []
-    smoothingGroups_:
-      smoothing_groups_: []
-      smoothingGroupStream_: 
-    edgeSharpnesses_:
-      edgeSharpnesses_: []
-    mirrorMode_:
-      enable: 0
-      plane:
-        normal_: {x: 0, y: 0, z: 0}
-        distance_: 0
-      backup: 0
-      propertyJSON: 
-    uvIslandManager_:
-      uvislands_: []
-      uvislandsStream_: 
-    polygonGroupManager_:
-      polygonGroups_: []
-    activePolygonGroupId: 0
-  backfaces_: 0
-  materials:
-  - {fileID: 2100000, guid: f57590384f3123d47be2ca510d885e22, type: 2}
-  originalMaterials: []
-  editMode: 1
-  recalculateTangents: 1
-  serializedGuid: 
-  assetPath: 
-  isInvisibleObject: 0
-  mainRenderableMesh: {fileID: -1745966157818177357}
-  hotspotLayout: {fileID: 0}
-  hotspotScale: 1
-  hotspotPadding: 0
-  hotspotPriority: 0.5
-  autoHotspotLayout: 0
-  hotspotGroup: 0
 --- !u!33 &2128546042546799642
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -404,35 +194,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2128546042546799641
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2128546042546800103}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.3805804, y: 10.31, z: 2.0019999}
-  m_Center: {x: 0.5642903, y: -1.73, z: -1}
---- !u!114 &2128546042546799644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2128546042546800103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5de524ee619c80c43ae4ef35e6a74bd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  endPos: {fileID: 2128546042490920079}
-  doorSpeed: 1
-  aud: {fileID: 2128546042546799647}
-  startPos: {fileID: 768090659}
 --- !u!82 &2128546042546799647
 AudioSource:
   m_ObjectHideFlags: 0
@@ -529,6 +290,36 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &1821362170
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128546042546800103}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 10.31, z: 2.0019999}
+  m_Center: {x: 0, y: -1.73, z: -1}
+--- !u!114 &1821362171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128546042546800103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5de524ee619c80c43ae4ef35e6a74bd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endPos: {fileID: 2128546042490920079}
+  doorSpeed: 1
+  aud: {fileID: 2128546042546799647}
+  startPos: {fileID: 768090659}
+  roomEntry: {fileID: 0}
 --- !u!1 &2128546043804735928
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,7 +329,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2128546043804735931}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: SlidingDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

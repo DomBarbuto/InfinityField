@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IRoomEntry
+public interface IRoomEntryListener 
 {
-    void playerEnterRoom();
+    public void notify();
 }
