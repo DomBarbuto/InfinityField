@@ -10,6 +10,7 @@ public class slidingDoor : MonoBehaviour, IInteractable
     [SerializeField] Transform startPos;
     [SerializeField]RoomEntry roomEntry;
     bool openDoor = false;
+    public bool HasClosed = false;
     
 
     void OperateDoor()
@@ -45,6 +46,7 @@ public class slidingDoor : MonoBehaviour, IInteractable
         {
             aud.Play();
             OperateDoor();
+            HasClosed = true;
         }
     }
 

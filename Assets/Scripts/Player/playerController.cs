@@ -132,7 +132,8 @@ public class playerController : MonoBehaviour
                 {
                     if (Input.GetButtonDown("Interact"))
                     {
-                        interactHit.collider.GetComponent<IInteractable>().interact();
+                        if(!interactHit.collider.GetComponent<slidingDoor>().HasClosed)
+                            interactHit.collider.GetComponent<IInteractable>().interact();
                     }
 
                 }
