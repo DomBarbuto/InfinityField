@@ -5,7 +5,7 @@ using UnityEngine;
 public class saveLoad : MonoBehaviour
 {
     
-    public void save()
+    public static void save()
     {
         PlayerPrefs.SetInt("Character", gameManager.instance.playerController.character);
         
@@ -13,7 +13,7 @@ public class saveLoad : MonoBehaviour
 
     }
 
-    public void load()
+    public static void load()
     {
         PlayerPrefs.GetInt("Character", gameManager.instance.playerController.character);
 
