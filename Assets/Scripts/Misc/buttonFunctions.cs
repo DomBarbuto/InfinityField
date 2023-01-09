@@ -18,6 +18,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void quit()
     {
+        saveLoad.save();
         Application.Quit();
     }
 
