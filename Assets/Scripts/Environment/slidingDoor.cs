@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class slidingDoor : MonoBehaviour
+public class slidingDoor : MonoBehaviour, IInteractable
 {
     [SerializeField] Transform endPos;
     [SerializeField] float doorSpeed;
@@ -48,12 +48,18 @@ public class slidingDoor : MonoBehaviour
         }
     }
 
-    public void OnTriggerExit(Collider other)
+    //public void OnTriggerExit(Collider other)
+    //{
+    //    if (other.gameObject.CompareTag("Player"))
+    //    {
+    //        aud.Play();
+    //        OperateDoor();
+    //    }
+    //}
+
+    public void interact()
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            aud.Play();
-            OperateDoor();
-        }
+        aud.Play();
+        OperateDoor();
     }
 }

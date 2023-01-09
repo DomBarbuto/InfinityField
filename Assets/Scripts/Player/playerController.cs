@@ -37,6 +37,9 @@ public class playerController : MonoBehaviour
     [SerializeField] Transform laserRifleMuzzlePoint;
     [SerializeField] Transform grenadeLauncherMuzzlePoint;
 
+    [Header("Interactable System")]
+    [SerializeField] float rayDistance;
+
     [Header("---- Active Weapon -----")]
     [SerializeField] public int currentWeapon;
     [SerializeField] public GameObject weaponOBJ;
@@ -106,10 +109,10 @@ public class playerController : MonoBehaviour
                 {
                     isFiring = true;
                     StartCoroutine(fire());
-                    
+
                 }
             }
-            if(weaponInventory[currentWeapon] != null)
+            if (weaponInventory[currentWeapon] != null)
             {
                 gameManager.instance.MagazineCurrent.text = weaponInventory[currentWeapon].magazineCurrent.ToString();
                 gameManager.instance.AmmoPoolCurrent.text = weaponInventory[currentWeapon].currentAmmoPool.ToString();
@@ -120,10 +123,25 @@ public class playerController : MonoBehaviour
             {
                 reload();
             }
+
+
+            RaycastHit interactHit;
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out interactHit, rayDistance))
+            {
+                if (interactHit.collider.gameObject.CompareTag("Interactable"))
+                {
+                    if (Input.GetButtonDown("Interact"))
+                    {
+                        interactHit.collider.GetComponent<IInteractable>().interact();
+                    }
+
+                }
+            }
         }
     }
 
-    //Movement----------------------------
+
+        //Movement----------------------------
 
     void movement()
     {

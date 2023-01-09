@@ -420,6 +420,7 @@ MonoBehaviour:
   HP: 100
   energy: 100
   energyDecreaseRate: 15
+  character: 0
   isSprinting: 0
   currentMoveSpeed: 0
   walkSpeed: 6
@@ -440,6 +441,7 @@ MonoBehaviour:
   laserPistolMuzzlePoint: {fileID: 6272214609104572768}
   laserRifleMuzzlePoint: {fileID: 9022391296610880835}
   grenadeLauncherMuzzlePoint: {fileID: 423215038}
+  rayDistance: 1
   currentWeapon: 0
   weaponOBJ: {fileID: 503212280}
   currMuzzlePoint: {fileID: 0}
