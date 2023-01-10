@@ -97,7 +97,7 @@ public class gameManager : MonoBehaviour
                 
                 SetActiveMenu(UIMENUS.inventoryMenu);
                 invWheelPointer.SetActive(true);
-                menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles = new Vector3(0, 0, (72 * playerController.currentWeapon));
+                menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles = new Vector3(0, 0, (-72 * playerController.currentWeapon));
                 //TODO: TEMP COMMENT BY DOM inventory.updateInventory();
             }
         

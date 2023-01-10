@@ -2,20 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class slidingDoor : MonoBehaviour
+public class slidingDoor : MonoBehaviour, IInteractable
 {
     [SerializeField] Transform endPos;
     [SerializeField] float doorSpeed;
     [SerializeField] AudioSource aud;
     [SerializeField] Transform startPos;
-    
+    [SerializeField]RoomEntry roomEntry;
     bool openDoor = false;
+    public bool HasClosed = false;
+    [SerializeField] GameObject interactCanvas;
     
-    
-    public void Update()
-    {
-       
-    }
 
     void OperateDoor()
     {
@@ -23,6 +20,7 @@ public class slidingDoor : MonoBehaviour
         if (!openDoor)
         {
             StartCoroutine(MoveDoor(endPos.position));
+            roomEntry.playerEnterRoom();
         }
         else
         {
@@ -49,15 +47,31 @@ public class slidingDoor : MonoBehaviour
         {
             aud.Play();
             OperateDoor();
+            interactCanvas.SetActive(false);
+            HasClosed = true;
         }
     }
 
-    public void OnTriggerExit(Collider other)
+    //public void OnTriggerExit(Collider other)
+    //{
+    //    if (other.gameObject.CompareTag("Player"))
+    //    {
+    //        aud.Play();
+    //        OperateDoor();
+    //    }
+    //}
+
+    public void interact()
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            aud.Play();
-            OperateDoor();
-        }
+        aud.Play();
+        OperateDoor();
+        interactCanvas.SetActive(false);
     }
+
+    public void showText()
+    {
+        interactCanvas.SetActive(true);
+    }
+
+   
 }

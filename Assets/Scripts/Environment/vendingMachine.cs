@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class vendingMachine : MonoBehaviour
+public class vendingMachine : MonoBehaviour , IInteractable
 {
     [SerializeField] GameObject collectable;
     [SerializeField] AudioSource speaker;
@@ -11,20 +11,34 @@ public class vendingMachine : MonoBehaviour
     [SerializeField] int cost;
     [SerializeField] Transform trayPos;
     [SerializeField] float delay;
+    [SerializeField] GameObject interactCanvas;
 
     bool canPurchase = true;
+
+
+
     // Start is called before the first frame update
 
-    private void OnTriggerStay(Collider other)
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (other.CompareTag("Player") && Input.GetButtonDown("Interact") && gameManager.instance.credits >= cost && canPurchase)
+    //    {
+    //        StartCoroutine(dispense());
+    //    }
+    //    else if (other.CompareTag("Player") && Input.GetButtonDown("Interact"))
+    //    {
+    //        speaker.PlayOneShot(failSound);
+    //    }
+    //}
+
+    public void interact()
     {
-        if (other.CompareTag("Player") && Input.GetButtonDown("Interact") && gameManager.instance.credits >= cost && canPurchase)
-        {
-            StartCoroutine(dispense());
-        }
-        else if (other.CompareTag("Player") && Input.GetButtonDown("Interact"))
-        {
-            speaker.PlayOneShot(failSound);
-        }
+        StartCoroutine(dispense());
+    }
+
+    public void showText()
+    {
+        interactCanvas.SetActive(true);
     }
 
     IEnumerator dispense()

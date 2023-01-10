@@ -33,7 +33,7 @@ public class weaponCreation : ScriptableObject
     [Header("---- Stats only for throwables ----")]
 
     [SerializeField] public bool isThrowable;
-    [SerializeField] public GameObject thrownObject;
+    [SerializeField] public GameObject weaponProjectile;
 
      
 }

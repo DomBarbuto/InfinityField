@@ -7,6 +7,7 @@ TagManager:
   - Player Spawn Point
   - Composer
   - Environment
+  - Interactable
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - EnemyHead
   - Explosion
   - EnemyHitDetection
-  - 
+  - SlidingDoor
   - 
   - 
   - 
@@ -43,4 +44,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: New Layer 2
+    uniqueID: 2939187163
     locked: 0
