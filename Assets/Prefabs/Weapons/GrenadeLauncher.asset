@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b460d889077954facf0f71537ae262, type: 3}
   m_Name: GrenadeLauncher
   m_EditorClassIdentifier: 
-  weaponMuzzleType: 2
+  weaponType: 2
   weaponDamage: 100
   shootRate: 1
   shootDistance: 0
@@ -22,9 +22,9 @@ MonoBehaviour:
   hitFX: {fileID: 0}
   flashFX: {fileID: 0}
   magazineMax: 1
-  magazineCurrent: 0
+  magazineCurrent: 1
   maxAmmoPool: 15
-  currentAmmoPool: 1
+  currentAmmoPool: 13
   shootSound:
   - {fileID: 8300000, guid: b28c276c9de20834389bbaec65e6703c, type: 3}
   shootVol: 0.5
@@ -38,4 +38,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 913afccbd78c3c54f964754f09d90c4a, type: 3}
   emptyVol: 0.5
   isThrowable: 1
-  thrownObject: {fileID: 4224026720798320963, guid: 9af73894d222bad4e8c739726c896dfc, type: 3}
+  weaponProjectile: {fileID: 0}

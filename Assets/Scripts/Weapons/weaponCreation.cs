@@ -5,10 +5,10 @@ using UnityEngine;
 [CreateAssetMenu]
 public class weaponCreation : ScriptableObject
 {
-    public enum WeaponType { Pistol, Rifle, GrenadeLauncher, RailGun, ArcGun }
+    public enum WeaponType { Pistol, Rifle, GrenadeLauncher, ArcGun, RailGun }  //Keep in this order
 
     [Header("---- Weapon Transfer Stats ----")]
-    public WeaponType weaponMuzzleType;   // Used for selecting which muzzle point on the player to use
+    public WeaponType weaponType;  
     public int weaponDamage;
     public float shootRate;
     public int shootDistance;

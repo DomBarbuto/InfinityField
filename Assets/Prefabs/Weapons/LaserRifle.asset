@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b460d889077954facf0f71537ae262, type: 3}
   m_Name: LaserRifle
   m_EditorClassIdentifier: 
-  weaponMuzzleType: 1
+  weaponType: 1
   weaponDamage: 10
   shootRate: 0.3
   shootDistance: 80
@@ -38,4 +38,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 913afccbd78c3c54f964754f09d90c4a, type: 3}
   emptyVol: 0.5
   isThrowable: 0
-  thrownObject: {fileID: 0}
+  weaponProjectile: {fileID: 0}

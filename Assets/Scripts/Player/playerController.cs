@@ -17,6 +17,7 @@ public class playerController : MonoBehaviour
     [SerializeField] public float energy;
     [SerializeField] public float energyDecreaseRate;
     [SerializeField] public int character;
+    [SerializeField] float damageFXLength;
 
     [Header("---- Player Movement ----")]
     [SerializeField] bool isSprinting;
@@ -25,17 +26,18 @@ public class playerController : MonoBehaviour
     [Range(1, 4)][SerializeField] float sprintMultiplier;
     [Range(10, 15)] [SerializeField] float jumpHeight;
     [Range(15, 35)] [SerializeField] float gravityValue;
-    [Range(1, 3)] [SerializeField] int jumpsMax;
-    [SerializeField] float damageFXLength;
     [SerializeField] public Vector3 pushBack;
     [SerializeField] float pushBackTime;
 
     [Header("Inventory")]
     [SerializeField] public List<weaponCreation> weaponInventory = new List<weaponCreation>();
-    [SerializeField] int maxSlots = 5;                      //The max amount of weapons the player can have
-    [SerializeField] Transform laserPistolMuzzlePoint;
-    [SerializeField] Transform laserRifleMuzzlePoint;
-    [SerializeField] Transform grenadeLauncherMuzzlePoint;
+    [SerializeField] int maxSlots = 5;
+
+    [Header("Weapon selection/switching")]
+    [SerializeField] List<GameObject> weaponModelList;
+    [SerializeField] GameObject currentWeaponModel;
+    [SerializeField] List<Transform> muzzlePointList;
+    [SerializeField] public Transform currentMuzzlePoint;
 
     [Header("Interactable System")]
     [SerializeField] float rayDistance;
@@ -43,7 +45,7 @@ public class playerController : MonoBehaviour
     [Header("---- Active Weapon -----")]
     [SerializeField] public int currentWeapon;
     [SerializeField] public GameObject weaponOBJ;
-    public Transform currMuzzlePoint;
+    //public Transform currMuzzlePoint;
 
     [Header("---- Audio -----")]
     [SerializeField] AudioSource aud;
@@ -121,7 +123,8 @@ public class playerController : MonoBehaviour
 
             if (Input.GetButtonDown("Reload"))
             {
-                reload();
+                //TODO: CALL to animator controller to trigger the reload trigger
+                //reload();
             }
 
 
@@ -191,7 +194,7 @@ public class playerController : MonoBehaviour
         move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
         controller.Move(move * Time.deltaTime * currentMoveSpeed);
 
-        if (Input.GetButtonDown("Jump") && currJumps < jumpsMax)
+        if (Input.GetButtonDown("Jump"))
         {
             currJumps++;
             playerVelocity.y = jumpHeight;
@@ -216,13 +219,13 @@ public class playerController : MonoBehaviour
                 // For grenade launcher
                 if (weaponInventory[currentWeapon].isThrowable)
                 {
-                    Instantiate(weaponInventory[currentWeapon].weaponProjectile, currMuzzlePoint.transform.position, currMuzzlePoint.transform.rotation);
+                    Instantiate(weaponInventory[currentWeapon].weaponProjectile, currentMuzzlePoint.transform.position, currentMuzzlePoint.transform.rotation);
                 }
                 // For every other weapon that does raycasting
                 else
                 {
                     // Creates muzzle flash effect
-                    Instantiate(weaponInventory[currentWeapon].flashFX, currMuzzlePoint.transform.position, currMuzzlePoint.transform.rotation);
+                    Instantiate(weaponInventory[currentWeapon].flashFX, currentMuzzlePoint.transform.position, currentMuzzlePoint.transform.rotation);
                     if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, weaponInventory[currentWeapon].shootDistance))
                     {
                         if (hit.collider.GetComponent<IDamage>() != null)
@@ -354,37 +357,66 @@ public class playerController : MonoBehaviour
                 // Set weapon inventory slot[i] to this weapon
                 weaponInventory[i] = weapon;
                 gameManager.instance.slots[i].SetActive(true);
+
                 // Transfer mesh and material 
                 //Here, doing getComponentInChildren!!!
                 currentWeapon = i;
-                weaponOBJ.GetComponent<MeshFilter>().sharedMesh = weaponInventory[currentWeapon].weaponsModel.GetComponentInChildren<MeshFilter>().sharedMesh;
-                weaponOBJ.GetComponent<MeshRenderer>().sharedMaterial = weaponInventory[currentWeapon].weaponsModel.GetComponentInChildren<MeshRenderer>().sharedMaterial;
+                //weaponOBJ.GetComponent<MeshFilter>().sharedMesh = weaponInventory[currentWeapon].weaponsModel.GetComponentInChildren<MeshFilter>().sharedMesh;
+                //weaponOBJ.GetComponent<MeshRenderer>().sharedMaterial = weaponInventory[currentWeapon].weaponsModel.GetComponentInChildren<MeshRenderer>().sharedMaterial;
                 weaponInventory[currentWeapon].currentAmmoPool = weaponInventory[currentWeapon].maxAmmoPool / 2;
                 weaponInventory[currentWeapon].magazineCurrent = weaponInventory[currentWeapon].magazineMax;
                 gameManager.instance.slots[i].GetComponent<Image>().sprite = weapon.icon;
                 aud.PlayOneShot(weaponInventory[currentWeapon].pickupSound[Random.Range(0, weaponInventory[currentWeapon].pickupSound.Length)], weaponInventory[currentWeapon].pickupVol);
-                // Select currMuzzlePoint
-                switch (weapon.weaponMuzzleType)
-                {
-                    case weaponCreation.WeaponType.Pistol:
-                        currMuzzlePoint = laserPistolMuzzlePoint;
-                        break;
 
-                    case weaponCreation.WeaponType.Rifle:
-                        currMuzzlePoint = laserRifleMuzzlePoint;
-                        break;
-
-                    case weaponCreation.WeaponType.GrenadeLauncher:
-                        currMuzzlePoint = grenadeLauncherMuzzlePoint;
-                        break;
-                    default:
-                        break;
-                }
+                selectWeapon(weapon);
 
                 break;
             }
         }
         
+    }
+
+    public void selectWeapon(weaponCreation weapon)
+    {
+        Debug.Log("select weapon");
+        // Deactivate current weapon model game object
+        if (currentWeaponModel != null)
+            currentWeaponModel.SetActive(false);
+
+        // Select appropriate weapon model and weapon muzzle point
+        currentWeaponModel = weaponModelList[(int)weapon.weaponType];
+        currentWeaponModel.SetActive(true);
+        currentMuzzlePoint = muzzlePointList[(int)weapon.weaponType];
+
+        /*switch (weapon.weaponType)
+        {
+            case weaponCreation.WeaponType.Pistol:
+                currentWeaponModel = weaponModelList[(int)weapon.weaponType];
+                currMuzzlePoint = muzzlePointList[(int)weapon.weaponType];
+                break;
+
+            case weaponCreation.WeaponType.Rifle:
+                currentWeaponModel = weaponModelList[(int)weapon.weaponType];
+                currMuzzlePoint = muzzlePointList[(int)weapon.weaponType];
+                break;
+
+            case weaponCreation.WeaponType.GrenadeLauncher:
+                currentWeaponModel = weaponModelList[(int)weapon.weaponType];
+                currMuzzlePoint = muzzlePointList[(int)weapon.weaponType];
+                break;
+
+            case weaponCreation.WeaponType.ArcGun:
+                currentWeaponModel = weaponModelList[(int)weapon.weaponType];
+                currMuzzlePoint = muzzlePointList[(int)weapon.weaponType];
+                break;
+
+            case weaponCreation.WeaponType.RailGun:
+                currentWeaponModel = weaponModelList[(int)weapon.weaponType];
+                currMuzzlePoint = muzzlePointList[(int)weapon.weaponType];
+                break;
+            default:
+                break;
+        }*/
     }
 
     // This isn't being called from anywhere?
@@ -457,7 +489,7 @@ public class playerController : MonoBehaviour
         stepIsPlaying = false;
     }
 
-    public void reload()
+    public void AnimEvent_reload()
     {
         int reloadAmount = weaponInventory[currentWeapon].magazineMax - weaponInventory[currentWeapon].magazineCurrent;
 

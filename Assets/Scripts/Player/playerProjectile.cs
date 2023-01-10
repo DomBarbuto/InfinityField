@@ -22,7 +22,7 @@ public class playerProjectile : MonoBehaviour
 
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit))
         {
-            direction = (hit.point - gameManager.instance.playerController.currMuzzlePoint.position).normalized;
+            direction = (hit.point - gameManager.instance.playerController.currentMuzzlePoint.position).normalized;
         }
 
         Vector3 force = direction * projectileSpeed;
