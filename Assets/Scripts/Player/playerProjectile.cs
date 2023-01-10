@@ -31,4 +31,25 @@ public class playerProjectile : MonoBehaviour
 
     }
 
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.GetComponent<IDamage>() != null)
+        {
+            Instantiate(gameManager.instance.playerController.weaponInventory[gameManager.instance.playerController.currentWeapon].hitFX, gameObject.transform.position, transform.rotation);
+
+            StartCoroutine(doDamage(other.GetComponent<IDamage>()));
+        }
+    }
+
+    private IEnumerator doDamage(IDamage enemy)
+    {
+        enemy.takeDamage(gameManager.instance.playerController.weaponInventory[gameManager.instance.playerController.currentWeapon].weaponDamage);
+
+        yield return new WaitForSeconds(0.2f);
+    }
+
+
+
+
 }
