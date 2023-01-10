@@ -1173,7 +1173,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1260,6 +1260,18 @@ PrefabInstance:
     - target: {fileID: 4965667350338156085, guid: f4f54e5b1803f6045a72bbc2c61ad2b6, type: 3}
       propertyPath: rayMask.m_Bits
       value: 16375
+      objectReference: {fileID: 0}
+    - target: {fileID: 4965667350338156085, guid: f4f54e5b1803f6045a72bbc2c61ad2b6, type: 3}
+      propertyPath: drawFieldOfView
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4965667350338156085, guid: f4f54e5b1803f6045a72bbc2c61ad2b6, type: 3}
+      propertyPath: drawStoppingDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4965667350338156085, guid: f4f54e5b1803f6045a72bbc2c61ad2b6, type: 3}
+      propertyPath: drawPlayerInRangeRadius
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4965667350338156086, guid: f4f54e5b1803f6045a72bbc2c61ad2b6, type: 3}
       propertyPath: m_RootOrder
@@ -3335,26 +3347,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_CleanUpCrew_Rifle_Yellow
       objectReference: {fileID: 0}
-    - target: {fileID: 5491607752071720387, guid: 63277860c46b6434f91459037b6f04df, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5491607752071720389, guid: 63277860c46b6434f91459037b6f04df, type: 3}
-      propertyPath: waitUntilShoot
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5491607752071720389, guid: 63277860c46b6434f91459037b6f04df, type: 3}
-      propertyPath: drawFieldOfView
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5491607752071720389, guid: 63277860c46b6434f91459037b6f04df, type: 3}
-      propertyPath: drawStoppingDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5491607752071720389, guid: 63277860c46b6434f91459037b6f04df, type: 3}
-      propertyPath: drawPlayerInRangeRadius
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5491607752071720390, guid: 63277860c46b6434f91459037b6f04df, type: 3}
       propertyPath: m_RootOrder
       value: 35
@@ -4047,26 +4039,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_CleanUpCrew_Pistol_Red
       objectReference: {fileID: 0}
-    - target: {fileID: 4965667350338156083, guid: f4f54e5b1803f6045a72bbc2c61ad2b6, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4965667350338156085, guid: f4f54e5b1803f6045a72bbc2c61ad2b6, type: 3}
-      propertyPath: waitUntilShoot
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4965667350338156085, guid: f4f54e5b1803f6045a72bbc2c61ad2b6, type: 3}
-      propertyPath: drawFieldOfView
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4965667350338156085, guid: f4f54e5b1803f6045a72bbc2c61ad2b6, type: 3}
-      propertyPath: drawStoppingDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4965667350338156085, guid: f4f54e5b1803f6045a72bbc2c61ad2b6, type: 3}
-      propertyPath: drawPlayerInRangeRadius
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4965667350338156086, guid: f4f54e5b1803f6045a72bbc2c61ad2b6, type: 3}
       propertyPath: m_RootOrder
       value: 34
@@ -4120,9 +4092,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1213045240945627262, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.392
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213045240945627262, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9982301
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213045240945627262, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.059469793
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213045240945627262, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213045240945627262, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213045240945627262, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 6.6903634
+      objectReference: {fileID: 0}
     - target: {fileID: 1213045241389617696, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
       propertyPath: m_Name
       value: PlayerAnimated
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213045241389617697, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+      propertyPath: m_Height
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213045241389617697, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+      propertyPath: m_Center.y
+      value: -0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213045241389617699, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1213045241389617702, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
       propertyPath: m_RootOrder
@@ -4168,7 +4176,72 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 2701606944561583690, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8788285
+      objectReference: {fileID: 0}
+    - target: {fileID: 2701606944561583690, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8788285
+      objectReference: {fileID: 0}
+    - target: {fileID: 2701606944561583690, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8788285
+      objectReference: {fileID: 0}
+    - target: {fileID: 2701606944561583690, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.019815
+      objectReference: {fileID: 0}
+    - target: {fileID: 2701606944561583690, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.3507
+      objectReference: {fileID: 0}
+    - target: {fileID: 2701606944561583690, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.033735
+      objectReference: {fileID: 0}
+    - target: {fileID: 2701606944561583690, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.51126415
+      objectReference: {fileID: 0}
+    - target: {fileID: 2701606944561583690, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.6205551
+      objectReference: {fileID: 0}
+    - target: {fileID: 2701606944561583690, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.32915044
+      objectReference: {fileID: 0}
+    - target: {fileID: 2701606944561583690, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49515706
+      objectReference: {fileID: 0}
+    - target: {fileID: 2701606944561583690, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 73.842
+      objectReference: {fileID: 0}
+    - target: {fileID: 2701606944561583690, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 87.293
+      objectReference: {fileID: 0}
+    - target: {fileID: 2701606944561583690, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 159.425
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264613236675213999, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.015
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264613236675213999, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.349
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264613236675213999, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.084
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1213045241389617699, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
 --- !u!1001 &4727268691041688236
 PrefabInstance:
@@ -4278,41 +4351,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3158751612063946666, guid: 2e615a5f82098b24ca163ce4f2a15a65, type: 3}
-      propertyPath: m_Speed
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3158751612063946666, guid: 2e615a5f82098b24ca163ce4f2a15a65, type: 3}
-      propertyPath: m_StoppingDistance
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3158751612063946667, guid: 2e615a5f82098b24ca163ce4f2a15a65, type: 3}
-      propertyPath: fireRate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3158751612063946667, guid: 2e615a5f82098b24ca163ce4f2a15a65, type: 3}
-      propertyPath: waitUntilShoot
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3158751612063946667, guid: 2e615a5f82098b24ca163ce4f2a15a65, type: 3}
-      propertyPath: drawFieldOfView
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3158751612063946667, guid: 2e615a5f82098b24ca163ce4f2a15a65, type: 3}
-      propertyPath: drawStoppingDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3158751612063946667, guid: 2e615a5f82098b24ca163ce4f2a15a65, type: 3}
-      propertyPath: drawPlayerInRangeRadius
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3158751612063946669, guid: 2e615a5f82098b24ca163ce4f2a15a65, type: 3}
       propertyPath: m_Name
       value: Enemy_CleanUpCrew_Rifle_White
-      objectReference: {fileID: 0}
-    - target: {fileID: 3158751612063946669, guid: 2e615a5f82098b24ca163ce4f2a15a65, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e615a5f82098b24ca163ce4f2a15a65, type: 3}
@@ -4441,10 +4482,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_CleanUpCrew_GrenadeLauncher_Black
       objectReference: {fileID: 0}
-    - target: {fileID: 1113826855072403073, guid: 363a143ecf703034da576c1d92bfb241, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1113826855072403076, guid: 363a143ecf703034da576c1d92bfb241, type: 3}
       propertyPath: m_RootOrder
       value: 36
@@ -4487,22 +4524,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1113826855072403076, guid: 363a143ecf703034da576c1d92bfb241, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1113826855072403079, guid: 363a143ecf703034da576c1d92bfb241, type: 3}
-      propertyPath: HP
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 1113826855072403079, guid: 363a143ecf703034da576c1d92bfb241, type: 3}
-      propertyPath: drawFieldOfView
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1113826855072403079, guid: 363a143ecf703034da576c1d92bfb241, type: 3}
-      propertyPath: drawStoppingDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1113826855072403079, guid: 363a143ecf703034da576c1d92bfb241, type: 3}
-      propertyPath: drawPlayerInRangeRadius
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

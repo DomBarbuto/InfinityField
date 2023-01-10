@@ -245,7 +245,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1113826855072403076
 Transform:
   m_ObjectHideFlags: 0
@@ -329,10 +329,10 @@ MonoBehaviour:
   ragdoll: {fileID: 1113826855072403072}
   anim: {fileID: 1113826855072403075}
   hitDetection: {fileID: 1549222823324962654}
-  HP: 5000
+  HP: 300
   damageFXLength: 0.2
   facePlayerSpeed: 30
-  fieldOfView: 50
+  fieldOfView: 60
   waitUntilShoot: 0
   requiredShootAngle: 5
   isRagdoll: 1
@@ -346,8 +346,8 @@ MonoBehaviour:
   animTransSpeed: 4
   thisEnemyWeaponType: 2
   drawFieldOfView: 1
-  drawStoppingDistance: 1
-  drawPlayerInRangeRadius: 1
+  drawStoppingDistance: 0
+  drawPlayerInRangeRadius: 0
   aud: {fileID: 1549222824106922544}
   enemyHurt:
   - {fileID: 8300000, guid: a59143b15df81cb478b64b1b08a9a903, type: 3}

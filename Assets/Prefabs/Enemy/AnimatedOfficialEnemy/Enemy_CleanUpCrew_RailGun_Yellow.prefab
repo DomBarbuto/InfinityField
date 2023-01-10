@@ -2085,10 +2085,8 @@ MonoBehaviour:
   HP: 100
   damageFXLength: 0.2
   facePlayerSpeed: 30
-  fieldOfView: 50
-  rayMask:
-    serializedVersion: 2
-    m_Bits: 16375
+  fieldOfView: 60
+  waitUntilShoot: 1
   requiredShootAngle: 5
   isRagdoll: 1
   isPlayerDetected: 0
@@ -2100,9 +2098,9 @@ MonoBehaviour:
   muzzlePoint: {fileID: 5491607752109427971}
   animTransSpeed: 6
   thisEnemyWeaponType: 3
-  drawFieldOfView: 1
-  drawStoppingDistance: 1
-  drawPlayerInRangeRadius: 1
+  drawFieldOfView: 0
+  drawStoppingDistance: 0
+  drawPlayerInRangeRadius: 0
   aud: {fileID: 6214112389008699762}
   enemyHurt:
   - {fileID: 8300000, guid: 975717b19413b9a42bb0c2e7e48668ce, type: 3}
