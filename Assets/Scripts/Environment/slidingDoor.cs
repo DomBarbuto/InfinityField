@@ -9,11 +9,11 @@ public class slidingDoor : MonoBehaviour, IInteractable
     [SerializeField] AudioSource aud;
     [SerializeField] Transform startPos;
     [SerializeField]RoomEntry roomEntry;
+    [SerializeField] GameObject interactCanvas;
+
     bool openDoor = false;
     public bool HasClosed = false;
-    [SerializeField] GameObject interactCanvas;
     
-
     void OperateDoor()
     {
         StopAllCoroutines();
@@ -66,6 +66,7 @@ public class slidingDoor : MonoBehaviour, IInteractable
         aud.Play();
         OperateDoor();
         interactCanvas.SetActive(false);
+        Debug.LogError("canvas false");
     }
 
     public void showText()
