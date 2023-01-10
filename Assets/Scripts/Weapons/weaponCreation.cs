@@ -13,8 +13,6 @@ public class weaponCreation : ScriptableObject
     public float shootRate;
     public int shootDistance;
     public Sprite icon;
-    public GameObject weaponsModel;
-    public Vector3 weaponPositionOffset;
     public GameObject hitFX;
     public GameObject flashFX;
     public int magazineMax;

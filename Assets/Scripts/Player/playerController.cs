@@ -32,8 +32,9 @@ public class playerController : MonoBehaviour
     [Header("Inventory")]
     [SerializeField] public List<weaponCreation> weaponInventory = new List<weaponCreation>();
     [SerializeField] int maxSlots = 5;
+    [SerializeField] public int currentWeapon; 
 
-    [Header("Weapon selection/switching")]
+    [Header("Weapon Selection and Switching")]
     [SerializeField] List<GameObject> weaponModelList;
     [SerializeField] GameObject currentWeaponModel;
     [SerializeField] List<Transform> muzzlePointList;
@@ -41,11 +42,6 @@ public class playerController : MonoBehaviour
 
     [Header("Interactable System")]
     [SerializeField] float rayDistance;
-
-    [Header("---- Active Weapon -----")]
-    [SerializeField] public int currentWeapon;
-    [SerializeField] public GameObject weaponOBJ;
-    //public Transform currMuzzlePoint;
 
     [Header("---- Audio -----")]
     [SerializeField] AudioSource aud;
@@ -114,6 +110,8 @@ public class playerController : MonoBehaviour
 
                 }
             }
+
+            // Update ammo text and weapon icon
             if (weaponInventory[currentWeapon] != null)
             {
                 gameManager.instance.MagazineCurrent.text = weaponInventory[currentWeapon].magazineCurrent.ToString();
@@ -124,7 +122,7 @@ public class playerController : MonoBehaviour
             if (Input.GetButtonDown("Reload"))
             {
                 //TODO: CALL to animator controller to trigger the reload trigger
-                //reload();
+                AnimEvent_reload();
             }
 
 
@@ -211,7 +209,6 @@ public class playerController : MonoBehaviour
     {
         
         RaycastHit hit;
-        //Debug.Log(gameManager.instance.activeMenu);
         if (gameManager.instance.activeMenu == null)
         {
             if (weaponInventory[currentWeapon].magazineCurrent > 0)
@@ -331,10 +328,12 @@ public class playerController : MonoBehaviour
         // Shows reticle if not already showing
         gameManager.instance.showReticle();
 
+        // Turn on weapon UI 
         if(!gameManager.instance.currentWeaponUI.activeSelf)
         {
             gameManager.instance.currentWeaponUI.SetActive(true);
         }
+
         // Update weapon inventory
         for (int i = 0; i < maxSlots; i++)
         {
@@ -343,31 +342,26 @@ public class playerController : MonoBehaviour
             {
                 Debug.Log("already had weapon");
                 weaponInventory[currentWeapon].currentAmmoPool += weaponInventory[currentWeapon].maxAmmoPool / 5;
-                // TODO: Grab ammo from weapon
-                // TODO: Play ammo pickup audio clip
                 aud.PlayOneShot(weaponInventory[currentWeapon].pickupSound[Random.Range(0, weaponInventory[currentWeapon].pickupSound.Length)], weaponInventory[currentWeapon].pickupVol);
                 break;
             }
 
             // First time picking up weapon, "Add" weapon to weapon inventory and select the weapon
             else if (weaponInventory[i] == null)
-            {
-                Debug.Log("add weapon to inventory");
-                
+            {   
                 // Set weapon inventory slot[i] to this weapon
                 weaponInventory[i] = weapon;
                 gameManager.instance.slots[i].SetActive(true);
-
-                // Transfer mesh and material 
-                //Here, doing getComponentInChildren!!!
                 currentWeapon = i;
-                //weaponOBJ.GetComponent<MeshFilter>().sharedMesh = weaponInventory[currentWeapon].weaponsModel.GetComponentInChildren<MeshFilter>().sharedMesh;
-                //weaponOBJ.GetComponent<MeshRenderer>().sharedMaterial = weaponInventory[currentWeapon].weaponsModel.GetComponentInChildren<MeshRenderer>().sharedMaterial;
+
+                // Set inventory slot icon to this weapoons icon
+                gameManager.instance.setWeaponIcon(weapon, i);
+
+                // Select current ammo
                 weaponInventory[currentWeapon].currentAmmoPool = weaponInventory[currentWeapon].maxAmmoPool / 2;
                 weaponInventory[currentWeapon].magazineCurrent = weaponInventory[currentWeapon].magazineMax;
-                gameManager.instance.slots[i].GetComponent<Image>().sprite = weapon.icon;
-                aud.PlayOneShot(weaponInventory[currentWeapon].pickupSound[Random.Range(0, weaponInventory[currentWeapon].pickupSound.Length)], weaponInventory[currentWeapon].pickupVol);
 
+                // Select weapon
                 selectWeapon(weapon);
 
                 break;
@@ -378,6 +372,9 @@ public class playerController : MonoBehaviour
 
     public void selectWeapon(weaponCreation weapon)
     {
+
+        aud.PlayOneShot(weaponInventory[currentWeapon].pickupSound[Random.Range(0, weaponInventory[currentWeapon].pickupSound.Length)], weaponInventory[currentWeapon].pickupVol);
+
         Debug.Log("select weapon");
         // Deactivate current weapon model game object
         if (currentWeaponModel != null)
@@ -387,37 +384,9 @@ public class playerController : MonoBehaviour
         currentWeaponModel = weaponModelList[(int)weapon.weaponType];
         currentWeaponModel.SetActive(true);
         currentMuzzlePoint = muzzlePointList[(int)weapon.weaponType];
-
-        /*switch (weapon.weaponType)
-        {
-            case weaponCreation.WeaponType.Pistol:
-                currentWeaponModel = weaponModelList[(int)weapon.weaponType];
-                currMuzzlePoint = muzzlePointList[(int)weapon.weaponType];
-                break;
-
-            case weaponCreation.WeaponType.Rifle:
-                currentWeaponModel = weaponModelList[(int)weapon.weaponType];
-                currMuzzlePoint = muzzlePointList[(int)weapon.weaponType];
-                break;
-
-            case weaponCreation.WeaponType.GrenadeLauncher:
-                currentWeaponModel = weaponModelList[(int)weapon.weaponType];
-                currMuzzlePoint = muzzlePointList[(int)weapon.weaponType];
-                break;
-
-            case weaponCreation.WeaponType.ArcGun:
-                currentWeaponModel = weaponModelList[(int)weapon.weaponType];
-                currMuzzlePoint = muzzlePointList[(int)weapon.weaponType];
-                break;
-
-            case weaponCreation.WeaponType.RailGun:
-                currentWeaponModel = weaponModelList[(int)weapon.weaponType];
-                currMuzzlePoint = muzzlePointList[(int)weapon.weaponType];
-                break;
-            default:
-                break;
-        }*/
     }
+
+    
 
     // This isn't being called from anywhere?
     public void openInventory()

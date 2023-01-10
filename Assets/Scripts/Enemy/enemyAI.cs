@@ -54,7 +54,7 @@ public class enemyAI : MonoBehaviour
     Vector3 playerDir;
     float angleToPlayer;
     float signedAngleToPlayer;
-    //float origStoppingDistance;
+    float origStoppingDistance;
 
     void Start()
     {
@@ -76,12 +76,12 @@ public class enemyAI : MonoBehaviour
             default:
                 break;
         }
-
+        
         // Store current HP as maximum HP
         MAXHP = HP;
 
-        /*// Store current NavMesh stopping distance as original
-        origStoppingDistance = agent.stoppingDistance;*/
+        // Store current NavMesh stopping distance as original
+        origStoppingDistance = agent.stoppingDistance;
 
         gameManager.instance.updateEnemyCount(1);
 
@@ -125,10 +125,18 @@ public class enemyAI : MonoBehaviour
                 // If player is within field of view
                 if (angleToPlayer <= fieldOfView)
                 {
+
                     // Remember the player is there
                     if (!isPlayerDetected)
                         detectPlayer();
                 }
+            }
+
+            // Return stopping distance to original if player has already attacked enemy from up close and has gone out of regular stopping distance
+            if (agent.remainingDistance > origStoppingDistance && agent.stoppingDistance != origStoppingDistance)
+            {
+                // Return stopping distance to normal
+                agent.stoppingDistance = origStoppingDistance;
             }
 
             if (isPlayerDetected)
@@ -193,6 +201,15 @@ public class enemyAI : MonoBehaviour
 
     public void takeDamage(int dmg)
     {
+        // Makes enemy chase player more closely if shot from up close - until player goes back outside of original stopping distance (this is reset in canSeePlayer)
+        // If player is undetected, within stopping distance, and attacks the enemy - reduce stopping distance
+        //NOTE: The +1 in condition ensures enemy chases in the case of player being right on the stoppingDistance line.
+        if (!isPlayerDetected && Vector3.Distance(transform.position, gameManager.instance.player.transform.position) < agent.stoppingDistance + 1f)
+        {
+            isPlayerDetected = true;
+            agent.stoppingDistance = 3;
+        }
+
         // Reduce enemy health
         HP -= dmg;
         int playCheck = Random.Range(0, 2);

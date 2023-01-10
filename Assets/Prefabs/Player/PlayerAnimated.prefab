@@ -715,8 +715,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1213045240945627259}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.49, z: -0.043}
+  m_LocalRotation: {x: 0.059469793, y: 0, z: 0, w: 0.9982301}
+  m_LocalPosition: {x: 0, y: 0.392, z: -0.043}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -724,7 +724,7 @@ Transform:
   - {fileID: 4264613236675213999}
   m_Father: {fileID: 1213045241389617702}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 6.6903634, y: 0, z: 0}
 --- !u!114 &1213045240945627263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -866,7 +866,6 @@ GameObject:
   - component: {fileID: 1213045241389617698}
   - component: {fileID: 1213045241389617697}
   - component: {fileID: 1213045241389617700}
-  - component: {fileID: 1213045241389617699}
   - component: {fileID: 2701606944332925333}
   - component: {fileID: 2701606944103139320}
   m_Layer: 3
@@ -931,14 +930,13 @@ MonoBehaviour:
   energy: 100
   energyDecreaseRate: 15
   character: 0
+  damageFXLength: 0.1
   isSprinting: 0
   currentMoveSpeed: 0
   walkSpeed: 6
   sprintMultiplier: 1.5
   jumpHeight: 10
   gravityValue: 30
-  jumpsMax: 1
-  damageFXLength: 0.1
   pushBack: {x: 0, y: 0, z: 0}
   pushBackTime: 5
   weaponInventory:
@@ -948,12 +946,23 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   maxSlots: 8
-  laserPistolMuzzlePoint: {fileID: 8247613497615953873}
-  laserRifleMuzzlePoint: {fileID: 0}
-  grenadeLauncherMuzzlePoint: {fileID: 0}
+  weaponModelList:
+  - {fileID: 2701606944561583689}
+  - {fileID: 2691050304239957176}
+  - {fileID: 777318011321446265}
+  - {fileID: 3480027237576231481}
+  - {fileID: 339525649512326317}
+  currentWeaponModel: {fileID: 0}
+  muzzlePointList:
+  - {fileID: 8247613497615953873}
+  - {fileID: 9107195226157511040}
+  - {fileID: 6479663525475260885}
+  - {fileID: 3430810873445698727}
+  - {fileID: 4365619631860112921}
+  currentMuzzlePoint: {fileID: 0}
+  rayDistance: 0
   currentWeapon: 0
   weaponOBJ: {fileID: 2701606944561583689}
-  currMuzzlePoint: {fileID: 0}
   aud: {fileID: 2701606944332925333}
   playerHurt:
   - {fileID: 8300000, guid: 5df08a7f8d44c4a40b152232c4574c82, type: 3}
@@ -992,13 +1001,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
+  m_Height: 1.6
   m_Radius: 0.5
   m_SlopeLimit: 60
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.17, z: 0}
 --- !u!23 &1213045241389617700
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1041,20 +1050,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1213045241389617699
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1213045241389617696}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &2701606944332925333
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1676,8 +1671,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2691050304239957176}
   m_LocalRotation: {x: 0.6238456, y: -0.36955804, z: 0.43608758, w: 0.53298336}
-  m_LocalPosition: {x: -0.001, y: 0.522, z: 0.018}
-  m_LocalScale: {x: 0.8297919, y: 0.8297919, z: 0.8297919}
+  m_LocalPosition: {x: -0.024, y: 0.457, z: 0.027}
+  m_LocalScale: {x: 0.69043666, y: 0.69043666, z: 0.69043666}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9107195226157511040}
@@ -2002,7 +1997,7 @@ GameObject:
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2701606944561583690
 Transform:
   m_ObjectHideFlags: 0
@@ -2010,15 +2005,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2701606944561583689}
-  m_LocalRotation: {x: 0.5968711, y: -0.31513152, z: 0.5226871, w: 0.52080244}
-  m_LocalPosition: {x: 0.031, y: 0.369, z: 0.028}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.6205551, y: -0.32915044, z: 0.49515706, w: 0.51126415}
+  m_LocalPosition: {x: 0.019815, y: 0.3507, z: 0.033735}
+  m_LocalScale: {x: 0.8788285, y: 0.8788285, z: 0.8788285}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8247613497615953873}
   m_Father: {fileID: 2671169576861098636}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 72.014, y: 73.272, z: 146.983}
+  m_LocalEulerAnglesHint: {x: 73.842, y: 87.293, z: 159.425}
 --- !u!33 &2701606944561583691
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2336,7 +2331,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3487232554812317717}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.079, y: -1.353, z: -0.093}
+  m_LocalPosition: {x: -0.015, y: -1.349, z: -0.084}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3229,14 +3224,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7918002667152356911}
-  m_LocalRotation: {x: 0.08629653, y: -0.46737877, z: -0.47406983, w: -0.74119353}
-  m_LocalPosition: {x: 1.4871067, y: 2.5957127, z: 2.5416842}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 661297456928432598}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 325.17548, y: 48.100647, z: 49.271385}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8013685650154128057
 GameObject:
   m_ObjectHideFlags: 0

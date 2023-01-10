@@ -98,21 +98,12 @@ public class gameManager : MonoBehaviour
                 SetActiveMenu(UIMENUS.inventoryMenu);
                 invWheelPointer.SetActive(true);
                 menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles = new Vector3(0, 0, (-72 * playerController.currentWeapon));
-                //TODO: TEMP COMMENT BY DOM inventory.updateInventory();
             }
-        
-            
         }
-
 
         if(activeMenu == menus[(int)UIMENUS.inventoryMenu])
         {
             getSelectedItem();
-            if (playerController.weaponInventory[playerController.currentWeapon] != null)
-            {
-                playerController.weaponOBJ.GetComponent<MeshFilter>().sharedMesh = playerController.weaponInventory[playerController.currentWeapon].weaponsModel.GetComponentInChildren<MeshFilter>().sharedMesh;
-                playerController.weaponOBJ.GetComponent<MeshRenderer>().sharedMaterial = playerController.weaponInventory[playerController.currentWeapon].weaponsModel.GetComponentInChildren<MeshRenderer>().sharedMaterial;
-            }
             
             if (Input.GetAxis("Mouse ScrollWheel") > 0)
             {
@@ -236,18 +227,23 @@ public class gameManager : MonoBehaviour
             if (playerController.weaponInventory[4] != null) { playerController.currentWeapon = 4; }}
         else { highlight5.SetActive(false); }
 
+        // When player clicks on a weapon slot, unPause, turn off inventory, and select the weapon.
         if(Input.GetButtonDown("Fire1") || Input.GetButtonDown("Inventory"))
         {
             unPause();
             invWheelPointer.SetActive(false);
-            
+            playerController.selectWeapon(playerController.weaponInventory[playerController.currentWeapon]);
         }
+    }
+
+    public void setWeaponIcon(weaponCreation weapon, int invSlotIndex)
+    {
+        slots[invSlotIndex].GetComponent<Image>().sprite = weapon.icon;
     }
 
     public void updateCreditUI()
     {
         creditsCounterText.text = gameManager.instance.credits.ToString();
     }
-    //can be used and customized as you wish. This was mainly theoery crafting for the time being
 
 }
