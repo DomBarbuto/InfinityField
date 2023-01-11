@@ -7,7 +7,11 @@ public class damageCollider : MonoBehaviour
     [SerializeField] int dmg;
     [SerializeField] float cooldown;
 
-    bool inCooldown;
+    public bool inCooldown;
+    private void OnEnable()
+    {
+        inCooldown = false;
+    }
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player") && !inCooldown)
