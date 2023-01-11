@@ -7,10 +7,12 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(PlayerAnimController))]
 public class playerController : MonoBehaviour
 {
-    [Header("---- Controller ----")]
+    [Header("---- External Components ----")]
     [SerializeField] CharacterController controller;
+    private PlayerAnimController animController;
 
     [Header("---- Player Stats ----")]
     [SerializeField] public float HP;
@@ -35,6 +37,7 @@ public class playerController : MonoBehaviour
     [SerializeField] public int currentWeapon; 
 
     [Header("Weapon Selection and Switching")]
+    [SerializeField] public weaponCreation.WeaponType currentWeaponType; // Update this every time you switch weapons
     [SerializeField] List<GameObject> weaponModelList;
     [SerializeField] GameObject currentWeaponModel;
     [SerializeField] List<Transform> muzzlePointList;
@@ -61,18 +64,23 @@ public class playerController : MonoBehaviour
 
     //Private Variables------------------
     bool isFiring;
+    public bool isReloading;
     bool stepIsPlaying;
     int currJumps;  //Times jumped since being grounded
     float MAXHP;      //Player's maximum health
     float MAXEnergy;  //Player's maximum energy
+    
 
     Vector3 playerVelocity;
-    Vector3 move;
+    public Vector3 move;
     //------------------------------------
 
-       //------- Functions --------
+    //------- Functions --------
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        animController = GetComponent<PlayerAnimController>();
+    }
 
     void Start()
     {
@@ -82,10 +90,7 @@ public class playerController : MonoBehaviour
 
         setPlayerPos();
         currentMoveSpeed = walkSpeed;
-        
     }
-
-    // Update is called once per frame
 
     void Update()
     {
@@ -101,13 +106,13 @@ public class playerController : MonoBehaviour
             if (!stepIsPlaying && move.magnitude > 0.3f && controller.isGrounded)
                 StartCoroutine(playSteps());
 
-            if (!isFiring && Input.GetButton("Fire1"))
+            // Only shoot if not already shooting, not sprinting, and not reloading
+            if (!isFiring && !isSprinting && !isReloading && Input.GetButton("Fire1"))
             {
-                if (weaponInventory[currentWeapon] != null)
+                if (weaponInventory[currentWeapon] != null)  // Make sure inventory menu is not on
                 {
                     isFiring = true;
                     StartCoroutine(fire());
-
                 }
             }
 
@@ -119,19 +124,22 @@ public class playerController : MonoBehaviour
                 gameManager.instance.currentWeaponIcon.GetComponent<Image>().sprite = weaponInventory[currentWeapon].icon;
             }
 
-            if (Input.GetButtonDown("Reload"))
+            // Only can reload if not reloading and dont have a full magazine
+            if (Input.GetButtonDown("Reload") && !isReloading)
             {
-                //TODO: CALL to animator controller to trigger the reload trigger
-                AnimEvent_reload();
+                if (weaponInventory[currentWeapon].magazineCurrent < weaponInventory[currentWeapon].magazineMax)
+                {
+                    // Calls animation trigger, which calls this classes reload via animation EVENT
+                    animController.reloadTrigger();
+                    isReloading = true;
+                }
             }
-
 
             RaycastHit interactHit;
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out interactHit, rayDistance))
             {
                 if (interactHit.collider.gameObject.CompareTag("Interactable"))
                 {
-                    
                     interactHit.collider.GetComponent<IInteractable>().showText();
 
                     if (Input.GetButtonDown("Interact"))
@@ -147,17 +155,13 @@ public class playerController : MonoBehaviour
                         }
 
                     }
-
-
                 }
-                
-
             }
         }
     }
 
 
-        //Movement----------------------------
+    //Movement----------------------------
 
     void movement()
     {
@@ -168,14 +172,18 @@ public class playerController : MonoBehaviour
             playerVelocity.y = 0f;
         }
 
-        // Handle sprinting - Using GetButtonDown because of the lerp while holding
+        // Handle sprinting - Using GetButton because of the lerp while holding
         if (controller.isGrounded && Input.GetButton("Sprint"))
         {
+
             // Only call if not sprinting
             if (!isSprinting)
             {
                 currentMoveSpeed = walkSpeed * sprintMultiplier;
                 isSprinting = true;
+
+                // Update player animation
+                animController.switchSprintingState(true);
             }
 
             // Update energy and UI energy bar
@@ -186,6 +194,9 @@ public class playerController : MonoBehaviour
         {
             currentMoveSpeed = walkSpeed;
             isSprinting = false;
+
+            // Update player animation
+            animController.switchSprintingState(false);
         }
 
         //Player Movement
@@ -207,7 +218,6 @@ public class playerController : MonoBehaviour
 
     IEnumerator fire()
     {
-        
         RaycastHit hit;
         if (gameManager.instance.activeMenu == null)
         {
@@ -238,7 +248,11 @@ public class playerController : MonoBehaviour
                     // Creates impact effect
                     Instantiate(weaponInventory[currentWeapon].hitFX, hit.point, transform.rotation);
                 }
-                //Gun Shoot Sounds
+
+                // Update animation
+                animController.shootTrigger();
+
+                // Gun Shoot Sounds
                 aud.PlayOneShot(weaponInventory[currentWeapon].shootSound[Random.Range(0, weaponInventory[currentWeapon].shootSound.Length)], weaponInventory[currentWeapon].shootVol);
                 weaponInventory[currentWeapon].magazineCurrent -= 1;
             }
@@ -257,6 +271,12 @@ public class playerController : MonoBehaviour
         gameManager.instance.playerDamageFX.SetActive(true);
         yield return new WaitForSeconds(damageFXLength);
         gameManager.instance.playerDamageFX.SetActive(false);
+    }
+
+    IEnumerator shootAfterReloadDelay()
+    {
+        yield return new WaitForSeconds(weaponInventory[currentWeapon].shootAfterReloadTime);
+        isReloading = false;
     }
 
     //Statistic Modification--------------
@@ -279,11 +299,6 @@ public class playerController : MonoBehaviour
             gameManager.instance.pause();
             gameManager.instance.SetActiveMenu(gameManager.UIMENUS.deathMenu);
         }
-    }
-
-    public void addJump(int amount)
-    {
-
     }
 
     public void setPlayerPos()
@@ -362,37 +377,56 @@ public class playerController : MonoBehaviour
                 weaponInventory[currentWeapon].magazineCurrent = weaponInventory[currentWeapon].magazineMax;
 
                 // Select weapon
-                selectWeapon(weapon);
+                pickupWeapon(weapon);
 
                 break;
             }
         }
-        
     }
 
-    public void selectWeapon(weaponCreation weapon)
+    void pickupWeapon(weaponCreation weapon)
     {
-
-        aud.PlayOneShot(weaponInventory[currentWeapon].pickupSound[Random.Range(0, weaponInventory[currentWeapon].pickupSound.Length)], weaponInventory[currentWeapon].pickupVol);
-
-        Debug.Log("select weapon");
-        // Deactivate current weapon model game object
+        // Deactivate current weapon model game object if already have a weapon
         if (currentWeaponModel != null)
             currentWeaponModel.SetActive(false);
+
+        //TODO: MAY NEED ADJUSTING HERE WHEN ADDING UNEQUIP AND EQUIP ANIMATIONS
+        // Switch to the appropriate animation state
+        
+        animController.switchAnimState(currentWeaponType, weapon.weaponType);
+        currentWeaponType = weapon.weaponType;      // Stored for animations
 
         // Select appropriate weapon model and weapon muzzle point
         currentWeaponModel = weaponModelList[(int)weapon.weaponType];
         currentWeaponModel.SetActive(true);
         currentMuzzlePoint = muzzlePointList[(int)weapon.weaponType];
+
+        // Play audio
+        aud.PlayOneShot(weaponInventory[currentWeapon].pickupSound[Random.Range(0, weaponInventory[currentWeapon].pickupSound.Length)], weaponInventory[currentWeapon].pickupVol);
+        
     }
 
-    
+    public void selectWeapon(weaponCreation weapon)
+    { 
+        // Deactivate current weapon model game object
+        if (currentWeaponModel != null)
+            currentWeaponModel.SetActive(false);
 
-    // This isn't being called from anywhere?
-    public void openInventory()
-    {
-        gameManager.instance.pause();
+        //TODO: MAY NEED ADJUSTING HERE WHEN ADDING UNEQUIP AND EQUIP ANIMATIONS
+        // Switch to the appropriate animation state
+        if (currentWeaponType != weaponCreation.WeaponType.Unequipped)
+        {
+            animController.switchAnimState(currentWeaponType, weapon.weaponType);
+            currentWeaponType = weapon.weaponType;      // Stored for animations
 
+            // Select appropriate weapon model and weapon muzzle point
+            currentWeaponModel = weaponModelList[(int)weapon.weaponType];
+            currentWeaponModel.SetActive(true);
+            currentMuzzlePoint = muzzlePointList[(int)weapon.weaponType];
+
+            // Play audio
+            aud.PlayOneShot(weaponInventory[currentWeapon].pickupSound[Random.Range(0, weaponInventory[currentWeapon].pickupSound.Length)], weaponInventory[currentWeapon].pickupVol);
+        }
     }
 
     // Setters/Getters
@@ -458,7 +492,7 @@ public class playerController : MonoBehaviour
         stepIsPlaying = false;
     }
 
-    public void AnimEvent_reload()
+    public void reload()
     {
         int reloadAmount = weaponInventory[currentWeapon].magazineMax - weaponInventory[currentWeapon].magazineCurrent;
 
@@ -475,22 +509,7 @@ public class playerController : MonoBehaviour
             weaponInventory[currentWeapon].magazineCurrent += reloadAmount;
             aud.PlayOneShot(weaponInventory[currentWeapon].reloadSound[Random.Range(0, weaponInventory[currentWeapon].reloadSound.Length)], weaponInventory[currentWeapon].reloadVol);
         }
-        
-        
 
-        //PlayOneShot reload audio here
-
-        /*if (weaponInventory[currentWeapon].weaponMuzzleType == weaponCreation.WeaponType.pistol)
-        {
-            //add OneShotAudio
-        }
-        else if(weaponInventory[currentWeapon].weaponMuzzleType == weaponCreation.WeaponType.rifle)
-        {
-            //add OneShotAudio
-        }
-        else if (weaponInventory[currentWeapon].weaponMuzzleType == weaponCreation.WeaponType.grenadeLauncher)
-        {
-            //add OneShotAudio
-        }*/
+        StartCoroutine(shootAfterReloadDelay());
     }
 }

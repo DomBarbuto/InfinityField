@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class weaponCreation : ScriptableObject
 {
-    public enum WeaponType { Pistol, Rifle, GrenadeLauncher, ArcGun, RailGun }  //Keep in this order
+    public enum WeaponType { Pistol, Rifle, GrenadeLauncher, ArcGun, RailGun, Unequipped }  //Keep in this order
 
     [Header("---- Weapon Transfer Stats ----")]
     public WeaponType weaponType;  
@@ -15,6 +15,7 @@ public class weaponCreation : ScriptableObject
     public Sprite icon;
     public GameObject hitFX;
     public GameObject flashFX;
+    public float shootAfterReloadTime;
     public int magazineMax;
     public int magazineCurrent;
     public int maxAmmoPool;

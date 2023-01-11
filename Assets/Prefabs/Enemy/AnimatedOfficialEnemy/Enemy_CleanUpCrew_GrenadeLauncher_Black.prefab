@@ -331,7 +331,7 @@ MonoBehaviour:
   hitDetection: {fileID: 1549222823324962654}
   HP: 300
   damageFXLength: 0.2
-  facePlayerSpeed: 30
+  facePlayerSpeed: 60
   fieldOfView: 60
   waitUntilShoot: 0
   requiredShootAngle: 5
@@ -346,8 +346,8 @@ MonoBehaviour:
   animTransSpeed: 4
   thisEnemyWeaponType: 2
   drawFieldOfView: 1
-  drawStoppingDistance: 0
-  drawPlayerInRangeRadius: 0
+  drawStoppingDistance: 1
+  drawPlayerInRangeRadius: 1
   aud: {fileID: 1549222824106922544}
   enemyHurt:
   - {fileID: 8300000, guid: a59143b15df81cb478b64b1b08a9a903, type: 3}
