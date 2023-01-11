@@ -28,6 +28,7 @@ public class gameManager : MonoBehaviour
     public GameObject currentWeaponUI;
     public Image playerHPBar;
     public Image playerEnergyBar;
+    [SerializeField] public Slider musicVolumeSlider;
 
     [Header("---- Inventory Menu ----")]
     [SerializeField] GameObject invWheelPointer;
@@ -246,6 +247,12 @@ public class gameManager : MonoBehaviour
     public void updateCreditUI()
     {
         creditsCounterText.text = credits.ToString();
+    }
+
+    public void setComposerVolume()
+    {
+        float volumeSliderValue = musicVolumeSlider.value;
+        composer.speaker.volume = volumeSliderValue;
     }
 
 }

@@ -47,18 +47,44 @@ public class sfxManager : MonoBehaviour
     [Range(0, 1)] public float riflePickupVol;
     public AudioClip[] rifleEmptySound;
     [Range(0, 1)] public float rifleEmptyVol;
-    /* [Header("---------- GrenadeLauncher Audio ----------")]
 
-     [Header("---------- ArcGun Audio ----------")]
+    [Header("---------- GrenadeLauncher Audio ----------")]
+    public AudioClip[] glShootSound;
+    [Range(0, 1)] public float glShootVol;
+    public AudioClip[] glReloadSound;
+    [Range(0, 1)] public float glReloadVol;
+    public AudioClip[] glPickupSound;
+    [Range(0, 1)] public float glPickupVol;
+    public AudioClip[] glEmptySound;
+    [Range(0, 1)] public float glEmptyVol;
 
-     [Header("---------- RailGun Audio ----------")]*/
+    [Header("---------- ArcGun Audio ----------")]
+    public AudioClip[] arcgunShootSound;
+    [Range(0, 1)] public float arcgunShootVol;
+    public AudioClip[] arcgunReloadSound;
+    [Range(0, 1)] public float arcgunReloadVol;
+    public AudioClip[] arcgunPickupSound;
+    [Range(0, 1)] public float arcgunPickupVol;
+    public AudioClip[] arcgunEmptySound;
 
+    [Header("---------- RailGun Audio ----------")]
+    public AudioClip[] railgunShootSound;
+    [Range(0, 1)] public float railgunShootVol;
+    public AudioClip[] railgunReloadSound;
+    [Range(0, 1)] public float railgunReloadVol;
+    public AudioClip[] railgunPickupSound;
+    [Range(0, 1)] public float railgunPickupVol;
+    public AudioClip[] railgunEmptySound;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     public void setSFXVolume()
     {
         float sfxSliderValue = sfxVolumeSlider.value;
         aud.volume = sfxSliderValue;
-
     }
 
 }

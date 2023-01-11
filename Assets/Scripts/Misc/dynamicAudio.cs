@@ -5,7 +5,7 @@ using UnityEngine;
 public class dynamicAudio : MonoBehaviour
 {
     [Header("---- Audio Components ----")]
-    [SerializeField] AudioSource speaker;
+    [SerializeField] public AudioSource speaker;
     [SerializeField] List<AudioClip> trackList;
 
     //Private Variables-----------------------------
