@@ -871,6 +871,7 @@ GameObject:
   - component: {fileID: 2701606944103139320}
   - component: {fileID: 6417318121564312413}
   - component: {fileID: 1858135744513689573}
+  - component: {fileID: 5692420762471618134}
   m_Layer: 3
   m_Name: PlayerAnimated
   m_TagString: Player
@@ -943,6 +944,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1213045241389617697}
   damageFXLength: 0.1
+  playerAbilities: {fileID: 5692420762471618134}
   isSprinting: 0
   currentMoveSpeed: 0
   walkSpeed: 6
@@ -951,7 +953,8 @@ MonoBehaviour:
   gravityValue: 30
   pushBack: {x: 0, y: 0, z: 0}
   pushBackTime: 5
-  characterList: []
+  characterList:
+  - {fileID: 1858135744513689573}
   currCharacter: 0
   weaponInventory:
   - {fileID: 0}
@@ -1209,6 +1212,18 @@ MonoBehaviour:
   isUsingAbility: 0
   currSpeed: 0
   ability: 0
+--- !u!114 &5692420762471618134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213045241389617696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5df6349451a72d246b2afb9602bc7a15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1301837051665086658
 GameObject:
   m_ObjectHideFlags: 0
