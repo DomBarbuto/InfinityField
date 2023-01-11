@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class enemyDamageHandler : MonoBehaviour
 {
-    [SerializeField] enemyAI brain;
+    public IRagdollDamage brain;
 
     [Tooltip("Multiplies the damage recieved by colliders marked head")][Range(0, 5)] [SerializeField] int headMod;
     [Tooltip("Divides the damage recieved by colliders marked limb")] [Range(0, 5)] [SerializeField] int limbMod;

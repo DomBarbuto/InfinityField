@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class enemyAI : MonoBehaviour
+public class enemyAI : MonoBehaviour , IRagdollDamage
 {
     [Header("---- External Components ----")]
     [SerializeField] Renderer model;
@@ -58,6 +58,7 @@ public class enemyAI : MonoBehaviour
 
     void Start()
     {
+        this.GetComponent<enemyDamageHandler>().brain = this;
         // Set animation set. Each animator bool depicts what blend tree to use.
         switch (thisEnemyWeaponType)
         {
