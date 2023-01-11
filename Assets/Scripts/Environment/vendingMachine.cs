@@ -39,16 +39,20 @@ public class vendingMachine : MonoBehaviour , IInteractable
     public void showText()
     {
         interactCanvas.SetActive(true);
+        Debug.Log("vending");
     }
 
     IEnumerator dispense()
     {
         canPurchase = false;
-        gameManager.instance.credits -= cost;
-        gameManager.instance.updateCreditUI();
-        Instantiate(collectable, trayPos.position, transform.rotation);
-        speaker.PlayOneShot(jingle);
-        yield return new WaitForSeconds(delay);
-        canPurchase = true;
+        if (gameManager.instance.credits >= cost)
+        {
+            gameManager.instance.credits -= cost;
+            gameManager.instance.updateCreditUI();
+            Instantiate(collectable, trayPos.position, transform.rotation);
+            speaker.PlayOneShot(jingle);
+            yield return new WaitForSeconds(delay);
+            canPurchase = true;
+        }
     }
 }

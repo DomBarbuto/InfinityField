@@ -13,7 +13,12 @@ public class slidingDoor : MonoBehaviour, IInteractable
 
     bool openDoor = false;
     public bool HasClosed = false;
-    
+   
+    private void Update()
+    {
+       
+    }
+
     void OperateDoor()
     {
         StopAllCoroutines();
