@@ -39,7 +39,6 @@ public class vendingMachine : MonoBehaviour , IInteractable
     public void showText()
     {
         interactCanvas.SetActive(true);
-        Debug.Log("vending");
     }
 
     IEnumerator dispense()
@@ -54,5 +53,19 @@ public class vendingMachine : MonoBehaviour , IInteractable
             yield return new WaitForSeconds(delay);
             canPurchase = true;
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            HideText();
+        }
+    }
+    
+
+    public void HideText()
+    {
+        interactCanvas.SetActive(false);
     }
 }
