@@ -5,7 +5,7 @@ using UnityEngine;
 public class enemyHitDetection : MonoBehaviour, IDamage
 {
     [SerializeField] enemyDamageHandler brain;
-    [SerializeField] enemyDamageHandler.DamageGroup group;
+    public enemyDamageHandler.DamageGroup group;
     public bool alive = true;
 
     private void Start()

@@ -18,7 +18,8 @@ public class launchedGrenade : MonoBehaviour
 
     Rigidbody rb;
     Vector3 origScale;
-    Vector3 smallInitial = new Vector3(0.01f, 0.01f, 0.01f);    
+    Vector3 smallInitial = new Vector3(0.01f, 0.01f, 0.01f);
+    bool exploded = false;
 
     // Start is called before the first frame update
     void Start()
@@ -53,13 +54,18 @@ public class launchedGrenade : MonoBehaviour
 
     void OnTriggerEnter()
     {
-        explode();
+        if (!exploded)
+        {
+            exploded = true;
+            explode();
+        }
     }
 
     IEnumerator timedExplosion()
     {
         yield return new WaitForSeconds(destroyTime);
-        explode();
+        if (!exploded)
+            explode();
     }
 
 }
