@@ -21,6 +21,10 @@ public class buttonFunctions : MonoBehaviour
         saveLoad.save();
         Application.Quit();
     }
+    public void LoadNextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 
     public void respawnPlayer()
     {
@@ -29,4 +33,31 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.unPause();
         gameManager.instance.playerController.setPlayerPos();
     }
+
+    public void pullUpOptionsMenu()
+    {
+        // Turn off main menu
+        gameManager.instance.activeMenu.SetActive(false);
+
+        gameManager.instance.SetActiveMenu(gameManager.UIMENUS.optionsMenu);
+    }
+
+    public void returnToCorrectMenu()
+    {
+        // Turn off options menu
+        gameManager.instance.activeMenu.SetActive(false);
+
+        if(SceneManager.GetActiveScene().name == "Main Menu")
+        {
+            //Return to main menu
+            gameManager.instance.SetActiveMenu(gameManager.UIMENUS.mainMenu);
+        }
+        else
+        {
+            //Return to pause menu
+            gameManager.instance.SetActiveMenu(gameManager.UIMENUS.pauseMenu);
+        }
+
+    }
+
 }

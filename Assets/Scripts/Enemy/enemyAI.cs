@@ -40,12 +40,12 @@ public class enemyAI : MonoBehaviour
     [SerializeField] bool drawStoppingDistance;
     [SerializeField] bool drawPlayerInRangeRadius;
 
-    [Header("---- Audio -----")]
+    /*[Header("---- Audio -----")]
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] enemyHurt;
     [Range(0, 1)][SerializeField] float enemyHurtVol;
     [SerializeField] AudioClip[] enemyAlert;
-    [Range(0, 1)][SerializeField] float enemyAlertVol;
+    [Range(0, 1)][SerializeField] float enemyAlertVol;*/
 
     int MAXHP;       // Current max HP
     bool isAttacking;
@@ -144,7 +144,8 @@ public class enemyAI : MonoBehaviour
                 //Plays alert sound once when player is spotted
                 if(!alertPlayed)
                 {
-                    aud.PlayOneShot(enemyAlert[Random.Range(0, enemyAlert.Length)], enemyAlertVol);
+
+                    sfxManager.instance.aud.PlayOneShot(sfxManager.instance.enemyAlert[Random.Range(0, sfxManager.instance.enemyAlert.Length)], sfxManager.instance.enemyAlertVol);
                     alertPlayed = true;
                 }
 
@@ -215,7 +216,7 @@ public class enemyAI : MonoBehaviour
         int playCheck = Random.Range(0, 2);
         if(playCheck == 0)
         {
-            aud.PlayOneShot(enemyHurt[Random.Range(0, enemyHurt.Length)], enemyHurtVol);
+            sfxManager.instance.aud.PlayOneShot(sfxManager.instance.enemyHurt[Random.Range(0, sfxManager.instance.enemyHurt.Length)], sfxManager.instance.enemyHurtVol);
         }
        
         // Start moving to where enemy was shot from

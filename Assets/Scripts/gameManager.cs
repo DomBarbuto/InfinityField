@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject highlight5;
     [SerializeField] public GameObject[] slots;
 
-    public enum UIMENUS { pauseMenu, winMenu, deathMenu, inventoryMenu, upgradeMenu }
+    public enum UIMENUS { pauseMenu, winMenu, deathMenu, inventoryMenu, mainMenu, optionsMenu }
 
     [Header("---- Inventory -----")]
     public GameObject collectableCreditsPrefab;         // Reference to the collectableCredits prefab
@@ -63,7 +64,8 @@ public class gameManager : MonoBehaviour
         instance = this;
 
         player = GameObject.FindGameObjectWithTag("Player");
-        playerController = player.GetComponent<playerController>();
+        if(SceneManager.GetActiveScene().name != "Main Menu")
+            playerController = player.GetComponent<playerController>();
         playerSpawnPoint = GameObject.FindGameObjectWithTag("Player Spawn Point");
         composer = GameObject.FindGameObjectWithTag("Composer").GetComponent<dynamicAudio>();
         timeScaleOrig = Time.timeScale;
