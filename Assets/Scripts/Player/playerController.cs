@@ -15,21 +15,26 @@ public class playerController : MonoBehaviour
     private PlayerAnimController animController;
 
     [Header("---- Player Stats ----")]
-    [SerializeField] public float HP;
-    [SerializeField] public float energy;
-    [SerializeField] public float energyDecreaseRate;
-    [SerializeField] public int character;
-    [SerializeField] float damageFXLength;
-
+    /*[SerializeField] public float HP;                                               //All of these stats will be consolodated into character prefabs
+    [SerializeField] public float energy;                                           //All of these stats will be consolodated into character prefabs
+    [SerializeField] public float energyDecreaseRate;      */                         //All of these stats will be consolodated into character prefabs                                         //All of these stats will be consolodated into character prefabs
+    [SerializeField] float damageFXLength;                                          //All of these stats will be consolodated into character prefabs
+    public playerAbilities playerAbilities;
+    
     [Header("---- Player Movement ----")]
-    [SerializeField] bool isSprinting;
-    [SerializeField] float currentMoveSpeed;
-    [Range(3, 8)] [SerializeField] float walkSpeed;
-    [Range(1, 4)][SerializeField] float sprintMultiplier;
-    [Range(10, 15)] [SerializeField] float jumpHeight;
-    [Range(15, 35)] [SerializeField] float gravityValue;
-    [SerializeField] public Vector3 pushBack;
+    [SerializeField] bool isSprinting;                                              //All of these stats will be consolodated into character prefabs
+    [SerializeField] float currentMoveSpeed;                                        //All of these stats will be consolodated into character prefabs
+    [Range(3, 8)] [SerializeField] float walkSpeed;                                 
+    [Range(1, 4)][SerializeField] float sprintMultiplier;                           
+    [Range(10, 15)] [SerializeField] float jumpHeight;                              
+    [Range(15, 35)] [SerializeField] float gravityValue;                            
+    [SerializeField] public Vector3 pushBack;                                       
     [SerializeField] float pushBackTime;
+
+    [Header("---- Character ----")]
+    [SerializeField] public List<playerCharacter> characterList = new List<playerCharacter>();                    //0 will be default. List will never be random. Will always be filled
+    [SerializeField] public int currCharacter;
+
 
     [Header("Inventory")]
     [SerializeField] public List<weaponCreation> weaponInventory = new List<weaponCreation>();
@@ -57,10 +62,6 @@ public class playerController : MonoBehaviour
     [SerializeField] AudioClip[] ricochetSound;
     [Range(0, 1)][SerializeField] float ricochetSoundVol;
 
-    /*[Header("---- RigidBodyMovement ----")]
-    [SerializeField] private Rigidbody playerRB;
-    private Vector3 playerMovementInput;
-    [SerializeField] public Transform onGround;*/
 
     //Private Variables------------------
     bool isFiring;
@@ -85,8 +86,8 @@ public class playerController : MonoBehaviour
     void Start()
     {
         // Set orginal stats
-        MAXHP = HP;
-        MAXEnergy = energy;
+        characterList[currCharacter].HPMax = characterList[currCharacter].HP;
+        characterList[currCharacter].energyMax = characterList[currCharacter].energy;
 
         setPlayerPos();
         currentMoveSpeed = walkSpeed;
@@ -101,6 +102,7 @@ public class playerController : MonoBehaviour
             pushBack.x = Mathf.Lerp(pushBack.x, 0f, Time.deltaTime * pushBackTime);
             pushBack.y = Mathf.Lerp(pushBack.y, 0f, Time.deltaTime * (pushBackTime));
             pushBack.z = Mathf.Lerp(pushBack.z, 0f, Time.deltaTime * pushBackTime);
+            useAbility();
             movement();
 
             if (!stepIsPlaying && move.magnitude > 0.3f && controller.isGrounded)
@@ -172,36 +174,46 @@ public class playerController : MonoBehaviour
             playerVelocity.y = 0f;
         }
 
-        // Handle sprinting - Using GetButton because of the lerp while holding
-        if (controller.isGrounded && Input.GetButton("Sprint"))
-        {
-
-            // Only call if not sprinting
-            if (!isSprinting)
-            {
-                currentMoveSpeed = walkSpeed * sprintMultiplier;
-                isSprinting = true;
-
-                // Update player animation
-                animController.switchSprintingState(true);
-            }
-
-            // Update energy and UI energy bar
-            energy -= Time.deltaTime * energyDecreaseRate;
-            gameManager.instance.updatePlayerEnergyBar();
-        }
-        else if (Input.GetButtonUp("Sprint"))
-        {
-            currentMoveSpeed = walkSpeed;
-            isSprinting = false;
-
-            // Update player animation
-            animController.switchSprintingState(false);
-        }
+        // Handle sprinting - Using GetButton because of the lerp while holding                        being handled elsewhere
+        /*if (controller.isGrounded && Input.GetButton("Sprint"))                                      being handled elsewhere
+        {                                                                                              being handled elsewhere
+                                                                                                       being handled elsewhere
+            // Only call if not sprinting                                                              being handled elsewhere
+            if (!isSprinting)                                                                          being handled elsewhere
+            {                                                                                          being handled elsewhere
+                currentMoveSpeed = walkSpeed * sprintMultiplier;                                       being handled elsewhere
+                isSprinting = true;                                                                    being handled elsewhere
+                                                                                                       being handled elsewhere
+                // Update player animation                                                             being handled elsewhere
+                animController.switchSprintingState(true);                                             being handled elsewhere
+            }                                                                                          being handled elsewhere
+                                                                                                       being handled elsewhere
+            // Update energy and UI energy bar                                                         being handled elsewhere
+            energy -= Time.deltaTime * energyDecreaseRate;                                             being handled elsewhere
+            gameManager.instance.updatePlayerEnergyBar();                                              being handled elsewhere
+        }                                                                                              being handled elsewhere
+        else if (Input.GetButtonUp("Sprint"))                                                          being handled elsewhere
+        {                                                                                              being handled elsewhere
+            currentMoveSpeed = walkSpeed;                                                              being handled elsewhere
+            isSprinting = false;                                                                       being handled elsewhere
+                                                                                                       being handled elsewhere
+            // Update player animation                                                                 being handled elsewhere
+            animController.switchSprintingState(false);                                                being handled elsewhere
+        }*/
 
         //Player Movement
+        if (characterList[currCharacter].ability == 0 && characterList[currCharacter].isUsingAbility == false)
+        {
+            characterList[currCharacter].currSpeed = characterList[currCharacter].speed;
+        }
+        else if (characterList[currCharacter].ability != 0)
+        {
+            characterList[currCharacter].currSpeed = characterList[currCharacter].speed;
+        }
+        
+
         move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
-        controller.Move(move * Time.deltaTime * currentMoveSpeed);
+        controller.Move(move * Time.deltaTime * characterList[currCharacter].currSpeed);
 
         if (Input.GetButtonDown("Jump"))
         {
@@ -216,38 +228,20 @@ public class playerController : MonoBehaviour
 
     //Coroutines--------------------------
 
-    IEnumerator fire()
+    public IEnumerator fire()
     {
-        RaycastHit hit;
         if (gameManager.instance.activeMenu == null)
         {
             if (weaponInventory[currentWeapon].magazineCurrent > 0)
             {
-                // For grenade launcher
-                if (weaponInventory[currentWeapon].isThrowable)
-                {
+                Debug.Log("We Did Shoot");
+
                     Instantiate(weaponInventory[currentWeapon].weaponProjectile, currentMuzzlePoint.transform.position, currentMuzzlePoint.transform.rotation);
-                }
-                // For every other weapon that does raycasting
-                else
-                {
-                    // Creates muzzle flash effect
+
                     Instantiate(weaponInventory[currentWeapon].flashFX, currentMuzzlePoint.transform.position, currentMuzzlePoint.transform.rotation);
-                    if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, weaponInventory[currentWeapon].shootDistance))
-                    {
-                        if (hit.collider.GetComponent<IDamage>() != null)
-                        {
-                            hit.collider.GetComponent<IDamage>().takeDamage(weaponInventory[currentWeapon].weaponDamage);
-                        }
-                        else if(hit.collider.gameObject.CompareTag("Environment"))
-                        {
-                            //aud.PlayOneShot(ricochetSound[Random.Range(0, ricochetSound.Length)], ricochetSoundVol);
-                            AudioSource.PlayClipAtPoint(ricochetSound[Random.Range(0, ricochetSound.Length)], hit.point);
-                        }
-                    }
-                    // Creates impact effect
-                    Instantiate(weaponInventory[currentWeapon].hitFX, hit.point, transform.rotation);
-                }
+
+                //AudioSource.PlayClipAtPoint(ricochetSound[Random.Range(0, ricochetSound.Length)], hit.point);           Needs to be put in the PlayerProjectile to be checked on impact;
+
 
                 // Update animation
                 animController.shootTrigger();
@@ -264,6 +258,21 @@ public class playerController : MonoBehaviour
             yield return new WaitForSeconds(weaponInventory[currentWeapon].shootRate);
             isFiring = false;
 
+    }
+
+    public void useAbility()
+    {
+        if(Input.GetButtonDown("Ability"))
+        {
+            characterList[currCharacter].isUsingAbility = true;
+
+            playerAbilities.useAbility();
+        }
+        else if(Input.GetButtonUp("Ability"))
+        {
+            characterList[currCharacter].isUsingAbility = false;
+            playerAbilities.useAbility();
+        }
     }
 
     IEnumerator playDamageFX()
@@ -283,7 +292,7 @@ public class playerController : MonoBehaviour
 
     public void takeDamage(int dmg)
     {
-        HP -= dmg;
+        characterList[currCharacter].HP -= dmg;
         int playCheck = Random.Range(0, 2);
         if(playCheck == 0)
         {
@@ -294,7 +303,7 @@ public class playerController : MonoBehaviour
         gameManager.instance.updatePlayerHPBar();
         
         // Player death
-        if (HP <= 0)
+        if (characterList[currCharacter].HP <= 0)
         {
             gameManager.instance.pause();
             gameManager.instance.SetActiveMenu(gameManager.UIMENUS.deathMenu);
@@ -310,32 +319,32 @@ public class playerController : MonoBehaviour
 
     public void addPlayerHP(float amount)
     {
-        HP += amount;
+        characterList[currCharacter].HP += amount;
 
-        if(HP > MAXHP)
+        if(characterList[currCharacter].HP > MAXHP)
         {
-            HP = MAXHP;
+            characterList[currCharacter].HP = MAXHP;
         }
     }
 
     public void resetPlayerHP()
     {
-        HP = MAXHP;
+        characterList[currCharacter].HP = MAXHP;
     }
 
     public void addPlayerEnergy(float amount)
     {
-        energy += amount;
+        characterList[currCharacter].energy += amount;
 
-        if(energy > MAXEnergy)
+        if(characterList[currCharacter].energy > MAXEnergy)
         {
-            energy = MAXEnergy;
+            characterList[currCharacter].energy = MAXEnergy;
         }
     }
 
     public void resetPlayerEnergy()
     {
-        energy = MAXEnergy;
+        characterList[currCharacter].energy = MAXEnergy;
     }
 
     public void weaponPickUp(weaponCreation weapon)
@@ -433,22 +442,22 @@ public class playerController : MonoBehaviour
 
     public float getHP()
     {
-        return HP;
+        return characterList[currCharacter].HP;
     }
 
     public float getMAXHP()
     {
-        return MAXHP;
+        return characterList[currCharacter].HPMax;
     }
 
     public float getEnergy()
     {
-        return energy;
+        return characterList[currCharacter].energy;
     }
 
     public float getMAXEnergy()
     {
-        return MAXEnergy;
+        return characterList[currCharacter].energyMax;
     }
 
     /*private void rigidBodyMove()

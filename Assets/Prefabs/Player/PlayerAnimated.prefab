@@ -870,6 +870,7 @@ GameObject:
   - component: {fileID: 2701606944332925333}
   - component: {fileID: 2701606944103139320}
   - component: {fileID: 6417318121564312413}
+  - component: {fileID: 1858135744513689573}
   m_Layer: 3
   m_Name: PlayerAnimated
   m_TagString: Player
@@ -941,10 +942,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1213045241389617697}
-  HP: 1000
-  energy: 100
-  energyDecreaseRate: 15
-  character: 0
   damageFXLength: 0.1
   isSprinting: 0
   currentMoveSpeed: 0
@@ -954,6 +951,8 @@ MonoBehaviour:
   gravityValue: 30
   pushBack: {x: 0, y: 0, z: 0}
   pushBackTime: 5
+  characterList: []
+  currCharacter: 0
   weaponInventory:
   - {fileID: 0}
   - {fileID: 0}
@@ -1190,6 +1189,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animTransSpeed: 0
+--- !u!114 &1858135744513689573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213045241389617696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52bc328a8904f7e4bb989d635fa77041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 100
+  HPMax: 100
+  speed: 6
+  energy: 100
+  energyMax: 100
+  isUsingAbility: 0
+  currSpeed: 0
+  ability: 0
 --- !u!1 &1301837051665086658
 GameObject:
   m_ObjectHideFlags: 0
