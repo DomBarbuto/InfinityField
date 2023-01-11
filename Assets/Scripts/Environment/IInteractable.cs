@@ -8,5 +8,5 @@ public interface IInteractable
 
     public void showText();
 
-    
+    public void HideText();
 }

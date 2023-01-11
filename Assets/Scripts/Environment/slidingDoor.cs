@@ -13,7 +13,12 @@ public class slidingDoor : MonoBehaviour, IInteractable
 
     bool openDoor = false;
     public bool HasClosed = false;
-    
+   
+    private void Update()
+    {
+       
+    }
+
     void OperateDoor()
     {
         StopAllCoroutines();
@@ -47,7 +52,7 @@ public class slidingDoor : MonoBehaviour, IInteractable
         {
             aud.Play();
             OperateDoor();
-            interactCanvas.SetActive(false);
+            HideText();
             HasClosed = true;
         }
     }
@@ -65,7 +70,7 @@ public class slidingDoor : MonoBehaviour, IInteractable
     {
         aud.Play();
         OperateDoor();
-        interactCanvas.SetActive(false);
+        HideText();
         Debug.LogError("canvas false");
     }
 
@@ -74,5 +79,9 @@ public class slidingDoor : MonoBehaviour, IInteractable
         interactCanvas.SetActive(true);
     }
 
-   
+    public void HideText()
+    {
+        interactCanvas.SetActive(false);
+    }
+
 }

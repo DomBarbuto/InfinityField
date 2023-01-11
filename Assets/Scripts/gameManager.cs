@@ -71,6 +71,7 @@ public class gameManager : MonoBehaviour
         composer = GameObject.FindGameObjectWithTag("Composer").GetComponent<dynamicAudio>();
         timeScaleOrig = Time.timeScale;
         currentWeaponUI.SetActive(false);
+        updateCreditUI();
     }
 
     private void Start()
@@ -78,7 +79,6 @@ public class gameManager : MonoBehaviour
         // Hide reticle on start. Reticle only shows when weapon is selected
         hideReticle();
         saveLoad.load();
-        creditsCounterText.text = credits.ToString();
     }
 
     void Update()
@@ -246,7 +246,7 @@ public class gameManager : MonoBehaviour
 
     public void updateCreditUI()
     {
-        creditsCounterText.text = gameManager.instance.credits.ToString();
+        creditsCounterText.text = credits.ToString();
     }
 
     public void setComposerVolume()

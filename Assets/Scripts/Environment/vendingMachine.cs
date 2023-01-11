@@ -44,11 +44,28 @@ public class vendingMachine : MonoBehaviour , IInteractable
     IEnumerator dispense()
     {
         canPurchase = false;
-        gameManager.instance.credits -= cost;
-        gameManager.instance.updateCreditUI();
-        Instantiate(collectable, trayPos.position, transform.rotation);
-        speaker.PlayOneShot(jingle);
-        yield return new WaitForSeconds(delay);
-        canPurchase = true;
+        if (gameManager.instance.credits >= cost)
+        {
+            gameManager.instance.credits -= cost;
+            gameManager.instance.updateCreditUI();
+            Instantiate(collectable, trayPos.position, transform.rotation);
+            speaker.PlayOneShot(jingle);
+            yield return new WaitForSeconds(delay);
+            canPurchase = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            HideText();
+        }
+    }
+    
+
+    public void HideText()
+    {
+        interactCanvas.SetActive(false);
     }
 }
