@@ -104,4 +104,8 @@ public class PlayerAnimController : MonoBehaviour
         gameManager.instance.playerController.reload();
     }
 
+    public void animEnvent_Shoot()
+    {
+        gameManager.instance.playerController.StartCoroutine(gameManager.instance.playerController.fire());
+    }
 }
