@@ -15,6 +15,7 @@ public class weaponCreation : ScriptableObject
     public Sprite icon;
     public GameObject hitFX;
     public GameObject flashFX;
+    [SerializeField] public GameObject weaponProjectile;
     public float shootAfterReloadTime;
     public int magazineMax;
     public int magazineCurrent;
@@ -29,10 +30,10 @@ public class weaponCreation : ScriptableObject
     public AudioClip[] emptySound;
     [Range(0, 1)] public float emptyVol;
 
-    [Header("---- Stats only for throwables ----")]
+    [Header("---- Toggleables for weapons ----")]
 
-    [SerializeField] public bool isThrowable;
-    [SerializeField] public GameObject weaponProjectile;
+    [SerializeField] public bool chargeable;
+    [SerializeField] public float chargeTime;
+    [SerializeField] public float charge;
 
-     
 }
