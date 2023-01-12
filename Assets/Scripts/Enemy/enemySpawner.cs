@@ -5,7 +5,6 @@ using UnityEngine;
 public class enemySpawner : MonoBehaviour
 {
     [SerializeField] int maxEnemies;
-    [SerializeField] int enemyCount;
     [SerializeField] float cooldown;
     [SerializeField] GameObject enemy;
     public bool startContinuous;
@@ -21,7 +20,12 @@ public class enemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (startContinuous && canSpawn)
+        foreach (GameObject baddie in enemies)
+        {
+            if (baddie == null)
+                enemies.Remove(baddie);
+        }
+        if (startContinuous && canSpawn && enemies.Count < maxEnemies)
         {
             canSpawn = false;
             StartCoroutine(continuousSpawn());
@@ -33,7 +37,7 @@ public class enemySpawner : MonoBehaviour
         enemies.Add(Instantiate(enemy, transform));
     }
 
-    public void destroyEnemy()
+    public void destroyEnemies()
     {
         foreach (GameObject enemy in enemies)
         {
