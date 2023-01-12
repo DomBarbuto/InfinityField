@@ -65,6 +65,7 @@ public class playerController : MonoBehaviour
 
     //Private Variables------------------
     bool isFiring;
+    bool hasFired = false;  //This is for chargeable weapons
     public bool isReloading;
     bool stepIsPlaying;
     int currJumps;  //Times jumped since being grounded
@@ -234,28 +235,63 @@ public class playerController : MonoBehaviour
         {
             if (weaponInventory[currentWeapon].magazineCurrent > 0)
             {
-                Debug.Log("We Did Shoot");
-                //TODO: CHANGE THIS VIA SHOOT ANIMATION EVENT
-                Instantiate(weaponInventory[currentWeapon].weaponProjectile, currentMuzzlePoint.transform.position, currentMuzzlePoint.transform.rotation);
-                Instantiate(weaponInventory[currentWeapon].flashFX, currentMuzzlePoint.transform.position, currentMuzzlePoint.transform.rotation);
+                if (weaponInventory[currentWeapon].chargeable)
+                {
+                    
+                    if (Input.GetButton("Fire1") && hasFired == false)
+                    {
+                        Debug.Log("We Did Shoot");
+                        weaponInventory[currentWeapon].charge += Time.deltaTime * 10;
+                        if (weaponInventory[currentWeapon].charge >= weaponInventory[currentWeapon].chargeTime)
+                        {
+                            Instantiate(weaponInventory[currentWeapon].weaponProjectile, currentMuzzlePoint.transform.position, currentMuzzlePoint.transform.rotation);
+                            Instantiate(weaponInventory[currentWeapon].flashFX, currentMuzzlePoint.transform.position, currentMuzzlePoint.transform.rotation);
 
-                //AudioSource.PlayClipAtPoint(ricochetSound[Random.Range(0, ricochetSound.Length)], hit.point);           Needs to be put in the PlayerProjectile to be checked on impact;
+                            animController.shootTrigger();
+                            playShootSound();
 
-                // Update player animation
-                animController.shootTrigger();
+                            weaponInventory[currentWeapon].magazineCurrent -= 1;
+                            hasFired = true;
+                            weaponInventory[currentWeapon].charge = 0;
+                            yield return new WaitForSeconds(weaponInventory[currentWeapon].shootRate);
+                            Debug.Log("We have reached passed the return");
+                            isFiring = false;
+                        }
+                        
 
-                // Gun Shoot Sounds
-                playShootSound();
+                    }
+                    if(Input.GetButtonUp("Fire1"))
+                    {
+                        hasFired = false;
+                        weaponInventory[currentWeapon].charge = 0;
+                    }
 
-                // Update ammo
-                weaponInventory[currentWeapon].magazineCurrent -= 1;
+                    
+                }
+                else
+                {
+                    Instantiate(weaponInventory[currentWeapon].weaponProjectile, currentMuzzlePoint.transform.position, currentMuzzlePoint.transform.rotation);
+                    Instantiate(weaponInventory[currentWeapon].flashFX, currentMuzzlePoint.transform.position, currentMuzzlePoint.transform.rotation);
+
+                    //TODO: CHANGE THIS VIA SHOOT ANIMATION EVENT
+                    animController.shootTrigger();
+                    playShootSound();
+
+                    weaponInventory[currentWeapon].magazineCurrent -= 1;
+                    yield return new WaitForSeconds(weaponInventory[currentWeapon].shootRate);
+                    isFiring = false;
+                }
+                
+                
             }
             else
             {
                 sfxManager.instance.aud.PlayOneShot(weaponInventory[currentWeapon].emptySound[Random.Range(0, weaponInventory[currentWeapon].emptySound.Length)], weaponInventory[currentWeapon].emptyVol);
+                yield return new WaitForSeconds(weaponInventory[currentWeapon].shootRate);
+                isFiring = false;
             }
         }
-            yield return new WaitForSeconds(weaponInventory[currentWeapon].shootRate);
+            yield return new WaitForSeconds(0.1f);
             isFiring = false;
 
     }
