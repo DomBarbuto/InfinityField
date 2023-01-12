@@ -9,6 +9,6 @@ public class enemyScuttlingSpecimenProximitySensor : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-            brain.explode();
+            brain.triggerExplode();
     }
 }
