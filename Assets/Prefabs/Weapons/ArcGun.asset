@@ -19,6 +19,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: e2ddc9c62f404204aa0caac657ba4270, type: 3}
   hitFX: {fileID: 1088318192215600, guid: fcb7ef11e81f7264990b58f26051651b, type: 3}
   flashFX: {fileID: 1851657805948188, guid: 48e0fabf2b2853a41aea1b678a158ae5, type: 3}
+  weaponProjectile: {fileID: 185111370099596839, guid: 09fa574f3b445b248888f144558108e7, type: 3}
   shootAfterReloadTime: 0.8
   magazineMax: 10
   magazineCurrent: 10
@@ -36,5 +37,6 @@ MonoBehaviour:
   emptySound:
   - {fileID: 8300000, guid: 913afccbd78c3c54f964754f09d90c4a, type: 3}
   emptyVol: 0.5
-  isThrowable: 0
-  weaponProjectile: {fileID: 0}
+  chargeable: 0
+  chargeTime: 0
+  charge: 0
