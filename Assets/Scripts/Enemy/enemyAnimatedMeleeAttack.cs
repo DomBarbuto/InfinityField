@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class enemyAnimatedMeleeAttack : MonoBehaviour
 {
-    [SerializeField] GameObject hitBox;
+    [SerializeField] public GameObject leftHitBox;
+    [SerializeField] public GameObject rightHitBox;
+    [SerializeField] public GameObject currentHitBox;
+
     [SerializeField] int animLength;
     bool isOn = false;
+
 
     public void HitBoxToggleOn()
     {
         isOn = true;
-        hitBox.SetActive(true);
+        currentHitBox.SetActive(true);
         StartCoroutine(timedOff());
     }
     public void HitBoxToggleOff()
     {
         isOn = false;
-        hitBox.SetActive(false);
+        currentHitBox.SetActive(false);
         StopCoroutine(timedOff());
     }
 
@@ -26,7 +30,9 @@ public class enemyAnimatedMeleeAttack : MonoBehaviour
         yield return new WaitForSeconds(animLength);
         if (isOn == false)
         {
-            hitBox.SetActive(false);
+            currentHitBox.SetActive(false);
         }
     }
+
+
 }

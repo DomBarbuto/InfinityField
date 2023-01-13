@@ -572,7 +572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95b4ab2a945779046a46ceec36283a8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 100
+  dmg: 60
   cooldown: 0.25
   inCooldown: 0
 --- !u!65 &240463895
@@ -4143,7 +4143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95b4ab2a945779046a46ceec36283a8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 100
+  dmg: 60
   cooldown: 0.25
   inCooldown: 0
 --- !u!65 &1543285530
@@ -7288,7 +7288,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0310c53bae0297b45b01a7837ba087e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitBox: {fileID: 240463893}
+  leftHitBox: {fileID: 240463893}
+  rightHitBox: {fileID: 1543285527}
+  currentHitBox: {fileID: 0}
   animLength: 0
 --- !u!114 &6792429011422715858
 MonoBehaviour:
@@ -7381,6 +7383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbd21176a08434a4eae884b9b3353c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meleeComponent: {fileID: 0}
   model: {fileID: 349822499}
   agent: {fileID: 6792429011422715871}
   headPos: {fileID: 342779471}
@@ -9139,6 +9142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbd21176a08434a4eae884b9b3353c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meleeComponent: {fileID: 0}
   model: {fileID: 0}
   agent: {fileID: 8866573752314122550}
   headPos: {fileID: 8866573752920017202}
@@ -9174,7 +9178,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0310c53bae0297b45b01a7837ba087e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitBox: {fileID: 8866573751644059591}
+  leftHitBox: {fileID: 0}
+  rightHitBox: {fileID: 0}
+  currentHitBox: {fileID: 0}
   animLength: 0
 --- !u!135 &8866573752314122553
 SphereCollider:

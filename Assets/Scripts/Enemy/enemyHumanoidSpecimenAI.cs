@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
 {
     [Header("---- External Components ----")]
+    [SerializeField] enemyAnimatedMeleeAttack meleeComponent;
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform headPos;
@@ -47,6 +48,8 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
     void Start()
     {
         this.GetComponent<enemyDamageHandler>().brain = this;
+        meleeComponent = GetComponent<enemyAnimatedMeleeAttack>();
+        
         HPMAX = HP;
         origSpeed = agent.speed;
     }
@@ -128,10 +131,22 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
             if (!isAttacking)
             {
                 isAttacking = true;
-                StartCoroutine(attack());
+
+                // Random bool (0 or 1) is brought into the attack coroutine, to decide which animation to play and
+                // which arm damage collider to use.
+                StartCoroutine(attack(decideWhichArm()));
             }
         }
 
+    }
+
+    bool decideWhichArm()
+    {
+        int randomNum = Random.Range(0, 2); // Return 0 or a 1. Min inclusive, max exclusive
+        if (randomNum == 0)
+            return true;
+        else
+            return false;
     }
 
     void facePlayer()
@@ -164,9 +179,20 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
         collectableCredits.GetComponent<collectableCredits>().setCredits(creditsHeld);
     }
 
-    IEnumerator attack()
+    IEnumerator attack(bool left)
     {
-        anim.SetTrigger("AttackSwipe");
+        if (left)
+        {
+            meleeComponent.currentHitBox = meleeComponent.leftHitBox;
+            anim.SetTrigger("AttackSwipeLeft");
+        }
+        else
+        {
+            meleeComponent.currentHitBox = meleeComponent.rightHitBox;
+            anim.SetTrigger("AttackSwipeRight");
+            
+        }
+
         yield return new WaitForSeconds(hitAnimLength);
         agent.speed = origSpeed;
         isAttacking = false;
