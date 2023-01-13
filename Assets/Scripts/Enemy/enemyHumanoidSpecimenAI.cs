@@ -102,21 +102,28 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
                 if (angleToPlayer <= fieldOfView)
                 {
                     isPlayerDetected = true;
-                    facePlayer();
-                    agent.SetDestination(gameManager.instance.player.transform.position);
+                    /*facePlayer();
+                    agent.SetDestination(gameManager.instance.player.transform.position);*/
                 }
                 else
                 {
                     isPlayerDetected = false;
                 }
+            }
 
+            if(isPlayerDetected)
+            {
+                facePlayer();
+                agent.SetDestination(gameManager.instance.player.transform.position);
             }
         }
     }
 
     void inAttackRange()
     {
-        if ((Vector3.Distance(gameManager.instance.player.transform.position, transform.position) < agent.stoppingDistance) && (agent.velocity == Vector3.zero) && isPlayerDetected && playerInRange)
+        //TODO: CHANGE THIS TO REMAINING DISTANCE
+        //(Vector3.Distance(gameManager.instance.player.transform.position, transform.position)
+        if ((agent.remainingDistance < agent.stoppingDistance) && isPlayerDetected && playerInRange)
         {
             if (!isAttacking)
             {
@@ -159,7 +166,6 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
 
     IEnumerator attack()
     {
-        agent.speed = 0;
         anim.SetTrigger("AttackSwipe");
         yield return new WaitForSeconds(hitAnimLength);
         agent.speed = origSpeed;
