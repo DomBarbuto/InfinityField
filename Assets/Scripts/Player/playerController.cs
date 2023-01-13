@@ -245,7 +245,10 @@ public class playerController : MonoBehaviour
                         if (weaponInventory[currentWeapon].charge >= weaponInventory[currentWeapon].chargeTime)
                         {
                             Instantiate(weaponInventory[currentWeapon].weaponProjectile, currentMuzzlePoint.transform.position, currentMuzzlePoint.transform.rotation);
-                            Instantiate(weaponInventory[currentWeapon].flashFX, currentMuzzlePoint.transform.position, currentMuzzlePoint.transform.rotation);
+                            if (weaponInventory[currentWeapon].flashFX != null)
+                            {
+                                Instantiate(weaponInventory[currentWeapon].flashFX, currentMuzzlePoint.transform.position, currentMuzzlePoint.transform.rotation);
+                            }
 
                             animController.shootTrigger();
                             playShootSound();
