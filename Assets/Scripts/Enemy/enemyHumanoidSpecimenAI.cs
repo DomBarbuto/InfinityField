@@ -89,9 +89,6 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
         signedAngleToPlayer = Vector3.SignedAngle(playerDir, transform.forward, Vector3.right);
 
-        Debug.Log("angle: " + angleToPlayer);
-        Debug.Log("signed angle: " + signedAngleToPlayer);
-
         Debug.DrawRay(headPos.position, playerDir);
 
         // If enemy can see player without obstruction
@@ -104,9 +101,8 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
                 // If player is within field of view
                 if (angleToPlayer <= fieldOfView)
                 {
-                    isPlayerDetected = true;
-                    /*facePlayer();
-                    agent.SetDestination(gameManager.instance.player.transform.position);*/
+                    isPlayerDetected = true;facePlayer();
+                    agent.SetDestination(gameManager.instance.player.transform.position);
                 }
                 else
                 {
@@ -114,20 +110,18 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
                 }
             }
 
-            if(isPlayerDetected)
+            /*if(isPlayerDetected)
             {
                 facePlayer();
                 agent.SetDestination(gameManager.instance.player.transform.position);
-            }
+            }*/
         }
     }
 
     void inAttackRange()
     {
-        //TODO: CHANGE THIS TO REMAINING DISTANCE
-        //(Vector3.Distance(gameManager.instance.player.transform.position, transform.position)
-        if ((agent.remainingDistance < agent.stoppingDistance) && isPlayerDetected && playerInRange)
-        {
+         if(agent.remainingDistance < agent.stoppingDistance  && (agent.velocity.magnitude < 0.1f) && isPlayerDetected && playerInRange)
+         {
             if (!isAttacking)
             {
                 isAttacking = true;
@@ -160,6 +154,10 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
     public void takeDamage(int dmg)
     {
         HP -= dmg;
+
+        // Animation Hit Reaction
+        anim.SetTrigger("HitReaction");
+
         if (HP <= 0)
         {
             gameObject.GetComponent<Collider>().enabled = false;
