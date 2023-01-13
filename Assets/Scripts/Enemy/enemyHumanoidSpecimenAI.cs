@@ -10,7 +10,7 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform headPos;
     [SerializeField] Material damageFX;
-    [SerializeField] SphereCollider playerInRangeTrigger;    // For displaying escape range - OnDrawGizmosSelected
+    [SerializeField] SphereCollider playerInRangeTrigger;    
     [SerializeField] ragdollDeath ragdoll;
     [SerializeField] Animator anim;
     [SerializeField] GameObject hitDetection;
@@ -170,5 +170,43 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
     {
         yield return new WaitForSeconds(10);
         Destroy(gameObject);
+    }
+
+    // Gizmos
+
+    private void OnDrawGizmos()
+    {
+        if (drawStoppingDistance)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, agent.stoppingDistance);
+        }
+
+        if (drawPlayerInRangeRadius)
+        {
+            Gizmos.color = Color.black;
+            Gizmos.DrawWireSphere(transform.position, playerInRangeTrigger.radius);
+        }
+
+        if (drawFieldOfView)
+            DrawDebugFieldOfView();
+
+    }
+
+    private void DrawDebugFieldOfView()
+    {
+        // Taking into account the fieldOfView as well as the radius of the playerInRangeTrigger, draw the boundaries of vision
+        // Trigonometry at work
+        Vector3 leftVisionEdge = transform.TransformDirection(new Vector3(Mathf.Sin((fieldOfView * -1 / 2) * Mathf.Deg2Rad),
+                                                                                     0,
+                                                                                     Mathf.Cos((fieldOfView) * Mathf.Deg2Rad))).normalized;
+
+        Vector3 rightVisionEdge = transform.TransformDirection(new Vector3(Mathf.Sin((fieldOfView * 1 / 2) * Mathf.Deg2Rad),
+                                                                                      0,
+                                                                                      Mathf.Cos((fieldOfView) * Mathf.Deg2Rad))).normalized;
+
+        // Draw Vision Boundary 
+        Debug.DrawRay(headPos.position, leftVisionEdge * playerInRangeTrigger.radius, Color.red);
+        Debug.DrawRay(headPos.position, rightVisionEdge * playerInRangeTrigger.radius, Color.red);
     }
 }
