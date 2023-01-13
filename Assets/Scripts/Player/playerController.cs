@@ -12,7 +12,7 @@ public class playerController : MonoBehaviour
 {
     [Header("---- External Components ----")]
     [SerializeField] CharacterController controller;
-    private PlayerAnimController animController;
+    public PlayerAnimController animController;
 
     [Header("---- Player Stats ----")]
     /*[SerializeField] public float HP;                                               //All of these stats will be consolodated into character prefabs
@@ -22,7 +22,7 @@ public class playerController : MonoBehaviour
     public playerAbilities playerAbilities;
     
     [Header("---- Player Movement ----")]
-    [SerializeField] bool isSprinting;                                              //All of these stats will be consolodated into character prefabs
+    [SerializeField] public bool isSprinting;                                              //All of these stats will be consolodated into character prefabs
     [SerializeField] float currentMoveSpeed;                                        //All of these stats will be consolodated into character prefabs
     [Range(3, 8)] [SerializeField] float walkSpeed;                                 
     [Range(1, 4)][SerializeField] float sprintMultiplier;                           
@@ -408,8 +408,12 @@ public class playerController : MonoBehaviour
         }
         else if(Input.GetButtonUp("Ability"))
         {
+            animController.switchSprintingState(false);
             characterList[currCharacter].isUsingAbility = false;
             playerAbilities.useAbility();
+
+            //This is only for character with a sprint
+            isSprinting = false;
         }
     }
 
