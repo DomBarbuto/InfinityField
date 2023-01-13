@@ -115,7 +115,7 @@ public class playerController : MonoBehaviour
                 if (weaponInventory[currentWeapon] != null)  // Make sure inventory menu is not on
                 {
                     isFiring = true;
-                    StartCoroutine(fire());
+                    animController.shootTrigger();
                 }
             }
 
@@ -250,7 +250,7 @@ public class playerController : MonoBehaviour
                                 Instantiate(weaponInventory[currentWeapon].flashFX, currentMuzzlePoint.transform.position, currentMuzzlePoint.transform.rotation);
                             }
 
-                            animController.shootTrigger();
+                            //animController.shootTrigger();
                             playShootSound();
 
                             weaponInventory[currentWeapon].magazineCurrent -= 1;
@@ -280,7 +280,7 @@ public class playerController : MonoBehaviour
                     }
 
                     //TODO: CHANGE THIS VIA SHOOT ANIMATION EVENT
-                    animController.shootTrigger();
+                    //animController.shootTrigger();
                     playShootSound();
 
                     weaponInventory[currentWeapon].magazineCurrent -= 1;
