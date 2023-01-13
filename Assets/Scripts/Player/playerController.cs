@@ -274,7 +274,10 @@ public class playerController : MonoBehaviour
                 else
                 {
                     Instantiate(weaponInventory[currentWeapon].weaponProjectile, currentMuzzlePoint.transform.position, currentMuzzlePoint.transform.rotation);
-                    Instantiate(weaponInventory[currentWeapon].flashFX, currentMuzzlePoint.transform.position, currentMuzzlePoint.transform.rotation);
+                    if (weaponInventory[currentWeapon].flashFX != null)
+                    {
+                        Instantiate(weaponInventory[currentWeapon].flashFX, currentMuzzlePoint.transform.position, currentMuzzlePoint.transform.rotation);
+                    }
 
                     //TODO: CHANGE THIS VIA SHOOT ANIMATION EVENT
                     animController.shootTrigger();
