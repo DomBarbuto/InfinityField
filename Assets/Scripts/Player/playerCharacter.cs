@@ -9,6 +9,8 @@ public class playerCharacter : MonoBehaviour
     [Range(3,8)][SerializeField] public float speed;
     [SerializeField] public float energy;
     [SerializeField] public float energyMax;
+    [SerializeField] public float energyUseRate;
+    [SerializeField] public bool rechargable;
 
     public bool isUsingAbility = false;
     public float currSpeed;

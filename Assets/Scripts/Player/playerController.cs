@@ -20,15 +20,15 @@ public class playerController : MonoBehaviour
     [SerializeField] public float energyDecreaseRate;      */                         //All of these stats will be consolodated into character prefabs                                         //All of these stats will be consolodated into character prefabs
     [SerializeField] float damageFXLength;                                          //All of these stats will be consolodated into character prefabs
     public playerAbilities playerAbilities;
-    
+
     [Header("---- Player Movement ----")]
     [SerializeField] public bool isSprinting;                                              //All of these stats will be consolodated into character prefabs
     [SerializeField] float currentMoveSpeed;                                        //All of these stats will be consolodated into character prefabs
-    [Range(3, 8)] [SerializeField] float walkSpeed;                                 
-    [Range(1, 4)][SerializeField] float sprintMultiplier;                           
-    [Range(10, 15)] [SerializeField] float jumpHeight;                              
-    [Range(15, 35)] [SerializeField] float gravityValue;                            
-    [SerializeField] public Vector3 pushBack;                                       
+    [Range(3, 8)][SerializeField] float walkSpeed;
+    [Range(1, 4)][SerializeField] float sprintMultiplier;
+    [Range(10, 15)][SerializeField] float jumpHeight;
+    [Range(15, 35)][SerializeField] float gravityValue;
+    [SerializeField] public Vector3 pushBack;
     [SerializeField] float pushBackTime;
 
     [Header("---- Character ----")]
@@ -39,7 +39,7 @@ public class playerController : MonoBehaviour
     [Header("Inventory")]
     [SerializeField] public List<weaponCreation> weaponInventory = new List<weaponCreation>();
     [SerializeField] int maxSlots = 5;
-    [SerializeField] public int currentWeapon; 
+    [SerializeField] public int currentWeapon;
 
     [Header("Weapon Selection and Switching")]
     [SerializeField] public weaponCreation.WeaponType currentWeaponType; // Update this every time you switch weapons
@@ -51,16 +51,16 @@ public class playerController : MonoBehaviour
     [Header("Interactable System")]
     [SerializeField] float rayDistance;
 
-   /* [Header("---- Audio -----")]
-    [SerializeField] AudioSource aud;
-    [SerializeField] AudioClip[] playerHurt;
-    [Range(0, 1)][SerializeField] float playerHurtVol;
-    [SerializeField] AudioClip[] playerJump;
-    [Range(0, 1)][SerializeField] float playerJumpVol;
-    [SerializeField] AudioClip[] playerFootstep;
-    [Range(0, 1)][SerializeField] float playerFootstepVol;
-    [SerializeField] AudioClip[] ricochetSound;
-    [Range(0, 1)][SerializeField] float ricochetSoundVol;*/
+    /* [Header("---- Audio -----")]
+     [SerializeField] AudioSource aud;
+     [SerializeField] AudioClip[] playerHurt;
+     [Range(0, 1)][SerializeField] float playerHurtVol;
+     [SerializeField] AudioClip[] playerJump;
+     [Range(0, 1)][SerializeField] float playerJumpVol;
+     [SerializeField] AudioClip[] playerFootstep;
+     [Range(0, 1)][SerializeField] float playerFootstepVol;
+     [SerializeField] AudioClip[] ricochetSound;
+     [Range(0, 1)][SerializeField] float ricochetSoundVol;*/
 
 
     //Private Variables------------------
@@ -72,7 +72,7 @@ public class playerController : MonoBehaviour
     float MAXHP;      //Player's maximum health
     float MAXEnergy;  //Player's maximum energy
     float lastUpdate;
-    
+
 
     Vector3 playerVelocity;
     public Vector3 move;
@@ -88,8 +88,8 @@ public class playerController : MonoBehaviour
     void Start()
     {
         // Set orginal stats
-        characterList[currCharacter].HPMax = characterList[currCharacter].HP;
-        characterList[currCharacter].energyMax = characterList[currCharacter].energy;
+        characterList[currCharacter].HP = characterList[currCharacter].HPMax;
+        characterList[currCharacter].energy = characterList[currCharacter].energyMax;
 
         setPlayerPos();
         currentMoveSpeed = walkSpeed;
@@ -146,6 +146,38 @@ public class playerController : MonoBehaviour
                     isReloading = true;
                 }
             }
+            if (characterList[currCharacter].isUsingAbility)
+            {
+                if (characterList[currCharacter].energy >= characterList[currCharacter].energyUseRate)
+                {
+                    if (characterList[currCharacter].ability != 1)
+                    {
+                        if (Time.time - lastUpdate >= 0.25f)
+                        {
+                            characterList[currCharacter].energy -= characterList[currCharacter].energyUseRate;
+                            lastUpdate = Time.time;
+                            gameManager.instance.updatePlayerEnergyBar();
+                        }
+                    }
+                    else
+                    {
+                        if (Time.time - lastUpdate >= 0.025f)
+                        {
+                            characterList[currCharacter].energy -= characterList[currCharacter].energyUseRate;
+                            lastUpdate = Time.time;
+                            gameManager.instance.updatePlayerEnergyBar();
+                        }
+                    }
+                }
+                else
+                {
+                    characterList[currCharacter].isUsingAbility = false;
+
+                    playerAbilities.useAbility();
+                }
+            }
+
+            energyRecharge();
 
             RaycastHit interactHit;
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out interactHit, rayDistance))
@@ -157,7 +189,7 @@ public class playerController : MonoBehaviour
                     if (Input.GetButtonDown("Interact"))
                     {
                         //If hit is door and it hasnt closed yet
-                        if(interactHit.collider.GetComponent<slidingDoor>() && !interactHit.collider.GetComponent<slidingDoor>().HasClosed)
+                        if (interactHit.collider.GetComponent<slidingDoor>() && !interactHit.collider.GetComponent<slidingDoor>().HasClosed)
                             interactHit.collider.GetComponent<IInteractable>().interact();
 
                         // Else if hit is a vending machine
@@ -193,7 +225,7 @@ public class playerController : MonoBehaviour
         {
             characterList[currCharacter].currSpeed = characterList[currCharacter].speed;
         }
-        
+
 
         move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
         controller.Move(move * Time.deltaTime * characterList[currCharacter].currSpeed);
@@ -208,7 +240,11 @@ public class playerController : MonoBehaviour
         playerVelocity.y -= gravityValue * Time.deltaTime;
         controller.Move((playerVelocity + pushBack) * Time.deltaTime);
     }
-
+    /*if(Time.time - lastUpdate >= 0.25f)
+                            {
+                                weaponInventory[currentWeapon].charge += 0.25f;
+                                lastUpdate= Time.time;
+                            }*/
     //Coroutines--------------------------
 
     public IEnumerator fire()
@@ -219,13 +255,24 @@ public class playerController : MonoBehaviour
             {
                 if (weaponInventory[currentWeapon].chargeable)
                 {
-                    
+
                     if (Input.GetButton("Fire1") && hasFired == false)
                     {
-                        if(Time.time - lastUpdate >= 0.25f)
+                        if (characterList[currCharacter].ability != 1)
                         {
-                            weaponInventory[currentWeapon].charge += 0.25f;
-                            lastUpdate= Time.time;
+                            if (Time.time - lastUpdate >= 0.25f)
+                            {
+                                weaponInventory[currentWeapon].charge += 0.25f;
+                                lastUpdate = Time.time;
+                            }
+                        }
+                        else
+                        {
+                            if (Time.time - lastUpdate >= 0.025f)
+                            {
+                                weaponInventory[currentWeapon].charge += 0.25f;
+                                lastUpdate = Time.time;
+                            }
                         }
                         if (weaponInventory[currentWeapon].charge >= weaponInventory[currentWeapon].chargeTime)
                         {
@@ -235,26 +282,32 @@ public class playerController : MonoBehaviour
                                 Instantiate(weaponInventory[currentWeapon].flashFX, currentMuzzlePoint.transform.position, currentMuzzlePoint.transform.rotation);
                             }
 
-                            //animController.shootTrigger();
                             playShootSound();
 
                             weaponInventory[currentWeapon].magazineCurrent -= 1;
                             hasFired = true;
-                            yield return new WaitForSeconds(weaponInventory[currentWeapon].shootRate);
-                            Debug.Log("We have reached passed the return");
+                            if (characterList[currCharacter].ability == 1 && characterList[currCharacter].isUsingAbility)
+                            {
+                                yield return new WaitForSeconds((float)(weaponInventory[currentWeapon].shootRate / 10));
+                            }
+                            else
+                            {
+                                yield return new WaitForSeconds(weaponInventory[currentWeapon].shootRate);
+                            }
+
                             isFiring = false;
                         }
-                        
+
 
                     }
-                    else if(Input.GetButtonUp("Fire1"))
+                    else if (Input.GetButtonUp("Fire1"))
                     {
                         hasFired = false;
                         Debug.Log("Reset Charge");
                         weaponInventory[currentWeapon].charge = 0;
                     }
 
-                    
+
                 }
                 else
                 {
@@ -269,11 +322,18 @@ public class playerController : MonoBehaviour
                     playShootSound();
 
                     weaponInventory[currentWeapon].magazineCurrent -= 1;
-                    yield return new WaitForSeconds(weaponInventory[currentWeapon].shootRate);
+                    if (characterList[currCharacter].ability == 1 && characterList[currCharacter].isUsingAbility)
+                    {
+                        yield return new WaitForSeconds((float)(weaponInventory[currentWeapon].shootRate / 10));
+                    }
+                    else
+                    {
+                        yield return new WaitForSeconds(weaponInventory[currentWeapon].shootRate);
+                    };
                     isFiring = false;
                 }
-                
-                
+
+
             }
             else
             {
@@ -282,8 +342,8 @@ public class playerController : MonoBehaviour
                 isFiring = false;
             }
         }
-            yield return new WaitForSeconds(0.01f);
-            isFiring = false;
+        yield return new WaitForSeconds(0.01f);
+        isFiring = false;
 
     }
 
@@ -385,20 +445,26 @@ public class playerController : MonoBehaviour
 
     public void useAbility()
     {
-        if(Input.GetButtonDown("Ability"))
+        if (Input.GetButtonDown("Ability"))
         {
-            characterList[currCharacter].isUsingAbility = true;
+            if (characterList[currCharacter].energy >= characterList[currCharacter].energyUseRate)
+            {
+                characterList[currCharacter].isUsingAbility = true;
 
-            playerAbilities.useAbility();
+                playerAbilities.useAbility();
+            }
         }
-        else if(Input.GetButtonUp("Ability"))
+        else if (Input.GetButtonUp("Ability"))
         {
-            animController.switchSprintingState(false);
-            characterList[currCharacter].isUsingAbility = false;
-            playerAbilities.useAbility();
+            if (characterList[currCharacter].isUsingAbility)
+            {
+                animController.switchSprintingState(false);
+                characterList[currCharacter].isUsingAbility = false;
+                playerAbilities.useAbility();
 
-            //This is only for character with a sprint
-            isSprinting = false;
+                //This is only for character with a sprint
+                isSprinting = false;
+            }
         }
     }
 
@@ -421,14 +487,14 @@ public class playerController : MonoBehaviour
     {
         characterList[currCharacter].HP -= dmg;
         int playCheck = Random.Range(0, 2);
-        if(playCheck == 0)
+        if (playCheck == 0)
         {
             sfxManager.instance.aud.PlayOneShot(sfxManager.instance.playerHurt[Random.Range(0, sfxManager.instance.playerHurt.Length)], sfxManager.instance.playerHurtVol);
         }
-        
+
         StartCoroutine(playDamageFX());
         gameManager.instance.updatePlayerHPBar();
-        
+
         // Player death
         if (characterList[currCharacter].HP <= 0)
         {
@@ -448,7 +514,7 @@ public class playerController : MonoBehaviour
     {
         characterList[currCharacter].HP += amount;
 
-        if(characterList[currCharacter].HP > MAXHP)
+        if (characterList[currCharacter].HP > MAXHP)
         {
             characterList[currCharacter].HP = MAXHP;
         }
@@ -463,15 +529,15 @@ public class playerController : MonoBehaviour
     {
         characterList[currCharacter].energy += amount;
 
-        if(characterList[currCharacter].energy > MAXEnergy)
+        if (characterList[currCharacter].energy > characterList[currCharacter].energyMax)
         {
-            characterList[currCharacter].energy = MAXEnergy;
+            characterList[currCharacter].energy = characterList[currCharacter].energyMax;
         }
     }
 
     public void resetPlayerEnergy()
     {
-        characterList[currCharacter].energy = MAXEnergy;
+        characterList[currCharacter].energy = characterList[currCharacter].energyMax;
     }
 
     public void weaponPickUp(weaponCreation weapon)
@@ -480,7 +546,7 @@ public class playerController : MonoBehaviour
         gameManager.instance.showReticle();
 
         // Turn on weapon UI 
-        if(!gameManager.instance.currentWeaponUI.activeSelf)
+        if (!gameManager.instance.currentWeaponUI.activeSelf)
         {
             gameManager.instance.currentWeaponUI.SetActive(true);
         }
@@ -499,7 +565,7 @@ public class playerController : MonoBehaviour
 
             // First time picking up weapon, "Add" weapon to weapon inventory and select the weapon
             else if (weaponInventory[i] == null)
-            {   
+            {
                 // Set weapon inventory slot[i] to this weapon
                 weaponInventory[i] = weapon;
                 gameManager.instance.slots[i].SetActive(true);
@@ -528,7 +594,7 @@ public class playerController : MonoBehaviour
 
         //TODO: MAY NEED ADJUSTING HERE WHEN ADDING UNEQUIP AND EQUIP ANIMATIONS
         // Switch to the appropriate animation state
-        
+
         animController.switchAnimState(currentWeaponType, weapon.weaponType);
         currentWeaponType = weapon.weaponType;      // Stored for animations
 
@@ -537,7 +603,7 @@ public class playerController : MonoBehaviour
         currentWeaponModel.SetActive(true);
         currentMuzzlePoint = muzzlePointList[(int)weapon.weaponType];
 
-        if(weapon.chargeable)
+        if (weapon.chargeable)
         {
             weapon.charge = 0;
             weapon.currentAmmoPool = 1;
@@ -545,11 +611,11 @@ public class playerController : MonoBehaviour
 
         // Play audio
         playWeaponPickupSound();
-        
+
     }
 
     public void selectWeapon(weaponCreation weapon)
-    { 
+    {
         // Deactivate current weapon model game object
         if (currentWeaponModel != null)
             currentWeaponModel.SetActive(false);
@@ -659,5 +725,26 @@ public class playerController : MonoBehaviour
         //Play audio 
         playReloadSound();
         StartCoroutine(shootAfterReloadDelay());
+    }
+
+    public void energyRecharge()
+    {
+        if (characterList[currCharacter].rechargable && !characterList[currCharacter].isUsingAbility)
+        {
+            if (Time.time - lastUpdate >= 0.25f)
+            {
+                if (characterList[currCharacter].energy < characterList[currCharacter].energyMax)
+                {
+                    characterList[currCharacter].energy += 5;
+                    lastUpdate = Time.time;
+                    gameManager.instance.updatePlayerEnergyBar();
+                    if (characterList[currCharacter].energy > characterList[currCharacter].energyMax)
+                    {
+                        characterList[currCharacter].energy = characterList[currCharacter].energyMax;
+                    }
+                }
+
+            }
+        }
     }
 }
