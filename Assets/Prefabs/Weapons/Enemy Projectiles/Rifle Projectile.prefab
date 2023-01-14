@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2384911709459653322}
   - component: {fileID: 3098062531306493878}
-  - component: {fileID: 5779045453999647295}
   - component: {fileID: 2649812613593392552}
+  - component: {fileID: 5438983125965783483}
   m_Layer: 7
   m_Name: Rifle Projectile
   m_TagString: Untagged
@@ -50,19 +50,6 @@ MonoBehaviour:
   speed: 30
   damage: 10
   destroyTime: 3
---- !u!135 &5779045453999647295
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 185111370099596839}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2649812613593392552
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -79,6 +66,20 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!136 &5438983125965783483
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185111370099596839}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 3.05188
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: -1.025938}
 --- !u!1001 &6401726858083014428
 PrefabInstance:
   m_ObjectHideFlags: 0
