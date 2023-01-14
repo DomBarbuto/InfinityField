@@ -12,12 +12,13 @@ public class BossSlimeInfusedMech : MonoBehaviour, IRoomEntryListener
     [SerializeField] GameObject projectile;
     [SerializeField] Transform leftMuzz;
     [SerializeField] Transform rightMuzz;
+    [SerializeField] Transform headPos;
 
     int MAXHP;
-    bool startStateMachine;
+    public bool startStateMachine;
     public int state = 0;
     Vector3 playerDir;
-    bool attackState;
+    bool attackState = true;
     bool shooting;
     bool vulnerable;
 
@@ -39,12 +40,13 @@ public class BossSlimeInfusedMech : MonoBehaviour, IRoomEntryListener
     //On Room entry...
     public void notify()
     {
+        startStateMachine = true;
         state = 1;
     }
 
     public void SlowLookAt(float speed)
     {
-        playerDir = gameManager.instance.player.transform.position;
+        playerDir = gameManager.instance.player.transform.position - headPos.position;
         playerDir.y = 0;
         Quaternion rot = Quaternion.LookRotation(playerDir);
         body.transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * speed); // Smooth rotation
@@ -53,11 +55,11 @@ public class BossSlimeInfusedMech : MonoBehaviour, IRoomEntryListener
     public void takeDamage(int dmg)
     {
         HP -= dmg;
-        if (HP < ((MAXHP / 3) * 2))
+        if (HP <= ((MAXHP / 3) * 2))
         {
             state = 2;
         }
-        if (HP < (MAXHP / 3))
+        if (HP <= (MAXHP / 3))
         {
             state = 3;
         }
@@ -71,7 +73,10 @@ public class BossSlimeInfusedMech : MonoBehaviour, IRoomEntryListener
             case 1:
                 if (attackState)
                 {
-                    
+
+                    //Start following the player by rotating at a slow speed
+                    SlowLookAt(1f);
+
                     if (!shooting)
                     {
                         //Start shooting
@@ -79,8 +84,6 @@ public class BossSlimeInfusedMech : MonoBehaviour, IRoomEntryListener
                         StartCoroutine(timedShoot(10.0f));
                     }
 
-                    //Start following the player by rotating at a slow speed
-                    SlowLookAt(1);
                 }
                 else
                 {
@@ -100,7 +103,7 @@ public class BossSlimeInfusedMech : MonoBehaviour, IRoomEntryListener
                     }
 
                     //Start following the player by rotating at a slow speed
-                    SlowLookAt(2);
+                    SlowLookAt(.05f);
                 }
                 else
                 {
@@ -120,7 +123,7 @@ public class BossSlimeInfusedMech : MonoBehaviour, IRoomEntryListener
                     }
 
                     //Start following the player by rotating at a slow speed
-                    SlowLookAt(3);
+                    SlowLookAt(.01f);
                 }
                 else
                 {
@@ -152,7 +155,7 @@ public class BossSlimeInfusedMech : MonoBehaviour, IRoomEntryListener
 
     public IEnumerator timedShoot(float length)
     {
-        hitBox.enabled = false;
+        hitBox.canDamage = false;
         anim.SetBool("Shooting", true);
         yield return new WaitForSeconds(length);
         anim.SetBool("Shooting", false);
@@ -163,7 +166,7 @@ public class BossSlimeInfusedMech : MonoBehaviour, IRoomEntryListener
     public IEnumerator vulnerableState(float length)
     {
         //play charging effect/animation here
-        hitBox.enabled = true;
+        hitBox.canDamage = true;
         yield return new WaitForSeconds(length);
         attackState = true;
     }

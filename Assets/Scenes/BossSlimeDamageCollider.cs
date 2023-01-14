@@ -5,9 +5,12 @@ using UnityEngine;
 public class BossSlimeDamageCollider : MonoBehaviour, IDamage
 {
     public BossSlimeInfusedMech brain;
-    // Start is called before the first frame update
+
+    public bool canDamage;
+
     public void takeDamage(int dmg)
     {
+        if (canDamage)
         brain.takeDamage(dmg);
     }
 }
