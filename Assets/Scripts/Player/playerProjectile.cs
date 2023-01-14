@@ -6,14 +6,17 @@ using UnityEngine;
 public class playerProjectile : MonoBehaviour
 {
     [SerializeField] float projectileSpeed;
-    [SerializeField] float projectileDamage;
+    [SerializeField] int projectileDamage;
+    [SerializeField] float projectileLifeTime;
     [SerializeField] bool isPiercing;
+    bool hasHit;
 
 
     Rigidbody rb;
 
     private void Start()
     {
+        hasHit = false;
         rb = gameObject.GetComponent<Rigidbody>();
 
         RaycastHit hit;
@@ -30,23 +33,42 @@ public class playerProjectile : MonoBehaviour
         rb.AddForce(force, ForceMode.Impulse);
 
     }
+    private void Update()
+    {
+        projectileLifeTime -= Time.deltaTime * 10;
+
+        if(projectileLifeTime <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<IDamage>() != null)
-        {
-            Instantiate(gameManager.instance.playerController.weaponInventory[gameManager.instance.playerController.currentWeapon].hitFX, gameObject.transform.position, transform.rotation);
 
-            StartCoroutine(doDamage(other.GetComponent<IDamage>()));
+        if (!hasHit)
+        {
+            hasHit = true;
+            Destroy(gameObject);
+            if (other.GetComponent<IDamage>() != null)
+            {
+                Instantiate(gameManager.instance.playerController.weaponInventory[gameManager.instance.playerController.currentWeapon].hitFX, gameObject.transform.position, transform.rotation);
+
+                doDamage(other.GetComponent<IDamage>());
+                Debug.Log("collided with " + other.gameObject.name);
+            }
+            else
+            {
+                Debug.Log("collided with " + other.gameObject.name);
+            }
         }
     }
 
-    private IEnumerator doDamage(IDamage enemy)
+    private void doDamage(IDamage enemy)
     {
-        enemy.takeDamage(gameManager.instance.playerController.weaponInventory[gameManager.instance.playerController.currentWeapon].weaponDamage);
+        enemy.takeDamage(projectileDamage);
 
-        yield return new WaitForSeconds(0.2f);
     }
 
 

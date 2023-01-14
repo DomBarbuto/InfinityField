@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 4
   weaponDamage: 10
-  shootRate: 0.2
+  shootRate: 0.02
   shootDistance: 80
   icon: {fileID: 21300000, guid: dc3257761c77a20458ee4b44bc69e3a3, type: 3}
   hitFX: {fileID: 1943573974307894, guid: 4857609a6c0625349a60bbb4b5fa5ec5, type: 3}
   flashFX: {fileID: 1061512257540118, guid: 51a73670ac42b28429348012d7106c27, type: 3}
   weaponProjectile: {fileID: 185111370099596839, guid: d2c7bbdce3b9eff4ca98c6855cd38a77, type: 3}
   shootAfterReloadTime: 0.9
-  magazineMax: 30
-  magazineCurrent: 29
-  maxAmmoPool: 270
-  currentAmmoPool: 135
+  magazineMax: 1
+  magazineCurrent: 0
+  maxAmmoPool: 1
+  currentAmmoPool: 1
   shootSound:
   - {fileID: 8300000, guid: 18d6a007b013c9d4ebf7f7c44e1e5f06, type: 3}
   shootVol: 0.5
@@ -38,5 +38,5 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 913afccbd78c3c54f964754f09d90c4a, type: 3}
   emptyVol: 0.5
   chargeable: 1
-  chargeTime: 0.2
-  charge: 0
+  chargeTime: 1.5
+  charge: 1.5

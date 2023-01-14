@@ -71,6 +71,7 @@ public class playerController : MonoBehaviour
     int currJumps;  //Times jumped since being grounded
     float MAXHP;      //Player's maximum health
     float MAXEnergy;  //Player's maximum energy
+    float lastUpdate;
     
 
     Vector3 playerVelocity;
@@ -114,8 +115,16 @@ public class playerController : MonoBehaviour
             {
                 if (weaponInventory[currentWeapon] != null)  // Make sure inventory menu is not on
                 {
-                    isFiring = true;
-                    animController.shootTrigger();
+                    if (!weaponInventory[currentWeapon].chargeable)
+                    {
+                        isFiring = true;
+                        animController.shootTrigger();
+                    }
+                    else
+                    {
+                        isFiring = true;
+                        StartCoroutine(fire());
+                    }
                 }
             }
 
@@ -175,33 +184,6 @@ public class playerController : MonoBehaviour
             playerVelocity.y = 0f;
         }
 
-        // Handle sprinting - Using GetButton because of the lerp while holding                        being handled elsewhere
-        /*if (controller.isGrounded && Input.GetButton("Sprint"))                                      being handled elsewhere
-        {                                                                                              being handled elsewhere
-                                                                                                       being handled elsewhere
-            // Only call if not sprinting                                                              being handled elsewhere
-            if (!isSprinting)                                                                          being handled elsewhere
-            {                                                                                          being handled elsewhere
-                currentMoveSpeed = walkSpeed * sprintMultiplier;                                       being handled elsewhere
-                isSprinting = true;                                                                    being handled elsewhere
-                                                                                                       being handled elsewhere
-                // Update player animation                                                             being handled elsewhere
-                animController.switchSprintingState(true);                                             being handled elsewhere
-            }                                                                                          being handled elsewhere
-                                                                                                       being handled elsewhere
-            // Update energy and UI energy bar                                                         being handled elsewhere
-            energy -= Time.deltaTime * energyDecreaseRate;                                             being handled elsewhere
-            gameManager.instance.updatePlayerEnergyBar();                                              being handled elsewhere
-        }                                                                                              being handled elsewhere
-        else if (Input.GetButtonUp("Sprint"))                                                          being handled elsewhere
-        {                                                                                              being handled elsewhere
-            currentMoveSpeed = walkSpeed;                                                              being handled elsewhere
-            isSprinting = false;                                                                       being handled elsewhere
-                                                                                                       being handled elsewhere
-            // Update player animation                                                                 being handled elsewhere
-            animController.switchSprintingState(false);                                                being handled elsewhere
-        }*/
-
         //Player Movement
         if (characterList[currCharacter].ability == 0 && characterList[currCharacter].isUsingAbility == false)
         {
@@ -240,8 +222,11 @@ public class playerController : MonoBehaviour
                     
                     if (Input.GetButton("Fire1") && hasFired == false)
                     {
-                        Debug.Log("We Did Shoot");
-                        weaponInventory[currentWeapon].charge += Time.deltaTime * 10;
+                        if(Time.time - lastUpdate >= 0.25f)
+                        {
+                            weaponInventory[currentWeapon].charge += 0.25f;
+                            lastUpdate= Time.time;
+                        }
                         if (weaponInventory[currentWeapon].charge >= weaponInventory[currentWeapon].chargeTime)
                         {
                             Instantiate(weaponInventory[currentWeapon].weaponProjectile, currentMuzzlePoint.transform.position, currentMuzzlePoint.transform.rotation);
@@ -255,7 +240,6 @@ public class playerController : MonoBehaviour
 
                             weaponInventory[currentWeapon].magazineCurrent -= 1;
                             hasFired = true;
-                            weaponInventory[currentWeapon].charge = 0;
                             yield return new WaitForSeconds(weaponInventory[currentWeapon].shootRate);
                             Debug.Log("We have reached passed the return");
                             isFiring = false;
@@ -263,9 +247,10 @@ public class playerController : MonoBehaviour
                         
 
                     }
-                    if(Input.GetButtonUp("Fire1"))
+                    else if(Input.GetButtonUp("Fire1"))
                     {
                         hasFired = false;
+                        Debug.Log("Reset Charge");
                         weaponInventory[currentWeapon].charge = 0;
                     }
 
@@ -293,11 +278,11 @@ public class playerController : MonoBehaviour
             else
             {
                 sfxManager.instance.aud.PlayOneShot(weaponInventory[currentWeapon].emptySound[Random.Range(0, weaponInventory[currentWeapon].emptySound.Length)], weaponInventory[currentWeapon].emptyVol);
-                yield return new WaitForSeconds(weaponInventory[currentWeapon].shootRate);
+                yield return new WaitForSeconds(1);
                 isFiring = false;
             }
         }
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.01f);
             isFiring = false;
 
     }
@@ -552,6 +537,12 @@ public class playerController : MonoBehaviour
         currentWeaponModel.SetActive(true);
         currentMuzzlePoint = muzzlePointList[(int)weapon.weaponType];
 
+        if(weapon.chargeable)
+        {
+            weapon.charge = 0;
+            weapon.currentAmmoPool = 1;
+        }
+
         // Play audio
         playWeaponPickupSound();
         
@@ -651,6 +642,12 @@ public class playerController : MonoBehaviour
         {
             weaponInventory[currentWeapon].currentAmmoPool -= reloadAmount;
             weaponInventory[currentWeapon].magazineCurrent += reloadAmount;
+            if (weaponInventory[currentWeapon].chargeable)
+            {
+                weaponInventory[currentWeapon].currentAmmoPool = 1;
+                weaponInventory[currentWeapon].charge = 0;
+                hasFired = false;
+            }
         }
         else if (weaponInventory[currentWeapon].currentAmmoPool > 0 && weaponInventory[currentWeapon].currentAmmoPool < reloadAmount)
         {

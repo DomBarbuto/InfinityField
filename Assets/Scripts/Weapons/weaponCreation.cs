@@ -36,4 +36,13 @@ public class weaponCreation : ScriptableObject
     [SerializeField] public float chargeTime;
     [SerializeField] public float charge;
 
+
+
+    private void Awake()
+    {
+        magazineCurrent = magazineMax;
+        currentAmmoPool = maxAmmoPool / 4;
+        charge = 0;
+    }
+
 }

@@ -25,10 +25,10 @@ public class enemyDamageHandler : MonoBehaviour
                 brain.takeDamage(headMod * dmg);
                 break;
             case (DamageGroup.Limb):
-                brain.takeDamage(dmg / headMod);
+                brain.takeDamage(dmg / limbMod);
                 break;
             case (DamageGroup.Torso):
-                brain.takeDamage(limbMod * dmg);
+                brain.takeDamage(torsoMod * dmg);
                 break;
 
         }

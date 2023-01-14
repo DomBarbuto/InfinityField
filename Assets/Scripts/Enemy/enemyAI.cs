@@ -111,8 +111,8 @@ public class enemyAI : MonoBehaviour , IRagdollDamage
         angleToPlayer =  Vector3.Angle(playerDir, transform.forward);
         signedAngleToPlayer = Vector3.SignedAngle(playerDir, transform.forward, Vector3.right);
 
-        Debug.Log("angle: " + angleToPlayer);
-        Debug.Log("signed angle: " + signedAngleToPlayer);
+        /*Debug.Log("angle: " + angleToPlayer);
+        Debug.Log("signed angle: " + signedAngleToPlayer);*/
 
         Debug.DrawRay(headPos.position, playerDir);
 
