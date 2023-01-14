@@ -9,6 +9,7 @@ public class playerProjectile : MonoBehaviour
     [SerializeField] int projectileDamage;
     [SerializeField] float projectileLifeTime;
     [SerializeField] bool isPiercing;
+    [SerializeField] GameObject secondaryProjectile;
     bool hasHit;
 
 
@@ -50,6 +51,7 @@ public class playerProjectile : MonoBehaviour
         if (!hasHit)
         {
             hasHit = true;
+
             Destroy(gameObject);
             if (other.GetComponent<IDamage>() != null)
             {
@@ -57,11 +59,18 @@ public class playerProjectile : MonoBehaviour
 
                 doDamage(other.GetComponent<IDamage>());
                 Debug.Log("collided with " + other.gameObject.name);
+
+                if(secondaryProjectile != null)
+                {
+                    Instantiate(secondaryProjectile, transform.position, transform.rotation);
+                }
+
             }
             else
             {
                 Debug.Log("collided with " + other.gameObject.name);
             }
+            Destroy(gameObject);
         }
     }
 

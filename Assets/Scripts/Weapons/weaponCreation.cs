@@ -44,5 +44,4 @@ public class weaponCreation : ScriptableObject
         currentAmmoPool = maxAmmoPool / 4;
         charge = 0;
     }
-
 }
