@@ -72,7 +72,7 @@ public class enemyScuttlingSpecimenAI : MonoBehaviour
         HP -= dmg;
         if (HP <= 0)
         {
-            triggerExplode();
+            animEvent_Explode();
         }
     }
 }
