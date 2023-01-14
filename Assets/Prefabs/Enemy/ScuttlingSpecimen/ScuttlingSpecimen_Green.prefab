@@ -576,7 +576,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6002221136751251809}
-  - component: {fileID: 557536971}
   m_Layer: 0
   m_Name: Enemy_EscapedScuttling
   m_TagString: Untagged
@@ -601,26 +600,6 @@ Transform:
   m_Father: {fileID: 5595157326940750639}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!95 &557536971
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6343316768124439515}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 49070d91adc6d6f41aed8dcdb74cada9, type: 3}
-  m_Controller: {fileID: 9100000, guid: fa37c7820c8e2a249beb84310e94ce1b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6936242277012934631
 GameObject:
   m_ObjectHideFlags: 0
