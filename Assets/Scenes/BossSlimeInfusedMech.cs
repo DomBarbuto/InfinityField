@@ -69,9 +69,9 @@ public class BossSlimeInfusedMech : MonoBehaviour, IRoomEntryListener
         }
     }
 
-    public IEnumerator timedShoot(int length)
+    /*public IEnumerator timedShoot(int length)    //Commenting out due to compilation errors
     {
         anim.SetBool("Shooting", true);
         return new 
-    }
+    }*/
 }
