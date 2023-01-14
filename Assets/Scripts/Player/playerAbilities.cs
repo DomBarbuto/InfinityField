@@ -12,6 +12,9 @@ public class playerAbilities : MonoBehaviour
             case 0:
                 sprint();
                 break;
+            case 1:
+                bulletTime();
+                break;
             default:
                 Debug.Log("This character currently has no ability or is broken");
                 break;
@@ -35,6 +38,17 @@ public class playerAbilities : MonoBehaviour
     
     public void bulletTime()
     {
-
+        if(Time.timeScale == gameManager.instance.timeScaleOrig)
+        {
+            Time.timeScale = gameManager.instance.timeScaleOrig / 10;
+            gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].speed = gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].speed * 12;
+            gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].GetComponent<Animator>().speed = gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].GetComponent<Animator>().speed * 8;
+        }
+        else if(Time.timeScale != gameManager.instance.timeScaleOrig)
+        {
+            Time.timeScale = gameManager.instance.timeScaleOrig;
+            gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].speed = gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].speed / 12;
+            gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].GetComponent<Animator>().speed = gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].GetComponent<Animator>().speed / 8;
+        }
     }
 }

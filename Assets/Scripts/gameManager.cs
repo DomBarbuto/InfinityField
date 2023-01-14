@@ -51,7 +51,7 @@ public class gameManager : MonoBehaviour
 
     [Header("---- System Information ----")]
     public bool isPaused = false;
-    float timeScaleOrig;
+    public float timeScaleOrig;
     public GameObject playerSpawnPoint;
     public dynamicAudio composer;
 

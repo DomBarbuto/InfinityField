@@ -63,10 +63,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af368ae3aa7faec458a9a22229fde686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 120
+  projectileSpeed: 100
   projectileDamage: 50
   projectileLifeTime: 40
   isPiercing: 0
+  secondaryProjectile: {fileID: 0}
 --- !u!136 &7192417757414901924
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -78,7 +79,7 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 10
+  m_Height: 20
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &6401726858083014428

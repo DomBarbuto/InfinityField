@@ -23,6 +23,8 @@ public class playerProjectile : MonoBehaviour
         RaycastHit hit;
 
         Vector3 direction = Camera.main.transform.forward;
+        direction.y = 0;
+        direction = direction.normalized;
 
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit))
         {
