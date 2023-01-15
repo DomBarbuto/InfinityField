@@ -1,7 +1,8 @@
-    using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class playerAbilities : MonoBehaviour
 {
@@ -58,7 +59,7 @@ public class playerAbilities : MonoBehaviour
 
     public void freezeObjects()
     {
-        if (gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].isUsingAbility)
+        if (Input.GetButtonDown("Ability"))
         {
             Debug.Log("Freezing objects");
             RaycastHit hit;
@@ -85,6 +86,10 @@ public class playerAbilities : MonoBehaviour
                         {
                             collider.GetComponent<enemyAI>().enabled = false;
                         }
+                        if(collider.GetComponent<NavMeshAgent>())
+                        {
+                            collider.GetComponent<NavMeshAgent>().enabled = false;
+                        }
                         StartCoroutine(unfreezeDelay(collider));
                     }
                 }
@@ -108,6 +113,11 @@ public class playerAbilities : MonoBehaviour
         {  
             collider.GetComponent<Collider>().GetComponent<enemyAI>().enabled = true;
         }
+        if (collider.GetComponent<NavMeshAgent>())
+        {
+            collider.GetComponent<NavMeshAgent>().enabled = false;
+        }
+        
 
     }
 }
