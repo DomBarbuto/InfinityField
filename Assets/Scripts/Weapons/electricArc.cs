@@ -54,23 +54,26 @@ public class electricArc : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        targetPos = enemies[currentEnemy].transform.position;
-            
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, arcSpeed * Time.deltaTime);
-
-        if (Vector3.Distance(transform.position, targetPos) <= 0.2f)
+        if (enemies[currentEnemy] != null)
         {
-            if (enemies.Length > 0)
+            targetPos = enemies[currentEnemy].transform.position;
+
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, arcSpeed * Time.deltaTime);
+
+            if (Vector3.Distance(transform.position, targetPos) <= 0.2f)
             {
-                if (currentEnemy < enemies.Length - 1)
+                if (enemies.Length > 0)
                 {
-                    enemies[currentEnemy].GetComponent<IDamage>().takeDamage(damage);
-                    currentEnemy++;
-                    
-                }
-                else
-                {
-                    Destroy(gameObject);
+                    if (currentEnemy < enemies.Length - 1)
+                    {
+                        enemies[currentEnemy].GetComponent<IDamage>().takeDamage(damage);
+                        currentEnemy++;
+
+                    }
+                    else
+                    {
+                        Destroy(gameObject);
+                    }
                 }
             }
         }
