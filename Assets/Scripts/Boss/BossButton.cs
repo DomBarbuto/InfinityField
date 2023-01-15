@@ -28,6 +28,7 @@ public class BossButton : MonoBehaviour, IInteractable
 
         // Call to boss script and update number of buttons hit
         isButtonAllowed = false;
+        HideText();
         bossScript.incrementButtonsHit();
 
     }
@@ -41,6 +42,7 @@ public class BossButton : MonoBehaviour, IInteractable
 
     public void showText()
     {
+        Debug.Log("Show text");
         if(isButtonAllowed)
             interactCanvas.SetActive(true);
     }

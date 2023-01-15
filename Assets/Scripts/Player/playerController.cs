@@ -179,6 +179,8 @@ public class playerController : MonoBehaviour
 
             energyRecharge();
 
+
+            // TODO: Pull into a separate script
             RaycastHit interactHit;
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out interactHit, rayDistance))
             {
@@ -197,7 +199,11 @@ public class playerController : MonoBehaviour
                         {
                             interactHit.collider.GetComponent<IInteractable>().interact();
                         }
-
+                        // Else if hit is a boss button
+                        else if(interactHit.collider.GetComponent<BossButton>())
+                        {
+                            interactHit.collider.GetComponent<IInteractable>().interact();
+                        }
                     }
                 }
             }

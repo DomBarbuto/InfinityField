@@ -113,6 +113,12 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
     public void incrementButtonsHit()
     {
         buttonsHitThisStage++;
+
+        // 
+        if(buttonsHitThisStage == numberOfButtons)
+        {
+
+        }
     }
 
     // After each boss state, reset the number of current buttons hit
