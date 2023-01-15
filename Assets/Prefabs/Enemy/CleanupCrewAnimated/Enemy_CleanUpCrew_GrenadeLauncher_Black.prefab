@@ -345,20 +345,9 @@ MonoBehaviour:
   muzzlePoint: {fileID: 1113826855102066241}
   animTransSpeed: 4
   thisEnemyWeaponType: 2
-  drawFieldOfView: 1
-  drawStoppingDistance: 1
-  drawPlayerInRangeRadius: 1
-  aud: {fileID: 1549222824106922544}
-  enemyHurt:
-  - {fileID: 8300000, guid: a59143b15df81cb478b64b1b08a9a903, type: 3}
-  - {fileID: 8300000, guid: a161b407b5df08b4a8f1da036b1b8f59, type: 3}
-  - {fileID: 8300000, guid: 1ebb6e05ab6353a4db866201497e8aab, type: 3}
-  enemyHurtVol: 0.25
-  enemyAlert:
-  - {fileID: 8300000, guid: 83daf342eb6753b49bfbcae306561c16, type: 3}
-  - {fileID: 8300000, guid: c113238579d332f4eb3084289ca6155b, type: 3}
-  - {fileID: 8300000, guid: 125fcbe44d3ea7544ab6d2266911cf28, type: 3}
-  enemyAlertVol: 0.75
+  drawFieldOfView: 0
+  drawStoppingDistance: 0
+  drawPlayerInRangeRadius: 0
 --- !u!195 &1113826855072403078
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -518,7 +507,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd860ea7cc75b84bbc0651670473db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brain: {fileID: 1113826855072403079}
   headMod: 2
   limbMod: 2
   torsoMod: 1
