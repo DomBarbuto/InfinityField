@@ -42,7 +42,6 @@ public class BossButton : MonoBehaviour, IInteractable
 
     public void showText()
     {
-        Debug.Log("Show text");
         if(isButtonAllowed)
             interactCanvas.SetActive(true);
     }
