@@ -6,12 +6,10 @@ public class PlatformSection : MonoBehaviour
 {
     // NOTE: The ground floor underneath the platforms' LAYER must be set to the PlatformUnderneath
     // NOTE: The platform object themselves' LAYER must be set to Platform
-    /*
-     * List of platform game object prefabs 
-     */
+
     [Tooltip("Ensure that each of these objects have a rigidbody set to kinematic.")]
     [SerializeField] GameObject[] platformObjects;
-    [SerializeField] int timeUntilDestroy;
+    [Range(2f, 8f)][SerializeField] int timeUntilDestroy;
 
     [Header("For Dropping Sequentially")]
     [SerializeField] bool currentlyDropping;
@@ -22,15 +20,21 @@ public class PlatformSection : MonoBehaviour
     // so that they just fall through the floor and eventually destroy.
     public void DropPlatformsAtOnce()
     {
-        foreach(GameObject platform in platformObjects)
+        // Starts the destroy timer on all platforms
+        startDestroying();
+
+        // Drops all platforms at once
+        foreach (GameObject platform in platformObjects)
         {
-            platform.GetComponent<Collider>().enabled = false;
             platform.GetComponent<Rigidbody>().isKinematic = false;
         }
     }
 
     public void DropPlatformsSequentially(float randTimeBetweenDrops)
     {
+        // Starts the destroy timer on all platforms
+        startDestroying();
+
         // Get a random time interval between each drop
         float randInterval = Random.Range(minDropInterval, maxDropInterval);
 
@@ -49,20 +53,19 @@ public class PlatformSection : MonoBehaviour
 
     IEnumerator DropSinglePlatform(int platformIndex, float randTimeBetweenDrops)
     {
-        // Turn off collider and turn on physics for the platform object
-        platformObjects[platformIndex].GetComponent<Collider>().enabled = false;
+        // Turn on physics for the platform object
         platformObjects[platformIndex].GetComponent<Rigidbody>().isKinematic = false;
 
         yield return new WaitForSeconds(randTimeBetweenDrops);
         currentlyDropping = false;
     }
 
-    IEnumerator destroyTimer()
+    private void startDestroying()
     {
-        yield return new WaitForSeconds(timeUntilDestroy);
+        // Starts timer to destroy on each object
         foreach (GameObject platform in platformObjects)
         {
-            Destroy(platform);
+            Destroy(platform, timeUntilDestroy);
         }
     }
 

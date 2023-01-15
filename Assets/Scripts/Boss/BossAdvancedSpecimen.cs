@@ -25,8 +25,11 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
     [SerializeField] bool startStateMachine;
     [SerializeField] int state;
 
-    [Header("----------  ----------")]
+    [Header("---------- Platforms and Buttons ----------")]
     [SerializeField] PlatformSection[] platformSections;
+    [SerializeField] GameObject[] buttons;            
+    [SerializeField] int buttonsHitThisStage;
+    [SerializeField] public int numberOfButtons;    // Incremented from each buttons start
 
     //Misc
     int MAXHP;
@@ -34,6 +37,8 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
     private void Start()
     {
         MAXHP = HP;
+        buttonsHitThisStage = 0;
+
     }
 
     private void Update()
@@ -94,7 +99,7 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
 
     public void takeDamage(int dmg)
     {
-        HP -= dmg;
+        /*HP -= dmg;
         if (HP <= ((MAXHP / 3) * 2))
         {
             state = 2;
@@ -102,6 +107,26 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
         if (HP <= (MAXHP / 3))
         {
             state = 3;
+        }*/
+    }
+
+    public void incrementButtonsHit()
+    {
+        buttonsHitThisStage++;
+    }
+
+    // After each boss state, reset the number of current buttons hit
+    private void resetButtonsHit()
+    {
+        buttonsHitThisStage = 0;
+    }
+
+    // After each boss state, re-allow interaction with all buttons
+    private void allowAllButtons()
+    {
+        foreach(GameObject btn in buttons)
+        {
+            btn.GetComponent<BossButton>().isButtonAllowed = true;
         }
     }
 
