@@ -40,7 +40,7 @@ public class proceduralGeneration : MonoBehaviour
                 {
                     GameObject exit = exits[i];
                     int rand = Random.Range(0, rooms.Length);
-                    GameObject newRoom = Instantiate(rooms[rand], exit.transform.position + roomOffset, Quaternion.identity);
+                    GameObject newRoom = Instantiate(rooms[rand], exit.transform.position + roomOffset, Quaternion.identity);  //Add in the change for roomOffset for the room that is being instantiated
                     newRoom.GetComponent<Room>().OnExit.AddListener(SpawnRoom);
                     newRoom.GetComponent<Room>().OnEnter.AddListener(MakeCurrentRoom);
                     newRoom.GetComponent<Room>().OnEnter.AddListener(DestroyRoom);
