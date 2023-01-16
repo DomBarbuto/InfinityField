@@ -215,6 +215,7 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
 
     public void animEvent_SpawnEnemyRight()
     {
+        Random.InitState(System.DateTime.Now.Millisecond);
         int randEnemyType = Random.Range(0, 2); // Only 2 main enemy types (scuttling and humanoid)
         int spawnPos = 1;
 
@@ -236,6 +237,7 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
 
     public void animEvent_SpawnEnemyBack()
     {
+        Random.InitState(System.DateTime.Now.Millisecond);
         int randEnemyType = Random.Range(0, 1); // Only 2 main enemy types (scuttling and humanoid)
         int spawnPos = 2;
 

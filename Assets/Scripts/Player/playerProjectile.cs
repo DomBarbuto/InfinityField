@@ -55,9 +55,15 @@ public class playerProjectile : MonoBehaviour
             hasHit = true;
 
             Destroy(gameObject);
+
+            // VFX at impact point
+            Instantiate(gameManager.instance.playerController.weaponInventory[gameManager.instance.playerController.currentWeapon].hitFX, gameObject.transform.position, transform.rotation);
+
+            // SFX at impact point
+            AudioSource.PlayClipAtPoint(sfxManager.instance.ricochetSound[0], other.transform.position, sfxManager.instance.ricochetSoundVol);
+
             if (other.GetComponent<IDamage>() != null)
             {
-                Instantiate(gameManager.instance.playerController.weaponInventory[gameManager.instance.playerController.currentWeapon].hitFX, gameObject.transform.position, transform.rotation);
 
                 doDamage(other.GetComponent<IDamage>());
                 Debug.Log("collided with " + other.gameObject.name);
