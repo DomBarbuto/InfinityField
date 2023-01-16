@@ -1,7 +1,7 @@
-using UnityEngine;
+/*using UnityEngine;
 using System.Collections.Generic;
 
-public class RoomGeneration : MonoBehaviour
+public class proceduralGeneration : MonoBehaviour
 {
     [SerializeField] public GameObject[] rooms;
     [SerializeField] public GameObject bossRoom;
@@ -81,4 +81,4 @@ public class RoomGeneration : MonoBehaviour
         //Add the current room to the list
         spawnedRooms.Add(currentRoom);
     }
-}
+}*/
