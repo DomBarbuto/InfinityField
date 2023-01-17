@@ -19,6 +19,8 @@ public class sfxManager : MonoBehaviour
     [Range(0, 1)][SerializeField] public float playerJumpVol;
     [SerializeField] public AudioClip[] playerFootstep;
     [Range(0, 1)][SerializeField] public float playerFootstepVol;
+    [SerializeField] public AudioClip[] playerSlimedFootstep;
+    [Range(0, 1)][SerializeField] public float playerSlimedFootstepVol;
     [SerializeField] public AudioClip[] ricochetSound;
     [Range(0, 1)][SerializeField] public float ricochetSoundVol;
 
@@ -62,7 +64,7 @@ public class sfxManager : MonoBehaviour
     [SerializeField] public AudioClip[] explodingSpecimenExplode;
     [Range(0, 1)][SerializeField] public float explodingSpecimenExplodeVol;
 
-    [Header("---------- Exploding Specimen Audio ----------")]
+    [Header("---------- Slime Audio ----------")]
     [SerializeField] public AudioClip[] slimeAlert;
     [Range(0, 1)][SerializeField] public float slimeAlertVol;
     [SerializeField] public AudioClip[] slimeAttack;
@@ -71,6 +73,14 @@ public class sfxManager : MonoBehaviour
     [Range(0, 1)][SerializeField] public float slimeDeathVol;
     [SerializeField] public AudioClip[] slimeMovement;
     [Range(0, 1)][SerializeField] public float slimeMovementVol;
+
+    [Header("---------- Turret Audio ----------")]
+    [SerializeField] public AudioClip[] turretAlert;
+    [Range(0, 1)][SerializeField] public float turretAlertVol;
+    [SerializeField] public AudioClip[] turretAttack;
+    [Range(0, 1)][SerializeField] public float turretAttackVol;
+    [SerializeField] public AudioClip[] turretDeath;
+    [Range(0, 1)][SerializeField] public float turretDeathVol;
 
     // ------------------------------------------- Boss -------------------------------------------------------------
     [Header("---------- Exploding Specimen Audio ----------")]
@@ -136,6 +146,21 @@ public class sfxManager : MonoBehaviour
     [Range(0, 1)] public float railgunEmptyVol;
     public AudioClip[] railgunChargeSound;
     [Range(0, 1)] public float railgunChargeVol;
+
+    // ------------------------------------------ Environment -----------------------------------------------------
+    [Header("---------- Environment Audio ----------")]
+    public AudioClip[] boxBreak;
+    [Range(0, 1)] public float boxBreakVol;
+    public AudioClip[] doorOpen;
+    [Range(0, 1)] public float doorOpenVol;
+    public AudioClip[] doorClose;
+    [Range(0, 1)] public float doorCloseVol;
+    public AudioClip[] menuClose;
+    [Range(0, 1)] public float menuCloseVol;
+    public AudioClip[] menuOpen;
+    [Range(0, 1)] public float menuOpenVol;
+    public AudioClip[] menuHover;
+    [Range(0, 1)] public float menuHoverVol;
 
     private void Awake()
     {

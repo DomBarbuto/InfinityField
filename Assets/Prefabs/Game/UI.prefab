@@ -9976,6 +9976,14 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: boxBreakVol
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: doorOpenVol
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: glPickupVol
       value: 0.5
       objectReference: {fileID: 0}
@@ -9984,7 +9992,23 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: menuOpenVol
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: doorCloseVol
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: enemyHurtVol
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: menuCloseVol
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: menuHoverVol
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
@@ -10016,6 +10040,14 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: slimeAlertVol
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: slimeDeathVol
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: blackCCHurtVol
       value: 0.5
       objectReference: {fileID: 0}
@@ -10036,6 +10068,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: slimeAttackVol
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: slimeMechDeath
       value: 
       objectReference: {fileID: 8300000, guid: 3e6c4b38a8cb1c0468300b35e85eeea0, type: 3}
@@ -10043,6 +10079,14 @@ PrefabInstance:
       propertyPath: slimeMechIntro
       value: 
       objectReference: {fileID: 8300000, guid: 0e09b75db59db4048a39cf1752469775, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: turretAlertVol
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: turretDeathVol
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: whiteCCHurtVol
       value: 0.5
@@ -10064,6 +10108,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1138501427}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: turretAttackVol
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: whiteCCAlertVol
       value: 0.5
       objectReference: {fileID: 0}
@@ -10080,6 +10128,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: slimeMovementVol
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: yellowCCAlertVol
       value: 0.5
       objectReference: {fileID: 0}
@@ -10088,8 +10140,32 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: boxBreak.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: doorOpen.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: menuOpen.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: doorClose.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: enemyHurt.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: menuClose.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: menuHover.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: redCCHurt.Array.size
@@ -10120,8 +10196,48 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: slimeAlert.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: slimeDeath.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: blackCCHurt.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: boxBreak.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: f983a08e33cb74b4896828498bc643d5, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: boxBreak.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 87e4fc1426b2abf45b27431b22966f96, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: boxBreak.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 113f2c2e8c66a064a9e3497ce54dc837, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: doorOpen.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8fc64dc26c36dee40b6535de366570e7, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: menuOpen.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 550ee0c55d5d5aa4dbb1f9359c3356ee, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: slimeAttack.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: turretAlert.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: turretDeath.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: whiteCCHurt.Array.size
@@ -10131,6 +10247,10 @@ PrefabInstance:
       propertyPath: blackCCAlert.Array.size
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: doorClose.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 66a2416c62968354895b216fe8df2222, type: 3}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: enemyHurt.Array.data[0]
       value: 
@@ -10156,6 +10276,18 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: menuClose.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: b30d03e0cfb99fd4098368388798fced, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: menuHover.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: feb7089bdb94cca48b4f0f3b28a194a5, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: playerSlimedFootstepVol
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: redCCHurt.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: ea0dc2220480d9a45859c60f6e6a0f18, type: 3}
@@ -10167,6 +10299,10 @@ PrefabInstance:
       propertyPath: redCCHurt.Array.data[2]
       value: 
       objectReference: {fileID: 8300000, guid: dbe2c94684493fe4a8b315301da7deb1, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: turretAttack.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: whiteCCAlert.Array.size
       value: 3
@@ -10252,9 +10388,21 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: slimeAlert.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: b8d97e7ef334ab345841147631defb91, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: slimeDeath.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d45c96a1aca3ff43b4f44d702e21065, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: slimeMechForceFieldSound
       value: 
       objectReference: {fileID: 8300000, guid: edc279b092543bb47afb50f4bb7faa04, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: slimeMovement.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: yellowCCAlert.Array.size
       value: 3
@@ -10280,9 +10428,25 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: slimeAttack.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 12f6669b74cc5df42bb4b805f0b950e1, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: slimeAttack.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9e9421c0f6acd1d42bd4515b4d4824f4, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: slimeMechForceFieldVolume
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: turretAlert.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: c308ad3608009d744af90a5c5bccee37, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: turretDeath.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 07ed376c86d12d64c92ed99d974cd5bf, type: 3}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: whiteCCHurt.Array.data[0]
       value: 
@@ -10323,6 +10487,10 @@ PrefabInstance:
       propertyPath: rifleShootSound.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: turretAttack.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: bcd971f99956574408da8ad9f37b4d24, type: 3}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: whiteCCAlert.Array.data[0]
       value: 
@@ -10388,6 +10556,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: slimeMovement.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: b359dbb27a1fb8d48938852b18a723b6, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: yellowCCAlert.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: db3e8e64603f41446ad92eaef6997893, type: 3}
@@ -10409,7 +10581,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: explodingSpecimenMovementVol
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: pistolPickupSound.Array.size
@@ -10532,6 +10704,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: f84a2bf3a6b43994a970dab1c4bc6fe8, type: 3}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: playerSlimedFootstep.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: railgunEmptySound.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: 913afccbd78c3c54f964754f09d90c4a, type: 3}
@@ -10568,6 +10744,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 874354be9699429408b4f49b8a47d110, type: 3}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: playerSlimedFootstep.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 85c382dcfaf54ea44b03433e7eee948e, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: playerSlimedFootstep.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 36d51e3ff3ae54f47a9b7ca0319a598c, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: playerSlimedFootstep.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 82a863a3073c70b4893e6d19a5c18722, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: explodingSpecimenExplode.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -10589,7 +10777,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 6e2bfb84b60e8cc4fa71fbecf70ae6e2, type: 3}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: explodingSpecimenMovement.Array.size
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: humanoidSpecimenAttack.Array.data[0]
@@ -10610,7 +10798,43 @@ PrefabInstance:
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: explodingSpecimenMovement.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: 60b96774997858e44aade33c96b2282e, type: 3}
+      objectReference: {fileID: 8300000, guid: 8f2f4a6f1742e3c4c8facb1fc1136876, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: explodingSpecimenMovement.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 75e0f9d25b90bd84591f5718d30f5d71, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: explodingSpecimenMovement.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: c21c855ca391d754e992101b1e632b95, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: explodingSpecimenMovement.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1490cfdffe8531544a8f532787f91586, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: explodingSpecimenMovement.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 020b58e8a15925e449c4a0a452f06cc7, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: explodingSpecimenMovement.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9ba27c2470073e3419637a99327ff4c6, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: explodingSpecimenMovement.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: 59fe967f0a9fba54e9ea2f18025f9ebf, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: explodingSpecimenMovement.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: 22072f245e369bb48a0e983b7a6ab094, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: explodingSpecimenMovement.Array.data[8]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8b3ceeb9bb7177444996722471bae024, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: explodingSpecimenMovement.Array.data[9]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4068e0a7af0f3e5449274d249f507d36, type: 3}
     - target: {fileID: 3327897433694023747, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: m_RootOrder
       value: 17
