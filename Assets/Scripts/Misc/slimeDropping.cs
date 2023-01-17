@@ -43,7 +43,6 @@ public class slimeDropping : MonoBehaviour
         // Stop lerping the scale when has reached full size
         if(isScaling && !hasReachedFullScale)
         {
-            Debug.Log("is scaling up");
             xzScaleCurrent = Mathf.Lerp(xzScaleCurrent, fullSizeScale.x, Time.deltaTime * xzScaleIncreaseRate);
 
             // Now set both the x and z scale components to this lerped value
@@ -60,7 +59,6 @@ public class slimeDropping : MonoBehaviour
         // Once coroutine finishes, begin scaling down
         else if(isDisappearing && !hasDisappeared)
         {
-            Debug.Log("is scaling down");
             // NOTE: Here just re-usiing fullSizeScale since we no longer need to remember this
             fullSizeScale.x = Mathf.Lerp(fullSizeScale.x, 0, Time.deltaTime * xzScaleIncreaseRate);
             fullSizeScale.y = Mathf.Lerp(fullSizeScale.y, 0, Time.deltaTime * xzScaleIncreaseRate);

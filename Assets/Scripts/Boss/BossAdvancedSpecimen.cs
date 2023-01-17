@@ -263,7 +263,7 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
         Destroy(explosion, 10);
 
         // Destroy boss
-        Destroy(gameObject);
+        Destroy(gameObject, 10);
     }
 
     void spawnRandomScuttling(int spawnPos)

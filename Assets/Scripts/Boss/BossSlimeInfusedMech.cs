@@ -5,13 +5,16 @@ using UnityEngine;
 public class BossSlimeInfusedMech : MonoBehaviour
 {
     [Header("Components")]
+    [SerializeField] BossHealthBar healthBarPrefab;
+    [SerializeField] Animator anim;
     [SerializeField] Animator slimeBodyAnim;
     [SerializeField] GameObject[] slimeDroppingPrefabs;
     [SerializeField] GameObject explosionOBJ;
+    [SerializeField] Renderer mechSuitModel;
+    [SerializeField] Material damageFX;
 
     [Header("Stats")]
-    [SerializeField] int HP;
-    [SerializeField] Animator anim;
+    [SerializeField] float HP;
     [SerializeField] List<enemySpawner> spawners;
     [SerializeField] GameObject body;
     [SerializeField] BossSlimeDamageCollider hitBox;
@@ -19,11 +22,12 @@ public class BossSlimeInfusedMech : MonoBehaviour
     [SerializeField] Transform leftMuzz;
     [SerializeField] Transform rightMuzz;
     [SerializeField] Transform headPos;
+    [SerializeField] float damageFXLength;
 
     [Header("Behaviour")]
     public bool startStateMachine;
 
-    int MAXHP;
+    float MAXHP;
     public int state;
     Vector3 playerDir;
     bool attackState = true;
@@ -47,8 +51,11 @@ public class BossSlimeInfusedMech : MonoBehaviour
     //On Room entry... 
     public void notify()
     {
+        //Make health bar appear
+
+
         startStateMachine = true;
-        state = 1;
+        advanceState();
         anim.SetTrigger("TriggerIntro");
 
     }
@@ -61,33 +68,49 @@ public class BossSlimeInfusedMech : MonoBehaviour
         body.transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * speed); // Smooth rotation
     }
 
+
     public void takeDamage(int dmg)
     {
         HP -= dmg;
-        /*if (HP <= ((MAXHP / 3) * 2))
-        {
-            state = 2;
-        }
-        else if (HP <= (MAXHP / 3))
-        {
-            state = 3;
-        }
-        else if (HP <= 0)
-        {
 
-        }*/
+        if (state < 4)
+        {
+            // If health reaches zero, go to next state
+            if (HP <= 0)
+            {
+                advanceState();
+            }
+        }
 
-        if (HP <= (MAXHP * (2/3)))
+
+        //TODO: Update health bar
+    }
+
+    private void advanceState()
+    {
+        state++;
+        HP = MAXHP;
+
+        Debug.Log("NEW STATE OF " + state);
+
+        //Trigger UI update
+        switch (state)
         {
-            state = 2;
-        }
-        else if (HP <= (MAXHP * (1 / 3)))
-        {
-            state = 3;
-        }
-        else if (HP <= 0)
-        {
-            state = 4; // which triggers the death in state machine function
+            //Refill health bar
+
+            case 1:
+                //Make UI show that we are in 1st state
+                break;
+            case 2:
+                //Make UI show that we are in 2nd state
+                break;
+            case 3:
+                //Make UI show that we are in 3rd state
+                break;
+            case 4:
+                //Make Boss health disappear
+                break;
+
         }
     }
 
@@ -107,7 +130,7 @@ public class BossSlimeInfusedMech : MonoBehaviour
                     }
 
                     //Start following the player by rotating at a slow speed
-                    SlowLookAt(1f);
+                    SlowLookAt(30.0f);
                 }
                 else
                 {
@@ -126,7 +149,7 @@ public class BossSlimeInfusedMech : MonoBehaviour
                     }
 
                     //Start following the player by rotating at a slow speed
-                    SlowLookAt(.05f);
+                    SlowLookAt(15.0f);
                 }
                 else
                 {
@@ -141,11 +164,11 @@ public class BossSlimeInfusedMech : MonoBehaviour
                     {
                         //Start shooting
                         shooting = true;
-                        StartCoroutine(timedShoot(30.0f));
+                        StartCoroutine(timedShoot(20.0f));
                     }
 
                     //Start following the player by rotating at a slow speed
-                    SlowLookAt(.01f);
+                    SlowLookAt(1.0f);
                 }
                 else
                 {
@@ -157,9 +180,11 @@ public class BossSlimeInfusedMech : MonoBehaviour
                 //Win State, boss depleted. Insert any necessary code here when the time comes.
                 anim.SetBool("Shooting", false);
                 slimeBodyAnim.SetBool("IsShooting", false);
-
                 shooting = false;
                 attackState = false;
+                StopAllCoroutines();
+                slimeBodyAnim.SetTrigger("TriggerDeath");
+
                 break;
         }
     }
@@ -217,6 +242,17 @@ public class BossSlimeInfusedMech : MonoBehaviour
         hitBox.canDamage = true;
         yield return new WaitForSeconds(length);
         attackState = true;
+    }
+
+    IEnumerator flashDamageFX()
+    {
+        // Store original color of material
+        Color origColor = mechSuitModel.material.color;
+
+        // Quickly switch materials color to the damage material color then back to original
+        mechSuitModel.material.color = damageFX.color;
+        yield return new WaitForSeconds(damageFXLength);
+        mechSuitModel.material.color = origColor;
     }
 
 }

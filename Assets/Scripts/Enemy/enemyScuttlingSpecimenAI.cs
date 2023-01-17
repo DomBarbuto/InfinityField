@@ -43,7 +43,7 @@ public class enemyScuttlingSpecimenAI : MonoBehaviour
 
         // Move
         agent.SetDestination(gameManager.instance.player.transform.position);
-        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.explodingSpecimenMovement[Random.Range(0, sfxManager.instance.explodingSpecimenMovement.Length)], sfxManager.instance.explodingSpecimenMovementVol);
+        //sfxManager.instance.aud.PlayOneShot(sfxManager.instance.explodingSpecimenMovement[Random.Range(0, sfxManager.instance.explodingSpecimenMovement.Length)], sfxManager.instance.explodingSpecimenMovementVol);
     }
 
     // This is triggered to cause the death animation. 

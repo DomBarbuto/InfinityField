@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 4620529149940633310}
   - component: {fileID: 6844543596322754349}
   - component: {fileID: 4620529149940633311}
-  m_Layer: 0
+  - component: {fileID: 1650642076255774851}
+  - component: {fileID: 1023958326440099086}
+  m_Layer: 10
   m_Name: Boss_SlimeMechAnimated
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,20 +54,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46eda6582f36d1646a114a9086d0d638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 6844543596322754349}
   slimeBodyAnim: {fileID: 9106290725647278684}
   slimeDroppingPrefabs:
   - {fileID: 4634294408272650233, guid: e2c2ce697d606bd4583b77e08fe4bb07, type: 3}
   - {fileID: 7826569377665182014, guid: 948785160a9ebbb41aed25cb54ef875c, type: 3}
   explosionOBJ: {fileID: 2828326322624743756, guid: f82963c56b95eb543bbd45ed592f8ade, type: 3}
+  mechSuitModel: {fileID: 0}
+  damageFX: {fileID: 0}
   HP: 100
-  anim: {fileID: 6844543596322754349}
   spawners: []
   body: {fileID: 330280082852638697}
-  hitBox: {fileID: 7011912598607560186}
+  hitBox: {fileID: 0}
   projectile: {fileID: 185111370099596839, guid: 2197e594567554749812477fe2675b4e, type: 3}
   leftMuzz: {fileID: 9214835234188981585}
   rightMuzz: {fileID: 6187556254994742985}
   headPos: {fileID: 6644375534533227191}
+  damageFXLength: 0
   startStateMachine: 0
   state: 0
 --- !u!95 &6844543596322754349
@@ -101,6 +106,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brain: {fileID: 4620529149940633310}
+--- !u!136 &1650642076255774851
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330280082852638697}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1023958326440099086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330280082852638697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05d5808a9bfb6fb4390b8a468380e0df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brain: {fileID: 4620529149940633310}
+  canDamage: 0
 --- !u!1 &635193670843491839
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,8 +322,7 @@ GameObject:
   - component: {fileID: 7347654214224864438}
   - component: {fileID: 4327058400206256676}
   - component: {fileID: 8211375106843598189}
-  - component: {fileID: 2331131846204807511}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SlimeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,20 +394,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2331131846204807511
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1029811801011464797}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -6109124167659816048, guid: cdcf469992fda2244b10eddef61797a2, type: 3}
 --- !u!1 &1651284892555731147
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,10 +698,6 @@ GameObject:
   - component: {fileID: 5843759150682968781}
   - component: {fileID: 5810102670772244086}
   - component: {fileID: 6659342493904426247}
-  - component: {fileID: 1131052778409701021}
-  - component: {fileID: 7011912598607560186}
-  - component: {fileID: 8536287698821505563}
-  - component: {fileID: 5908871177209842389}
   m_Layer: 10
   m_Name: MechHull
   m_TagString: Untagged
@@ -764,61 +778,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &1131052778409701021
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3221288434305516375}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.55993766
-  m_Center: {x: -0.0009762049, y: 1.8900001, z: 0.10346842}
---- !u!114 &7011912598607560186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3221288434305516375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05d5808a9bfb6fb4390b8a468380e0df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  brain: {fileID: 4620529149940633310}
-  canDamage: 0
---- !u!136 &8536287698821505563
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3221288434305516375}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  m_Radius: 0.15
-  m_Height: 0.7685719
-  m_Direction: 1
-  m_Center: {x: -0.0009762347, y: 1.0037484, z: 0.02}
---- !u!64 &5908871177209842389
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3221288434305516375}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6246355047707865169, guid: cdcf469992fda2244b10eddef61797a2, type: 3}
 --- !u!1 &3562273231608098188
 GameObject:
   m_ObjectHideFlags: 0
@@ -1291,7 +1250,7 @@ Transform:
   - {fileID: 7368647482970483854}
   m_Father: {fileID: 5692439672645824978}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 37.74591, y: 4.338347e-15, z: 1.2690812e-14}
 --- !u!1 &4704859512328810336
 GameObject:
   m_ObjectHideFlags: 0
@@ -1597,7 +1556,7 @@ Transform:
   - {fileID: 5692439672645824978}
   m_Father: {fileID: 2500813609981776289}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -9.018269, y: 7.211874e-12, z: 2.188687e-12}
 --- !u!1 &7247789004398483979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1753,7 +1712,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9106290725647278675}
   - component: {fileID: 9106290725647278684}
-  m_Layer: 2
+  - component: {fileID: 1870254319}
+  m_Layer: 10
   m_Name: SlimeBODY_RIGGED
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1797,6 +1757,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1870254319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8443083296771127529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4767357fe84507b4792289f7d7c233b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brain: {fileID: 330280082852638697}
 --- !u!1 &8526820760348463304
 GameObject:
   m_ObjectHideFlags: 0
@@ -1828,7 +1801,7 @@ Transform:
   - {fileID: 3408979142525756824}
   m_Father: {fileID: 5692439672645824978}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 324.899, y: 2.8279656e-15, z: -8.941663e-15}
+  m_LocalEulerAnglesHint: {x: -35.101017, y: 3.643892e-15, z: -1.1521513e-14}
 --- !u!1 &8593427820272276372
 GameObject:
   m_ObjectHideFlags: 0

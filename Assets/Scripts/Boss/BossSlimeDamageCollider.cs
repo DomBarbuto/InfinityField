@@ -13,4 +13,6 @@ public class BossSlimeDamageCollider : MonoBehaviour, IDamage
         if (canDamage)
         brain.takeDamage(dmg);
     }
+
+
 }
