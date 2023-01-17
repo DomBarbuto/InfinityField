@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -16,6 +17,7 @@ public class enemyScuttlingSpecimenAI : MonoBehaviour
     
     bool playerInRange;
     int HPMAX;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +45,13 @@ public class enemyScuttlingSpecimenAI : MonoBehaviour
 
         // Move
         agent.SetDestination(gameManager.instance.player.transform.position);
-        //sfxManager.instance.aud.PlayOneShot(sfxManager.instance.explodingSpecimenMovement[Random.Range(0, sfxManager.instance.explodingSpecimenMovement.Length)], sfxManager.instance.explodingSpecimenMovementVol);
+        StartCoroutine(playSteps());
+    }
+
+    IEnumerator playSteps()
+    {
+        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.explodingSpecimenMovement[Random.Range(0, sfxManager.instance.explodingSpecimenMovement.Length)], sfxManager.instance.explodingSpecimenMovementVol);
+        yield return new WaitForSeconds(0.5f);
     }
 
     // This is triggered to cause the death animation. 

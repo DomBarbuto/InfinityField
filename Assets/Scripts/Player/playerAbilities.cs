@@ -77,41 +77,46 @@ public class playerAbilities : MonoBehaviour
                             Debug.Log("Freezing " + collider.name);
                             Rigidbody rb = collider.GetComponent<Rigidbody>();
                             rb.constraints = RigidbodyConstraints.FreezeAll;
-                            Transform parent = rb.transform;
-                            while (parent.parent != null)
-                            {
-                                parent = parent.parent;
-                            }
-                            if (parent.GetComponent<Animator>())
-                            {
-                                parent.GetComponent<Animator>().enabled = false;
-                            }
-                            if (parent.GetComponent<enemyAI>())
-                            {
-                                parent.GetComponent<enemyAI>().enabled = false;
-                            }
-                            if(parent.GetComponent<enemySlimeAI>())
-                            {
-                                parent.GetComponent<enemySlimeAI>().enabled = false;
-                            }
-                            if(parent.GetComponent<enemyHumanoidSpecimenAI>())
-                            {
-                                parent.GetComponent<enemyHumanoidSpecimenAI>().enabled = false;
-                            }
-                            if(parent.GetComponent<enemyScuttlingSpecimenAI>())
-                            {
-                                parent.GetComponent<enemyScuttlingSpecimenAI>().enabled = false;
-                            }
-                            if(parent.GetComponent<enemyRCCar>())
-                            {
-                                parent.GetComponent<enemyRCCar>().enabled = false;
-                            }
-                            if (parent.GetComponent<NavMeshAgent>())
-                            {
-                                parent.GetComponent<NavMeshAgent>().enabled = false;
-                            }
-                            StartCoroutine(unfreezeDelay(collider));
                         }
+                        else if(!collider.GetComponent<Rigidbody>())
+                        {
+                            collider.transform.position = new Vector3(collider.transform.position.x, collider.transform.position.y, collider.transform.position.z);
+                        }
+                            Transform parent = collider.transform;
+                        while (parent.parent != null)
+                        {
+                            parent = parent.parent;
+                        }
+                        if (parent.GetComponent<Animator>())
+                        {
+                            parent.GetComponent<Animator>().enabled = false;
+                        }
+                        if (parent.GetComponent<enemyAI>())
+                        {
+                            parent.GetComponent<enemyAI>().enabled = false;
+                        }
+                        if(parent.GetComponent<enemySlimeAI>())
+                        {
+                            parent.GetComponent<enemySlimeAI>().enabled = false;
+                        }
+                        if(parent.GetComponent<enemyHumanoidSpecimenAI>())
+                        {
+                            parent.GetComponent<enemyHumanoidSpecimenAI>().enabled = false;
+                        }
+                        if(parent.GetComponent<enemyScuttlingSpecimenAI>())
+                        {
+                            parent.GetComponent<enemyScuttlingSpecimenAI>().enabled = false;
+                        }
+                        if(parent.GetComponent<enemyRCCar>())
+                        {
+                            parent.GetComponent<enemyRCCar>().enabled = false;
+                        }
+                        if (parent.GetComponent<NavMeshAgent>())
+                        {
+                            parent.GetComponent<NavMeshAgent>().enabled = false;
+                        }
+                        StartCoroutine(unfreezeDelay(collider));
+                        
                     }
                 }
             }

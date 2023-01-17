@@ -52,6 +52,7 @@ public class breakableProp : MonoBehaviour, IDamage
 
         if (HP <= 0) //Checks health
         {
+            sfxManager.instance.aud.PlayOneShot(sfxManager.instance.boxBreak[Random.Range(0, sfxManager.instance.boxBreak.Length)], sfxManager.instance.boxBreakVol);
             dropCredits();
             StartCoroutine(waitToBeginScalingDown());   // Turns hasBegunScalingDown to true after timer, begins scaling down
             unBrokenProp.SetActive(false);

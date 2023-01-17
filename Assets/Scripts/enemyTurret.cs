@@ -8,18 +8,19 @@ public class enemyTurret : MonoBehaviour
     [SerializeField] Transform muzzlePoint;
     [SerializeField] GameObject projectile;
     [SerializeField] Animator anim;
-    [SerializeField] int HP;
-    public bool deployed;
 
+    [SerializeField] int HP;
+    [SerializeField] float shootSpeed;
+
+    public bool deployed;
     bool playerInRange;
 
     //temp variables for coroutine
     bool canShoot = true;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        anim.SetBool("IsIdle", true);
     }
 
     // Update is called once per frame
@@ -41,6 +42,10 @@ public class enemyTurret : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
+            deployed = true;
+            anim.SetBool("IsIdle", false);
+            anim.SetTrigger("TriggerEngage");
+
         }
     }
 
@@ -53,26 +58,19 @@ public class enemyTurret : MonoBehaviour
 
     void death()
     {
-
+        anim.enabled = true;
+        anim.SetTrigger("TriggerDeath");
     }
 
-    public void isDeployed()
+    public void animEvent_animatorOff()
     {
-        deployed = true;
+        anim.enabled = false;
     }
-
-    ////for animation event
-    //public void shoot()
-    //{
-    //    GameObject newProjectile = Instantiate(projectile, muzzlePoint, false);
-    //    newProjectile.transform.SetParent(null);
-    //}
 
     IEnumerator shoot()
     {
-        GameObject newProjectile = Instantiate(projectile, muzzlePoint, false);
-        newProjectile.transform.SetParent(null);
-        yield return new WaitForSeconds(1);
+        GameObject newProjectile = Instantiate(projectile, muzzlePoint.position, muzzlePoint.rotation, null);
+        yield return new WaitForSeconds(shootSpeed);
         canShoot = true;
     }
 }

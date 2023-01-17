@@ -78,7 +78,7 @@ public class gameManager : MonoBehaviour
     {
         // Hide reticle on start. Reticle only shows when weapon is selected
         hideReticle();
-        saveLoad.load();
+        saveLoad.loadFromMainGame();
     }
 
     void Update()

@@ -57,12 +57,19 @@ public class enemySlimeAI : MonoBehaviour
     private void Update()
     {
         anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed));
+        StartCoroutine(playSteps());
 
         if (playerInRange && isAlive)
         {
             canSeePlayer();
             inAttackRange();
         }
+    }
+
+    IEnumerator playSteps()
+    {
+        //sfxManager.instance.aud.PlayOneShot(sfxManager.instance.slimeMovement[Random.Range(0, sfxManager.instance.slimeMovement.Length)], sfxManager.instance.slimeMovementVol);
+        yield return new WaitForSeconds(5.0f);
     }
 
     #region Triggers
@@ -209,6 +216,7 @@ public class enemySlimeAI : MonoBehaviour
         {
             //agent.updatePosition = false;
             agent.speed = 0;
+            sfxManager.instance.aud.PlayOneShot(sfxManager.instance.slimeDeath[Random.Range(0, sfxManager.instance.slimeDeath.Length)], sfxManager.instance.slimeDeathVol);
             anim.SetTrigger("TriggerDeath");
         }
     }
@@ -226,6 +234,7 @@ public class enemySlimeAI : MonoBehaviour
     IEnumerator attack()
     {
         anim.SetTrigger("TriggerAttack");
+        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.slimeAttack[Random.Range(0, sfxManager.instance.slimeAttack.Length)], sfxManager.instance.slimeAttackVol);
 
         // Turn off the connection betwen agent's simulated position and transform position
         agent.updatePosition = false;   
