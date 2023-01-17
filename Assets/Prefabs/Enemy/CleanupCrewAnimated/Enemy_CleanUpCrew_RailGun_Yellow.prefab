@@ -1992,7 +1992,7 @@ GameObject:
   - component: {fileID: 6214112388248869597}
   - component: {fileID: 6214112389008699762}
   - component: {fileID: 1644157175455621445}
-  m_Layer: 6
+  m_Layer: 2
   m_Name: Enemy_CleanUpCrew_RailGun_Yellow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2007,7 +2007,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5491607752071720387}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.011, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2085,7 +2085,7 @@ MonoBehaviour:
   HP: 100
   damageFXLength: 0.2
   facePlayerSpeed: 30
-  fieldOfView: 60
+  fieldOfView: 360
   waitUntilShoot: 1
   requiredShootAngle: 5
   isRagdoll: 1

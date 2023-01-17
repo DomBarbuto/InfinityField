@@ -34,6 +34,7 @@ public class enemySpawner : MonoBehaviour
 
     public void triggerSpawn()
     {
+        if (enemies.Count < maxEnemies)
         enemies.Add(Instantiate(enemy, transform));
     }
 
