@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class buttonFunctions : MonoBehaviour
 {
+    [SerializeField] CharacterSelectionShowcase characterSelect;
     public void resume()
     {
         gameManager.instance.unPause();
@@ -59,5 +61,29 @@ public class buttonFunctions : MonoBehaviour
         }
 
     }
+    public void next()
+    {
+        if (characterSelect.characterNumber + 1 <= characterSelect.characters.Length - 1)
+        {
+            characterSelect.characterNumber += 1;
+        }
+        else
+        {
+            characterSelect.characterNumber = 0;
+        }
+        characterSelect.changeCharacter();
+    }
 
+    public void previous()
+    {
+        if (characterSelect.characterNumber - 1 >= 0)
+        {   
+            characterSelect.characterNumber = 1;
+        }   
+        else
+        {   
+            characterSelect.characterNumber = characterSelect.characters.Length - 1;
+        }
+        characterSelect.changeCharacter();
+    }
 }

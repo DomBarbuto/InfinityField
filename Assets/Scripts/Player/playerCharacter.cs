@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class playerCharacter : MonoBehaviour
 {
+    [SerializeField] public string characterName;
     [SerializeField] public float HP;
     [SerializeField] public float HPMax;
     [Range(3,8)][SerializeField] public float speed;
