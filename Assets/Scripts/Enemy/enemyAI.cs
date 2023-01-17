@@ -86,7 +86,11 @@ public class enemyAI : MonoBehaviour , IRagdollDamage
         // Store current NavMesh stopping distance as original
         origStoppingDistance = agent.stoppingDistance;
 
-        gameManager.instance.updateEnemyCount(1);
+        if(gameManager.instance != null)
+        {
+            gameManager.instance.updateEnemyCount(1);
+        }
+        
 
         if (isRagdoll)
             ragdoll.togglePhysics(false);
