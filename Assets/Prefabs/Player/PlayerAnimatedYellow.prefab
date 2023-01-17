@@ -1165,13 +1165,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52bc328a8904f7e4bb989d635fa77041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 100
-  HPMax: 100
+  characterName: 
+  HP: 200
+  HPMax: 200
   speed: 6
   energy: 100
   energyMax: 100
-  energyUseRate: 0
-  rechargable: 0
+  energyUseRate: 3
+  rechargable: 1
   criticalChance: 0
   passiveTickRate: 0
   perks: []
