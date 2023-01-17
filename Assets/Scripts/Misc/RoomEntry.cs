@@ -5,6 +5,17 @@ using UnityEngine;
 public class RoomEntry : MonoBehaviour
 {
     [SerializeField] List<RoomEntryListener> listeners;
+    [SerializeField] bool hasEntered;
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(!hasEntered)
+        {
+            hasEntered = true;
+            playerEnterRoom();
+        }
+    }
 
     public void playerEnterRoom()
     {

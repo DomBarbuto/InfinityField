@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class RoomEntryListener : MonoBehaviour, IRoomEntryListener 
 {
+    [SerializeField] BossSlimeInfusedMech brain;
+
     public void notify()
     {
-        Debug.LogError(gameObject.name);
+        brain.notify();
     }
 }

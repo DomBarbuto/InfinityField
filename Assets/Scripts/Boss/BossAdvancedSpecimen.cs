@@ -83,7 +83,6 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
         if (startsFromRoomEntry)
             return;
 
-
         if(other.CompareTag("Player"))
         {
             Debug.Log("In trigger enter");
@@ -261,7 +260,6 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
     {
         // Explosion object/particle
         GameObject explosion = Instantiate(explosionOBJ, transform.position + new Vector3(0, 1, 0), transform.rotation);
-        explosion.transform.SetParent(null);
         Destroy(explosion, 10);
 
         // Destroy boss
