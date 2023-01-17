@@ -62,6 +62,16 @@ public class sfxManager : MonoBehaviour
     [SerializeField] public AudioClip[] explodingSpecimenExplode;
     [Range(0, 1)][SerializeField] public float explodingSpecimenExplodeVol;
 
+    [Header("---------- Exploding Specimen Audio ----------")]
+    [SerializeField] public AudioClip[] slimeAlert;
+    [Range(0, 1)][SerializeField] public float slimeAlertVol;
+    [SerializeField] public AudioClip[] slimeAttack;
+    [Range(0, 1)][SerializeField] public float slimeAttackVol;
+    [SerializeField] public AudioClip[] slimeDeath;
+    [Range(0, 1)][SerializeField] public float slimeDeathVol;
+    [SerializeField] public AudioClip[] slimeMovement;
+    [Range(0, 1)][SerializeField] public float slimeMovementVol;
+
     // ------------------------------------------- Boss -------------------------------------------------------------
     [Header("---------- Exploding Specimen Audio ----------")]
     [SerializeField] public AudioClip slimeMechDeath;
