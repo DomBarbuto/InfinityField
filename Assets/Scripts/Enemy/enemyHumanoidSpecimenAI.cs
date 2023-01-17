@@ -38,6 +38,7 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
     public bool playerInRange;
     int HPMAX;
     Vector3 playerDir;
+    bool alertPlayed;
     float angleToPlayer;
     float signedAngleToPlayer;
     float origStoppingDistance;
@@ -101,12 +102,19 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
                 // If player is within field of view
                 if (angleToPlayer <= fieldOfView)
                 {
-                    isPlayerDetected = true;facePlayer();
+                    if (!alertPlayed)
+                    {
+                        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.humanoidSpecimenAlert[Random.Range(0, sfxManager.instance.humanoidSpecimenAlert.Length)], sfxManager.instance.humanoidSpecimenAlertVol);
+                        alertPlayed = true;
+                    }
+                    isPlayerDetected = true;
+                    facePlayer();
                     agent.SetDestination(gameManager.instance.player.transform.position);
                 }
                 else
                 {
                     isPlayerDetected = false;
+                    alertPlayed = false;
                 }
             }
 
@@ -154,7 +162,7 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
     public void takeDamage(int dmg)
     {
         HP -= dmg;
-
+        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.humanoidSpecimenHurt[Random.Range(0, sfxManager.instance.humanoidSpecimenHurt.Length)], sfxManager.instance.humanoidSpecimenHurtVol);
         // Animation Hit Reaction
         anim.SetTrigger("HitReaction");
 
@@ -191,6 +199,7 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
             
         }
 
+        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.humanoidSpecimenAttack[Random.Range(0, sfxManager.instance.humanoidSpecimenAttack.Length)], sfxManager.instance.humanoidSpecimenAttackVol);
         yield return new WaitForSeconds(hitAnimLength);
         agent.speed = origSpeed;
         isAttacking = false;
