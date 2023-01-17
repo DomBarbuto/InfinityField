@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5438596841477461699
+--- !u!1 &4205022428598530271
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,11 +8,66 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5438596841477461698}
-  - component: {fileID: 5438596841477461694}
-  - component: {fileID: 5438596841477461695}
-  - component: {fileID: 5438596841477461696}
-  - component: {fileID: 5438596841477461697}
+  - component: {fileID: 4205022428598530270}
+  - component: {fileID: 8152353831373587210}
+  m_Layer: 0
+  m_Name: 2 Door Fixed
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4205022428598530270
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4205022428598530271}
+  m_LocalRotation: {x: -0, y: -0.70710653, z: -0, w: 0.70710707}
+  m_LocalPosition: {x: 70, y: 0.0625, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4205022429142218918}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &8152353831373587210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4205022428598530271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64288152facbe1c49808c9fc2990e99b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entrance: {fileID: 4205022428598530270}
+  exits:
+  - {fileID: 4205022429646346224}
+  roomEntry: {fileID: 0}
+  parentGeneration: {fileID: 0}
+  Generation: {fileID: 0}
+  testing: 0
+  OnEnter:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!1 &4205022429142218919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4205022429142218918}
+  - component: {fileID: 4205022429142218970}
+  - component: {fileID: 4205022429142218971}
+  - component: {fileID: 4205022429142218916}
+  - component: {fileID: 4205022429142218917}
   m_Layer: 0
   m_Name: 10x10 Lounge - 2 Door Room Base (2)
   m_TagString: Untagged
@@ -20,29 +75,29 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5438596841477461698
+--- !u!4 &4205022429142218918
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5438596841477461699}
-  m_LocalRotation: {x: -0, y: -0.70710677, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.00000047683716, y: 0, z: -5}
+  m_GameObject: {fileID: 4205022429142218919}
+  m_LocalRotation: {x: -0, y: 0.70710653, z: -0, w: 0.70710707}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5438596841578953108}
-  m_Father: {fileID: 5438596842007518906}
+  - {fileID: 4205022429646346224}
+  m_Father: {fileID: 4205022428598530270}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -0, y: 270, z: 0}
---- !u!114 &5438596841477461694
+  m_LocalEulerAnglesHint: {x: -0, y: 89.999954, z: -0}
+--- !u!114 &4205022429142218970
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5438596841477461699}
+  m_GameObject: {fileID: 4205022429142218919}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1508455596, guid: 18036820e4eaef34a9ef9afc1a245ef1, type: 3}
@@ -22458,28 +22513,28 @@ MonoBehaviour:
   serializedGuid: 
   assetPath: 
   isInvisibleObject: 0
-  mainRenderableMesh: {fileID: 1178987582693454860}
+  mainRenderableMesh: {fileID: 8407231431175927365}
   hotspotLayout: {fileID: 0}
   hotspotScale: 1
   hotspotPadding: 0
   hotspotPriority: 0.5
   autoHotspotLayout: 0
   hotspotGroup: 0
---- !u!33 &5438596841477461695
+--- !u!33 &4205022429142218971
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5438596841477461699}
-  m_Mesh: {fileID: 1178987582693454860}
---- !u!23 &5438596841477461696
+  m_GameObject: {fileID: 4205022429142218919}
+  m_Mesh: {fileID: 8407231431175927365}
+--- !u!23 &4205022429142218916
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5438596841477461699}
+  m_GameObject: {fileID: 4205022429142218919}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -22518,21 +22573,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5438596841477461697
+--- !u!64 &4205022429142218917
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5438596841477461699}
+  m_GameObject: {fileID: 4205022429142218919}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1178987582693454860}
---- !u!1 &5438596841578953109
+  m_Mesh: {fileID: 8407231431175927365}
+--- !u!1 &4205022429646346225
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -22540,7 +22595,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5438596841578953108}
+  - component: {fileID: 4205022429646346224}
   m_Layer: 0
   m_Name: ExitDoor
   m_TagString: Untagged
@@ -22548,60 +22603,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5438596841578953108
+--- !u!4 &4205022429646346224
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5438596841578953109}
-  m_LocalRotation: {x: -0, y: 0.7071066, z: -0, w: 0.707107}
+  m_GameObject: {fileID: 4205022429646346225}
+  m_LocalRotation: {x: -0, y: -0.707107, z: -0, w: 0.7071066}
   m_LocalPosition: {x: -5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5438596841477461698}
+  m_Father: {fileID: 4205022429142218918}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!1 &5438596842007518907
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5438596842007518906}
-  m_Layer: 0
-  m_Name: 2 Door Room (Utility)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5438596842007518906
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5438596842007518907}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 70, y: 0.0625, z: 5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5438596841477461698}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!43 &1178987582693454860
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!43 &8407231431175927365
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: um_65526
+  m_Name: um_68730
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

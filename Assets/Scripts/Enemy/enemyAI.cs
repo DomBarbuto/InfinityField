@@ -27,6 +27,8 @@ public class enemyAI : MonoBehaviour , IRagdollDamage
     public int creditsHeld;                 // How many credits the enemy sends over to collectable on death
     [SerializeField] Vector3 pushBack;
     [SerializeField] float pushBackTime;
+    [SerializeField] int alertSoundType;
+    [SerializeField] int hurtSoundType;
 
     [Header("---- Weapon Stats ----")]
     [SerializeField] GameObject projectile;
@@ -145,8 +147,7 @@ public class enemyAI : MonoBehaviour , IRagdollDamage
                 //Plays alert sound once when player is spotted
                 if(!alertPlayed)
                 {
-
-                    sfxManager.instance.aud.PlayOneShot(sfxManager.instance.enemyAlert[Random.Range(0, sfxManager.instance.enemyAlert.Length)], sfxManager.instance.enemyAlertVol);
+                    pickAlertSound();
                     alertPlayed = true;
                 }
 
@@ -191,6 +192,27 @@ public class enemyAI : MonoBehaviour , IRagdollDamage
         }
     }
 
+    void pickAlertSound()
+    {
+        switch (alertSoundType)
+        {
+            case 0:
+                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.redCCAlert[Random.Range(0, sfxManager.instance.redCCAlert.Length)], sfxManager.instance.redCCAlertVol);
+                break;
+            case 1:
+                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.whiteCCAlert[Random.Range(0, sfxManager.instance.whiteCCAlert.Length)], sfxManager.instance.whiteCCAlertVol);
+                break;
+            case 2:
+                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.yellowCCAlert[Random.Range(0, sfxManager.instance.yellowCCAlert.Length)], sfxManager.instance.yellowCCAlertVol);
+                break;
+            case 3:
+                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.blackCCAlert[Random.Range(0, sfxManager.instance.blackCCAlert.Length)], sfxManager.instance.blackCCAlertVol);
+                break;
+            default:
+                break;
+        }
+    }
+
     void facePlayer() 
     {
         // Ignore the players direction's y-component
@@ -217,7 +239,7 @@ public class enemyAI : MonoBehaviour , IRagdollDamage
         int playCheck = Random.Range(0, 2);
         if(playCheck == 0)
         {
-            sfxManager.instance.aud.PlayOneShot(sfxManager.instance.enemyHurt[Random.Range(0, sfxManager.instance.enemyHurt.Length)], sfxManager.instance.enemyHurtVol);
+            pickHurtSound();
         }
        
         // Start moving to where enemy was shot from
@@ -240,6 +262,27 @@ public class enemyAI : MonoBehaviour , IRagdollDamage
             }
             else
                 Destroy(gameObject);
+        }
+    }
+
+    void pickHurtSound()
+    {
+        switch (hurtSoundType)
+        {
+            case 0:
+                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.redCCHurt[Random.Range(0, sfxManager.instance.redCCHurt.Length)], sfxManager.instance.redCCHurtVol);
+                break;
+            case 1:
+                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.whiteCCHurt[Random.Range(0, sfxManager.instance.whiteCCHurt.Length)], sfxManager.instance.whiteCCHurtVol);
+                break;
+            case 2:
+                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.yellowCCHurt[Random.Range(0, sfxManager.instance.yellowCCHurt.Length)], sfxManager.instance.yellowCCHurtVol);
+                break;
+            case 3:
+                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.blackCCHurt[Random.Range(0, sfxManager.instance.blackCCHurt.Length)], sfxManager.instance.blackCCHurtVol);
+                break;
+            default:
+                break;
         }
     }
 

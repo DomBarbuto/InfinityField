@@ -22,11 +22,45 @@ public class sfxManager : MonoBehaviour
     [SerializeField] public AudioClip[] ricochetSound;
     [Range(0, 1)][SerializeField] public float ricochetSoundVol;
 
-    [Header("---------- Enemy Audio ----------")]
-    [SerializeField] public AudioClip[] enemyHurt;
-    [Range(0, 1)][SerializeField] public float enemyHurtVol;
-    [SerializeField] public AudioClip[] enemyAlert;
-    [Range(0, 1)][SerializeField] public float enemyAlertVol;
+    [Header("---------- RedCC Audio ----------")]
+    [SerializeField] public AudioClip[] redCCAlert;
+    [Range(0, 1)][SerializeField] public float redCCAlertVol;
+    [SerializeField] public AudioClip[] redCCHurt;
+    [Range(0, 1)][SerializeField] public float redCCHurtVol;
+
+    [Header("---------- YellowCC Audio ----------")]
+    [SerializeField] public AudioClip[] yellowCCAlert;
+    [Range(0, 1)][SerializeField] public float yellowCCAlertVol;
+    [SerializeField] public AudioClip[] yellowCCHurt;
+    [Range(0, 1)][SerializeField] public float yellowCCHurtVol;
+    
+    [Header("---------- WhiteCC Audio ----------")]
+    [SerializeField] public AudioClip[] whiteCCAlert;
+    [Range(0, 1)][SerializeField] public float whiteCCAlertVol;
+    [SerializeField] public AudioClip[] whiteCCHurt;
+    [Range(0, 1)][SerializeField] public float whiteCCHurtVol;
+
+    [Header("---------- BlackCC Audio ----------")]
+    [SerializeField] public AudioClip[] blackCCAlert;
+    [Range(0, 1)][SerializeField] public float blackCCAlertVol;
+    [SerializeField] public AudioClip[] blackCCHurt;
+    [Range(0, 1)][SerializeField] public float blackCCHurtVol;
+
+    [Header("---------- Humanoid Specimen Audio ----------")]
+    [SerializeField] public AudioClip[] humanoidSpecimenAlert;
+    [Range(0, 1)][SerializeField] public float humanoidSpecimenAlertVol;
+    [SerializeField] public AudioClip[] humanoidSpecimenAttack;
+    [Range(0, 1)][SerializeField] public float humanoidSpecimenAttackVol;
+    [SerializeField] public AudioClip[] humanoidSpecimenHurt;
+    [Range(0, 1)][SerializeField] public float humanoidSpecimenHurtVol;
+
+    [Header("---------- Exploding Specimen Audio ----------")]
+    [SerializeField] public AudioClip[] explodingSpecimenHiss;
+    [Range(0, 1)][SerializeField] public float explodingSpecimenHissVol;
+    [SerializeField] public AudioClip[] explodingSpecimenMovement;
+    [Range(0, 1)][SerializeField] public float explodingSpecimenMovementVol;
+    [SerializeField] public AudioClip[] explodingSpecimenExplode;
+    [Range(0, 1)][SerializeField] public float explodingSpecimenExplodeVol;
 
     [Header("---------- Pistol Audio ----------")]
     public AudioClip[] pistolShootSound;
@@ -66,6 +100,7 @@ public class sfxManager : MonoBehaviour
     public AudioClip[] arcgunPickupSound;
     [Range(0, 1)] public float arcgunPickupVol;
     public AudioClip[] arcgunEmptySound;
+    [Range(0, 1)] public float arcgunEmptyVol;
 
     [Header("---------- RailGun Audio ----------")]
     public AudioClip[] railgunShootSound;
@@ -75,6 +110,9 @@ public class sfxManager : MonoBehaviour
     public AudioClip[] railgunPickupSound;
     [Range(0, 1)] public float railgunPickupVol;
     public AudioClip[] railgunEmptySound;
+    [Range(0, 1)] public float railgunEmptyVol;
+    public AudioClip[] railgunChargeSound;
+    [Range(0, 1)] public float railgunChargeVol;
 
     private void Awake()
     {

@@ -1,4 +1,4 @@
-/*using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
 public class proceduralGeneration : MonoBehaviour
@@ -7,7 +7,7 @@ public class proceduralGeneration : MonoBehaviour
     [SerializeField] public GameObject bossRoom;
     [SerializeField] public int maxRooms = 10;
     [SerializeField] public GameObject startingRoom;
-    private GameObject currentRoom;
+    public GameObject currentRoom;
     private int roomCount;
     private bool bossSpawned = false;
     private List<GameObject> spawnedRooms = new List<GameObject>();
@@ -16,55 +16,57 @@ public class proceduralGeneration : MonoBehaviour
     {
         roomCount = 1;
         currentRoom = Instantiate(startingRoom, transform.position, Quaternion.identity);
-        currentRoom.GetComponent<Room>().OnExit.AddListener(SpawnRoom);
-        currentRoom.GetComponent<Room>().OnExit.AddListener(DestroyRoom);
-        currentRoom.GetComponent<Room>().OnEnter.AddListener(MakeCurrentRoom);
+
+        if(currentRoom.GetComponent<room>().OnEnter != null)
+        {
+            currentRoom.GetComponent<room>().OnEnter.AddListener(SpawnRoom);
+            currentRoom.GetComponent<room>().OnEnter.AddListener(DestroyRoom);
+        }
         spawnedRooms.Add(currentRoom);
     }
 
-    private void SpawnRoom()
+    public void SpawnRoom()
     {
         if (!bossSpawned)
         {
             if (roomCount >= maxRooms)
             {
-                SpawnBossRoom();
-                bossSpawned = true;
+                if(bossRoom != null)
+                {
+                    SpawnBossRoom();
+                    bossSpawned = true;
+                }
+                
                 return;
             }
             else
             {
                 roomCount++;
-                GameObject[] exits = currentRoom.GetComponent<Room>().exits;
-                for (int i = 0; i < exits.Length; i++)
+                foreach(Transform exit in currentRoom.GetComponent<room>().exits)
                 {
-                    GameObject exit = exits[i];
+                    Transform currExit = exit;
                     int rand = Random.Range(0, rooms.Length);
-                    GameObject newRoom = Instantiate(rooms[rand], exit.transform.position + roomOffset, Quaternion.identity);  //Add in the change for roomOffset for the room that is being instantiated
-                    newRoom.GetComponent<Room>().OnExit.AddListener(SpawnRoom);
-                    newRoom.GetComponent<Room>().OnEnter.AddListener(MakeCurrentRoom);
-                    newRoom.GetComponent<Room>().OnEnter.AddListener(DestroyRoom);
-                    Vector3 newEntrance = newRoom.GetComponent<Room>().entrance.transform.position;
-                    Vector3 exitPos = exit.transform.position;
-                    Quaternion newRoomRotation = Quaternion.FromToRotation(newEntrance - exitPos, exitPos - newEntrance);
-                    newRoom.transform.rotation = newRoomRotation;
+                    Quaternion newRoomRotation = currentRoom.transform.rotation;
+                    GameObject newRoom = Instantiate(rooms[rand], currExit.transform.position, newRoomRotation);  //Add in the change for roomOffset for the room that is being instantiated
+                    newRoom.GetComponent<room>().OnEnter.AddListener(MakeCurrentRoom);
+                    newRoom.GetComponent<room>().OnEnter.AddListener(SpawnRoom);
+                    newRoom.GetComponent<room>().OnEnter.AddListener(DestroyRoom);
                     spawnedRooms.Add(newRoom);
                 }
             }
         }
     }
-    private void MakeCurrentRoom()
+    public void MakeCurrentRoom()
     {
         currentRoom = this.gameObject;
     }
 
     private void SpawnBossRoom()
     {
-        GameObject[] exits = currentRoom.GetComponent<Room>().exits;
-        for (int i = 0; i < exits.Length; i++)
+        foreach (Transform exit in currentRoom.GetComponent<room>().exits)
         {
-            GameObject exit = exits[i];
-            Vector3 newRoomPosition = exit.transform.position + roomOffset;
+            Transform currExit = exit;
+            Vector3 newRoomPosition = currExit.transform.position + roomOffset;
             GameObject newBossRoom = Instantiate(bossRoom, newRoomPosition, Quaternion.identity);
         }
     }
@@ -81,4 +83,4 @@ public class proceduralGeneration : MonoBehaviour
         //Add the current room to the list
         spawnedRooms.Add(currentRoom);
     }
-}*/
+}

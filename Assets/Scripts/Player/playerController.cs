@@ -72,6 +72,7 @@ public class playerController : MonoBehaviour
     float MAXHP;      //Player's maximum health
     float MAXEnergy;  //Player's maximum energy
     float lastUpdate;
+    bool hasChargePlayed = false;
 
 
     Vector3 playerVelocity;
@@ -264,6 +265,10 @@ public class playerController : MonoBehaviour
 
                     if (Input.GetButton("Fire1") && hasFired == false)
                     {
+                        if (!hasChargePlayed)
+                        {
+                            //sfxManager.instance.aud.PlayOneShot(sfxManager.instance.railgunChargeSound[Random.Range(0, sfxManager.instance.railgunChargeSound.Length)], sfxManager.instance.railgunChargeVol);
+                        }
                         if (characterList[currCharacter].ability != 1)
                         {
                             if (Time.time - lastUpdate >= 0.25f)
