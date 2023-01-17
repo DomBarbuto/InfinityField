@@ -90,6 +90,22 @@ public class playerAbilities : MonoBehaviour
                             {
                                 parent.GetComponent<enemyAI>().enabled = false;
                             }
+                            if(parent.GetComponent<enemySlimeAI>())
+                            {
+                                parent.GetComponent<enemySlimeAI>().enabled = false;
+                            }
+                            if(parent.GetComponent<enemyHumanoidSpecimenAI>())
+                            {
+                                parent.GetComponent<enemyHumanoidSpecimenAI>().enabled = false;
+                            }
+                            if(parent.GetComponent<enemyScuttlingSpecimenAI>())
+                            {
+                                parent.GetComponent<enemyScuttlingSpecimenAI>().enabled = false;
+                            }
+                            if(parent.GetComponent<enemyRCCar>())
+                            {
+                                parent.GetComponent<enemyRCCar>().enabled = false;
+                            }
                             if (parent.GetComponent<NavMeshAgent>())
                             {
                                 parent.GetComponent<NavMeshAgent>().enabled = false;
@@ -121,6 +137,22 @@ public class playerAbilities : MonoBehaviour
         if (parent.GetComponent<enemyAI>())
         {
             parent.GetComponent<enemyAI>().enabled = true;
+        }
+        if (parent.GetComponent<enemySlimeAI>())
+        {
+            parent.GetComponent<enemySlimeAI>().enabled = true;
+        }
+        if (parent.GetComponent<enemyHumanoidSpecimenAI>())
+        {
+            parent.GetComponent<enemyHumanoidSpecimenAI>().enabled = true;
+        }
+        if (parent.GetComponent<enemyScuttlingSpecimenAI>())
+        {
+            parent.GetComponent<enemyScuttlingSpecimenAI>().enabled = true;
+        }
+        if (parent.GetComponent<enemyRCCar>())
+        {
+            parent.GetComponent<enemyRCCar>().enabled = true;
         }
         if (parent.GetComponent<NavMeshAgent>())
         {
