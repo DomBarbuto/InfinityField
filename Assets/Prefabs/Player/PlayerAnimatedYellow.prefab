@@ -877,7 +877,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1213045241389617702
 Transform:
   m_ObjectHideFlags: 0
@@ -980,6 +980,7 @@ MonoBehaviour:
   - {fileID: 4365619631860112921}
   currentMuzzlePoint: {fileID: 0}
   rayDistance: 2
+  RocketManExplosion: {fileID: 0}
   isReloading: 0
   move: {x: 0, y: 0, z: 0}
 --- !u!143 &1213045241389617697
@@ -1171,6 +1172,9 @@ MonoBehaviour:
   energyMax: 100
   energyUseRate: 0
   rechargable: 0
+  criticalChance: 0
+  passiveTickRate: 0
+  perks: []
   isUsingAbility: 0
   currSpeed: 0
   ability: 0

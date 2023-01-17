@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossSlimeInfusedMech : MonoBehaviour
 {
     [Header("Components")]
-    [SerializeField] BossHealthBar healthBarPrefab;
+    [SerializeField] GameObject healthBarPrefab;
     [SerializeField] Animator anim;
     [SerializeField] Animator slimeBodyAnim;
     [SerializeField] GameObject[] slimeDroppingPrefabs;
@@ -27,6 +27,7 @@ public class BossSlimeInfusedMech : MonoBehaviour
     [Header("Behaviour")]
     public bool startStateMachine;
 
+    BossHealthBar bossHPBarScript;
     float MAXHP;
     public int state;
     Vector3 playerDir;
@@ -36,7 +37,9 @@ public class BossSlimeInfusedMech : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        bossHPBarScript = healthBarPrefab.GetComponent<BossHealthBar>();
         MAXHP = HP;
+        healthBarPrefab.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -52,7 +55,7 @@ public class BossSlimeInfusedMech : MonoBehaviour
     public void notify()
     {
         //Make health bar appear
-
+        healthBarPrefab.SetActive(true);
 
         startStateMachine = true;
         advanceState();
@@ -71,7 +74,12 @@ public class BossSlimeInfusedMech : MonoBehaviour
 
     public void takeDamage(int dmg)
     {
+        float prevHealth = HP;
+
         HP -= dmg;
+
+        // Update health bar
+        bossHPBarScript.updateHealthFillAmount(prevHealth, HP);
 
         if (state < 4)
         {
@@ -81,34 +89,40 @@ public class BossSlimeInfusedMech : MonoBehaviour
                 advanceState();
             }
         }
-
-
-        //TODO: Update health bar
     }
 
     private void advanceState()
     {
         state++;
-        HP = MAXHP;
+
+        // Only do this when going into state 2 and 3 
+        if(state == 2 || state == 3)
+        {
+            // Refill health and health bar
+            HP = MAXHP;
+            StartCoroutine(bossHPBarScript.refillHealthBar());
+        }
 
         Debug.Log("NEW STATE OF " + state);
 
         //Trigger UI update
         switch (state)
         {
-            //Refill health bar
-
             case 1:
-                //Make UI show that we are in 1st state
+                // This is already set on start, don't put anytihng here
                 break;
             case 2:
                 //Make UI show that we are in 2nd state
+                bossHPBarScript.turnOffState(1);
                 break;
             case 3:
                 //Make UI show that we are in 3rd state
+                bossHPBarScript.turnOffState(2);
                 break;
             case 4:
-                //Make Boss health disappear
+                // Turn off 3rd state UI and Make Boss health disappear
+                bossHPBarScript.turnOffState(3);
+                bossHPBarScript.destroyHealthBar();
                 break;
 
         }

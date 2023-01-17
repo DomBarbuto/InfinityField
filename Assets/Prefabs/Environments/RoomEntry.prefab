@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5073867109452736875}
   - component: {fileID: 3258812770469544010}
   - component: {fileID: 2734120650582629309}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RoomEntry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c0b42eb09ec07240bea051fcb4e4cf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listeners: []
+  listeners:
+  - {fileID: 0}
   hasEntered: 0
 --- !u!65 &2734120650582629309
 BoxCollider:
@@ -55,8 +56,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5292186170938725395}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 10.6, y: 3, z: 10.92}
   m_Center: {x: 0, y: 0, z: 0}
