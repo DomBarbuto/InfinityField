@@ -7,9 +7,16 @@ public class mainMenuButtonFunctions : MonoBehaviour
 {
     [SerializeField] GameObject mainMenuObject;
     [SerializeField] GameObject optionsMenuObject;
+    [SerializeField] GameObject controlsMenuObject;
     [SerializeField] GameObject creditsMenuObject;
+    [SerializeField] GameObject observationsMenuObject;
+    private void Start()
+    {
+        saveLoad.loadFromMainGame();
+    }
 
 
+    // Options
     public void pullUpOptionsMenu()
     {
         // Turn off main menu
@@ -22,17 +29,64 @@ public class mainMenuButtonFunctions : MonoBehaviour
         // Turn off options menu
         optionsMenuObject.SetActive(false);
         mainMenuObject.SetActive(true);
-        saveLoad.save();
+        saveLoad.saveFromMainMenuOptions();
 
     }
 
-    /*public void pullUpCreditsMenu()
+    // Controls
+    public void pullUpControlsMenu()
     {
         // Turn off main menu
         mainMenuObject.SetActive(false);
+        controlsMenuObject.SetActive(true);
+    }
 
-        gameManager.instance.SetActiveMenu(gameManager.UIMENUS.optionsMenu);
-    }*/
+    public void returnFromControlsMenu()
+    {
+        // Turn off controls menu
+        controlsMenuObject.SetActive(false);
+        mainMenuObject.SetActive(true);
+    }
+
+    // Observations
+
+    public void pullUpObservationsMenu()
+    {
+        // Turn off main menu
+        mainMenuObject.SetActive(false);
+        observationsMenuObject.SetActive(true);
+    }
+
+    public void returnFromObservationsMenu()
+    {
+        // Turn off controls menu
+        observationsMenuObject.SetActive(false);
+        mainMenuObject.SetActive(true);
+    }
+
+    public void leftObservationBUtton()
+    {
+
+    }
+
+    public void rightObservationButton()
+    {
+
+    }
+
+    // Credits
+    public void pullUpCreditsMenu()
+    {
+        // Turn off main menu
+        mainMenuObject.SetActive(false);
+        creditsMenuObject.SetActive(true);
+    }
+
+    public void returnFromCreditsMenu()
+    {
+        creditsMenuObject.SetActive(false);
+        mainMenuObject.SetActive(true);
+    }
 
     public void LoadNextLevel()
     {
@@ -41,7 +95,7 @@ public class mainMenuButtonFunctions : MonoBehaviour
 
     public void quit()
     {
-        saveLoad.save();
+        saveLoad.saveFromMainMenuOptions();
         Application.Quit();
     }
 }
