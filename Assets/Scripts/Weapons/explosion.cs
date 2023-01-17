@@ -12,6 +12,7 @@ public class explosion : MonoBehaviour
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] explosionSound;
     [Range(0, 1)][SerializeField] float explosionVol;
+    [SerializeField] bool isRocketMan;
 
     public bool cameFromPlayer;
     [SerializeField] bool canDamagePlayer = true;
@@ -60,7 +61,7 @@ public class explosion : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             // Apply different damage if came from enemy
-            if (!cameFromPlayer && canDamagePlayer)
+            if (!cameFromPlayer && canDamagePlayer && !isRocketMan)
             {
                 StartCoroutine(givePlayerDamage());
 

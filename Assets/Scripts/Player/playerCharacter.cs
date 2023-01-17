@@ -11,10 +11,52 @@ public class playerCharacter : MonoBehaviour
     [SerializeField] public float energyMax;
     [SerializeField] public float energyUseRate;
     [SerializeField] public bool rechargable;
-
+    [SerializeField] public float criticalChance;
+    [SerializeField] public float passiveTickRate;           //This value should always be default 1;
+    [SerializeField] public List<perkList> perks = new List<perkList>();
     public bool isUsingAbility = false;
     public float currSpeed;
-    //[SerializeField] //will contain animation and model
-    //[SerializeField] //will contain animation and model
     [SerializeField] public int ability;
+
+    public IEnumerator callPerkOnUpdate()
+    {
+        foreach(perkList _perk in perks)
+        {
+            _perk.perk.update(gameManager.instance.playerController, _perk.rarity);
+        }
+        yield return new WaitForSeconds(passiveTickRate);
+        StartCoroutine(callPerkOnUpdate());
+    }
+
+    public void callIPerkOnHit(IDamage enemy)
+    {
+        foreach(perkList _perk in perks)
+        {
+            _perk.perk.onHit(gameManager.instance.playerController, enemy, _perk.rarity);
+        }
+    }
+
+    public void callItemOnDeathEnemy(IDamage enemy)
+    {
+        foreach (perkList _perk in perks)
+        {
+            _perk.perk.onDeathEnemy(gameManager.instance.playerController, enemy, _perk.rarity);
+        }
+    }
+
+    public void callPerkOnUseAbility()
+    {
+        foreach (perkList _perk in perks)
+        {
+            _perk.perk.onUseAbility(gameManager.instance.playerController, _perk.rarity);
+        }
+    }
+
+    public void callItemOnJump()
+    {
+        foreach (perkList _perk in perks)
+        {
+            _perk.perk.onJump(gameManager.instance.playerController, _perk.rarity);
+        }
+    }
 }
