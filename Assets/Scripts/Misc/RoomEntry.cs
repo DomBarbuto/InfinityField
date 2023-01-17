@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoomEntry : MonoBehaviour
 {
-    [SerializeField] List<RoomEntryListener> listeners;
+    [SerializeField] List<GameObject> listeners;
     [SerializeField] bool hasEntered;
 
 
@@ -21,7 +21,7 @@ public class RoomEntry : MonoBehaviour
     {
         for (int i = 0; i < listeners.Count; i++)
         {
-            listeners[i].notify();
+            listeners[i].GetComponent<IRoomEntryListener>().notify();
         }
     }
 

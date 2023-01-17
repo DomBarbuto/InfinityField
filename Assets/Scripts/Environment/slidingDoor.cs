@@ -8,7 +8,6 @@ public class slidingDoor : MonoBehaviour, IInteractable
     [SerializeField] float doorSpeed;
     [SerializeField] AudioSource aud;
     [SerializeField] Transform startPos;
-    [SerializeField]RoomEntry roomEntry;
     [SerializeField] GameObject interactCanvas;
 
     bool openDoor = false;
@@ -25,12 +24,12 @@ public class slidingDoor : MonoBehaviour, IInteractable
         if (!openDoor)
         {
             StartCoroutine(MoveDoor(endPos.position));
-            roomEntry.playerEnterRoom();
         }
         else
         {
             StartCoroutine(MoveDoor(startPos.position));
         }
+       
         openDoor = !openDoor;
     }
     IEnumerator MoveDoor(Vector3 targetPosition)
@@ -71,7 +70,7 @@ public class slidingDoor : MonoBehaviour, IInteractable
         aud.Play();
         OperateDoor();
         HideText();
-        Debug.LogError("canvas false");
+       
     }
 
     public void showText()

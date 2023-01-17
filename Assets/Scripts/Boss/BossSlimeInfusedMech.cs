@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossSlimeInfusedMech : MonoBehaviour
+public class BossSlimeInfusedMech : MonoBehaviour, IRoomEntryListener
 {
     [Header("Components")]
     [SerializeField] GameObject healthBarPrefab;
@@ -25,6 +25,7 @@ public class BossSlimeInfusedMech : MonoBehaviour
     [SerializeField] Transform headPos;
     [SerializeField] float damageFXLength;
     [SerializeField] float introAnimationDuration;
+    [SerializeField] enemySpawnSystem spawnSystem;
 
     [Header("Behaviour")]
     public bool startStateMachine;
@@ -210,6 +211,7 @@ public class BossSlimeInfusedMech : MonoBehaviour
                 shooting = false;
                 attackState = false;
                 StopAllCoroutines();
+                spawnSystem.setAllContinuous(false);
                 slimeBodyAnim.SetTrigger("TriggerDeath");
 
                 break;
