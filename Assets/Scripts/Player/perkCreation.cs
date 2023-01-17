@@ -131,7 +131,7 @@ public class RocketMan : perkCreation
                     Instantiate(explosionObject, explosion, gameManager.instance.playerController.transform.rotation);
                 }
             }
-            internalCooldown = 10;
+            internalCooldown = 10 - (1.5f * (int)rarity);
         }
         
     }
