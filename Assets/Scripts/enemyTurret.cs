@@ -59,7 +59,10 @@ public class enemyTurret : MonoBehaviour
     void death()
     {
         anim.enabled = true;
+        canShoot = false;
+        playerInRange = false;
         anim.SetTrigger("TriggerDeath");
+        StartCoroutine(timeToDestroy());
     }
 
     public void animEvent_animatorOff()
@@ -72,5 +75,11 @@ public class enemyTurret : MonoBehaviour
         GameObject newProjectile = Instantiate(projectile, muzzlePoint.position, muzzlePoint.rotation, null);
         yield return new WaitForSeconds(shootSpeed);
         canShoot = true;
+    }
+
+    IEnumerator timeToDestroy()
+    {
+        yield return new WaitForSeconds(5f);
+        Destroy(gameObject);
     }
 }
