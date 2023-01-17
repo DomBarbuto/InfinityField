@@ -67,6 +67,7 @@ public class playerAbilities : MonoBehaviour
             {
                 Collider[] objects = Physics.OverlapSphere(hit.point, 5);
 
+
                 foreach(Collider collider in objects)
                 {
                     if(collider.tag != "Player")
@@ -76,21 +77,25 @@ public class playerAbilities : MonoBehaviour
                             Debug.Log("Freezing " + collider.name);
                             Rigidbody rb = collider.GetComponent<Rigidbody>();
                             rb.constraints = RigidbodyConstraints.FreezeAll;
-
+                            Transform parent = rb.transform;
+                            while (parent.parent != null)
+                            {
+                                parent = parent.parent;
+                            }
+                            if (parent.GetComponent<Animator>())
+                            {
+                                parent.GetComponent<Animator>().enabled = false;
+                            }
+                            if (parent.GetComponent<enemyAI>())
+                            {
+                                parent.GetComponent<enemyAI>().enabled = false;
+                            }
+                            if (parent.GetComponent<NavMeshAgent>())
+                            {
+                                parent.GetComponent<NavMeshAgent>().enabled = false;
+                            }
+                            StartCoroutine(unfreezeDelay(collider));
                         }
-                        if (collider.GetComponent<Animator>())
-                        {
-                            collider.GetComponent<Animator>().enabled = false;
-                        }
-                        if (collider.GetComponent<enemyAI>())
-                        {
-                            collider.GetComponent<enemyAI>().enabled = false;
-                        }
-                        if(collider.GetComponent<NavMeshAgent>())
-                        {
-                            collider.GetComponent<NavMeshAgent>().enabled = false;
-                        }
-                        StartCoroutine(unfreezeDelay(collider));
                     }
                 }
             }
@@ -101,23 +106,25 @@ public class playerAbilities : MonoBehaviour
     {
         Debug.Log("Starting unfreeze on " + collider.name);
         yield return new WaitForSeconds(10);
-        if(collider.GetComponent<Rigidbody>())
-        {
-            collider.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-        }
-        if (collider.GetComponent<Collider>().GetComponent<Animator>())
-        {   
-            collider.GetComponent<Collider>().GetComponent<Animator>().enabled = true;
-        }   
-        if (collider.GetComponent<Collider>().GetComponent<enemyAI>())
-        {  
-            collider.GetComponent<Collider>().GetComponent<enemyAI>().enabled = true;
-        }
-        if (collider.GetComponent<NavMeshAgent>())
-        {
-            collider.GetComponent<NavMeshAgent>().enabled = false;
-        }
-        
 
+        Rigidbody rb = collider.GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.None;
+        Transform parent = rb.transform;
+        while (parent.parent != null)
+        {
+            parent = parent.parent;
+        }
+        if (parent.GetComponent<Animator>())
+        {
+            parent.GetComponent<Animator>().enabled = true;
+        }
+        if (parent.GetComponent<enemyAI>())
+        {
+            parent.GetComponent<enemyAI>().enabled = true;
+        }
+        if (parent.GetComponent<NavMeshAgent>())
+        {
+            parent.GetComponent<NavMeshAgent>().enabled = true;
+        }
     }
 }
