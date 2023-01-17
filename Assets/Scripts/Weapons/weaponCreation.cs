@@ -16,6 +16,7 @@ public class weaponCreation : ScriptableObject
     public GameObject hitFX;
     public GameObject flashFX;
     [SerializeField] public playerProjectile weaponProjectile;
+    public GameObject actualWeaponProjectile;
     public float shootAfterReloadTime;
     public int magazineMax;
     public int magazineCurrent;

@@ -145,6 +145,11 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
             anim.SetTrigger("TriggerTakeDamage");
 
             HP -= MAXHP * (1 / 3);
+            //Drop Platforms
+            if (state == 2)
+                platformSections[0].DropPlatformsAtOnce();
+            if (state == 3)
+                platformSections[1].DropPlatformsAtOnce();
         }
         
         // Else if completed 3rd state, trigger death animation 
@@ -154,6 +159,8 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
             anim.SetTrigger("TriggerDeath");
 
             HP = 0;
+            //Drop Platforms
+            platformSections[2].DropPlatformsAtOnce();
         }
 
     }
