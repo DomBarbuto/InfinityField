@@ -32,7 +32,7 @@ public class playerController : MonoBehaviour
     [SerializeField] float pushBackTime;
 
     [Header("---- Character ----")]
-    [SerializeField] public List<playerCharacter> characterList = new List<playerCharacter>();                    //0 will be default. List will never be random. Will always be filled
+    [SerializeField] public List<playerCharacter> characterList = new List<playerCharacter>();                    // 0 will be default. List will never be random. Will always be filled
     [SerializeField] public int currCharacter;
 
 
@@ -51,16 +51,8 @@ public class playerController : MonoBehaviour
     [Header("Interactable System")]
     [SerializeField] float rayDistance;
 
-    /* [Header("---- Audio -----")]
-     [SerializeField] AudioSource aud;
-     [SerializeField] AudioClip[] playerHurt;
-     [Range(0, 1)][SerializeField] float playerHurtVol;
-     [SerializeField] AudioClip[] playerJump;
-     [Range(0, 1)][SerializeField] float playerJumpVol;
-     [SerializeField] AudioClip[] playerFootstep;
-     [Range(0, 1)][SerializeField] float playerFootstepVol;
-     [SerializeField] AudioClip[] ricochetSound;
-     [Range(0, 1)][SerializeField] float ricochetSoundVol;*/
+    [Header("Misc Variables")]
+    [SerializeField] public GameObject RocketManExplosion;
 
 
     //Private Variables------------------
@@ -94,6 +86,8 @@ public class playerController : MonoBehaviour
 
         setPlayerPos();
         currentMoveSpeed = walkSpeed;
+
+        StartCoroutine(characterList[currCharacter].callPerkOnUpdate());
     }
 
     void Update()
@@ -147,6 +141,7 @@ public class playerController : MonoBehaviour
                     isReloading = true;
                 }
             }
+
             if (characterList[currCharacter].isUsingAbility)
             {
                 if (characterList[currCharacter].energy >= characterList[currCharacter].energyUseRate)
@@ -239,6 +234,7 @@ public class playerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
+            characterList[currCharacter].callItemOnJump();
             currJumps++;
             playerVelocity.y = jumpHeight;
             sfxManager.instance.aud.PlayOneShot(sfxManager.instance.playerJump[Random.Range(0, sfxManager.instance.playerJump.Length)], sfxManager.instance.playerJumpVol);
@@ -595,6 +591,11 @@ public class playerController : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public void perkPickUp(perkCreation perk)
+    {
+
     }
 
     void pickupWeapon(weaponCreation weapon)

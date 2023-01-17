@@ -82,9 +82,10 @@ public class playerProjectile : MonoBehaviour
         }
     }
 
-    private void doDamage(IDamage enemy)
+    public void doDamage(IDamage enemy)
     {
         enemy.takeDamage(projectileDamage);
+        gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].callIPerkOnHit(enemy);
 
     }
 

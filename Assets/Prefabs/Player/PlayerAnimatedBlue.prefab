@@ -561,7 +561,7 @@ Transform:
   - {fileID: 7872962660809140268}
   m_Father: {fileID: 4156998625540787499}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 2.9077387, y: 0, z: 0}
 --- !u!1 &829437765063272024
 GameObject:
   m_ObjectHideFlags: 0
@@ -870,7 +870,7 @@ GameObject:
   - component: {fileID: 2701606944332925333}
   - component: {fileID: 2701606944103139320}
   - component: {fileID: 1858135744513689573}
-  - component: {fileID: 5692420762471618134}
+  - component: {fileID: 1727157697}
   m_Layer: 3
   m_Name: PlayerAnimatedBlue
   m_TagString: Player
@@ -944,7 +944,7 @@ MonoBehaviour:
   controller: {fileID: 1213045241389617697}
   animController: {fileID: 0}
   damageFXLength: 0.1
-  playerAbilities: {fileID: 5692420762471618134}
+  playerAbilities: {fileID: 0}
   isSprinting: 0
   currentMoveSpeed: 0
   walkSpeed: 6
@@ -980,6 +980,7 @@ MonoBehaviour:
   - {fileID: 4365619631860112921}
   currentMuzzlePoint: {fileID: 0}
   rayDistance: 2
+  RocketManExplosion: {fileID: 0}
   isReloading: 0
   move: {x: 0, y: 0, z: 0}
 --- !u!143 &1213045241389617697
@@ -1171,10 +1172,13 @@ MonoBehaviour:
   energyMax: 100
   energyUseRate: 0
   rechargable: 0
+  criticalChance: 0
+  passiveTickRate: 0
+  perks: []
   isUsingAbility: 0
   currSpeed: 0
-  ability: 0
---- !u!114 &5692420762471618134
+  ability: 2
+--- !u!114 &1727157697
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
