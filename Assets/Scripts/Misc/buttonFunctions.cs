@@ -18,7 +18,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void quit()
     {
-        saveLoad.save();
+        saveLoad.saveFromMainMenuOptions();
         Application.Quit();
     }
     public void LoadNextLevel()
