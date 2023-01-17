@@ -9,6 +9,8 @@ public class slimeDropping : MonoBehaviour
      */
 
     // Scaling up
+    [SerializeField] bool spawnExtraLarge;
+
     [SerializeField] float xzScaleIncreaseRate;
     [SerializeField] float xzScaleCurrent;
     [SerializeField] bool isScaling;
@@ -25,7 +27,14 @@ public class slimeDropping : MonoBehaviour
     private void Start()
     {
         // Remember where to stop when scaling up -- adding in a random offset on just the x and z components
-        fullSizeScale = transform.localScale + new Vector3(Random.Range(0, 0.5f), 0, Random.Range(0, 0.5f));
+        if(spawnExtraLarge)
+        {
+            fullSizeScale = transform.localScale + new Vector3(Random.Range(0.8f, 1.5f), 0, Random.Range(0.8f, 1.5f));
+        }
+        else
+        {
+            fullSizeScale = transform.localScale + new Vector3(Random.Range(0, 0.5f), 0, Random.Range(0, 0.5f));
+        }
 
         // Grab the starting out scale, keepiing the y scale the same as actual prefab
         shrunkenScale = new Vector3(0f, transform.localScale.y, 0f);

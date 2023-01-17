@@ -18,9 +18,9 @@ public class BossHealthBar : MonoBehaviour
     [SerializeField] int refillHealthDelay;
     [SerializeField] bool isLerpingHP;
     [SerializeField] bool isDestroyingHPBar;
-    [SerializeField] bool isLerpingStateFills;
+    [SerializeField] bool isDraining;
     [SerializeField] bool isRefilling;
-    [SerializeField] int currentStateIndexLerping;
+    //[SerializeField] int currentStateIndexLerping;
     [SerializeField] float currentLerpedVal;
     [SerializeField] float currentLerpToValue;
 
@@ -29,22 +29,22 @@ public class BossHealthBar : MonoBehaviour
     {
         isLerpingHealthBarDown();
         isLerpingHealthBarUp();
-        LerpStateFills();
         isLerpingToDestroy();
     }
 
     private void isLerpingHealthBarDown()
     {
-        if (isLerpingHP && !isRefilling)
+        if (isLerpingHP && isDraining && !isRefilling)
         {
             //Lerp HP
-            currentLerpedVal = Mathf.Lerp(currentLerpedVal, 0, Time.deltaTime * lerpSpeed);
+            currentLerpedVal = Mathf.Lerp(currentLerpedVal, currentLerpToValue, Time.deltaTime * lerpSpeed);
             healthBarFill.fillAmount = currentLerpedVal;
             //Check for if has reach end of lerp
             //If so, turn off isLerping and then turn off that image object
-            if (currentLerpedVal <= 0)
+            if (currentLerpedVal <= currentLerpToValue + 0.01f)
             {
                 isLerpingHP = false;
+                isDraining = false;
             }
         }
     }
@@ -58,7 +58,7 @@ public class BossHealthBar : MonoBehaviour
             healthBarFill.fillAmount = currentLerpedVal;
 
             //Check for if has reach end of lerp
-            if (currentLerpedVal >= 1)
+            if (currentLerpedVal >= 0.99f)
             {
                 isLerpingHP = false;
                 isRefilling = false;
@@ -75,7 +75,7 @@ public class BossHealthBar : MonoBehaviour
             cv.alpha = currentLerpedVal;
 
             //Check for if has reach end of lerp
-            if (currentLerpedVal <= 0)
+            if (currentLerpedVal <= 0.01f)
             {
                 isLerpingHP = false;
                 isDestroyingHPBar = false;
@@ -86,34 +86,16 @@ public class BossHealthBar : MonoBehaviour
         }
     }
 
-    private void LerpStateFills()
-    {
-        if (isLerpingStateFills)
-        {
-            //Lerp
-            currentLerpedVal = Mathf.Lerp(currentLerpedVal, 0, Time.deltaTime * lerpSpeed);
-            stateFills[currentStateIndexLerping].fillAmount = currentLerpedVal;
-
-            //Check for if has reach end of lerp
-            //If so, turn off isLerping and then turn off that image object
-            if (currentLerpedVal <= 0)
-            {
-                isLerpingStateFills = false;
-                stateFills[currentStateIndexLerping].gameObject.SetActive(false);
-            }
-        }
-    }
-
     // Public functions called from the bosses' scripts
 
-    public void updateHealthFillAmount(float lerpFromValue, float lerpToValue)
+    public void updateHealthFillAmount(float lerpFromValue, float lerpToValue, float maxHP)
     {
-        beginLerpingHealthBar(lerpFromValue, lerpToValue);
+        beginLerpingHealthBar(lerpFromValue / maxHP, lerpToValue / maxHP);
     }
 
     public void turnOffState(int stateNum)
     {
-        beginLerpingStateFill(stateNum);
+        stateFills[stateNum - 1].gameObject.SetActive(false);
     }
 
     public IEnumerator refillHealthBar()
@@ -134,19 +116,15 @@ public class BossHealthBar : MonoBehaviour
 
     // Helpers
 
-    private void beginLerpingStateFill(int stateFillIndex)
-    {
-        currentStateIndexLerping = stateFillIndex - 1;
-
-        // Store the new value to lerp FROM as the currentLerpedValue
-        currentLerpedVal = stateFills[currentStateIndexLerping].fillAmount;
-        isLerpingStateFills = true;
-    }
-
     private void beginLerpingHealthBar(float lerpFromValue, float lerpToValue)
     {
         // Store the new value to lerp FROM as the currentLerpedValue
         currentLerpedVal = lerpFromValue;
+
+        // Store the new value to lerp to
+        currentLerpToValue = lerpToValue;
+
         isLerpingHP = true;
+        isDraining = true;
     }
 }

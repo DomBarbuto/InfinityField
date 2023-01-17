@@ -12,6 +12,7 @@ public class BossSlimeInfusedMech : MonoBehaviour
     [SerializeField] GameObject explosionOBJ;
     [SerializeField] Renderer mechSuitModel;
     [SerializeField] Material damageFX;
+    [SerializeField] GameObject forceFieldOBJ;
 
     [Header("Stats")]
     [SerializeField] float HP;
@@ -23,6 +24,7 @@ public class BossSlimeInfusedMech : MonoBehaviour
     [SerializeField] Transform rightMuzz;
     [SerializeField] Transform headPos;
     [SerializeField] float damageFXLength;
+    [SerializeField] float introAnimationDuration;
 
     [Header("Behaviour")]
     public bool startStateMachine;
@@ -40,6 +42,7 @@ public class BossSlimeInfusedMech : MonoBehaviour
         bossHPBarScript = healthBarPrefab.GetComponent<BossHealthBar>();
         MAXHP = HP;
         healthBarPrefab.gameObject.SetActive(false);
+        forceFieldOBJ.SetActive(false);
     }
 
     // Update is called once per frame
@@ -55,11 +58,18 @@ public class BossSlimeInfusedMech : MonoBehaviour
     public void notify()
     {
         //Make health bar appear
+        anim.SetTrigger("TriggerIntro");
         healthBarPrefab.SetActive(true);
 
-        startStateMachine = true;
-        advanceState();
+        // Turn on force field
+        forceFieldOBJ.SetActive(true);
+        AudioSource.PlayClipAtPoint(sfxManager.instance.slimeMechForceFieldSound, transform.position, sfxManager.instance.slimeMechForceFieldVolume);
+
         anim.SetTrigger("TriggerIntro");
+
+        // Intro audio
+        AudioSource.PlayClipAtPoint(sfxManager.instance.slimeMechIntro, transform.position, sfxManager.instance.slimeMechIntroVolume);
+        StartCoroutine(waitForIntroToAdvance());
 
     }
 
@@ -79,7 +89,7 @@ public class BossSlimeInfusedMech : MonoBehaviour
         HP -= dmg;
 
         // Update health bar
-        bossHPBarScript.updateHealthFillAmount(prevHealth, HP);
+        bossHPBarScript.updateHealthFillAmount(prevHealth, HP, MAXHP);
 
         if (state < 4)
         {
@@ -95,8 +105,11 @@ public class BossSlimeInfusedMech : MonoBehaviour
     {
         state++;
 
+        // We also want to go into attack (in-vulnerable) state every time they advance states
+        attackState = true;
+
         // Only do this when going into state 2 and 3 
-        if(state == 2 || state == 3)
+        if (state == 2 || state == 3)
         {
             // Refill health and health bar
             HP = MAXHP;
@@ -144,7 +157,7 @@ public class BossSlimeInfusedMech : MonoBehaviour
                     }
 
                     //Start following the player by rotating at a slow speed
-                    SlowLookAt(30.0f);
+                    SlowLookAt(45.0f);
                 }
                 else
                 {
@@ -163,7 +176,7 @@ public class BossSlimeInfusedMech : MonoBehaviour
                     }
 
                     //Start following the player by rotating at a slow speed
-                    SlowLookAt(15.0f);
+                    SlowLookAt(20.0f);
                 }
                 else
                 {
@@ -182,7 +195,7 @@ public class BossSlimeInfusedMech : MonoBehaviour
                     }
 
                     //Start following the player by rotating at a slow speed
-                    SlowLookAt(1.0f);
+                    SlowLookAt(10.0f);
                 }
                 else
                 {
@@ -222,6 +235,9 @@ public class BossSlimeInfusedMech : MonoBehaviour
         GameObject explosion = Instantiate(explosionOBJ, transform.position + new Vector3(0, 1, 0), transform.rotation, null);
         Destroy(explosion, 5);
 
+        // Death explosion
+        AudioSource.PlayClipAtPoint(sfxManager.instance.slimeMechDeath, transform.position, sfxManager.instance.slimeMechDeathVolume);
+
         // Destroy boss
         Destroy(gameObject);
     }
@@ -233,7 +249,7 @@ public class BossSlimeInfusedMech : MonoBehaviour
         Instantiate(slimeDroppingPrefabs[randDropping], transform.position, 
                     Quaternion.Euler(slimeDroppingPrefabs[randDropping].transform.rotation.x,
                                     randYRot,
-                                    slimeDroppingPrefabs[randDropping].transform.rotation.z));
+                                    slimeDroppingPrefabs[randDropping].transform.rotation.z), null);
     }
 
     public IEnumerator timedShoot(float length)
@@ -242,10 +258,17 @@ public class BossSlimeInfusedMech : MonoBehaviour
         anim.SetBool("Shooting", true);
         slimeBodyAnim.SetBool("IsShooting", true);
 
+        // Turn on forcefield
+        forceFieldOBJ.SetActive(true);
+        AudioSource.PlayClipAtPoint(sfxManager.instance.slimeMechForceFieldSound, transform.position, sfxManager.instance.slimeMechForceFieldVolume);
+
         yield return new WaitForSeconds(length);
         anim.SetBool("Shooting", false);
         shooting = false;
         attackState = false;
+
+        // Turn off force field
+        forceFieldOBJ.SetActive(false);
     }
 
     public IEnumerator vulnerableState(float length)
@@ -267,6 +290,14 @@ public class BossSlimeInfusedMech : MonoBehaviour
         mechSuitModel.material.color = damageFX.color;
         yield return new WaitForSeconds(damageFXLength);
         mechSuitModel.material.color = origColor;
+    }
+
+    IEnumerator waitForIntroToAdvance()
+    {
+        yield return new WaitForSeconds(introAnimationDuration);
+        anim.SetBool("IsIntroDone", true);
+        startStateMachine = true;
+        advanceState();
     }
 
 }

@@ -9493,51 +9493,51 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 816057998408477041, guid: bee77e6e865a1ca47846f6aa621cad97, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 816057998408477041, guid: bee77e6e865a1ca47846f6aa621cad97, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 816057998408477041, guid: bee77e6e865a1ca47846f6aa621cad97, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -68.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 816057998408477041, guid: bee77e6e865a1ca47846f6aa621cad97, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -87.200005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 816057998789898877, guid: bee77e6e865a1ca47846f6aa621cad97, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 816057998789898877, guid: bee77e6e865a1ca47846f6aa621cad97, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 816057998789898877, guid: bee77e6e865a1ca47846f6aa621cad97, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 167.84
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 816057998789898877, guid: bee77e6e865a1ca47846f6aa621cad97, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -87.200005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 816057999375610555, guid: bee77e6e865a1ca47846f6aa621cad97, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 816057999375610555, guid: bee77e6e865a1ca47846f6aa621cad97, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 816057999375610555, guid: bee77e6e865a1ca47846f6aa621cad97, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 49.67
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 816057999375610555, guid: bee77e6e865a1ca47846f6aa621cad97, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -87.200005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 816058000287343296, guid: bee77e6e865a1ca47846f6aa621cad97, type: 3}
       propertyPath: m_Name
@@ -10036,6 +10036,14 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: slimeMechDeath
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e6c4b38a8cb1c0468300b35e85eeea0, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: slimeMechIntro
+      value: 
+      objectReference: {fileID: 8300000, guid: 0e09b75db59db4048a39cf1752469775, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: whiteCCHurtVol
       value: 0.5
       objectReference: {fileID: 0}
@@ -10086,6 +10094,14 @@ PrefabInstance:
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: redCCHurt.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: slimeMechDeathVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: slimeMechIntroVolume
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: enemyAlert.Array.size
@@ -10236,6 +10252,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: slimeMechForceFieldSound
+      value: 
+      objectReference: {fileID: 8300000, guid: edc279b092543bb47afb50f4bb7faa04, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: yellowCCAlert.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -10258,6 +10278,10 @@ PrefabInstance:
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: playerFootstep.Array.size
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: slimeMechForceFieldVolume
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: whiteCCHurt.Array.data[0]

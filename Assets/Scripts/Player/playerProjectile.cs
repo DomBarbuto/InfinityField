@@ -68,12 +68,12 @@ public class playerProjectile : MonoBehaviour
                 doDamage(other.GetComponent<IDamage>());
                 Debug.Log("collided with " + other.gameObject.name);
 
-                if(secondaryProjectile != null)
+                if (secondaryProjectile != null)
                 {
                     Instantiate(secondaryProjectile, transform.position, transform.rotation);
                 }
-
             }
+
             else
             {
                 Debug.Log("collided with " + other.gameObject.name);

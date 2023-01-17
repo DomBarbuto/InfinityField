@@ -24440,7 +24440,7 @@ GameObject:
   - component: {fileID: 2828326322624743758}
   - component: {fileID: 2828326322624743757}
   - component: {fileID: 6874451537654203788}
-  m_Layer: 12
+  m_Layer: 17
   m_Name: BossDeathExplosion_Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24488,7 +24488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6212db9819c97bd4c9680b91c56bb749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionTimer: 0.5
+  explosionTimer: 5
   explosionDamage: 110
   explosionPushBack: {x: 50, y: 50, z: 50}
   explosionForce: 100
@@ -24497,6 +24497,7 @@ MonoBehaviour:
   explosionSound:
   - {fileID: 8300000, guid: 5eb47c2e5bfc95b4caf44b65964a0522, type: 3}
   explosionVol: 0.517
+  isRocketMan: 0
   cameFromPlayer: 0
   canDamagePlayer: 1
 --- !u!82 &6874451537654203788

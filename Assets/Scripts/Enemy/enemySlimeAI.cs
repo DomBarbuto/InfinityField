@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class enemySlimeAI : MonoBehaviour, IDamage
+public class enemySlimeAI : MonoBehaviour
 {
     [Header("---- External Components ----")]
     [SerializeField] Animator anim;
