@@ -184,7 +184,7 @@ public class sfxManager : MonoBehaviour
     public AudioClip[] bulletTimeExit;
     [Range(0, 1)] public float bulletTimeExitVol;
 
-    private void Awake()
+    private void Start()
     {
         instance = this;
     }

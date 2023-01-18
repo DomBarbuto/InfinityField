@@ -12,7 +12,8 @@ public class mainMenuButtonFunctions : MonoBehaviour
     [SerializeField] GameObject observationsMenuObject;
     private void Start()
     {
-        saveLoad.loadFromMainGame();
+
+       saveLoad.loadFromMainMenu();
     }
 
 
@@ -52,6 +53,9 @@ public class mainMenuButtonFunctions : MonoBehaviour
 
     public void pullUpObservationsMenu()
     {
+        Observations ob = observationsMenuObject.GetComponent<Observations>();
+        ob.turnOnModel(ob.currentModel);
+
         // Turn off main menu
         mainMenuObject.SetActive(false);
         observationsMenuObject.SetActive(true);
@@ -59,6 +63,9 @@ public class mainMenuButtonFunctions : MonoBehaviour
 
     public void returnFromObservationsMenu()
     {
+        Observations ob = observationsMenuObject.GetComponent<Observations>();
+        ob.turnOffModel(ob.currentModel);
+
         // Turn off controls menu
         observationsMenuObject.SetActive(false);
         mainMenuObject.SetActive(true);
