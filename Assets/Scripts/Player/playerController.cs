@@ -87,7 +87,7 @@ public class playerController : MonoBehaviour
         setPlayerPos();
         currentMoveSpeed = walkSpeed;
 
-        StartCoroutine(characterList[currCharacter].callPerkOnUpdate());
+        //StartCoroutine(characterList[currCharacter].callPerkOnUpdate());
     }
 
     void Update()
@@ -234,7 +234,7 @@ public class playerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && currJumps < 1)
         {
-            characterList[currCharacter].callItemOnJump();
+            //characterList[currCharacter].callItemOnJump();
             currJumps++;
             playerVelocity.y = jumpHeight;
             sfxManager.instance.aud.PlayOneShot(sfxManager.instance.playerJump[Random.Range(0, sfxManager.instance.playerJump.Length)], sfxManager.instance.playerJumpVol);

@@ -12,8 +12,12 @@ public class RoomEntry : MonoBehaviour
     {
         if(!hasEntered)
         {
-            hasEntered = true;
-            playerEnterRoom();
+            if(other.tag == "Player")
+            {
+                 hasEntered = true;
+                playerEnterRoom();
+            }
+           
         }
     }
 

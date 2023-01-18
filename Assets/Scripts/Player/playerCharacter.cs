@@ -22,12 +22,16 @@ public class playerCharacter : MonoBehaviour
 
     public IEnumerator callPerkOnUpdate()
     {
-        foreach(perkList _perk in perks)
+        if(perks.Count > 0)
         {
-            _perk.perk.update(gameManager.instance.playerController, _perk.rarity);
+            foreach(perkList _perk in perks)
+            {
+                _perk.perk.update(gameManager.instance.playerController, _perk.rarity);
+            }
+            yield return new WaitForSeconds(passiveTickRate);
+            StartCoroutine(callPerkOnUpdate());
         }
-        yield return new WaitForSeconds(passiveTickRate);
-        StartCoroutine(callPerkOnUpdate());
+        
     }
 
     public void callIPerkOnHit(IDamage enemy)
@@ -54,11 +58,11 @@ public class playerCharacter : MonoBehaviour
         }
     }
 
-    public void callItemOnJump()
+    /*public void callItemOnJump()
     {
         foreach (perkList _perk in perks)
         {
             _perk.perk.onJump(gameManager.instance.playerController, _perk.rarity);
         }
-    }
+    }*/
 }

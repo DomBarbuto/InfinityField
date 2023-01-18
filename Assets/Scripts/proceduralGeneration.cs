@@ -51,6 +51,7 @@ public class proceduralGeneration : MonoBehaviour
                     int rand = Random.Range(0, rooms.Length);
                     Quaternion newRoomRotation = currExit.transform.rotation;
                     GameObject newRoom = Instantiate(rooms[rand], currExit.transform.position, newRoomRotation);  //Add in the change for roomOffset for the room that is being instantiated
+                    newRoom.GetComponent<room>().parentGeneration = this.gameObject;
                     newRoom.GetComponent<room>().OnEnter.AddListener(MakeCurrentRoom);
                     newRoom.GetComponent<room>().OnEnter.AddListener(SpawnRoom);
                     newRoom.GetComponent<room>().OnEnter.AddListener(DestroyRoom);
