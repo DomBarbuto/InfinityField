@@ -81,8 +81,8 @@ public class gameManager : MonoBehaviour
         saveLoad.loadFromMainGame();
         if(playerController != null)
         {
-            playerController.GetComponent<MeshRenderer>().material = playerController.characterList[playerController.currCharacter].GetComponent<MeshRenderer>().material;
-            playerController.GetComponent<Animator>().avatar = playerController.characterList[playerController.currCharacter].GetComponent<Animator>().avatar;
+            playerController.GetComponent<MeshRenderer>().sharedMaterial = playerController.characterList[playerController.currCharacter].GetComponent<MeshRenderer>().sharedMaterial;
+            //playerController.GetComponent<Animator>().avatar = playerController.characterList[playerController.currCharacter].GetComponent<Animator>().avatar;
         }
     }
 
