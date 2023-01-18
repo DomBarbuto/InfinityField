@@ -21,6 +21,8 @@ public class buttonFunctions : MonoBehaviour
     public void quit()
     {
         saveLoad.saveFromMainMenuOptions();
+        PlayerPrefs.DeleteKey("weaponList");
+        PlayerPrefs.DeleteKey("perkList");
         Application.Quit();
     }
     public void LoadNextLevel()
@@ -89,6 +91,8 @@ public class buttonFunctions : MonoBehaviour
     public void play()
     {
         saveLoad.saveFromPauseMenuOptions();
+        PlayerPrefs.DeleteKey("weaponList");
+        PlayerPrefs.DeleteKey("perkList");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
