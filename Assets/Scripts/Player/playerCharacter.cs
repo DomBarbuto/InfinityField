@@ -15,6 +15,7 @@ public class playerCharacter : MonoBehaviour
     [SerializeField] public float criticalChance;
     [SerializeField] public float passiveTickRate;           //This value should always be default 1;
     [SerializeField] public List<perkList> perks = new List<perkList>();
+    [SerializeField] public Material material;
     public bool isUsingAbility = false;
     public float currSpeed;
     [SerializeField] public int ability;

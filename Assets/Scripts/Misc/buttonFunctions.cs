@@ -86,4 +86,9 @@ public class buttonFunctions : MonoBehaviour
         }
         characterSelect.changeCharacter();
     }
+    public void play()
+    {
+        saveLoad.saveFromPauseMenuOptions();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 }

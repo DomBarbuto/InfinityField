@@ -17,10 +17,11 @@ public class proceduralGeneration : MonoBehaviour
     private void Start()
     {
         roomCount = 1;
-        currentRoom = Instantiate(startingRoom, transform.position, Quaternion.identity);
+        currentRoom = startingRoom;
 
         if(currentRoom.GetComponent<room>().OnEnter != null)
         {
+            Debug.Log("checking");
             currentRoom.GetComponent<room>().OnEnter.AddListener(SpawnRoom);
             currentRoom.GetComponent<room>().OnEnter.AddListener(DestroyRoom);
         }
@@ -48,25 +49,27 @@ public class proceduralGeneration : MonoBehaviour
                 {
                     Transform currExit = exit;
                     int rand = Random.Range(0, rooms.Length);
-                    Quaternion newRoomRotation = currentRoom.transform.rotation;
+                    Quaternion newRoomRotation = currExit.transform.rotation;
                     GameObject newRoom = Instantiate(rooms[rand], currExit.transform.position, newRoomRotation);  //Add in the change for roomOffset for the room that is being instantiated
                     newRoom.GetComponent<room>().OnEnter.AddListener(MakeCurrentRoom);
                     newRoom.GetComponent<room>().OnEnter.AddListener(SpawnRoom);
                     newRoom.GetComponent<room>().OnEnter.AddListener(DestroyRoom);
-                    BakeNavMesh(newRoom);
+                    //BakeNavMesh(newRoom);
                     spawnedRooms.Add(newRoom);
                 }
             }
         }
     }
-    private void BakeNavMesh(GameObject room)
+    /*public void BakeNavMesh()
     {
-        NavMeshSurface navMeshSurface = room.GetComponent<NavMeshSurface>();
-        if (navMeshSurface)
+        *//*Debug.Log("Made to Bake");
+        NavMeshSurface navMeshSurface = room.GetComponent<room>().nav;
+        if (navMeshSurface && navMeshSurface.gameObject.tag == "Ground")
         {
+            Debug.Log("Made Surface");
             navMeshSurface.BuildNavMesh();
-        }
-    }
+        }*//*
+    }*/
     public void MakeCurrentRoom()
     {
         currentRoom = this.gameObject;
@@ -77,11 +80,11 @@ public class proceduralGeneration : MonoBehaviour
         foreach (Transform exit in currentRoom.GetComponent<room>().exits)
         {
             Transform currExit = exit;
-            Vector3 newRoomPosition = currExit.transform.position + roomOffset;
-            GameObject newBossRoom = Instantiate(bossRoom, newRoomPosition, Quaternion.identity);
+            Vector3 newRoomPosition = currExit.transform.position;
+            GameObject newBossRoom = Instantiate(bossRoom, newRoomPosition, exit.rotation);
         }
     }
-    private void DestroyRoom()
+    public void DestroyRoom()
     {
         //Destroy all previous rooms that haven't been entered
         foreach (GameObject room in spawnedRooms)

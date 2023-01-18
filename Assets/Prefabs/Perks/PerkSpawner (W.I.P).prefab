@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4657375631067532867}
   - component: {fileID: 6243903864426761150}
   - component: {fileID: 8663612222625229176}
+  - component: {fileID: 5769146874241058541}
   m_Layer: 0
   m_Name: PerkSpawner (W.I.P)
   m_TagString: Untagged
@@ -97,3 +98,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5769146874241058541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6164588242605251320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce48cfa4b9aab0245923f7dfc135328c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  perks:
+  - {fileID: 4290657795105034887, guid: 31168464cfaeb1543a0f2b5197647384, type: 3}
+  - {fileID: 4290657795105034887, guid: 1dc3bea1641b2f14fa3ba7759b128a19, type: 3}
+  - {fileID: 4290657795105034887, guid: 45b8ede2cc73aa24eb763bc8664cc0a1, type: 3}
+  - {fileID: 4290657795105034887, guid: 5cd97184b75f47242b3ff5ee75582737, type: 3}
+  - {fileID: 4290657795105034887, guid: 89b1a38e2e4b0524eb4922884205eaf1, type: 3}

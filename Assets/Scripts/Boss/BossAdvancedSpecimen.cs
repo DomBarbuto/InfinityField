@@ -73,6 +73,7 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
         Debug.Log("In notify");
         startStateMachine = true;
         state = 1;
+        AudioSource.PlayClipAtPoint(sfxManager.instance.advSpecIntro, transform.position, sfxManager.instance.advSpecIntroVolume);
         anim.SetTrigger("TriggerIntro");
     }
 
@@ -141,6 +142,7 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
         // If GOING INTO 2nd or 3rd state, trigger damage animation and decrement health by a third each time
         if (state == 2 || state == 3)
         {
+            AudioSource.PlayClipAtPoint(sfxManager.instance.advSpecHurt, transform.position, sfxManager.instance.advSpecHurtVolume);
             //Animation - set triggerdamage
             anim.SetTrigger("TriggerTakeDamage");
 
@@ -155,6 +157,7 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
         // Else if completed 3rd state, trigger death animation 
         else if (state == 4)
         {
+            AudioSource.PlayClipAtPoint(sfxManager.instance.advSpecDeath, transform.position, sfxManager.instance.advSpecDeathVolume);
             // Animation - set triggerdeath
             anim.SetTrigger("TriggerDeath");
 

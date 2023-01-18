@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,6 +12,7 @@ public class room : MonoBehaviour, IRoomEntryListener
     [SerializeField] public GameObject parentGeneration;
     [SerializeField] public proceduralGeneration Generation;
     [SerializeField] public bool testing = false;
+    [SerializeField] public NavMeshSurface nav;
 
     public UnityEvent OnEnter;
 
@@ -42,5 +44,16 @@ public class room : MonoBehaviour, IRoomEntryListener
     public void notify()
     {
         OnEnter.Invoke();
+        if (Generation.GetComponent<proceduralGeneration>() != null)
+        {
+            testing = false;
+            Generation.currentRoom = this.gameObject;
+            if (Generation.currentRoom != Generation.startingRoom)
+            {
+                Generation.DestroyRoom();
+            }
+            Generation.SpawnRoom();
+            
+        }
     }
 }
