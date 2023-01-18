@@ -1334,6 +1334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39568a9fd1b52ab47894d4eb94da51a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterSelect: {fileID: 0}
 --- !u!1 &428220306
 GameObject:
   m_ObjectHideFlags: 0
@@ -2175,6 +2176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39568a9fd1b52ab47894d4eb94da51a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterSelect: {fileID: 0}
 --- !u!1 &651368340
 GameObject:
   m_ObjectHideFlags: 0
@@ -5164,6 +5166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39568a9fd1b52ab47894d4eb94da51a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterSelect: {fileID: 0}
 --- !u!1 &250063271101509650
 GameObject:
   m_ObjectHideFlags: 0
@@ -6680,6 +6683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39568a9fd1b52ab47894d4eb94da51a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterSelect: {fileID: 0}
 --- !u!1 &3672651481252536575
 GameObject:
   m_ObjectHideFlags: 0
@@ -7176,7 +7180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3390811907728468225
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9968,6 +9972,26 @@ PrefabInstance:
     m_TransformParent: {fileID: 3672651480099933956}
     m_Modifications:
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: HSSDeath
+      value: 
+      objectReference: {fileID: 8300000, guid: f1bb3e937875f7d4f9fb847a87422a6f, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: HSSIntro
+      value: 
+      objectReference: {fileID: 8300000, guid: 069b3575bf4c9884fac0e5b0513b1f1f, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: HSSPhase1
+      value: 
+      objectReference: {fileID: 8300000, guid: 37ad82d0722853148977e6d8ff3d655a, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: HSSPhase2
+      value: 
+      objectReference: {fileID: 8300000, guid: 0cc0e5eb954a9eb43a72baf2550a1231, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: HSSPhase3
+      value: 
+      objectReference: {fileID: 8300000, guid: be38fe9eb69a5e442835ae90f5f37f89, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: glEmptyVol
       value: 0.5
       objectReference: {fileID: 0}
@@ -9995,6 +10019,14 @@ PrefabInstance:
       propertyPath: menuOpenVol
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: advSpecDeath
+      value: 
+      objectReference: {fileID: 8300000, guid: f67acd2ee4158884fb4a44ccaec201cd, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: advSpecIntro
+      value: 
+      objectReference: {fileID: 8300000, guid: c8ede84ee1c6ed04f94e04caa1377bdd, type: 3}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: doorCloseVol
       value: 0.5
@@ -10048,6 +10080,14 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: HSSDeathVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: HSSIntroVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: blackCCHurtVol
       value: 0.5
       objectReference: {fileID: 0}
@@ -10092,6 +10132,18 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: HSSPhase1Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: HSSPhase2Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: HSSPhase3Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: blackCCAlertVol
       value: 0.5
       objectReference: {fileID: 0}
@@ -10120,6 +10172,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: advSpecHurtSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0efe7e6bf4782584ebff43027c485c90, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: railgunChargeVol
       value: 0.5
       objectReference: {fileID: 0}
@@ -10136,7 +10192,27 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: advSpecHurtVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: bulletTimeExitVol
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: playerFootstepVol
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: advSpecDeathVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: advSpecIntroVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: bulletTimeEnterVol
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
@@ -10420,6 +10496,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 1ebb6e05ab6353a4db866201497e8aab, type: 3}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: bulletTimeExit.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: humanoidSpecimenAttackVol
       value: 0.5
       objectReference: {fileID: 0}
@@ -10471,6 +10551,10 @@ PrefabInstance:
       propertyPath: blackCCAlert.Array.data[2]
       value: 
       objectReference: {fileID: 8300000, guid: 125fcbe44d3ea7544ab6d2266911cf28, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: bulletTimeEnter.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: glEmptySound.Array.data[0]
       value: 
@@ -10580,6 +10664,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: bulletTimeExit.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: bf8c0df08b7f7774dbce994f0bdf9a05, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: explodingSpecimenMovementVol
       value: 0.1
       objectReference: {fileID: 0}
@@ -10639,6 +10727,10 @@ PrefabInstance:
       propertyPath: railgunShootSound.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: bulletTimeEnter.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 26f94feb879c97242bb3c412e83e3097, type: 3}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: railgunChargeSound.Array.size
       value: 1
