@@ -54,22 +54,22 @@ public class proceduralGeneration : MonoBehaviour
                     newRoom.GetComponent<room>().OnEnter.AddListener(MakeCurrentRoom);
                     newRoom.GetComponent<room>().OnEnter.AddListener(SpawnRoom);
                     newRoom.GetComponent<room>().OnEnter.AddListener(DestroyRoom);
-                    BakeNavMesh(newRoom);
+                    //BakeNavMesh(newRoom);
                     spawnedRooms.Add(newRoom);
                 }
             }
         }
     }
-    public void BakeNavMesh(GameObject room)
+    /*public void BakeNavMesh()
     {
-        Debug.Log("Made to Bake");
+        *//*Debug.Log("Made to Bake");
         NavMeshSurface navMeshSurface = room.GetComponent<room>().nav;
         if (navMeshSurface && navMeshSurface.gameObject.tag == "Ground")
         {
             Debug.Log("Made Surface");
             navMeshSurface.BuildNavMesh();
-        }
-    }
+        }*//*
+    }*/
     public void MakeCurrentRoom()
     {
         currentRoom = this.gameObject;
