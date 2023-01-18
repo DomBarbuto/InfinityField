@@ -55,12 +55,14 @@ public class saveLoad : MonoBehaviour
     }
 
     public static void loadFromMainMenu()
-    { 
-        if(PlayerPrefs.HasKey("SFXVolumeSliderValue"))
+    {
+        /*if (PlayerPrefs.HasKey("SFXVolumeSliderValue"))
         {
-            sfxManager.instance.sfxVolumeSlider.value = (PlayerPrefs.GetFloat("SFXVolumeSliderValue"));
+            if (sfxManager.instance == null)
+                Debug.Log("sfx manager is null");
+            sfxManager.instance.sfxVolumeSlider.value = (PlayerPrefs.GetFloat("SFXVolumeSliderValue", 0));
         }
-        if (PlayerPrefs.HasKey("SFXVolumeSliderValue"))
+        if (PlayerPrefs.HasKey("SFXVolume"))
         {
             sfxManager.instance.aud.volume = PlayerPrefs.GetFloat("SFXVolume", 0);
         }
@@ -68,12 +70,12 @@ public class saveLoad : MonoBehaviour
 
         if (PlayerPrefs.HasKey("MusicVolumeSliderValue"))
         {
-            msuicManager.instance.musicVolumeSlider.value = (PlayerPrefs.GetFloat("MusicVolumeSliderValue"));
+            msuicManager.instance.musicVolumeSlider.value = (PlayerPrefs.GetFloat("MusicVolumeSliderValue", 0));
         }
         if (PlayerPrefs.HasKey("MusicVolume"))
         {
             msuicManager.instance.aud.volume = PlayerPrefs.GetFloat("MusicVolume", 0);
-        }
+        }*/
 
     }
 
