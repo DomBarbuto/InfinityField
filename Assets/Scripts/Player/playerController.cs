@@ -232,7 +232,7 @@ public class playerController : MonoBehaviour
         move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
         controller.Move(move * Time.deltaTime * characterList[currCharacter].currSpeed);
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && currJumps < 1)
         {
             characterList[currCharacter].callItemOnJump();
             currJumps++;
