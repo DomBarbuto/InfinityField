@@ -8,11 +8,23 @@ public class CharacterSelectionShowcase : MonoBehaviour
     [SerializeField] public GameObject[] characters;
     [SerializeField] GameObject currCharacter;
     [SerializeField] public int characterNumber;
-    [SerializeField] public TextMeshPro text;
+    [SerializeField] public TextMeshProUGUI text;
 
     private void Start()
     {
         currCharacter = Instantiate(characters[characterNumber], transform.position, transform.rotation);
+        switch (characterNumber)
+        {
+            case 0:
+                text.text = "Velocity";
+                break;
+            case 1:
+                text.text = "Tachyon";
+                break;
+            case 2:
+                text.text = "Zero";
+                break;
+        }
     }
     public void changeCharacter()
     {

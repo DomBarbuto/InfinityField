@@ -78,7 +78,7 @@ public class buttonFunctions : MonoBehaviour
     {
         if (characterSelect.characterNumber - 1 >= 0)
         {   
-            characterSelect.characterNumber = 1;
+            characterSelect.characterNumber -= 1;
         }   
         else
         {   
