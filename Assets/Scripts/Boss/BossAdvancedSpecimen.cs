@@ -57,6 +57,10 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
         buttonsHitThisStage = 0;
         currentSpawnInterval = getRandomIntialSpawnInterval();
         Random.InitState(System.DateTime.Now.Millisecond);
+
+        // Make health bar appear
+        anim.SetTrigger("TriggerIntro");
+        healthBarPrefab.SetActive(true);
     }
 
     private void Update()
@@ -71,9 +75,9 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
     // [DESIGNERS CHOICE] On Room entry... if boss is set to activate on room entry / other option is to trigger the boss on trigger enter
     public void notify()
     {
-        //Make health bar appear
+        /*//Make health bar appear
         anim.SetTrigger("TriggerIntro");
-        healthBarPrefab.SetActive(true);
+        healthBarPrefab.SetActive(true);*/
 
         if (!startsFromRoomEntry)
             return;

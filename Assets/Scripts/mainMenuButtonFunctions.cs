@@ -71,16 +71,6 @@ public class mainMenuButtonFunctions : MonoBehaviour
         mainMenuObject.SetActive(true);
     }
 
-    public void leftObservationBUtton()
-    {
-
-    }
-
-    public void rightObservationButton()
-    {
-
-    }
-
     // Credits
     public void pullUpCreditsMenu()
     {
