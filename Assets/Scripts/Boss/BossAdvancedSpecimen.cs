@@ -199,7 +199,8 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
             //Drop Platforms
             platformSections[2].DropPlatformsAtOnce();
 
-
+            gameManager.instance.pause();
+            gameManager.instance.SetActiveMenu(gameManager.UIMENUS.winMenu);
         }
 
     }
