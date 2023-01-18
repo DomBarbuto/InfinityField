@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
 {
     [Header("---------- Components/Prefabs ----------")]
+    [SerializeField] GameObject healthBarPrefab;
     [SerializeField] Animator anim;
     [SerializeField] GameObject[] scuttlingEnemies;
     [SerializeField] GameObject[] humanoidEnemies;
@@ -46,9 +47,12 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
     //Misc
     float MAXHP;
     bool isSpawning;
+    BossHealthBar bossHPBarScript;
 
     private void Start()
     {
+        bossHPBarScript = healthBarPrefab.GetComponent<BossHealthBar>();
+        healthBarPrefab.gameObject.SetActive(false);
         MAXHP = HP;
         buttonsHitThisStage = 0;
         currentSpawnInterval = getRandomIntialSpawnInterval();
@@ -67,6 +71,10 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
     // [DESIGNERS CHOICE] On Room entry... if boss is set to activate on room entry / other option is to trigger the boss on trigger enter
     public void notify()
     {
+        //Make health bar appear
+        anim.SetTrigger("TriggerIntro");
+        healthBarPrefab.SetActive(true);
+
         if (!startsFromRoomEntry)
             return;
 
@@ -93,6 +101,8 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
                 startStateMachine = true;
                 state = 1;
                 anim.SetTrigger("TriggerIntro");
+
+                healthBarPrefab.SetActive(true);
             }
         }
     }
@@ -114,6 +124,7 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
 
             // If wondering why theres nothing here, check out advanceState() and takeDamage()
             case 4:
+                bossHPBarScript.destroyHealthBar();
                 break;
 
         }
@@ -137,21 +148,35 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
 
     public void takeDamage()
     {
+        float prevHealth = HP;
+
         // State 1 isn't checked here obviously because the boss won't be taking damage GOING INTO state 1
 
         // If GOING INTO 2nd or 3rd state, trigger damage animation and decrement health by a third each time
         if (state == 2 || state == 3)
         {
+            if(state == 2)
+                bossHPBarScript.turnOffState(1);
+            
+            if(state == 3)
+                bossHPBarScript.turnOffState(2);
+
+            //Audio
             AudioSource.PlayClipAtPoint(sfxManager.instance.advSpecHurt, transform.position, sfxManager.instance.advSpecHurtVolume);
+
             //Animation - set triggerdamage
             anim.SetTrigger("TriggerTakeDamage");
 
             HP -= MAXHP * (1 / 3);
+
             //Drop Platforms
             if (state == 2)
                 platformSections[0].DropPlatformsAtOnce();
             if (state == 3)
                 platformSections[1].DropPlatformsAtOnce();
+
+            // Update health bar
+            bossHPBarScript.updateHealthFillAmount(prevHealth, HP, MAXHP);
         }
         
         // Else if completed 3rd state, trigger death animation 
@@ -161,9 +186,16 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
             // Animation - set triggerdeath
             anim.SetTrigger("TriggerDeath");
 
+            prevHealth = HP;
             HP = 0;
+
+            // Update health bar
+            bossHPBarScript.updateHealthFillAmount(prevHealth, HP, MAXHP);
+
             //Drop Platforms
             platformSections[2].DropPlatformsAtOnce();
+
+
         }
 
     }
