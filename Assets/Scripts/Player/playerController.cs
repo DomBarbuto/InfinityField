@@ -187,7 +187,7 @@ public class playerController : MonoBehaviour
                     if (Input.GetButtonDown("Interact"))
                     {
                         //If hit is door and it hasnt closed yet
-                        if (interactHit.collider.GetComponent<slidingDoor>() && !interactHit.collider.GetComponent<slidingDoor>().HasClosed)
+                        if (interactHit.collider.GetComponent<slidingDoorNew>())
                             interactHit.collider.GetComponent<IInteractable>().interact();
 
                         // Else if hit is a vending machine
