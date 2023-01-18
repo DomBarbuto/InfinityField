@@ -20487,6 +20487,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ef0fffe067ec3f4a868c998dfd72c04, type: 3}
+--- !u!1 &8570511389941999576 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6579943947220130723, guid: 9ef0fffe067ec3f4a868c998dfd72c04, type: 3}
+  m_PrefabInstance: {fileID: 3287692166128155771}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8570511389941999583 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6579943947220130724, guid: 9ef0fffe067ec3f4a868c998dfd72c04, type: 3}
@@ -21403,6 +21408,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4620529149940633310, guid: ce3b0ef482d2971479059c590c9dc1e1, type: 3}
+      propertyPath: exit
+      value: 
+      objectReference: {fileID: 8570511389941999576}
+    - target: {fileID: 4620529149940633310, guid: ce3b0ef482d2971479059c590c9dc1e1, type: 3}
       propertyPath: state
       value: 0
       objectReference: {fileID: 0}
@@ -21410,6 +21419,10 @@ PrefabInstance:
       propertyPath: projectile
       value: 
       objectReference: {fileID: 185111370099596839, guid: 0538a2cf3b631cc4c85aea1af8c16536, type: 3}
+    - target: {fileID: 4620529149940633310, guid: ce3b0ef482d2971479059c590c9dc1e1, type: 3}
+      propertyPath: spawnSystem
+      value: 
+      objectReference: {fileID: 7944781735971336638}
     - target: {fileID: 4620529149940633310, guid: ce3b0ef482d2971479059c590c9dc1e1, type: 3}
       propertyPath: startStateMachine
       value: 0
@@ -25099,6 +25112,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1828543728331576184, guid: f8758ad9cca9abd4a8f2fd914dc9630f, type: 3}
   m_PrefabInstance: {fileID: 8584355878070510277}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7944781735971336638 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1828543728331576187, guid: f8758ad9cca9abd4a8f2fd914dc9630f, type: 3}
+  m_PrefabInstance: {fileID: 8584355878070510277}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7944781735971336637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e6b2c3634d0c2f49ac6640b906becc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7944781735971336639 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1828543728331576186, guid: f8758ad9cca9abd4a8f2fd914dc9630f, type: 3}
