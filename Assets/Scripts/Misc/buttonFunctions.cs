@@ -20,7 +20,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void quit()
     {
-        saveLoad.saveFromMainMenuOptions();
+        saveLoad.saveFromPauseMenuOptions();
         PlayerPrefs.DeleteKey("weaponList");
         PlayerPrefs.DeleteKey("perkList");
         Application.Quit();
