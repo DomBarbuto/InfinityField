@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.AI;
+using Unity.AI.Navigation;
 
 public class proceduralGeneration : MonoBehaviour
 {
@@ -51,9 +53,18 @@ public class proceduralGeneration : MonoBehaviour
                     newRoom.GetComponent<room>().OnEnter.AddListener(MakeCurrentRoom);
                     newRoom.GetComponent<room>().OnEnter.AddListener(SpawnRoom);
                     newRoom.GetComponent<room>().OnEnter.AddListener(DestroyRoom);
+                    BakeNavMesh(newRoom);
                     spawnedRooms.Add(newRoom);
                 }
             }
+        }
+    }
+    private void BakeNavMesh(GameObject room)
+    {
+        NavMeshSurface navMeshSurface = room.GetComponent<NavMeshSurface>();
+        if (navMeshSurface)
+        {
+            navMeshSurface.BuildNavMesh();
         }
     }
     public void MakeCurrentRoom()

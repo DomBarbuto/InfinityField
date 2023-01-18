@@ -877,7 +877,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1213045241389617702
 Transform:
   m_ObjectHideFlags: 0
@@ -944,7 +944,7 @@ MonoBehaviour:
   controller: {fileID: 1213045241389617697}
   animController: {fileID: 0}
   damageFXLength: 0.1
-  playerAbilities: {fileID: 0}
+  playerAbilities: {fileID: 1727157697}
   isSprinting: 0
   currentMoveSpeed: 0
   walkSpeed: 6
@@ -954,7 +954,9 @@ MonoBehaviour:
   pushBack: {x: 0, y: 0, z: 0}
   pushBackTime: 5
   characterList:
-  - {fileID: 1858135744513689573}
+  - {fileID: 1858135744513689573, guid: 6b1a528c901e18a4ebff6f3d8f19602e, type: 3}
+  - {fileID: 1858135744513689573, guid: fdd8802aee0ccd247bca8067fe738508, type: 3}
+  - {fileID: 1858135744513689573, guid: 6045ded8ec673784c81eaafd49565832, type: 3}
   currCharacter: 0
   weaponInventory:
   - {fileID: 0}
@@ -1165,6 +1167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52bc328a8904f7e4bb989d635fa77041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterName: 
   HP: 100
   HPMax: 100
   speed: 6
