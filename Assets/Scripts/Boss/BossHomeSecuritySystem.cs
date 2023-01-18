@@ -14,6 +14,7 @@ public class BossHomeSecuritySystem : MonoBehaviour, IRoomEntryListener
     // Start is called before the first frame update
     public void notify()
     {
+        AudioSource.PlayClipAtPoint(sfxManager.instance.HSSIntro, transform.position, sfxManager.instance.HSSIntroVolume);
         state = 1;
         stateMachineOn = true;
     }
@@ -32,15 +33,19 @@ public class BossHomeSecuritySystem : MonoBehaviour, IRoomEntryListener
         switch (state)
         {
             case 1:
+                AudioSource.PlayClipAtPoint(sfxManager.instance.HSSPhase1, transform.position, sfxManager.instance.HSSPhase1Volume);
                 wave(FirstWave);
                 break;
             case 2:
+                AudioSource.PlayClipAtPoint(sfxManager.instance.HSSPhase2, transform.position, sfxManager.instance.HSSPhase2Volume);
                 wave(SecondWave);
                 break;
             case 3:
+                AudioSource.PlayClipAtPoint(sfxManager.instance.HSSPhase3, transform.position, sfxManager.instance.HSSPhase3Volume);
                 wave(ThirdWave);
                 break;
             case 4:
+                AudioSource.PlayClipAtPoint(sfxManager.instance.HSSDeath, transform.position, sfxManager.instance.HSSDeathVolume);
                 //End Stuff
                 break;
         }

@@ -21,7 +21,7 @@ public class slidingDoorNew : MonoBehaviour, IInteractable, IRoomEntryListener
         if(isClosed)
         {
             anim.SetTrigger("Open");
-            
+            sfxManager.instance.aud.PlayOneShot(sfxManager.instance.doorOpen[Random.Range(0, sfxManager.instance.doorOpen.Length)], sfxManager.instance.doorOpenVol);
             HideText();
         }
     }
@@ -39,7 +39,7 @@ public class slidingDoorNew : MonoBehaviour, IInteractable, IRoomEntryListener
     public void notify()
     {
         anim.SetTrigger("Close");
-
+        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.doorClose[Random.Range(0, sfxManager.instance.doorClose.Length)], sfxManager.instance.doorCloseVol);
         // Turn on backside collider
         beforeCollider.enabled = true;
     }

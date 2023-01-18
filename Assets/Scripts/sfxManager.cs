@@ -108,7 +108,7 @@ public class sfxManager : MonoBehaviour
     [SerializeField] public float advSpecDeathVolume;
     [SerializeField] public AudioClip advSpecIntro;
     [SerializeField] public float advSpecIntroVolume;
-    [SerializeField] public AudioClip advSpecHurtSound;
+    [SerializeField] public AudioClip advSpecHurt;
     [SerializeField] public float advSpecHurtVolume;
 
     // ------------------------------------------ Player weapons -----------------------------------------------------
@@ -117,7 +117,7 @@ public class sfxManager : MonoBehaviour
     public AudioClip[] pistolShootSound;
     [Range(0, 1)] public float pistolShootVol;
     public AudioClip[] pistolReloadSound;
-    [Range(0, 1)] public float pistolreloadVol;
+    [Range(0, 1)] public float pistolReloadVol;
     public AudioClip[] pistolPickupSound;
     [Range(0, 1)] public float pistolPickupVol;
     public AudioClip[] pistolEmptySound;
