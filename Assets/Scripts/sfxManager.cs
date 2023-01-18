@@ -83,7 +83,7 @@ public class sfxManager : MonoBehaviour
     [Range(0, 1)][SerializeField] public float turretDeathVol;
 
     // ------------------------------------------- Boss -------------------------------------------------------------
-    [Header("---------- Exploding Specimen Audio ----------")]
+    [Header("---------- Slime Mech Audio ----------")]
     [SerializeField] public AudioClip slimeMechDeath;
     [SerializeField] public float slimeMechDeathVolume;
     [SerializeField] public AudioClip slimeMechIntro;
@@ -91,7 +91,25 @@ public class sfxManager : MonoBehaviour
     [SerializeField] public AudioClip slimeMechForceFieldSound;
     [SerializeField] public float slimeMechForceFieldVolume;
 
+    [Header("---------- Home Security System Audio ----------")]
+    [SerializeField] public AudioClip HSSDeath;
+    [SerializeField] public float HSSDeathVolume;
+    [SerializeField] public AudioClip HSSIntro;
+    [SerializeField] public float HSSIntroVolume;
+    [SerializeField] public AudioClip HSSPhase1;
+    [SerializeField] public float HSSPhase1Volume;
+    [SerializeField] public AudioClip HSSPhase2;
+    [SerializeField] public float HSSPhase2Volume;
+    [SerializeField] public AudioClip HSSPhase3;
+    [SerializeField] public float HSSPhase3Volume;
 
+    [Header("---------- Advanced Specimen Audio ----------")]
+    [SerializeField] public AudioClip advSpecDeath;
+    [SerializeField] public float advSpecDeathVolume;
+    [SerializeField] public AudioClip advSpecIntro;
+    [SerializeField] public float advSpecIntroVolume;
+    [SerializeField] public AudioClip advSpecHurtSound;
+    [SerializeField] public float advSpecHurtVolume;
 
     // ------------------------------------------ Player weapons -----------------------------------------------------
 
@@ -161,6 +179,10 @@ public class sfxManager : MonoBehaviour
     [Range(0, 1)] public float menuOpenVol;
     public AudioClip[] menuHover;
     [Range(0, 1)] public float menuHoverVol;
+    public AudioClip[] bulletTimeEnter;
+    [Range(0, 1)] public float bulletTimeEnterVol;
+    public AudioClip[] bulletTimeExit;
+    [Range(0, 1)] public float bulletTimeExitVol;
 
     private void Awake()
     {

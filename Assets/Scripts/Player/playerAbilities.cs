@@ -45,12 +45,14 @@ public class playerAbilities : MonoBehaviour
     {
         if(gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].isUsingAbility)
         {
+            sfxManager.instance.aud.PlayOneShot(sfxManager.instance.bulletTimeEnter[Random.Range(0, sfxManager.instance.bulletTimeEnter.Length)], sfxManager.instance.bulletTimeEnterVol);
             Time.timeScale = gameManager.instance.timeScaleOrig / 10;
             gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].speed = gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].speed * 12;
             gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].GetComponent<Animator>().speed = gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].GetComponent<Animator>().speed * 8;
         }
         else if(!gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].isUsingAbility)
         {
+            sfxManager.instance.aud.PlayOneShot(sfxManager.instance.bulletTimeExit[Random.Range(0, sfxManager.instance.bulletTimeExit.Length)], sfxManager.instance.bulletTimeExitVol);
             Time.timeScale = gameManager.instance.timeScaleOrig;
             gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].speed = gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].speed / 12;
             gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].GetComponent<Animator>().speed = gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].GetComponent<Animator>().speed / 8;
