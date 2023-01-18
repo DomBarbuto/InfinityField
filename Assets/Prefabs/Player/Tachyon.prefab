@@ -53,9 +53,11 @@ MonoBehaviour:
   energyUseRate: 5
   rechargable: 0
   criticalChance: 0
-  passiveTickRate: 0
-  perks: []
+  passiveTickRate: 1
+  perks:
+  - {fileID: 0}
+  - {fileID: 0}
   material: {fileID: 2100000, guid: 0cb72eae50c2855458cdff86a801e533, type: 2}
   isUsingAbility: 0
-  currSpeed: 0
+  currSpeed: 7
   ability: 1
