@@ -79,7 +79,7 @@ public class gameManager : MonoBehaviour
         // Hide reticle on start. Reticle only shows when weapon is selected
         hideReticle();
         saveLoad.loadFromMainGame();
-        if(playerController!= null)
+        if(playerController != null)
         {
             playerController.GetComponent<MeshRenderer>().material = playerController.characterList[playerController.currCharacter].GetComponent<MeshRenderer>().material;
             playerController.GetComponent<Animator>().avatar = playerController.characterList[playerController.currCharacter].GetComponent<Animator>().avatar;

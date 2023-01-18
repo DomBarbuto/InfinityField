@@ -17,6 +17,7 @@ public class enemyTurret : MonoBehaviour
 
     //temp variables for coroutine
     bool canShoot = true;
+    bool alerted = false;
 
     private void Start()
     {
@@ -29,6 +30,11 @@ public class enemyTurret : MonoBehaviour
         if (playerInRange && deployed)
         {
             GunObj.transform.LookAt(gameManager.instance.player.transform);
+            if (!alerted)
+            {
+                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.turretAlert[Random.Range(0, sfxManager.instance.turretAlert.Length)], sfxManager.instance.turretAlertVol);
+                alerted = true;
+            }
             if (canShoot)
             {
                 canShoot = false;
@@ -62,6 +68,7 @@ public class enemyTurret : MonoBehaviour
         canShoot = false;
         playerInRange = false;
         anim.SetTrigger("TriggerDeath");
+        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.turretDeath[Random.Range(0, sfxManager.instance.turretDeath.Length)], sfxManager.instance.turretDeathVol);
         StartCoroutine(timeToDestroy());
     }
 
@@ -72,6 +79,7 @@ public class enemyTurret : MonoBehaviour
 
     IEnumerator shoot()
     {
+        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.turretAttack[Random.Range(0, sfxManager.instance.turretAttack.Length)], sfxManager.instance.turretAttackVol);
         GameObject newProjectile = Instantiate(projectile, muzzlePoint.position, muzzlePoint.rotation, null);
         yield return new WaitForSeconds(shootSpeed);
         canShoot = true;
