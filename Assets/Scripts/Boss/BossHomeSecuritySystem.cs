@@ -11,6 +11,7 @@ public class BossHomeSecuritySystem : MonoBehaviour, IRoomEntryListener
     [SerializeField] bool stateMachineOn;
     [SerializeField] bool stateStarted;
     [SerializeField] bool waveComplete;
+    [SerializeField] GameObject exit;
     // Start is called before the first frame update
     public void notify()
     {
@@ -45,6 +46,7 @@ public class BossHomeSecuritySystem : MonoBehaviour, IRoomEntryListener
                 wave(ThirdWave);
                 break;
             case 4:
+                exit.SetActive(true);
                 AudioSource.PlayClipAtPoint(sfxManager.instance.HSSDeath, transform.position, sfxManager.instance.HSSDeathVolume);
                 //End Stuff
                 break;

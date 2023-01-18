@@ -37305,10 +37305,10 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 15e38832e52aee641a28fa6d204976c6, type: 2}
-  - {fileID: 2100000, guid: edf5385c2e30abc42a96a8854eb2faa5, type: 2}
-  - {fileID: 2100000, guid: eda67edbd488e874d827e21c4f3f0404, type: 2}
-  - {fileID: 2100000, guid: fbdf806a83d94874ebef6379db430057, type: 2}
+  - {fileID: 2100000, guid: 6201d03b6d216cb4e85eec9e279edbe8, type: 2}
+  - {fileID: 2100000, guid: 34fe10507a5a6b54cb131986ed058b8c, type: 2}
+  - {fileID: 2100000, guid: 34fe10507a5a6b54cb131986ed058b8c, type: 2}
+  - {fileID: 2100000, guid: 34fe10507a5a6b54cb131986ed058b8c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -37387,7 +37387,7 @@ GameObject:
   - component: {fileID: 7477150745889422063}
   - component: {fileID: 1959275780114518147}
   m_Layer: 0
-  m_Name: 2 Door Room L Shape (Lounge -Combat)
+  m_Name: 2 Door Room L Shape (Robotics Lab -Combat)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37417,7 +37417,7 @@ Transform:
   - {fileID: 5025061881109519034}
   - {fileID: 2940933599192326174}
   - {fileID: 2848419581896435570}
-  - {fileID: 6426697261333737353}
+  - {fileID: 7658281371547535377}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -37576,9 +37576,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4836186974795302710, guid: 84854576d16c3a34eb648ca98d666c7e, type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 3998262730076081985, guid: f87321a1d74398d49a4da9d0e20fdd6f, type: 3}
     - target: {fileID: 4836186974795302711, guid: 84854576d16c3a34eb648ca98d666c7e, type: 3}
       propertyPath: m_Name
-      value: CleanUpCrewYellow (Spawner)
+      value: SlimeSpawner
       objectReference: {fileID: 0}
     - target: {fileID: 4836186974795302711, guid: 84854576d16c3a34eb648ca98d666c7e, type: 3}
       propertyPath: m_IsActive
@@ -37731,72 +37735,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3089107839170371977, guid: cb59bbb1fe71cd84180142cfd3d1b1c6, type: 3}
   m_PrefabInstance: {fileID: 2187354085238889703}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &2227218879613604227
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 2476492069248085120}
-    m_Modifications:
-    - target: {fileID: 5177060251654716938, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
-      propertyPath: m_RootOrder
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 5177060251654716938, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.035784483
-      objectReference: {fileID: 0}
-    - target: {fileID: 5177060251654716938, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.87600017
-      objectReference: {fileID: 0}
-    - target: {fileID: 5177060251654716938, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2.236878
-      objectReference: {fileID: 0}
-    - target: {fileID: 5177060251654716938, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5177060251654716938, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5177060251654716938, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5177060251654716938, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5177060251654716938, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5177060251654716938, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5177060251654716938, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5177060251654716940, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
-      propertyPath: trackID
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5177060251654716941, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
-      propertyPath: m_Name
-      value: AudioTrigger
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
---- !u!4 &6426697261333737353 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5177060251654716938, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
-  m_PrefabInstance: {fileID: 2227218879613604227}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2461152446506865402
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37848,9 +37786,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 132389399259184705, guid: 66a5389502d1a634ebf0392defccd173, type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 3998262730076081985, guid: f87321a1d74398d49a4da9d0e20fdd6f, type: 3}
     - target: {fileID: 132389399259184706, guid: 66a5389502d1a634ebf0392defccd173, type: 3}
       propertyPath: m_Name
-      value: CleanUpCrewRed (Spawner)
+      value: SlimeSpawner
       objectReference: {fileID: 0}
     - target: {fileID: 132389399259184706, guid: 66a5389502d1a634ebf0392defccd173, type: 3}
       propertyPath: m_IsActive
@@ -37969,6 +37911,72 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5292186170938725395, guid: bde6a1e799eff0940a11144071ab827f, type: 3}
   m_PrefabInstance: {fileID: 2759421277528743712}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3287401828365989403
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2476492069248085120}
+    m_Modifications:
+    - target: {fileID: 5177060251654716938, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5177060251654716938, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.035784483
+      objectReference: {fileID: 0}
+    - target: {fileID: 5177060251654716938, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.87600017
+      objectReference: {fileID: 0}
+    - target: {fileID: 5177060251654716938, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.236878
+      objectReference: {fileID: 0}
+    - target: {fileID: 5177060251654716938, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5177060251654716938, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5177060251654716938, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5177060251654716938, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5177060251654716938, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5177060251654716938, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5177060251654716938, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5177060251654716940, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
+      propertyPath: trackID
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5177060251654716941, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
+      propertyPath: m_Name
+      value: AudioTrigger
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
+--- !u!4 &7658281371547535377 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5177060251654716938, guid: f0381b70e9bb1ec47963bebbc20118bf, type: 3}
+  m_PrefabInstance: {fileID: 3287401828365989403}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3404606170216209586
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37976,9 +37984,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2476492069248085120}
     m_Modifications:
+    - target: {fileID: 3092288074989904837, guid: 59b16dcfbbc80fc4184a8e4a7d16f2c4, type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 3998262730076081985, guid: f87321a1d74398d49a4da9d0e20fdd6f, type: 3}
     - target: {fileID: 6202222373185891020, guid: 59b16dcfbbc80fc4184a8e4a7d16f2c4, type: 3}
       propertyPath: m_Name
-      value: CleanUpCrewWhite (Spawner)
+      value: SlimeSpawner
       objectReference: {fileID: 0}
     - target: {fileID: 6202222373185891020, guid: 59b16dcfbbc80fc4184a8e4a7d16f2c4, type: 3}
       propertyPath: m_IsActive
@@ -38055,12 +38067,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2010516623425965269, guid: aef481fb5d6ec4c4aaadc3124433e6c2, type: 3}
       propertyPath: m_Name
-      value: CleanUpCrewBlack (Spawner)
+      value: SlimeSpawner
       objectReference: {fileID: 0}
     - target: {fileID: 2010516623425965269, guid: aef481fb5d6ec4c4aaadc3124433e6c2, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2010516623425965274, guid: aef481fb5d6ec4c4aaadc3124433e6c2, type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 3998262730076081985, guid: f87321a1d74398d49a4da9d0e20fdd6f, type: 3}
     - target: {fileID: 2010516623425965275, guid: aef481fb5d6ec4c4aaadc3124433e6c2, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -38133,14 +38149,14 @@ PrefabInstance:
     - target: {fileID: 3092288074989904837, guid: 59b16dcfbbc80fc4184a8e4a7d16f2c4, type: 3}
       propertyPath: enemy
       value: 
-      objectReference: {fileID: 6162010269479907909, guid: d6f539914df59b24f8681996993e3b8f, type: 3}
+      objectReference: {fileID: 3998262730076081985, guid: f87321a1d74398d49a4da9d0e20fdd6f, type: 3}
     - target: {fileID: 6202222373185891020, guid: 59b16dcfbbc80fc4184a8e4a7d16f2c4, type: 3}
       propertyPath: m_Icon
       value: 
       objectReference: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 6202222373185891020, guid: 59b16dcfbbc80fc4184a8e4a7d16f2c4, type: 3}
       propertyPath: m_Name
-      value: Turret (Spawner) (1)
+      value: SlimeSpawner
       objectReference: {fileID: 0}
     - target: {fileID: 6202222373185891020, guid: 59b16dcfbbc80fc4184a8e4a7d16f2c4, type: 3}
       propertyPath: m_IsActive

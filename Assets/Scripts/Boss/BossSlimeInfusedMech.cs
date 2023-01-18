@@ -26,6 +26,7 @@ public class BossSlimeInfusedMech : MonoBehaviour, IRoomEntryListener
     [SerializeField] float damageFXLength;
     [SerializeField] float introAnimationDuration;
     [SerializeField] enemySpawnSystem spawnSystem;
+    [SerializeField] GameObject exit;
 
     [Header("Behaviour")]
     public bool startStateMachine;
@@ -240,6 +241,8 @@ public class BossSlimeInfusedMech : MonoBehaviour, IRoomEntryListener
         // Death explosion
         AudioSource.PlayClipAtPoint(sfxManager.instance.slimeMechDeath, transform.position, sfxManager.instance.slimeMechDeathVolume);
 
+        //Reveal Exit
+        exit.SetActive(true);
         // Destroy boss
         Destroy(gameObject);
     }
