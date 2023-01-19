@@ -1181,6 +1181,10 @@ PrefabInstance:
       propertyPath: modelsInOrder.Array.data[14]
       value: 
       objectReference: {fileID: 1162118964}
+    - target: {fileID: 4050948851490649309, guid: 584a66832395b424ea7ab719b097f4f1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -33
+      objectReference: {fileID: 0}
     - target: {fileID: 4050948851574250364, guid: 584a66832395b424ea7ab719b097f4f1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1277,14 +1281,42 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1247259938}
+    - target: {fileID: 4050948851745029433, guid: 584a66832395b424ea7ab719b097f4f1, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4050948852084641082, guid: 584a66832395b424ea7ab719b097f4f1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2016038815}
+    - target: {fileID: 4050948852934335503, guid: 584a66832395b424ea7ab719b097f4f1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 47
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050948853203559502, guid: 584a66832395b424ea7ab719b097f4f1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 127
+      objectReference: {fileID: 0}
     - target: {fileID: 4761840841679754195, guid: 584a66832395b424ea7ab719b097f4f1, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 101889637}
+    - target: {fileID: 4761840841728662353, guid: 584a66832395b424ea7ab719b097f4f1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -113
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761840841929893421, guid: 584a66832395b424ea7ab719b097f4f1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761840841929893421, guid: 584a66832395b424ea7ab719b097f4f1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 207
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761840842610103366, guid: 584a66832395b424ea7ab719b097f4f1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -193
+      objectReference: {fileID: 0}
     - target: {fileID: 4761840842755150218, guid: 584a66832395b424ea7ab719b097f4f1, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1345,7 +1377,7 @@ GameObject:
   - component: {fileID: 7607916370642725649}
   - component: {fileID: 5652097696221700059}
   - component: {fileID: 7607916370642725650}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Observation_Spaceship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1360,8 +1392,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6156619258457931278}
   m_LocalRotation: {x: -0, y: 0.97920877, z: -0, w: -0.20285553}
-  m_LocalPosition: {x: -10.93, y: 18.8, z: 20.66}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -10.93, y: 18.8, z: 20.660004}
+  m_LocalScale: {x: 1.0000007, y: 1, z: 1.0000007}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
