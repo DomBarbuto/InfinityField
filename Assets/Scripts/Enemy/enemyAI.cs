@@ -254,7 +254,7 @@ public class enemyAI : MonoBehaviour , IRagdollDamage
         // Check if this caused death
         if(HP <= 0)
         {
-            gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].callItemOnDeathEnemy(this.GetComponent<IDamage>());
+            gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].callPerkOnDeathEnemy(this.GetComponent<IDamage>());
             gameObject.GetComponent<Collider>().enabled = false;
             dropCredits();
             gameManager.instance.updateEnemyCount(-1);

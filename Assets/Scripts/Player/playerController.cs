@@ -231,7 +231,8 @@ public class playerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && currJumps < 1)
         {
-            characterList[currCharacter].callItemOnJump();
+            Debug.Log(characterList[currCharacter]);
+            characterList[currCharacter].callIPerkOnJump();
             currJumps++;
             playerVelocity.y = jumpHeight;
             sfxManager.instance.aud.PlayOneShot(sfxManager.instance.playerJump[Random.Range(0, sfxManager.instance.playerJump.Length)], sfxManager.instance.playerJumpVol);
@@ -240,6 +241,7 @@ public class playerController : MonoBehaviour
         playerVelocity.y -= gravityValue * Time.deltaTime;
         controller.Move((playerVelocity + pushBack) * Time.deltaTime);
     }
+
     //Coroutines--------------------------
 
     public IEnumerator fire()

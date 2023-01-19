@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Serialization;
 using UnityEngine;
 
 [System.Serializable]
-public abstract class perkCreation : MonoBehaviour
+public abstract class perkCreation
 {
 
     public abstract string giveName();
@@ -41,7 +38,7 @@ public class criticalStrike : perkCreation
     {
         float random = Random.Range(0, 100);
         float chance = 5 + (7 * (int)rarity) + player.characterList[player.currCharacter].criticalChance;
-        if(random < chance)
+        if (random < chance)
         {
             gameManager.instance.playerController.weaponInventory[gameManager.instance.playerController.currentWeapon].weaponProjectile.doDamage(enemy);
         }
@@ -57,10 +54,10 @@ public class Adrenaline : perkCreation
 
     public override void onDeathEnemy(playerController player, IDamage enemy, perkList.PerkRarity rarity)
     {
-        if(gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].energy < gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].energyMax)
+        if (gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].energy < gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].energyMax)
         {
             gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].energy += 3 + (5 * (int)rarity);
-            if(gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].energy > gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].energyMax)
+            if (gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].energy > gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].energyMax)
             {
                 gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].energy = gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].energyMax;
             }
@@ -79,7 +76,7 @@ public class TimeHealsWounds : perkCreation
     public override void update(playerController player, perkList.PerkRarity rarity)
     {
         gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].HP += 0.2f + (0.5f * (int)rarity);
-        if(gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].HP > gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].HPMax)
+        if (gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].HP > gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].HPMax)
         {
             gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].HP = gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].HPMax;
         }
@@ -119,20 +116,22 @@ public class RocketMan : perkCreation
     }
     public override void onJump(playerController player, perkList.PerkRarity rarity)
     {
-        if(internalCooldown <= 0)
+        if (player == gameManager.instance.playerController)
         {
-            if(explosionObject == null)
+            if (internalCooldown <= 0)
             {
-                Vector3 explosion = gameManager.instance.playerController.transform.position;
-                explosion.y = explosion.y - 0.5f;
-                explosionObject = (GameObject)Resources.Load("PerkEffects/RocketManExplosion", typeof(GameObject));
-                if(explosionObject != null)
+                if (explosionObject == null)
                 {
-                    Instantiate(explosionObject, explosion, gameManager.instance.playerController.transform.rotation);
+                    Vector3 explosion = gameManager.instance.playerController.transform.position;
+                    explosion.y = explosion.y - 0.5f;
+                    explosionObject = (GameObject)Resources.Load("PerkEffects/RocketManExplosion", typeof(GameObject));
+                    if (explosionObject != null)
+                    {
+                        GameObject rocketManExplostion = GameObject.Instantiate(explosionObject, explosion, gameManager.instance.playerController.transform.rotation);
+                    }
                 }
+                internalCooldown = 10 - (1.5f * (int)rarity);
             }
-            internalCooldown = 10 - (1.5f * (int)rarity);
         }
-        
     }
-}   
+}

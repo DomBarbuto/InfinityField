@@ -51,7 +51,7 @@ public class playerCharacter : MonoBehaviour
         }
     }
 
-    public void callItemOnDeathEnemy(IDamage enemy)
+    public void callPerkOnDeathEnemy(IDamage enemy)
     {
         foreach (perkList _perk in perks)
         {
@@ -67,7 +67,7 @@ public class playerCharacter : MonoBehaviour
         }
     }
 
-    public void callItemOnJump()
+    public void callIPerkOnJump()
     {
         foreach (perkList _perk in perks)
         {
