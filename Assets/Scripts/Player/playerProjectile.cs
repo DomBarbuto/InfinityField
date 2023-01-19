@@ -10,6 +10,7 @@ public class playerProjectile : MonoBehaviour
     [SerializeField] bool isPiercing;
     [SerializeField] GameObject secondaryProjectile;
     bool hasHit;
+    RaycastHit hit;
 
 
     Rigidbody rb;
@@ -18,8 +19,6 @@ public class playerProjectile : MonoBehaviour
     {
         hasHit = false;
         rb = gameObject.GetComponent<Rigidbody>();
-
-        RaycastHit hit;
 
         Vector3 direction = Camera.main.transform.forward;
         direction.y = 0;
@@ -56,8 +55,7 @@ public class playerProjectile : MonoBehaviour
             Destroy(gameObject);
 
             // VFX at impact point
-            Instantiate(gameManager.instance.playerController.weaponInventory[gameManager.instance.playerController.currentWeapon].hitFX, gameObject.transform.position, transform.rotation);
-
+            Instantiate(gameManager.instance.playerController.weaponInventory[gameManager.instance.playerController.currentWeapon].hitFX, hit.point, transform.rotation);
             // SFX at impact point
             AudioSource.PlayClipAtPoint(sfxManager.instance.ricochetSound[0], other.transform.position, sfxManager.instance.ricochetSoundVol);
 
