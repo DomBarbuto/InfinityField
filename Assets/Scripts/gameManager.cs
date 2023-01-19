@@ -82,7 +82,6 @@ public class gameManager : MonoBehaviour
         if(playerController != null)
         {
             playerController.GetComponent<MeshRenderer>().sharedMaterial = playerController.characterList[playerController.currCharacter].material;
-            //playerController.GetComponent<Animator>().avatar = playerController.characterList[playerController.currCharacter].GetComponent<Animator>().avatar;
         }
     }
 

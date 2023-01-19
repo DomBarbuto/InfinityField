@@ -19,19 +19,28 @@ public class playerCharacter : MonoBehaviour
     public bool isUsingAbility = false;
     public float currSpeed;
     [SerializeField] public int ability;
+    bool isRunning = true;
 
+    public void Start()
+    {
+        StartCoroutine(callPerkOnUpdate());
+    }
     public IEnumerator callPerkOnUpdate()
     {
-        if(perks.Count > 0)
+        if (!isRunning)
         {
-            foreach(perkList _perk in perks)
+            isRunning = true;
+            if (HP > 0)
             {
-                _perk.perk.update(gameManager.instance.playerController, _perk.rarity);
+                foreach (perkList _perk in perks)
+                {
+                    _perk.perk.update(gameManager.instance.playerController, _perk.rarity);
+                }
+                yield return new WaitForSeconds(passiveTickRate);
+                StartCoroutine(callPerkOnUpdate());
+                isRunning = false;
             }
-            yield return new WaitForSeconds(passiveTickRate);
-            StartCoroutine(callPerkOnUpdate());
         }
-        
     }
 
     public void callIPerkOnHit(IDamage enemy)
@@ -58,11 +67,11 @@ public class playerCharacter : MonoBehaviour
         }
     }
 
-    /*public void callItemOnJump()
+    public void callItemOnJump()
     {
         foreach (perkList _perk in perks)
         {
             _perk.perk.onJump(gameManager.instance.playerController, _perk.rarity);
         }
-    }*/
+    }
 }

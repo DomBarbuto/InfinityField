@@ -15,15 +15,13 @@ public class playerController : MonoBehaviour
     public PlayerAnimController animController;
 
     [Header("---- Player Stats ----")]
-    /*[SerializeField] public float HP;                                               //All of these stats will be consolodated into character prefabs
-    [SerializeField] public float energy;                                           //All of these stats will be consolodated into character prefabs
-    [SerializeField] public float energyDecreaseRate;      */                         //All of these stats will be consolodated into character prefabs                                         //All of these stats will be consolodated into character prefabs
-    [SerializeField] float damageFXLength;                                          //All of these stats will be consolodated into character prefabs
+                                    
+    [SerializeField] float damageFXLength;                                          
     public playerAbilities playerAbilities;
 
     [Header("---- Player Movement ----")]
-    [SerializeField] public bool isSprinting;                                              //All of these stats will be consolodated into character prefabs
-    [SerializeField] float currentMoveSpeed;                                        //All of these stats will be consolodated into character prefabs
+    [SerializeField] public bool isSprinting;                                       
+    [SerializeField] float currentMoveSpeed;                                        
     [Range(3, 8)][SerializeField] float walkSpeed;
     [Range(1, 4)][SerializeField] float sprintMultiplier;
     [Range(10, 15)][SerializeField] float jumpHeight;
@@ -86,8 +84,7 @@ public class playerController : MonoBehaviour
 
         setPlayerPos();
         currentMoveSpeed = walkSpeed;
-
-        //StartCoroutine(characterList[currCharacter].callPerkOnUpdate());
+        Debug.Log(sfxManager.instance.sfxVolumeSlider.value);
     }
 
     void Update()
@@ -234,7 +231,7 @@ public class playerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && currJumps < 1)
         {
-            //characterList[currCharacter].callItemOnJump();
+            characterList[currCharacter].callItemOnJump();
             currJumps++;
             playerVelocity.y = jumpHeight;
             sfxManager.instance.aud.PlayOneShot(sfxManager.instance.playerJump[Random.Range(0, sfxManager.instance.playerJump.Length)], sfxManager.instance.playerJumpVol);
@@ -243,11 +240,6 @@ public class playerController : MonoBehaviour
         playerVelocity.y -= gravityValue * Time.deltaTime;
         controller.Move((playerVelocity + pushBack) * Time.deltaTime);
     }
-    /*if(Time.time - lastUpdate >= 0.25f)
-                            {
-                                weaponInventory[currentWeapon].charge += 0.25f;
-                                lastUpdate= Time.time;
-                            }*/
     //Coroutines--------------------------
 
     public IEnumerator fire()

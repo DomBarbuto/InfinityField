@@ -24,7 +24,11 @@ public class room : MonoBehaviour, IRoomEntryListener
         {
             Generation = parentGeneration.GetComponent<proceduralGeneration>();
         }
-
+        if(gameObject.GetComponentInChildren<NavMeshSurface>() != null)
+        {
+            nav = gameObject.GetComponentInChildren<NavMeshSurface>();
+            BakeNavMesh();
+        }
     }
 
     private void Update()
@@ -38,6 +42,14 @@ public class room : MonoBehaviour, IRoomEntryListener
                 Generation.SpawnRoom();
             }
         }
+
+    }
+
+    public void BakeNavMesh()
+    {
+        Debug.Log("Made to Bake");
+
+        nav.BuildNavMesh();
 
     }
 
