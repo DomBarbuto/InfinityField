@@ -21,11 +21,13 @@ public class playerProjectile : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
 
         Vector3 direction = Camera.main.transform.forward;
-        direction.y = 0;
         direction = direction.normalized;
 
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit))
+        LayerMask rayMask = ~LayerMask.GetMask("Explosion");
+
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, Mathf.Infinity, rayMask))
         {
+            Debug.Log("Ray hit the collider of " + hit.collider.name);
             direction = (hit.point - gameManager.instance.playerController.currentMuzzlePoint.position).normalized;
         }
 

@@ -63,10 +63,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af368ae3aa7faec458a9a22229fde686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 100
+  projectileSpeed: 50
   projectileDamage: 20
   projectileLifeTime: 30
   isPiercing: 0
+  secondaryProjectile: {fileID: 0}
 --- !u!136 &5541858862360265318
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -155,6 +156,10 @@ PrefabInstance:
     - target: {fileID: 108346806523693900, guid: e865b065887ee5742b7282a5ea6554ee, type: 3}
       propertyPath: m_Intensity
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 135591627764625104, guid: e865b065887ee5742b7282a5ea6554ee, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e865b065887ee5742b7282a5ea6554ee, type: 3}

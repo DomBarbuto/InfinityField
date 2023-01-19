@@ -67,6 +67,7 @@ MonoBehaviour:
   projectileDamage: 10
   projectileLifeTime: 30
   isPiercing: 0
+  secondaryProjectile: {fileID: 0}
 --- !u!136 &-1071418146084616541
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -150,6 +151,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4214851923150842, guid: 05cdc8789d85bd6438550e0bfdaaa6d0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 135895367616126662, guid: 05cdc8789d85bd6438550e0bfdaaa6d0, type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
