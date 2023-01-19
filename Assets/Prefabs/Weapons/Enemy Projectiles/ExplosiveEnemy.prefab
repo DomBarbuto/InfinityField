@@ -115,10 +115,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   damage: 10
-  upLaunchForce: 0.3
+  upLaunchForce: 0
   destroyTime: 5
   explosionOBJ: {fileID: 5569945172861464255, guid: b454afa4f1180544d831f4a52b09fa5a, type: 3}
   aud: {fileID: 3830617883854609421}
+  cameFromPlayer: 0
+  durationOfLerp: 0
 --- !u!54 &4224026720798320962
 Rigidbody:
   m_ObjectHideFlags: 0
