@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] int speed;
     [SerializeField] int damage;
     [SerializeField] int destroyTime;
+    [SerializeField] GameObject bulletHitFX;
 
     private bool hasCollided;
     private Rigidbody rb;
@@ -34,6 +35,8 @@ public class Bullet : MonoBehaviour
             if(other.CompareTag("Player"))
             {
                 gameManager.instance.playerController.takeDamage(damage);
+                GameObject hitFX = Instantiate(bulletHitFX, transform.position, bulletHitFX.transform.rotation, null);
+                Destroy(hitFX, 1);
             }
         }
 
