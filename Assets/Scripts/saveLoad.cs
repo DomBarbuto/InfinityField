@@ -123,7 +123,7 @@ public class saveLoad : MonoBehaviour
             PlayerPrefs.GetFloat("MusicVolume", gameManager.instance.composer.speaker.volume);
         }
 
-        if(PlayerPrefs.HasKey("weaponList"))
+        /*if(PlayerPrefs.HasKey("weaponList"))
         {
             string weaponLoad = PlayerPrefs.GetString("weaponList");
 
@@ -135,7 +135,7 @@ public class saveLoad : MonoBehaviour
             string perkLoad = PlayerPrefs.GetString("perkList");
 
             List<perkList> perkLoadList = JsonUtility.FromJson<List<perkList>>(perkLoad);
-        }
+        }*/
 
     }
 }

@@ -84,7 +84,12 @@ public class playerController : MonoBehaviour
 
         setPlayerPos();
         currentMoveSpeed = walkSpeed;
-        Debug.Log(sfxManager.instance.sfxVolumeSlider.value);
+        //Debug.Log(sfxManager.instance.sfxVolumeSlider.value);
+        characterList[currCharacter].perks.Clear();
+        while (characterList[currCharacter].perks.Count > 0)
+        {
+            characterList[currCharacter].perks.RemoveAt(0);
+        }
     }
 
     void Update()
@@ -231,11 +236,11 @@ public class playerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && currJumps < 1)
         {
-            Debug.Log(characterList[currCharacter]);
-            characterList[currCharacter].callIPerkOnJump();
             currJumps++;
             playerVelocity.y = jumpHeight;
             sfxManager.instance.aud.PlayOneShot(sfxManager.instance.playerJump[Random.Range(0, sfxManager.instance.playerJump.Length)], sfxManager.instance.playerJumpVol);
+            characterList[currCharacter].callIPerkOnJump();
+            
         }
 
         playerVelocity.y -= gravityValue * Time.deltaTime;

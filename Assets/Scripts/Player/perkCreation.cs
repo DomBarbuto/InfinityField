@@ -108,30 +108,28 @@ public class RocketMan : perkCreation
     public override string giveName()
     {
         return "Rocket Man";
-    }
+    }   
 
     public override void update(playerController player, perkList.PerkRarity rarity)
     {
         internalCooldown -= 1;
+        Debug.Log(internalCooldown);
     }
     public override void onJump(playerController player, perkList.PerkRarity rarity)
     {
-        if (player == gameManager.instance.playerController)
+        if (internalCooldown <= 0)
         {
-            if (internalCooldown <= 0)
+            if (explosionObject == null)
             {
-                if (explosionObject == null)
+                Vector3 explosion = gameManager.instance.playerController.transform.position;
+                explosion.y = explosion.y - 0.5f;
+                explosionObject = (GameObject)Resources.Load("PerkEffects/RocketManExplosion", typeof(GameObject));
+                if (explosionObject != null)
                 {
-                    Vector3 explosion = gameManager.instance.playerController.transform.position;
-                    explosion.y = explosion.y - 0.5f;
-                    explosionObject = (GameObject)Resources.Load("PerkEffects/RocketManExplosion", typeof(GameObject));
-                    if (explosionObject != null)
-                    {
-                        GameObject rocketManExplostion = GameObject.Instantiate(explosionObject, explosion, gameManager.instance.playerController.transform.rotation);
-                    }
+                    GameObject rocketManExplostion = GameObject.Instantiate(explosionObject, explosion, gameManager.instance.playerController.transform.rotation);
                 }
-                internalCooldown = 10 - (1.5f * (int)rarity);
             }
+            internalCooldown = 10 - (1.5f * (int)rarity);
         }
     }
 }

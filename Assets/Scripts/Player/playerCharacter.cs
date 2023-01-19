@@ -19,11 +19,12 @@ public class playerCharacter : MonoBehaviour
     public bool isUsingAbility = false;
     public float currSpeed;
     [SerializeField] public int ability;
-    bool isRunning = true;
+    bool isRunning = false;
 
     public void Start()
     {
         StartCoroutine(callPerkOnUpdate());
+
     }
     public IEnumerator callPerkOnUpdate()
     {
@@ -36,9 +37,10 @@ public class playerCharacter : MonoBehaviour
                 {
                     _perk.perk.update(gameManager.instance.playerController, _perk.rarity);
                 }
-                yield return new WaitForSeconds(passiveTickRate);
-                StartCoroutine(callPerkOnUpdate());
+                yield return new WaitForSeconds(1);
                 isRunning = false;
+                StartCoroutine(callPerkOnUpdate());
+                
             }
         }
     }
@@ -69,7 +71,8 @@ public class playerCharacter : MonoBehaviour
 
     public void callIPerkOnJump()
     {
-        foreach (perkList _perk in perks)
+        Debug.Log(perks.Count);
+        foreach (perkList _perk in this.perks)
         {
             _perk.perk.onJump(gameManager.instance.playerController, _perk.rarity);
         }
