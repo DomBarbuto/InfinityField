@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class BossHomeSecuritySystem : MonoBehaviour, IRoomEntryListener
 {
-    [SerializeField] List<enemySpawner> FirstWave;
-    [SerializeField] List<enemySpawner> SecondWave;
-    [SerializeField] List<enemySpawner> ThirdWave;
+    [SerializeField] List<GameObject> FirstWave;
+    [SerializeField] List<GameObject> SecondWave;
+    [SerializeField] List<GameObject> ThirdWave;
     [SerializeField] int state;
     [SerializeField] bool stateMachineOn;
     [SerializeField] bool stateStarted;
     [SerializeField] bool waveComplete;
     [SerializeField] GameObject exit;
+
+    List<GameObject> nullObjects;
     // Start is called before the first frame update
     public void notify()
     {
@@ -46,7 +48,11 @@ public class BossHomeSecuritySystem : MonoBehaviour, IRoomEntryListener
                 wave(ThirdWave);
                 break;
             case 4:
-                exit.SetActive(true);
+                if (!stateStarted)
+                {
+                    exit.SetActive(true);
+                    stateStarted = true;
+                }
                 AudioSource.PlayClipAtPoint(sfxManager.instance.HSSDeath, transform.position, sfxManager.instance.HSSDeathVolumeMulti);
                 //End Stuff
                 break;
@@ -54,27 +60,33 @@ public class BossHomeSecuritySystem : MonoBehaviour, IRoomEntryListener
 
     }
 
-    void wave(List<enemySpawner> _wave)
+    void wave(List<GameObject> _wave)
     {
         if (!stateStarted)
         {
-            foreach (enemySpawner spawner in _wave)
+            foreach (GameObject enemy in _wave)
             {
-                spawner.triggerSpawn();
+                enemy.SetActive(true);
                 stateStarted = true;
             }
         }
         else
         {
-            foreach (enemySpawner spawner in _wave)
+            nullObjects = _wave;
+            foreach (GameObject enemy in _wave)
             {
-                if (spawner.enemies.Count == 0)
-                    waveComplete = true;
-                else
-                    waveComplete = false;
+                if (enemy == null)
+                    nullObjects.Remove(enemy);
             }
+            _wave = nullObjects;
+
+            if (_wave.Count == 0)
+                waveComplete = true;
+
             if (waveComplete)
             {
+                waveComplete = false;
+                stateStarted = false;
                 state++;
             }
         }
