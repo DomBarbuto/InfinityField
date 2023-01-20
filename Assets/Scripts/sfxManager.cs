@@ -64,11 +64,8 @@ public class sfxManager : MonoBehaviour
     // ------------------------------------------- Boss -------------------------------------------------------------
     [Header("---------- Slime Mech Audio ----------")]
     [SerializeField] public AudioClip slimeMechDeath;
-    [SerializeField] public float slimeMechDeathVolumeMulti;
     [SerializeField] public AudioClip slimeMechIntro;
-    [SerializeField] public float slimeMechIntroVolumeMulti;
     [SerializeField] public AudioClip slimeMechForceFieldSound;
-    [SerializeField] public float slimeMechForceFieldVolumeMulti;
 
     [Header("---------- Home Security System Audio ----------")]
     [SerializeField] public AudioClip HSSDeath;
