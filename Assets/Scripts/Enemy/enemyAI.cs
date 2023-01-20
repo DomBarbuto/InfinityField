@@ -347,6 +347,27 @@ public class enemyAI : MonoBehaviour , IRagdollDamage
         }
     }
 
+    private void playHurtSound()
+    {
+        switch(hurtSoundType)
+        {
+            case 0:
+                aud.PlayOneShot(sfxManager.instance.redCCHurt[Random.Range(0, sfxManager.instance.redCCHurt.Length)]);
+                break;
+            case 1:
+                aud.PlayOneShot(sfxManager.instance.whiteCCHurt[Random.Range(0, sfxManager.instance.whiteCCHurt.Length)]);
+                break;
+            case 2:
+                aud.PlayOneShot(sfxManager.instance.yellowCCHurt[Random.Range(0, sfxManager.instance.yellowCCHurt.Length)]);
+                break;
+            case 3:
+                aud.PlayOneShot(sfxManager.instance.blackCCHurt[Random.Range(0, sfxManager.instance.blackCCHurt.Length)]);
+                break;
+            default:
+                break;
+        }
+    }
+
     private void playShootSound()
     {
         AudioClip clipToPlay = null;
