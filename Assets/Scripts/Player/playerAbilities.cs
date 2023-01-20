@@ -37,20 +37,20 @@ public class playerAbilities : MonoBehaviour
             gameManager.instance.playerController.animController.switchSprintingState(true);
             gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].currSpeed = gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].speed * 1.7f;
         }
-        
-        
+
+
     }
-    
+
     public void bulletTime()
     {
-        if(gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].isUsingAbility)
+        if (gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].isUsingAbility)
         {
             sfxManager.instance.aud.PlayOneShot(sfxManager.instance.bulletTimeEnter[Random.Range(0, sfxManager.instance.bulletTimeEnter.Length)], sfxManager.instance.bulletTimeEnterVolMulti);
             Time.timeScale = gameManager.instance.timeScaleOrig / 10;
             gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].speed = gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].speed * 12;
             gameManager.instance.playerController.GetComponent<Animator>().speed = gameManager.instance.playerController.GetComponent<Animator>().speed * 8;
         }
-        else if(!gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].isUsingAbility)
+        else if (!gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].isUsingAbility)
         {
             sfxManager.instance.aud.PlayOneShot(sfxManager.instance.bulletTimeExit[Random.Range(0, sfxManager.instance.bulletTimeExit.Length)], sfxManager.instance.bulletTimeExitVolMulti);
             Time.timeScale = gameManager.instance.timeScaleOrig;
@@ -70,9 +70,9 @@ public class playerAbilities : MonoBehaviour
                 Collider[] objects = Physics.OverlapSphere(hit.point, 5);
 
 
-                foreach(Collider collider in objects)
+                foreach (Collider collider in objects)
                 {
-                    if(collider.tag != "Player")
+                    if (collider.tag != "Player")
                     {
                         if (collider.GetComponent<Rigidbody>() != null)
                         {
@@ -80,11 +80,11 @@ public class playerAbilities : MonoBehaviour
                             Rigidbody rb = collider.GetComponent<Rigidbody>();
                             rb.constraints = RigidbodyConstraints.FreezeAll;
                         }
-                        else if(!collider.GetComponent<Rigidbody>())
+                        else if (!collider.GetComponent<Rigidbody>())
                         {
                             collider.transform.position = new Vector3(collider.transform.position.x, collider.transform.position.y, collider.transform.position.z);
                         }
-                            Transform parent = collider.transform;
+                        Transform parent = collider.transform;
                         while (parent.parent != null)
                         {
                             parent = parent.parent;
@@ -97,19 +97,19 @@ public class playerAbilities : MonoBehaviour
                         {
                             parent.GetComponent<enemyAI>().enabled = false;
                         }
-                        if(parent.GetComponent<enemySlimeAI>())
+                        if (parent.GetComponent<enemySlimeAI>())
                         {
                             parent.GetComponent<enemySlimeAI>().enabled = false;
                         }
-                        if(parent.GetComponent<enemyHumanoidSpecimenAI>())
+                        if (parent.GetComponent<enemyHumanoidSpecimenAI>())
                         {
                             parent.GetComponent<enemyHumanoidSpecimenAI>().enabled = false;
                         }
-                        if(parent.GetComponent<enemyScuttlingSpecimenAI>())
+                        if (parent.GetComponent<enemyScuttlingSpecimenAI>())
                         {
                             parent.GetComponent<enemyScuttlingSpecimenAI>().enabled = false;
                         }
-                        if(parent.GetComponent<enemyRCCar>())
+                        if (parent.GetComponent<enemyRCCar>())
                         {
                             parent.GetComponent<enemyRCCar>().enabled = false;
                         }
@@ -118,7 +118,7 @@ public class playerAbilities : MonoBehaviour
                             parent.GetComponent<NavMeshAgent>().enabled = false;
                         }
                         StartCoroutine(unfreezeDelay(collider));
-                        
+
                     }
                 }
             }
@@ -130,9 +130,12 @@ public class playerAbilities : MonoBehaviour
         Debug.Log("Starting unfreeze on " + collider.name);
         yield return new WaitForSeconds(10);
 
-        Rigidbody rb = collider.GetComponent<Rigidbody>();
-        rb.constraints = RigidbodyConstraints.None;
-        Transform parent = rb.transform;
+        if (collider.GetComponent<Rigidbody>() != null)
+        {
+            Rigidbody rb = collider.GetComponent<Rigidbody>();
+            rb.constraints = RigidbodyConstraints.None;
+        }
+        Transform parent = collider.transform;
         while (parent.parent != null)
         {
             parent = parent.parent;
@@ -165,5 +168,6 @@ public class playerAbilities : MonoBehaviour
         {
             parent.GetComponent<NavMeshAgent>().enabled = true;
         }
+
     }
 }
