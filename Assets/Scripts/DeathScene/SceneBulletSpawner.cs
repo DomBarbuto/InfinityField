@@ -8,24 +8,32 @@ public class SceneBulletSpawner : MonoBehaviour
     float duration = 0.75f;
     [SerializeField] float StopTime;
     [SerializeField] GameObject bullet;
-
+    bool isSho0t = true;
     // Start is called before the first frame update
     void Start()
     {
-        while (Time.time < StopTime)
-            if(SpawnTime<Time.time)
-            StartCoroutine(Fire());
+        
+           
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Time.time < StopTime)
+        {
+            if (SpawnTime < Time.time)
+            {
+                if(isSho0t)
+                StartCoroutine(Fire());
+            }
+        }
     }
 
     IEnumerator Fire()
     {
-        Instantiate(bullet);
+        isSho0t = false;
+        Instantiate(bullet,transform);
         yield return new WaitForSeconds(duration);
+        isSho0t = true;
     }
 }
