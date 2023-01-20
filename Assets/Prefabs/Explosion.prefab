@@ -68,7 +68,7 @@ MonoBehaviour:
   aud: {fileID: -5374301709228825985}
   explosionSound:
   - {fileID: 8300000, guid: 5eb47c2e5bfc95b4caf44b65964a0522, type: 3}
-  explosionVol: 0.517
+  isRocketMan: 0
   cameFromPlayer: 0
   canDamagePlayer: 1
 --- !u!82 &-5374301709228825985
@@ -80,9 +80,9 @@ AudioSource:
   m_GameObject: {fileID: 5569945172861464255}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -2572216407757854186, guid: 2240efb9b91ea504ba9d9701aa99cb83, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

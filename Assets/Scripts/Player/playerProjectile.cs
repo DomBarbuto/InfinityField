@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class playerProjectile : MonoBehaviour
 {
+    [SerializeField] public AudioSource aud;
     [SerializeField] float projectileSpeed;
     [SerializeField] int projectileDamage;
     [SerializeField] float projectileLifeTime;
@@ -58,8 +59,9 @@ public class playerProjectile : MonoBehaviour
 
             // VFX at impact point
             Instantiate(gameManager.instance.playerController.weaponInventory[gameManager.instance.playerController.currentWeapon].hitFX, hit.point, transform.rotation);
-            // SFX at impact point
-            //AudioSource.PlayClipAtPoint(sfxManager.instance.ricochetSound[0], other.transform.position, sfxManager.instance.ricochetSoundVolMulti);
+
+            // Play ricochet sound
+            playRicochetSound();
 
             if (other.GetComponent<IDamage>() != null)
             {
@@ -86,7 +88,10 @@ public class playerProjectile : MonoBehaviour
         gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].callIPerkOnHit(enemy);
     }
 
-
+    public void playRicochetSound()
+    {
+        aud.PlayOneShot(sfxManager.instance.ricochetSound[0]);
+    }
 
 
 }

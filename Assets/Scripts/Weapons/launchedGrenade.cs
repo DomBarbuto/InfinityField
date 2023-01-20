@@ -11,7 +11,6 @@ public class launchedGrenade : MonoBehaviour
     [SerializeField] float upLaunchForce;
     [SerializeField] int destroyTime;
     [SerializeField] GameObject explosionOBJ;
-    [SerializeField] AudioSource aud;
     [SerializeField] bool cameFromPlayer;
     float time; 
     [SerializeField] float durationOfLerp;

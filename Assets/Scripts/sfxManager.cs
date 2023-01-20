@@ -64,11 +64,11 @@ public class sfxManager : MonoBehaviour
     // ------------------------------------------- Boss -------------------------------------------------------------
     [Header("---------- Slime Mech Audio ----------")]
     [SerializeField] public AudioClip slimeMechDeath;
-    [Range(0, 1)][SerializeField] public float slimeMechDeathVolumeMulti;
+    [SerializeField] public float slimeMechDeathVolumeMulti;
     [SerializeField] public AudioClip slimeMechIntro;
-    [Range(0, 1)][SerializeField] public float slimeMechIntroVolumeMulti;
+    [SerializeField] public float slimeMechIntroVolumeMulti;
     [SerializeField] public AudioClip slimeMechForceFieldSound;
-    [Range(0, 1)][SerializeField] public float slimeMechForceFieldVolumeMulti;
+    [SerializeField] public float slimeMechForceFieldVolumeMulti;
 
     [Header("---------- Home Security System Audio ----------")]
     [SerializeField] public AudioClip HSSDeath;
@@ -84,84 +84,60 @@ public class sfxManager : MonoBehaviour
 
     [Header("---------- Advanced Specimen Audio ----------")]
     [SerializeField] public AudioClip advSpecDeath;
-    [Range(0, 1)][SerializeField] public float advSpecDeathVolumeMulti;
     [SerializeField] public AudioClip advSpecIntro;
-    [Range(0, 1)][SerializeField] public float advSpecIntroVolumeMulti;
     [SerializeField] public AudioClip advSpecHurt;
-    [Range(0, 1)][SerializeField] public float advSpecHurtVolumeMulti;
 
     // ------------------------------------------ Player weapons -----------------------------------------------------
 
     [Header("---------- Pistol Audio ----------")]
     public AudioClip[] pistolShootSound;
-    [Range(0, 1)] public float pistolShootVolMulti;
     public AudioClip[] pistolReloadSound;
-    [Range(0, 1)] public float pistolReloadVolMulti;
     public AudioClip[] pistolPickupSound;
-    [Range(0, 1)] public float pistolPickupVolMulti;
     public AudioClip[] pistolEmptySound;
-    [Range(0, 1)] public float pistolEmptyVolMulti;
 
     [Header("---------- Rifle Audio ----------")]
     public AudioClip[] rifleShootSound;
-    [Range(0, 1)] public float rifleShootVolMulti;
     public AudioClip[] rifleReloadSound;
-    [Range(0, 1)] public float rifleReloadVolMulti;
     public AudioClip[] riflePickupSound;
-    [Range(0, 1)] public float riflePickupVolMulti;
     public AudioClip[] rifleEmptySound;
-    [Range(0, 1)] public float rifleEmptyVolMulti;
 
     [Header("---------- GrenadeLauncher Audio ----------")]
     public AudioClip[] glShootSound;
-    [Range(0, 1)] public float glShootVolMulti;
     public AudioClip[] glReloadSound;
-    [Range(0, 1)] public float glReloadVolMulti;
     public AudioClip[] glPickupSound;
-    [Range(0, 1)] public float glPickupVolMulti;
     public AudioClip[] glEmptySound;
-    [Range(0, 1)] public float glEmptyVolMulti;
 
     [Header("---------- ArcGun Audio ----------")]
     public AudioClip[] arcgunShootSound;
-    [Range(0, 1)] public float arcgunShootVolMulti;
     public AudioClip[] arcgunReloadSound;
-    [Range(0, 1)] public float arcgunReloadVolMulti;
     public AudioClip[] arcgunPickupSound;
-    [Range(0, 1)] public float arcgunPickupVolMulti;
     public AudioClip[] arcgunEmptySound;
-    [Range(0, 1)] public float arcgunEmptyVolMulti;
 
     [Header("---------- RailGun Audio ----------")]
     public AudioClip[] railgunShootSound;
-    [Range(0, 1)] public float railgunShootVolMulti;
     public AudioClip[] railgunReloadSound;
-    [Range(0, 1)] public float railgunReloadVolMulti;
     public AudioClip[] railgunPickupSound;
-    [Range(0, 1)] public float railgunPickupVolMulti;
     public AudioClip[] railgunEmptySound;
-    [Range(0, 1)] public float railgunEmptyVolMulti;
     public AudioClip[] railgunChargeSound;
-    [Range(0, 1)] public float railgunChargeVolMulti;
 
     // ------------------------------------------ Environment -----------------------------------------------------
     [Header("---------- Environment Audio ----------")]
     public AudioClip[] boxBreak;
-    [Range(0, 1)] public float boxBreakVolMulti;
+    public float boxBreakVolMulti;
     public AudioClip[] doorOpen;
-    [Range(0, 1)] public float doorOpenVolMulti;
+    public float doorOpenVolMulti;
     public AudioClip[] doorClose;
-    [Range(0, 1)] public float doorCloseVolMulti;
+    public float doorCloseVolMulti;
     public AudioClip[] menuClose;
-    [Range(0, 1)] public float menuCloseVolMulti;
+    public float menuCloseVolMulti;
     public AudioClip[] menuOpen;
-    [Range(0, 1)] public float menuOpenVolMulti;
+    public float menuOpenVolMulti;
     public AudioClip[] menuHover;
-    [Range(0, 1)] public float menuHoverVolMulti;
+    public float menuHoverVolMulti;
     public AudioClip[] bulletTimeEnter;
-    [Range(0, 1)] public float bulletTimeEnterVolMulti;
+    public float bulletTimeEnterVolMulti;
     public AudioClip[] bulletTimeExit;
-    [Range(0, 1)] public float bulletTimeExitVolMulti;
+    public float bulletTimeExitVolMulti;
 
     private void Start()
     {

@@ -11,7 +11,6 @@ public class explosion : MonoBehaviour
     [SerializeField] float explosionRadius;
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] explosionSound;
-    [Range(0, 1)][SerializeField] float explosionVolMulti;
     [SerializeField] bool isRocketMan;
 
     public bool cameFromPlayer;
@@ -49,7 +48,9 @@ public class explosion : MonoBehaviour
                     inZone.GetComponent<IDamage>().takeDamage(explosionDamage / 4);
             }
         }
-        AudioSource.PlayClipAtPoint(explosionSound[Random.Range(0, explosionSound.Length)], transform.position, sfxManager.instance.aud.volume * explosionVolMulti);
+
+        //Play explosion sound
+        playExplosionSound();
         Destroy(gameObject, explosionTimer);
 
     }
@@ -101,5 +102,10 @@ public class explosion : MonoBehaviour
         int playerDamage = explosionDamage / 2;
         gameManager.instance.playerController.takeDamage(playerDamage);
         yield return new WaitForSeconds(explosionTimer);
+    }
+
+    public void playExplosionSound()
+    {
+        aud.PlayOneShot(explosionSound[Random.Range(0, explosionSound.Length)]);
     }
 }

@@ -943,6 +943,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1213045241389617697}
   animController: {fileID: 0}
+  aud: {fileID: 2701606944332925333}
   damageFXLength: 0.1
   playerAbilities: {fileID: 5692420762471618134}
   isSprinting: 0
@@ -1052,7 +1053,7 @@ AudioSource:
   m_GameObject: {fileID: 1213045241389617696}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 242779743682368395, guid: 2240efb9b91ea504ba9d9701aa99cb83, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -1176,6 +1177,7 @@ MonoBehaviour:
   criticalChance: 0
   passiveTickRate: 0
   perks: []
+  material: {fileID: 0}
   isUsingAbility: 0
   currSpeed: 0
   ability: 1

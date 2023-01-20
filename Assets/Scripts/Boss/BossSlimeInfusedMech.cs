@@ -13,6 +13,7 @@ public class BossSlimeInfusedMech : MonoBehaviour, IRoomEntryListener
     [SerializeField] Renderer mechSuitModel;
     [SerializeField] Material damageFX;
     [SerializeField] GameObject forceFieldOBJ;
+    [SerializeField] AudioSource aud;
 
     [Header("Stats")]
     [SerializeField] float HP;

@@ -12,6 +12,7 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
     [SerializeField] GameObject[] humanoidEnemies;
     [SerializeField] GameObject spawnParticlePrefab;    // Instantiated via anim event on enemy spawn
     [SerializeField] GameObject explosionOBJ;           // Instantiated cia anim event at end of boss death
+    [SerializeField] AudioSource aud;
 
     [Header("---------- Stats ----------")]
     [SerializeField] float HP;
@@ -85,7 +86,10 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
         Debug.Log("In notify");
         startStateMachine = true;
         state = 1;
-        AudioSource.PlayClipAtPoint(sfxManager.instance.advSpecIntro, transform.position, sfxManager.instance.advSpecIntroVolumeMulti);
+
+        //Play Intro sound
+        playIntroSound();
+
         anim.SetTrigger("TriggerIntro");
     }
 
@@ -165,8 +169,8 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
             if(state == 3)
                 bossHPBarScript.turnOffState(2);
 
-            //Audio
-            AudioSource.PlayClipAtPoint(sfxManager.instance.advSpecHurt, transform.position, sfxManager.instance.advSpecHurtVolumeMulti);
+            // Play hurt sound
+            playHurtSound();
 
             //Animation - set triggerdamage
             anim.SetTrigger("TriggerTakeDamage");
@@ -186,7 +190,8 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
         // Else if completed 3rd state, trigger death animation 
         else if (state == 4)
         {
-            AudioSource.PlayClipAtPoint(sfxManager.instance.advSpecDeath, transform.position, sfxManager.instance.advSpecDeathVolumeMulti);
+            playDeathSound();
+
             // Animation - set triggerdeath
             anim.SetTrigger("TriggerDeath");
 
@@ -389,6 +394,23 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
         {
             btn.GetComponent<BossButton>().isButtonAllowed = true;
         }
+    }
+
+    //Audio
+
+    public void playDeathSound()
+    {
+        aud.PlayOneShot(sfxManager.instance.advSpecDeath);
+    }
+
+    public void playIntroSound()
+    {
+        aud.PlayOneShot(sfxManager.instance.advSpecIntro);
+    }
+
+    public void playHurtSound()
+    {
+        aud.PlayOneShot(sfxManager.instance.advSpecHurt);
     }
 
 }
