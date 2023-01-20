@@ -32,7 +32,7 @@ public class enemyTurret : MonoBehaviour
             GunObj.transform.LookAt(gameManager.instance.player.transform);
             if (!alerted)
             {
-                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.turretAlert[Random.Range(0, sfxManager.instance.turretAlert.Length)], sfxManager.instance.turretAlertVol);
+                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.turretAlert[Random.Range(0, sfxManager.instance.turretAlert.Length)], sfxManager.instance.turretAlertVolMulti);
                 alerted = true;
             }
             if (canShoot)
@@ -68,7 +68,7 @@ public class enemyTurret : MonoBehaviour
         canShoot = false;
         playerInRange = false;
         anim.SetTrigger("TriggerDeath");
-        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.turretDeath[Random.Range(0, sfxManager.instance.turretDeath.Length)], sfxManager.instance.turretDeathVol);
+        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.turretDeath[Random.Range(0, sfxManager.instance.turretDeath.Length)], sfxManager.instance.turretDeathVolMulti);
         StartCoroutine(timeToDestroy());
     }
 
@@ -79,7 +79,7 @@ public class enemyTurret : MonoBehaviour
 
     IEnumerator shoot()
     {
-        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.turretAttack[Random.Range(0, sfxManager.instance.turretAttack.Length)], sfxManager.instance.turretAttackVol);
+        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.turretAttack[Random.Range(0, sfxManager.instance.turretAttack.Length)], sfxManager.instance.turretAttackVolMulti);
         GameObject newProjectile = Instantiate(projectile, muzzlePoint.position, muzzlePoint.rotation, null);
         yield return new WaitForSeconds(shootSpeed);
         canShoot = true;

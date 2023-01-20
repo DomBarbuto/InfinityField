@@ -85,7 +85,7 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
         Debug.Log("In notify");
         startStateMachine = true;
         state = 1;
-        AudioSource.PlayClipAtPoint(sfxManager.instance.advSpecIntro, transform.position, sfxManager.instance.advSpecIntroVolume);
+        AudioSource.PlayClipAtPoint(sfxManager.instance.advSpecIntro, transform.position, sfxManager.instance.advSpecIntroVolumeMulti);
         anim.SetTrigger("TriggerIntro");
     }
 
@@ -166,7 +166,7 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
                 bossHPBarScript.turnOffState(2);
 
             //Audio
-            AudioSource.PlayClipAtPoint(sfxManager.instance.advSpecHurt, transform.position, sfxManager.instance.advSpecHurtVolume);
+            AudioSource.PlayClipAtPoint(sfxManager.instance.advSpecHurt, transform.position, sfxManager.instance.advSpecHurtVolumeMulti);
 
             //Animation - set triggerdamage
             anim.SetTrigger("TriggerTakeDamage");
@@ -186,7 +186,7 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
         // Else if completed 3rd state, trigger death animation 
         else if (state == 4)
         {
-            AudioSource.PlayClipAtPoint(sfxManager.instance.advSpecDeath, transform.position, sfxManager.instance.advSpecDeathVolume);
+            AudioSource.PlayClipAtPoint(sfxManager.instance.advSpecDeath, transform.position, sfxManager.instance.advSpecDeathVolumeMulti);
             // Animation - set triggerdeath
             anim.SetTrigger("TriggerDeath");
 

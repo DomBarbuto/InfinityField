@@ -104,7 +104,7 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
                 {
                     if (!alertPlayed)
                     {
-                        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.humanoidSpecimenAlert[Random.Range(0, sfxManager.instance.humanoidSpecimenAlert.Length)], sfxManager.instance.humanoidSpecimenAlertVol);
+                        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.humanoidSpecimenAlert[Random.Range(0, sfxManager.instance.humanoidSpecimenAlert.Length)], sfxManager.instance.humanoidSpecimenAlertVolMulti);
                         alertPlayed = true;
                     }
                     isPlayerDetected = true;
@@ -162,7 +162,7 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
     public void takeDamage(int dmg)
     {
         HP -= dmg;
-        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.humanoidSpecimenHurt[Random.Range(0, sfxManager.instance.humanoidSpecimenHurt.Length)], sfxManager.instance.humanoidSpecimenHurtVol);
+        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.humanoidSpecimenHurt[Random.Range(0, sfxManager.instance.humanoidSpecimenHurt.Length)], sfxManager.instance.humanoidSpecimenHurtVolMulti);
         // Animation Hit Reaction
         anim.SetTrigger("HitReaction");
 
@@ -199,7 +199,7 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
             
         }
 
-        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.humanoidSpecimenAttack[Random.Range(0, sfxManager.instance.humanoidSpecimenAttack.Length)], sfxManager.instance.humanoidSpecimenAttackVol);
+        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.humanoidSpecimenAttack[Random.Range(0, sfxManager.instance.humanoidSpecimenAttack.Length)], sfxManager.instance.humanoidSpecimenAttackVolMulti);
         yield return new WaitForSeconds(hitAnimLength);
         agent.speed = origSpeed;
         isAttacking = false;

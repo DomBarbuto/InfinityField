@@ -216,7 +216,7 @@ public class enemySlimeAI : MonoBehaviour
         {
             //agent.updatePosition = false;
             agent.speed = 0;
-            sfxManager.instance.aud.PlayOneShot(sfxManager.instance.slimeDeath[Random.Range(0, sfxManager.instance.slimeDeath.Length)], sfxManager.instance.slimeDeathVol);
+            sfxManager.instance.aud.PlayOneShot(sfxManager.instance.slimeDeath[Random.Range(0, sfxManager.instance.slimeDeath.Length)], sfxManager.instance.slimeDeathVolMulti);
             anim.SetTrigger("TriggerDeath");
         }
     }
@@ -234,7 +234,7 @@ public class enemySlimeAI : MonoBehaviour
     IEnumerator attack()
     {
         anim.SetTrigger("TriggerAttack");
-        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.slimeAttack[Random.Range(0, sfxManager.instance.slimeAttack.Length)], sfxManager.instance.slimeAttackVol);
+        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.slimeAttack[Random.Range(0, sfxManager.instance.slimeAttack.Length)], sfxManager.instance.slimeAttackVolMulti);
 
         // Turn off the connection betwen agent's simulated position and transform position
         agent.updatePosition = false;   

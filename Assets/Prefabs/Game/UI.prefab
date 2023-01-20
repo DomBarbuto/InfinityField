@@ -9435,7 +9435,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5728713314630191400, guid: 59ee8fc0f5d985144af96dc8fbc7000c, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5728713314630191401, guid: 59ee8fc0f5d985144af96dc8fbc7000c, type: 3}
       propertyPath: m_RootOrder
@@ -10152,6 +10152,14 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: glEmptyVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: glShootVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: pistolPickupVol
       value: 0.5
       objectReference: {fileID: 0}
@@ -10180,6 +10188,26 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 0efe7e6bf4782584ebff43027c485c90, type: 3}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: boxBreakVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: doorOpenVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: glPickupVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: glReloadVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: menuOpenVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: railgunChargeVol
       value: 0.5
       objectReference: {fileID: 0}
@@ -10204,7 +10232,23 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: doorCloseVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: menuCloseVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: menuHoverVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: playerFootstepVol
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: redCCHurtVolMulti
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
@@ -10220,6 +10264,54 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: playerHurtVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: playerJumpVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: redCCAlertVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: rifleEmptyVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: rifleShootVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: slimeAlertVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: slimeDeathVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: HSSDeathVolumeMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: HSSIntroVolumeMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: arcgunEmptyVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: arcgunShootVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: blackCCHurtVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: boxBreak.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -10230,6 +10322,62 @@ PrefabInstance:
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: menuOpen.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: pistolEmptyVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: pistolShootVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: riflePickupVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: rifleReloadVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: slimeAttackVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: turretAlertVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: turretDeathVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: whiteCCHurtVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: HSSPhase1VolumeMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: HSSPhase2VolumeMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: HSSPhase3VolumeMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: arcgunPickupVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: arcgunReloadVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: blackCCAlertVolMulti
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: doorClose.Array.size
@@ -10248,6 +10396,22 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: pistolPickupVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: pistolReloadVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: railgunEmptyVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: railgunShootVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: redCCHurt.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -10258,6 +10422,18 @@ PrefabInstance:
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: slimeMechIntroVolume
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: turretAttackVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: whiteCCAlertVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: yellowCCHurtVolMulti
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: enemyAlert.Array.size
@@ -10272,8 +10448,24 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: railgunChargeVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: railgunPickupVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: railgunReloadVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: redCCAlert.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: ricochetSoundVolMulti
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: slimeAlert.Array.size
@@ -10282,6 +10474,18 @@ PrefabInstance:
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: slimeDeath.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: slimeMovementVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: yellowCCAlertVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: advSpecHurtVolumeMulti
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: blackCCHurt.Array.size
@@ -10300,6 +10504,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 113f2c2e8c66a064a9e3497ce54dc837, type: 3}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: bulletTimeExitVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: doorOpen.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: 8fc64dc26c36dee40b6535de366570e7, type: 3}
@@ -10307,6 +10515,10 @@ PrefabInstance:
       propertyPath: menuOpen.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: 550ee0c55d5d5aa4dbb1f9359c3356ee, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: playerFootstepVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: slimeAttack.Array.size
       value: 2
@@ -10324,8 +10536,20 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: advSpecDeathVolumeMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: advSpecIntroVolumeMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: blackCCAlert.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: bulletTimeEnterVolMulti
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: doorClose.Array.data[0]
@@ -10520,8 +10744,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 9e9421c0f6acd1d42bd4515b4d4824f4, type: 3}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: slimeMechDeathVolumeMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: slimeMechForceFieldVolume
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: slimeMechIntroVolumeMulti
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: turretAlert.Array.data[0]
@@ -10676,6 +10908,10 @@ PrefabInstance:
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: humanoidSpecimenHurtVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: pistolPickupSound.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -10724,6 +10960,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 1d808b269d3c22a4ab6e1e86d958fe09, type: 3}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: playerSlimedFootstepVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: railgunEmptySound.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -10735,6 +10975,14 @@ PrefabInstance:
       propertyPath: bulletTimeEnter.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: 26f94feb879c97242bb3c412e83e3097, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: explodingSpecimenHissVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: humanoidSpecimenAlertVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: railgunChargeSound.Array.size
       value: 1
@@ -10764,6 +11012,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 3e13910d6575f0946adff1ff7fb746d4, type: 3}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: humanoidSpecimenAttackVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: pistolEmptySound.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: 913afccbd78c3c54f964754f09d90c4a, type: 3}
@@ -10779,6 +11031,10 @@ PrefabInstance:
       propertyPath: rifleReloadSound.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: ace79a9e0d4a65547af6715539b6e0c0, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: slimeMechForceFieldVolumeMulti
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: arcgunPickupSound.Array.data[0]
       value: 
@@ -10812,6 +11068,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: ecddce4f66d1fe94da8842a9dffef237, type: 3}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: explodingSpecimenExplodeVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: explodingSpecimenHiss.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -10831,6 +11091,10 @@ PrefabInstance:
       propertyPath: railgunReloadSound.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: 49aa3453f160c22409a60a7e1b6628f7, type: 3}
+    - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
+      propertyPath: explodingSpecimenMovementVolMulti
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2487287624287614161, guid: 83e80d6ed507beb4f89a85911f404705, type: 3}
       propertyPath: humanoidSpecimenAttack.Array.size
       value: 3

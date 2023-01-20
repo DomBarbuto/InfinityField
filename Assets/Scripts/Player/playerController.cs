@@ -238,7 +238,7 @@ public class playerController : MonoBehaviour
         {
             currJumps++;
             playerVelocity.y = jumpHeight;
-            sfxManager.instance.aud.PlayOneShot(sfxManager.instance.playerJump[Random.Range(0, sfxManager.instance.playerJump.Length)], sfxManager.instance.playerJumpVol);
+            sfxManager.instance.aud.PlayOneShot(sfxManager.instance.playerJump[Random.Range(0, sfxManager.instance.playerJump.Length)], sfxManager.instance.playerJumpVolMulti);
             characterList[currCharacter].callIPerkOnJump();
             
         }
@@ -361,23 +361,23 @@ public class playerController : MonoBehaviour
         {
             case weaponCreation.WeaponType.Pistol:
                 clipToPlay = sfxManager.instance.pistolShootSound[Random.Range(0, sfxManager.instance.pistolShootSound.Length)];
-                shootVolume = sfxManager.instance.pistolShootVol;
+                shootVolume = sfxManager.instance.pistolShootVolMulti;
                 break;
             case weaponCreation.WeaponType.Rifle:
                 clipToPlay = sfxManager.instance.rifleShootSound[Random.Range(0, sfxManager.instance.rifleShootSound.Length)];
-                shootVolume = sfxManager.instance.rifleShootVol;
+                shootVolume = sfxManager.instance.rifleShootVolMulti;
                 break;
             case weaponCreation.WeaponType.GrenadeLauncher:
                 clipToPlay = sfxManager.instance.glShootSound[Random.Range(0, sfxManager.instance.glShootSound.Length)];
-                shootVolume = sfxManager.instance.glShootVol;
+                shootVolume = sfxManager.instance.glShootVolMulti;
                 break;
             case weaponCreation.WeaponType.ArcGun:
                 clipToPlay = sfxManager.instance.arcgunShootSound[Random.Range(0, sfxManager.instance.arcgunShootSound.Length)];
-                shootVolume = sfxManager.instance.arcgunShootVol;
+                shootVolume = sfxManager.instance.arcgunShootVolMulti;
                 break;
             case weaponCreation.WeaponType.RailGun:
                 clipToPlay = sfxManager.instance.railgunShootSound[Random.Range(0, sfxManager.instance.railgunShootSound.Length)];
-                shootVolume = sfxManager.instance.railgunShootVol;
+                shootVolume = sfxManager.instance.railgunShootVolMulti;
                 break;
             default:
                 break;
@@ -393,23 +393,23 @@ public class playerController : MonoBehaviour
         {
             case weaponCreation.WeaponType.Pistol:
                 clipToPlay = sfxManager.instance.pistolPickupSound[Random.Range(0, sfxManager.instance.pistolPickupSound.Length)];
-                pickupVolume = sfxManager.instance.pistolShootVol;
+                pickupVolume = sfxManager.instance.pistolShootVolMulti;
                 break;
             case weaponCreation.WeaponType.Rifle:
                 clipToPlay = sfxManager.instance.riflePickupSound[Random.Range(0, sfxManager.instance.riflePickupSound.Length)];
-                pickupVolume = sfxManager.instance.rifleShootVol;
+                pickupVolume = sfxManager.instance.rifleShootVolMulti;
                 break;
             case weaponCreation.WeaponType.GrenadeLauncher:
                 clipToPlay = sfxManager.instance.glPickupSound[Random.Range(0, sfxManager.instance.glPickupSound.Length)];
-                pickupVolume = sfxManager.instance.glShootVol;
+                pickupVolume = sfxManager.instance.glShootVolMulti;
                 break;
             case weaponCreation.WeaponType.ArcGun:
                 clipToPlay = sfxManager.instance.arcgunPickupSound[Random.Range(0, sfxManager.instance.arcgunPickupSound.Length)];
-                pickupVolume = sfxManager.instance.arcgunShootVol;
+                pickupVolume = sfxManager.instance.arcgunShootVolMulti;
                 break;
             case weaponCreation.WeaponType.RailGun:
                 clipToPlay = sfxManager.instance.railgunPickupSound[Random.Range(0, sfxManager.instance.railgunPickupSound.Length)];
-                pickupVolume = sfxManager.instance.railgunShootVol;
+                pickupVolume = sfxManager.instance.railgunShootVolMulti;
                 break;
             default:
                 break;
@@ -425,23 +425,23 @@ public class playerController : MonoBehaviour
         {
             case weaponCreation.WeaponType.Pistol:
                 clipToPlay = sfxManager.instance.pistolReloadSound[Random.Range(0, sfxManager.instance.pistolReloadSound.Length)];
-                pickupVolume = sfxManager.instance.pistolShootVol;
+                pickupVolume = sfxManager.instance.pistolShootVolMulti;
                 break;
             case weaponCreation.WeaponType.Rifle:
                 clipToPlay = sfxManager.instance.rifleReloadSound[Random.Range(0, sfxManager.instance.rifleReloadSound.Length)];
-                pickupVolume = sfxManager.instance.rifleShootVol;
+                pickupVolume = sfxManager.instance.rifleShootVolMulti;
                 break;
             case weaponCreation.WeaponType.GrenadeLauncher:
                 clipToPlay = sfxManager.instance.glReloadSound[Random.Range(0, sfxManager.instance.glReloadSound.Length)];
-                pickupVolume = sfxManager.instance.glShootVol;
+                pickupVolume = sfxManager.instance.glShootVolMulti;
                 break;
             case weaponCreation.WeaponType.ArcGun:
                 clipToPlay = sfxManager.instance.arcgunReloadSound[Random.Range(0, sfxManager.instance.arcgunReloadSound.Length)];
-                pickupVolume = sfxManager.instance.arcgunShootVol;
+                pickupVolume = sfxManager.instance.arcgunShootVolMulti;
                 break;
             case weaponCreation.WeaponType.RailGun:
                 clipToPlay = sfxManager.instance.railgunReloadSound[Random.Range(0, sfxManager.instance.railgunReloadSound.Length)];
-                pickupVolume = sfxManager.instance.railgunShootVol;
+                pickupVolume = sfxManager.instance.railgunShootVolMulti;
                 break;
             default:
                 break;
@@ -495,7 +495,7 @@ public class playerController : MonoBehaviour
         int playCheck = Random.Range(0, 2);
         if (playCheck == 0)
         {
-            sfxManager.instance.aud.PlayOneShot(sfxManager.instance.playerHurt[Random.Range(0, sfxManager.instance.playerHurt.Length)], sfxManager.instance.playerHurtVol);
+            sfxManager.instance.aud.PlayOneShot(sfxManager.instance.playerHurt[Random.Range(0, sfxManager.instance.playerHurt.Length)], sfxManager.instance.playerHurtVolMulti);
         }
 
         StartCoroutine(playDamageFX());
@@ -701,7 +701,7 @@ public class playerController : MonoBehaviour
     IEnumerator playSteps()
     {
         stepIsPlaying = true;
-        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.playerFootstep[Random.Range(0, sfxManager.instance.playerFootstep.Length)], sfxManager.instance.playerFootstepVol);
+        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.playerFootstep[Random.Range(0, sfxManager.instance.playerFootstep.Length)], sfxManager.instance.playerFootstepVolMulti);
 
         if (isSprinting)
             yield return new WaitForSeconds(0.3f);

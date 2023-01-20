@@ -1258,7 +1258,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3158751612063946664
 Transform:
   m_ObjectHideFlags: 0
@@ -1356,13 +1356,13 @@ MonoBehaviour:
   alertSoundType: 1
   hurtSoundType: 1
   projectile: {fileID: 185111370099596839, guid: 2197e594567554749812477fe2675b4e, type: 3}
-  fireRate: 1
+  fireRate: 0.4
   muzzlePoint: {fileID: 3158751612026238829}
   animTransSpeed: 10
   thisEnemyWeaponType: 1
-  drawFieldOfView: 0
-  drawStoppingDistance: 0
-  drawPlayerInRangeRadius: 0
+  drawFieldOfView: 1
+  drawStoppingDistance: 1
+  drawPlayerInRangeRadius: 1
 --- !u!195 &3158751612063946666
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1522,7 +1522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd860ea7cc75b84bbc0651670473db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  headMod: 2
+  headMod: 3
   limbMod: 2
   torsoMod: 1
 --- !u!1 &3582849036081405287

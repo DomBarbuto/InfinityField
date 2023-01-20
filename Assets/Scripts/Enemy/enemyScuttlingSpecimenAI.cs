@@ -50,7 +50,7 @@ public class enemyScuttlingSpecimenAI : MonoBehaviour
 
     IEnumerator playSteps()
     {
-        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.explodingSpecimenMovement[Random.Range(0, sfxManager.instance.explodingSpecimenMovement.Length)], sfxManager.instance.explodingSpecimenMovementVol);
+        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.explodingSpecimenMovement[Random.Range(0, sfxManager.instance.explodingSpecimenMovement.Length)], sfxManager.instance.explodingSpecimenMovementVolMulti);
         yield return new WaitForSeconds(0.5f);
     }
 
@@ -60,7 +60,7 @@ public class enemyScuttlingSpecimenAI : MonoBehaviour
     {
         // Update animation, leading to animation event
         anim.SetTrigger("Explode");
-        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.explodingSpecimenHiss[Random.Range(0, sfxManager.instance.explodingSpecimenHiss.Length)], sfxManager.instance.explodingSpecimenHissVol);
+        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.explodingSpecimenHiss[Random.Range(0, sfxManager.instance.explodingSpecimenHiss.Length)], sfxManager.instance.explodingSpecimenHissVolMulti);
         // Switch to animation event
         /*GameObject newExplosion = Instantiate(plume, transform.position, transform.rotation);
         newExplosion.transform.SetParent(null);
@@ -73,7 +73,7 @@ public class enemyScuttlingSpecimenAI : MonoBehaviour
         GameObject newExplosion = Instantiate(plume, transform.position, transform.rotation);
         newExplosion.transform.SetParent(null);
         Destroy(gameObject);
-        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.explodingSpecimenExplode[Random.Range(0, sfxManager.instance.explodingSpecimenExplode.Length)], sfxManager.instance.explodingSpecimenExplodeVol);
+        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.explodingSpecimenExplode[Random.Range(0, sfxManager.instance.explodingSpecimenExplode.Length)], sfxManager.instance.explodingSpecimenExplodeVolMulti);
     }
 
     public void takeDamage(int dmg)

@@ -42,13 +42,6 @@ public class enemyAI : MonoBehaviour , IRagdollDamage
     [SerializeField] bool drawStoppingDistance;
     [SerializeField] bool drawPlayerInRangeRadius;
 
-    /*[Header("---- Audio -----")]
-    [SerializeField] AudioSource aud;
-    [SerializeField] AudioClip[] enemyHurt;
-    [Range(0, 1)][SerializeField] float enemyHurtVol;
-    [SerializeField] AudioClip[] enemyAlert;
-    [Range(0, 1)][SerializeField] float enemyAlertVol;*/
-
     int MAXHP;       // Current max HP
     bool isAttacking;
     bool alertPlayed;
@@ -57,6 +50,7 @@ public class enemyAI : MonoBehaviour , IRagdollDamage
     float angleToPlayer;
     float signedAngleToPlayer;
     float origStoppingDistance;
+    LayerMask rayMask;
 
     void Start()
     {
@@ -94,6 +88,9 @@ public class enemyAI : MonoBehaviour , IRagdollDamage
 
         if (isRagdoll)
             ragdoll.togglePhysics(false);
+
+        // Set the enemy ray's layer mask to ignore the enemyBody
+        rayMask = ~LayerMask.GetMask("EnemyBody");
     }
 
     void Update()
@@ -124,7 +121,7 @@ public class enemyAI : MonoBehaviour , IRagdollDamage
 
         // If enemy can see player without obstruction
         RaycastHit hit;
-        if (Physics.Raycast(headPos.position, playerDir, out hit))
+        if (Physics.Raycast(headPos.position, playerDir, out hit, Mathf.Infinity, rayMask))
         {
             // If what was hit was the player
             if (hit.collider.CompareTag("Player"))
@@ -201,20 +198,53 @@ public class enemyAI : MonoBehaviour , IRagdollDamage
         switch (alertSoundType)
         {
             case 0:
-                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.redCCAlert[Random.Range(0, sfxManager.instance.redCCAlert.Length)], sfxManager.instance.redCCAlertVol);
+                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.redCCAlert[Random.Range(0, sfxManager.instance.redCCAlert.Length)], sfxManager.instance.aud.volume * sfxManager.instance.redCCAlertVolMulti);
                 break;
             case 1:
-                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.whiteCCAlert[Random.Range(0, sfxManager.instance.whiteCCAlert.Length)], sfxManager.instance.whiteCCAlertVol);
+                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.whiteCCAlert[Random.Range(0, sfxManager.instance.whiteCCAlert.Length)], sfxManager.instance.aud.volume * sfxManager.instance.whiteCCAlertVolMulti);
                 break;
             case 2:
-                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.yellowCCAlert[Random.Range(0, sfxManager.instance.yellowCCAlert.Length)], sfxManager.instance.yellowCCAlertVol);
+                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.yellowCCAlert[Random.Range(0, sfxManager.instance.yellowCCAlert.Length)], sfxManager.instance.aud.volume * sfxManager.instance.yellowCCAlertVolMulti);
                 break;
             case 3:
-                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.blackCCAlert[Random.Range(0, sfxManager.instance.blackCCAlert.Length)], sfxManager.instance.blackCCAlertVol);
+                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.blackCCAlert[Random.Range(0, sfxManager.instance.blackCCAlert.Length)], sfxManager.instance.aud.volume * sfxManager.instance.blackCCAlertVolMulti);
                 break;
             default:
                 break;
         }
+    }
+
+    private void playShootSound()
+    {
+        AudioClip clipToPlay = null;
+        float shootVolume = 0;
+        switch (thisEnemyWeaponType)
+        {
+            case weaponCreation.WeaponType.Pistol:
+                clipToPlay = sfxManager.instance.pistolShootSound[Random.Range(0, sfxManager.instance.pistolShootSound.Length)];
+                shootVolume = sfxManager.instance.aud.volume * sfxManager.instance.pistolShootVolMulti;
+                break;
+            case weaponCreation.WeaponType.Rifle:
+                clipToPlay = sfxManager.instance.rifleShootSound[Random.Range(0, sfxManager.instance.rifleShootSound.Length)];
+                shootVolume = sfxManager.instance.aud.volume * sfxManager.instance.rifleShootVolMulti;
+                break;
+            case weaponCreation.WeaponType.GrenadeLauncher:
+                clipToPlay = sfxManager.instance.glShootSound[Random.Range(0, sfxManager.instance.glShootSound.Length)];
+                shootVolume = sfxManager.instance.aud.volume * sfxManager.instance.glShootVolMulti;
+                break;
+            case weaponCreation.WeaponType.ArcGun:
+                clipToPlay = sfxManager.instance.arcgunShootSound[Random.Range(0, sfxManager.instance.arcgunShootSound.Length)];
+                shootVolume = sfxManager.instance.aud.volume * sfxManager.instance.arcgunShootVolMulti;
+                break;
+            case weaponCreation.WeaponType.RailGun:
+                clipToPlay = sfxManager.instance.railgunShootSound[Random.Range(0, sfxManager.instance.railgunShootSound.Length)];
+                shootVolume = sfxManager.instance.aud.volume * sfxManager.instance.railgunShootVolMulti;
+                break;
+            default:
+                break;
+        }
+        //sfxManager.instance.aud.PlayOneShot(clipToPlay, shootVolume);
+        AudioSource.PlayClipAtPoint(clipToPlay, transform.position, shootVolume);
     }
 
     void facePlayer() 
@@ -275,16 +305,16 @@ public class enemyAI : MonoBehaviour , IRagdollDamage
         switch (hurtSoundType)
         {
             case 0:
-                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.redCCHurt[Random.Range(0, sfxManager.instance.redCCHurt.Length)], sfxManager.instance.redCCHurtVol);
+                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.redCCHurt[Random.Range(0, sfxManager.instance.redCCHurt.Length)], sfxManager.instance.redCCHurtVolMulti);
                 break;
             case 1:
-                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.whiteCCHurt[Random.Range(0, sfxManager.instance.whiteCCHurt.Length)], sfxManager.instance.whiteCCHurtVol);
+                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.whiteCCHurt[Random.Range(0, sfxManager.instance.whiteCCHurt.Length)], sfxManager.instance.whiteCCHurtVolMulti);
                 break;
             case 2:
-                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.yellowCCHurt[Random.Range(0, sfxManager.instance.yellowCCHurt.Length)], sfxManager.instance.yellowCCHurtVol);
+                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.yellowCCHurt[Random.Range(0, sfxManager.instance.yellowCCHurt.Length)], sfxManager.instance.yellowCCHurtVolMulti);
                 break;
             case 3:
-                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.blackCCHurt[Random.Range(0, sfxManager.instance.blackCCHurt.Length)], sfxManager.instance.blackCCHurtVol);
+                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.blackCCHurt[Random.Range(0, sfxManager.instance.blackCCHurt.Length)], sfxManager.instance.blackCCHurtVolMulti);
                 break;
             default:
                 break;
@@ -328,6 +358,8 @@ public class enemyAI : MonoBehaviour , IRagdollDamage
     {
         // Animation - Trigger shoot
         anim.SetTrigger("Shoot");
+
+        playShootSound();
 
         // Create bullet, which is added velocity within its start
         Instantiate(projectile, muzzlePoint.position, headPos.transform.rotation);
@@ -388,11 +420,11 @@ public class enemyAI : MonoBehaviour , IRagdollDamage
     {
         // Taking into account the fieldOfView as well as the radius of the playerInRangeTrigger, draw the boundaries of vision
         // Trigonometry at work
-        Vector3 leftVisionEdge = transform.TransformDirection(new Vector3(Mathf.Sin((fieldOfView * -1 / 2) * Mathf.Deg2Rad),
+        Vector3 leftVisionEdge = transform.TransformDirection(new Vector3(Mathf.Sin((fieldOfView * -1/2) * Mathf.Deg2Rad),
                                                                                      0, 
                                                                                      Mathf.Cos((fieldOfView) * Mathf.Deg2Rad))).normalized;
 
-        Vector3 rightVisionEdge = transform.TransformDirection(new Vector3(Mathf.Sin((fieldOfView * 1 / 2) * Mathf.Deg2Rad),
+        Vector3 rightVisionEdge = transform.TransformDirection(new Vector3(Mathf.Sin((fieldOfView * 1/2) * Mathf.Deg2Rad),
                                                                                       0,
                                                                                       Mathf.Cos((fieldOfView) * Mathf.Deg2Rad))).normalized;
 

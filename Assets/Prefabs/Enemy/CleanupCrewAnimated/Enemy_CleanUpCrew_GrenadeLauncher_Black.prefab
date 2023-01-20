@@ -330,7 +330,7 @@ MonoBehaviour:
   anim: {fileID: 1113826855072403075}
   hitDetection: {fileID: 1549222823324962654}
   HP: 300
-  damageFXLength: 0.2
+  damageFXLength: 0.5
   facePlayerSpeed: 60
   fieldOfView: 360
   waitUntilShoot: 0
@@ -347,9 +347,9 @@ MonoBehaviour:
   muzzlePoint: {fileID: 1113826855102066241}
   animTransSpeed: 4
   thisEnemyWeaponType: 2
-  drawFieldOfView: 0
-  drawStoppingDistance: 0
-  drawPlayerInRangeRadius: 0
+  drawFieldOfView: 1
+  drawStoppingDistance: 1
+  drawPlayerInRangeRadius: 1
 --- !u!195 &1113826855072403078
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -509,7 +509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd860ea7cc75b84bbc0651670473db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  headMod: 2
+  headMod: 3
   limbMod: 2
   torsoMod: 1
 --- !u!1 &1113826855102066240

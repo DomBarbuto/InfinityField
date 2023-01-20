@@ -291,7 +291,7 @@ Transform:
   - {fileID: 3768649277297479454}
   m_Father: {fileID: 8494664913139663659}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.31166363, y: 359.84195, z: 18.987898}
+  m_LocalEulerAnglesHint: {x: 56.266754, y: 359.02707, z: 350.4976}
 --- !u!54 &1720287532689210179
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -795,7 +795,7 @@ Transform:
   - {fileID: 5612563422498238325}
   m_Father: {fileID: 5152707983227775374}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.31166363, y: 359.84195, z: 18.987898}
+  m_LocalEulerAnglesHint: {x: 359.54306, y: 357.9459, z: 339.53415}
 --- !u!54 &1720287534752470795
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1567,7 +1567,7 @@ Transform:
   - {fileID: 3983189609233736839}
   m_Father: {fileID: 3772847208932377781}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.31166363, y: 359.84195, z: 18.987898}
+  m_LocalEulerAnglesHint: {x: 330.9149, y: 12.06305, z: 357.79544}
 --- !u!54 &1720287533131389300
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1690,7 +1690,7 @@ Transform:
   - {fileID: 8773674984580466056}
   m_Father: {fileID: 5262740607687549084}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 11.756459, y: 0.9510616, z: 2.0462093}
 --- !u!1 &4514287266967793775
 GameObject:
   m_ObjectHideFlags: 0
@@ -1943,7 +1943,7 @@ Transform:
   - {fileID: 564969071678265338}
   m_Father: {fileID: 6213914463789498163}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 34.46948, y: 351.90833, z: 5.8777156}
 --- !u!1 &5491607751943552253
 GameObject:
   m_ObjectHideFlags: 0
@@ -1998,7 +1998,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5491607752071720390
 Transform:
   m_ObjectHideFlags: 0
@@ -2100,9 +2100,9 @@ MonoBehaviour:
   muzzlePoint: {fileID: 5491607752109427971}
   animTransSpeed: 6
   thisEnemyWeaponType: 4
-  drawFieldOfView: 0
-  drawStoppingDistance: 0
-  drawPlayerInRangeRadius: 0
+  drawFieldOfView: 1
+  drawStoppingDistance: 1
+  drawPlayerInRangeRadius: 1
 --- !u!195 &5491607752071720388
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2117,7 +2117,7 @@ NavMeshAgent:
   m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 180
-  m_StoppingDistance: 15
+  m_StoppingDistance: 5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
@@ -2262,7 +2262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd860ea7cc75b84bbc0651670473db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  headMod: 2
+  headMod: 3
   limbMod: 2
   torsoMod: 1
 --- !u!1 &5491607752109427970
@@ -2641,7 +2641,7 @@ Transform:
   - {fileID: 4319308023941340331}
   m_Father: {fileID: 7300259926951464286}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 26.688684, y: 2.8506446, z: 7.6602383}
 --- !u!1 &6416104345424610411
 GameObject:
   m_ObjectHideFlags: 0
@@ -3124,7 +3124,7 @@ Transform:
   - {fileID: 8145023874138571855}
   m_Father: {fileID: 3911931746555312706}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0.31166363, y: 359.84195, z: 18.987898}
+  m_LocalEulerAnglesHint: {x: 47.537907, y: 317.8648, z: 324.80576}
 --- !u!54 &1720287533342859522
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3500,7 +3500,7 @@ Transform:
   - {fileID: 1240485074482913532}
   m_Father: {fileID: 5441224025783469313}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 15.027547, y: 354.564, z: 4.2791953}
 --- !u!1 &8928705604062139708
 GameObject:
   m_ObjectHideFlags: 0

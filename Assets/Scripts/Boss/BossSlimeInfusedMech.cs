@@ -65,12 +65,12 @@ public class BossSlimeInfusedMech : MonoBehaviour, IRoomEntryListener
 
         // Turn on force field
         forceFieldOBJ.SetActive(true);
-        AudioSource.PlayClipAtPoint(sfxManager.instance.slimeMechForceFieldSound, transform.position, sfxManager.instance.slimeMechForceFieldVolume);
+        AudioSource.PlayClipAtPoint(sfxManager.instance.slimeMechForceFieldSound, transform.position, sfxManager.instance.slimeMechForceFieldVolumeMulti);
 
         anim.SetTrigger("TriggerIntro");
 
         // Intro audio
-        AudioSource.PlayClipAtPoint(sfxManager.instance.slimeMechIntro, transform.position, sfxManager.instance.slimeMechIntroVolume);
+        AudioSource.PlayClipAtPoint(sfxManager.instance.slimeMechIntro, transform.position, sfxManager.instance.slimeMechIntroVolumeMulti);
         StartCoroutine(waitForIntroToAdvance());
 
     }
@@ -239,7 +239,7 @@ public class BossSlimeInfusedMech : MonoBehaviour, IRoomEntryListener
         Destroy(explosion, 5);
 
         // Death explosion
-        AudioSource.PlayClipAtPoint(sfxManager.instance.slimeMechDeath, transform.position, sfxManager.instance.slimeMechDeathVolume);
+        AudioSource.PlayClipAtPoint(sfxManager.instance.slimeMechDeath, transform.position, sfxManager.instance.slimeMechDeathVolumeMulti);
 
         //Reveal Exit
         exit.SetActive(true);
@@ -265,7 +265,7 @@ public class BossSlimeInfusedMech : MonoBehaviour, IRoomEntryListener
 
         // Turn on forcefield
         forceFieldOBJ.SetActive(true);
-        AudioSource.PlayClipAtPoint(sfxManager.instance.slimeMechForceFieldSound, transform.position, sfxManager.instance.slimeMechForceFieldVolume);
+        AudioSource.PlayClipAtPoint(sfxManager.instance.slimeMechForceFieldSound, transform.position, sfxManager.instance.slimeMechForceFieldVolumeMulti);
 
         yield return new WaitForSeconds(length);
         anim.SetBool("Shooting", false);
