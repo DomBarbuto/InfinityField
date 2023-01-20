@@ -12,7 +12,6 @@ public class sfxManager : MonoBehaviour
     [Header("---------- Components ---------")]
     [SerializeField] public AudioSource aud;
     [SerializeField] public Slider sfxVolumeSlider;
-    [SerializeField] public AudioMixer mixer;
     
     [Header("---------- Player Audio ----------")]
     [SerializeField] public AudioClip[] playerHurt;
@@ -55,11 +54,8 @@ public class sfxManager : MonoBehaviour
 
     [Header("---------- Turret Audio ----------")]
     [SerializeField] public AudioClip[] turretAlert;
-    [Range(0, 1)][SerializeField] public float turretAlertVolMulti;
     [SerializeField] public AudioClip[] turretAttack;
-    [Range(0, 1)][SerializeField] public float turretAttackVolMulti;
     [SerializeField] public AudioClip[] turretDeath;
-    [Range(0, 1)][SerializeField] public float turretDeathVolMulti;
 
     // ------------------------------------------- Boss -------------------------------------------------------------
     [Header("---------- Slime Mech Audio ----------")]
@@ -69,15 +65,10 @@ public class sfxManager : MonoBehaviour
 
     [Header("---------- Home Security System Audio ----------")]
     [SerializeField] public AudioClip HSSDeath;
-    [Range(0, 1)][SerializeField] public float HSSDeathVolumeMulti;
     [SerializeField] public AudioClip HSSIntro;
-    [Range(0, 1)][SerializeField] public float HSSIntroVolumeMulti;
     [SerializeField] public AudioClip HSSPhase1;
-    [Range(0, 1)][SerializeField] public float HSSPhase1VolumeMulti;
     [SerializeField] public AudioClip HSSPhase2;
-    [Range(0, 1)][SerializeField] public float HSSPhase2VolumeMulti;
     [SerializeField] public AudioClip HSSPhase3;
-    [Range(0, 1)][SerializeField] public float HSSPhase3VolumeMulti;
 
     [Header("---------- Advanced Specimen Audio ----------")]
     [SerializeField] public AudioClip advSpecDeath;

@@ -12,12 +12,13 @@ public class BossHomeSecuritySystem : MonoBehaviour, IRoomEntryListener
     [SerializeField] bool stateStarted;
     [SerializeField] bool waveComplete;
     [SerializeField] GameObject exit;
+    [SerializeField] AudioSource aud;
 
     List<GameObject> nullObjects;
     // Start is called before the first frame update
     public void notify()
     {
-        AudioSource.PlayClipAtPoint(sfxManager.instance.HSSIntro, transform.position, sfxManager.instance.HSSIntroVolumeMulti);
+        playIntroSound();
         state = 1;
         stateMachineOn = true;
     }
@@ -36,15 +37,15 @@ public class BossHomeSecuritySystem : MonoBehaviour, IRoomEntryListener
         switch (state)
         {
             case 1:
-                AudioSource.PlayClipAtPoint(sfxManager.instance.HSSPhase1, transform.position, sfxManager.instance.HSSPhase1VolumeMulti);
+                playPhase1Sound();
                 wave(FirstWave);
                 break;
             case 2:
-                AudioSource.PlayClipAtPoint(sfxManager.instance.HSSPhase2, transform.position, sfxManager.instance.HSSPhase2VolumeMulti);
+                playPhase2Sound();
                 wave(SecondWave);
                 break;
             case 3:
-                AudioSource.PlayClipAtPoint(sfxManager.instance.HSSPhase3, transform.position, sfxManager.instance.HSSPhase3VolumeMulti);
+                playPhase3Sound();
                 wave(ThirdWave);
                 break;
             case 4:
@@ -53,7 +54,7 @@ public class BossHomeSecuritySystem : MonoBehaviour, IRoomEntryListener
                     exit.SetActive(true);
                     stateStarted = true;
                 }
-                AudioSource.PlayClipAtPoint(sfxManager.instance.HSSDeath, transform.position, sfxManager.instance.HSSDeathVolumeMulti);
+                playDeathSound();
                 //End Stuff
                 break;
         }
@@ -91,4 +92,30 @@ public class BossHomeSecuritySystem : MonoBehaviour, IRoomEntryListener
             }
         }
     }
+
+    public void playDeathSound()
+    {
+        aud.PlayOneShot(sfxManager.instance.HSSDeath);
+    }
+
+    public void playIntroSound()
+    {
+        aud.PlayOneShot(sfxManager.instance.HSSIntro);
+    }
+
+    public void playPhase1Sound()
+    {
+        aud.PlayOneShot(sfxManager.instance.HSSPhase1);
+    }
+
+    public void playPhase2Sound()
+    {
+        aud.PlayOneShot(sfxManager.instance.HSSPhase2);
+    }
+
+    public void playPhase3Sound()
+    {
+        aud.PlayOneShot(sfxManager.instance.HSSPhase3);
+    }
+
 }

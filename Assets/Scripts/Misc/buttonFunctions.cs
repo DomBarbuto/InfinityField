@@ -3,13 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class buttonFunctions : MonoBehaviour
 {
+    [SerializeField] public AudioMixer mixer;
+
     [SerializeField] CharacterSelectionShowcase characterSelect;
     public void resume()
     {
         gameManager.instance.unPause();
+    }
+
+    public void SetMasterVolume(float sliderValue)
+    {
+        mixer.SetFloat("Volume_Music", Mathf.Log10(sliderValue) * 20);
+    }
+
+    public void SetMasterSFXVolume(float sliderValue)
+    {
+        mixer.SetFloat("Volume_SFX", Mathf.Log10(sliderValue) * 20);
     }
 
     public void restart()

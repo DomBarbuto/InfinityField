@@ -8,6 +8,7 @@ public class enemyTurret : MonoBehaviour
     [SerializeField] Transform muzzlePoint;
     [SerializeField] GameObject projectile;
     [SerializeField] Animator anim;
+    [SerializeField] AudioSource aud;
 
     [SerializeField] int HP;
     [SerializeField] float shootSpeed;
@@ -32,7 +33,7 @@ public class enemyTurret : MonoBehaviour
             GunObj.transform.LookAt(gameManager.instance.player.transform);
             if (!alerted)
             {
-                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.turretAlert[Random.Range(0, sfxManager.instance.turretAlert.Length)], sfxManager.instance.turretAlertVolMulti);
+                playAlertSound();
                 alerted = true;
             }
             if (canShoot)
@@ -68,7 +69,7 @@ public class enemyTurret : MonoBehaviour
         canShoot = false;
         playerInRange = false;
         anim.SetTrigger("TriggerDeath");
-        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.turretDeath[Random.Range(0, sfxManager.instance.turretDeath.Length)], sfxManager.instance.turretDeathVolMulti);
+        playDeathSound();
         StartCoroutine(timeToDestroy());
     }
 
@@ -79,7 +80,7 @@ public class enemyTurret : MonoBehaviour
 
     IEnumerator shoot()
     {
-        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.turretAttack[Random.Range(0, sfxManager.instance.turretAttack.Length)], sfxManager.instance.turretAttackVolMulti);
+        playShootSound();
         GameObject newProjectile = Instantiate(projectile, muzzlePoint.position, muzzlePoint.rotation, null);
         yield return new WaitForSeconds(shootSpeed);
         canShoot = true;
@@ -89,5 +90,20 @@ public class enemyTurret : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
         Destroy(gameObject);
+    }
+
+    public void playAlertSound()
+    {
+        aud.PlayOneShot(sfxManager.instance.turretAlert[Random.Range(0, sfxManager.instance.turretAlert.Length)]);
+    }
+
+    public void playDeathSound()
+    {
+        aud.PlayOneShot(sfxManager.instance.turretDeath[Random.Range(0, sfxManager.instance.turretDeath.Length)]);
+    }
+
+    public void playShootSound()
+    {
+        aud.PlayOneShot(sfxManager.instance.turretAttack[Random.Range(0, sfxManager.instance.turretAttack.Length)]);
     }
 }
