@@ -495,7 +495,7 @@ public class playerController : MonoBehaviour
         int playCheck = Random.Range(0, 2);
         if (playCheck == 0)
         {
-            sfxManager.instance.aud.PlayOneShot(sfxManager.instance.playerHurt[Random.Range(0, sfxManager.instance.playerHurt.Length)], sfxManager.instance.playerHurtVolMulti);
+            sfxManager.instance.aud.PlayOneShot(sfxManager.instance.playerHurt[Random.Range(0, sfxManager.instance.playerHurt.Length)], sfxManager.instance.aud.volume * sfxManager.instance.playerHurtVolMulti);
         }
 
         StartCoroutine(playDamageFX());

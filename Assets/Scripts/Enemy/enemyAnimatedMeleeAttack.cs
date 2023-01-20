@@ -7,32 +7,19 @@ public class enemyAnimatedMeleeAttack : MonoBehaviour
     [SerializeField] public GameObject leftHitBox;
     [SerializeField] public GameObject rightHitBox;
     [SerializeField] public GameObject currentHitBox;
-
-    [SerializeField] int animLength;
-    bool isOn = false;
-
+    [SerializeField] bool isColliderEnabled = false;
 
     public void HitBoxToggleOn()
     {
-        isOn = true;
         currentHitBox.SetActive(true);
-        StartCoroutine(timedOff());
+        isColliderEnabled = true;
     }
     public void HitBoxToggleOff()
     {
-        isOn = false;
         currentHitBox.SetActive(false);
-        StopCoroutine(timedOff());
+        isColliderEnabled = false;
     }
 
-    IEnumerator timedOff()
-    {
-        yield return new WaitForSeconds(animLength);
-        if (isOn == false)
-        {
-            currentHitBox.SetActive(false);
-        }
-    }
 
 
 }

@@ -109,7 +109,7 @@ MonoBehaviour:
   leftHitBox: {fileID: 6903083236865132863}
   rightHitBox: {fileID: 6903083237630104125}
   currentHitBox: {fileID: 0}
-  animLength: 0
+  isColliderEnabled: 0
 --- !u!114 &112347632154797812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,25 +122,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbd21176a08434a4eae884b9b3353c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeComponent: {fileID: 0}
+  meleeComponent: {fileID: 112347632154797819}
   model: {fileID: 6903083236503594761}
   agent: {fileID: 112347632154797813}
   headPos: {fileID: 6903083236498841445}
-  damageFX: {fileID: 0}
+  damageFX: {fileID: 2100000, guid: d44fa6027c7192b4286898765a878ce7, type: 2}
   playerInRangeTrigger: {fileID: 112347632154797818}
   ragdoll: {fileID: 112347632154797817}
   anim: {fileID: 112347632154797770}
-  hitDetection: {fileID: 0}
-  HP: 15
+  HP: 30
   hitAnimLength: 0.8
-  damageFXLength: 0
+  damageFXLength: 0.4
   facePlayerSpeed: 30
-  fieldOfView: 200
-  isRagdoll: 0
+  fieldOfView: 360
   isPlayerDetected: 0
-  creditsHeld: 0
-  pushBack: {x: 0, y: 0, z: 0}
-  pushBackTime: 0
+  creditsHeld: 5
   animTransSpeed: 6
   drawFieldOfView: 0
   drawStoppingDistance: 0
@@ -158,8 +154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd860ea7cc75b84bbc0651670473db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  headMod: 2
-  limbMod: 1
+  headMod: 3
+  limbMod: 2
   torsoMod: 1
 --- !u!114 &112347632154797817
 MonoBehaviour:
@@ -969,7 +965,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6903083236865132850}
   - component: {fileID: 6903083236865132861}
-  - component: {fileID: 6903083236865132860}
+  - component: {fileID: 478961808}
   m_Layer: 2
   m_Name: Left Damage Collider
   m_TagString: Untagged
@@ -1005,7 +1001,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.57007736, y: 0.23932521, z: 0.27833042}
   m_Center: {x: -0.035266656, y: 0.023094835, z: -0.027766997}
---- !u!114 &6903083236865132860
+--- !u!114 &478961808
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1014,11 +1010,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6903083236865132863}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95b4ab2a945779046a46ceec36283a8d, type: 3}
+  m_Script: {fileID: 11500000, guid: a97fa8812b9b1e84696d8b3dc14e3dd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 60
-  cooldown: 0.25
+  dmg: 20
+  cooldown: 0.5
   inCooldown: 0
 --- !u!1 &6903083236970269358
 GameObject:
@@ -1619,7 +1615,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6903083237630104114}
   - component: {fileID: 6903083237630104112}
-  - component: {fileID: 6903083237630104115}
+  - component: {fileID: 859313890}
   m_Layer: 2
   m_Name: Right Damage Collider
   m_TagString: Untagged
@@ -1655,7 +1651,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.57007736, y: 0.23932521, z: 0.27833042}
   m_Center: {x: -0.035266656, y: 0.023094835, z: -0.027766997}
---- !u!114 &6903083237630104115
+--- !u!114 &859313890
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1664,11 +1660,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6903083237630104125}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95b4ab2a945779046a46ceec36283a8d, type: 3}
+  m_Script: {fileID: 11500000, guid: a97fa8812b9b1e84696d8b3dc14e3dd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 60
-  cooldown: 0.25
+  dmg: 20
+  cooldown: 0.5
   inCooldown: 0
 --- !u!1 &6903083237683843598
 GameObject:

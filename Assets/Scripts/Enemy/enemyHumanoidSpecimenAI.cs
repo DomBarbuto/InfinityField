@@ -14,7 +14,6 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
     [SerializeField] SphereCollider playerInRangeTrigger;    
     [SerializeField] ragdollDeath ragdoll;
     [SerializeField] Animator anim;
-    [SerializeField] GameObject hitDetection;
 
     [Header("---- Enemy Stats ----")]
     [SerializeField] int HP;
@@ -22,11 +21,8 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
     [SerializeField] float damageFXLength;
     [SerializeField] int facePlayerSpeed;
     [SerializeField] int fieldOfView;
-    [SerializeField] bool isRagdoll;
     [SerializeField] bool isPlayerDetected;
     public int creditsHeld;                 // How many credits the enemy sends over to collectable on death
-    [SerializeField] Vector3 pushBack;
-    [SerializeField] float pushBackTime;
     [SerializeField] int animTransSpeed;
 
     [Header("---- Editor Debug Gizmos ----")]
@@ -40,19 +36,17 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
     Vector3 playerDir;
     bool alertPlayed;
     float angleToPlayer;
-    float signedAngleToPlayer;
-    float origStoppingDistance;
     float origSpeed;
     bool isAlive = true;
+    LayerMask rayMask;
 
     // Start is called before the first frame update
     void Start()
     {
         this.GetComponent<enemyDamageHandler>().brain = this;
-        meleeComponent = GetComponent<enemyAnimatedMeleeAttack>();
+        rayMask = ~LayerMask.GetMask("EnemyBody");
         
         HPMAX = HP;
-        origSpeed = agent.speed;
     }
 
     // Update is called once per frame
@@ -88,13 +82,12 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
     {
         playerDir = gameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
-        signedAngleToPlayer = Vector3.SignedAngle(playerDir, transform.forward, Vector3.right);
 
         Debug.DrawRay(headPos.position, playerDir);
 
         // If enemy can see player without obstruction
         RaycastHit hit;
-        if (Physics.Raycast(headPos.position, playerDir, out hit))
+        if (Physics.Raycast(headPos.position, playerDir, out hit, Mathf.Infinity, rayMask))
         {
             // If what was hit was the player
             if (hit.collider.CompareTag("Player"))
@@ -117,12 +110,6 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
                     alertPlayed = false;
                 }
             }
-
-            /*if(isPlayerDetected)
-            {
-                facePlayer();
-                agent.SetDestination(gameManager.instance.player.transform.position);
-            }*/
         }
     }
 
@@ -161,21 +148,38 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
 
     public void takeDamage(int dmg)
     {
-        HP -= dmg;
-        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.humanoidSpecimenHurt[Random.Range(0, sfxManager.instance.humanoidSpecimenHurt.Length)], sfxManager.instance.humanoidSpecimenHurtVolMulti);
-        // Animation Hit Reaction
-        anim.SetTrigger("HitReaction");
-
-        if (HP <= 0)
+        if(isAlive)
         {
-            gameObject.GetComponent<Collider>().enabled = false;
-            dropCredits();
+            HP -= dmg;
+            sfxManager.instance.aud.PlayOneShot(sfxManager.instance.humanoidSpecimenHurt[Random.Range(0, sfxManager.instance.humanoidSpecimenHurt.Length)], sfxManager.instance.humanoidSpecimenHurtVolMulti);
+            // Animation Hit Reaction
+            anim.SetTrigger("HitReaction");
 
+            // Damage FX
+            StartCoroutine(flashDamageFX());
+
+        }
+
+        if (HP <= 0 && isAlive)
+        {
+            agent.enabled = false;
+            dropCredits();
             isAlive = false;
             ragdoll.togglePhysics(true);
             StartCoroutine(timedDeath());
 
         }
+    }
+
+    IEnumerator flashDamageFX()
+    {
+        // Store original color of material
+        Color origColor = model.material.color;
+
+        // Quickly switch materials color to the damage material color then back to original
+        model.material.color = damageFX.color;
+        yield return new WaitForSeconds(damageFXLength);
+        model.material.color = origColor;
     }
 
     private void dropCredits()
@@ -199,9 +203,8 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
             
         }
 
-        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.humanoidSpecimenAttack[Random.Range(0, sfxManager.instance.humanoidSpecimenAttack.Length)], sfxManager.instance.humanoidSpecimenAttackVolMulti);
+        AudioSource.PlayClipAtPoint(sfxManager.instance.humanoidSpecimenAttack[Random.Range(0, sfxManager.instance.humanoidSpecimenAttack.Length)], transform.position, sfxManager.instance.aud.volume * sfxManager.instance.humanoidSpecimenAttackVolMulti);
         yield return new WaitForSeconds(hitAnimLength);
-        agent.speed = origSpeed;
         isAttacking = false;
     }
 

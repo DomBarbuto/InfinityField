@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class damageCollider : MonoBehaviour
+public class meleeDamageCollider : MonoBehaviour
 {
     [SerializeField] int dmg;
     [SerializeField] float cooldown;
@@ -12,7 +12,7 @@ public class damageCollider : MonoBehaviour
     {
         inCooldown = false;
     }
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && !inCooldown)
         {

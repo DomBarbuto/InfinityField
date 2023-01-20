@@ -865,11 +865,11 @@ GameObject:
   - component: {fileID: 1213045241389620699}
   - component: {fileID: 3711887547493118225}
   - component: {fileID: 1213045241389617698}
+  - component: {fileID: 1858135744513689573}
   - component: {fileID: 1213045241389617697}
   - component: {fileID: 1213045241389617700}
   - component: {fileID: 2701606944332925333}
   - component: {fileID: 2701606944103139320}
-  - component: {fileID: 1858135744513689573}
   - component: {fileID: 1727157697}
   m_Layer: 3
   m_Name: PlayerAnimatedBlue
@@ -985,6 +985,33 @@ MonoBehaviour:
   RocketManExplosion: {fileID: 0}
   isReloading: 0
   move: {x: 0, y: 0, z: 0}
+--- !u!114 &1858135744513689573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213045241389617696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52bc328a8904f7e4bb989d635fa77041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterName: 
+  HP: 100
+  HPMax: 100
+  speed: 6
+  energy: 100
+  energyMax: 100
+  energyUseRate: 0
+  rechargable: 0
+  criticalChance: 0
+  passiveTickRate: 0
+  perks: []
+  material: {fileID: 0}
+  isUsingAbility: 0
+  currSpeed: 0
+  ability: 0
 --- !u!143 &1213045241389617697
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1155,33 +1182,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spotlight: {fileID: 2701606943447222882}
   isTurnedOn: 0
---- !u!114 &1858135744513689573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1213045241389617696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52bc328a8904f7e4bb989d635fa77041, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterName: 
-  HP: 100
-  HPMax: 100
-  speed: 6
-  energy: 100
-  energyMax: 100
-  energyUseRate: 0
-  rechargable: 0
-  criticalChance: 0
-  passiveTickRate: 0
-  perks: []
-  material: {fileID: 0}
-  isUsingAbility: 0
-  currSpeed: 0
-  ability: 0
 --- !u!114 &1727157697
 MonoBehaviour:
   m_ObjectHideFlags: 0
