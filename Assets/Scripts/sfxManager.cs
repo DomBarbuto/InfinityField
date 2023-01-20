@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(AudioSource))]
 public class sfxManager : MonoBehaviour
@@ -11,6 +12,10 @@ public class sfxManager : MonoBehaviour
     [Header("---------- Components ---------")]
     [SerializeField] public AudioSource aud;
     [SerializeField] public Slider sfxVolumeSlider;
+    [SerializeField] public AudioMixer mixer;
+    
+
+
 
     [Header("---------- Player Audio ----------")]
     [SerializeField] public AudioClip[] playerHurt;
@@ -26,43 +31,29 @@ public class sfxManager : MonoBehaviour
 
     [Header("---------- RedCC Audio ----------")]
     [SerializeField] public AudioClip[] redCCAlert;
-    [Range(0, 1)][SerializeField] public float redCCAlertVolMulti;
     [SerializeField] public AudioClip[] redCCHurt;
-    [Range(0, 1)][SerializeField] public float redCCHurtVolMulti;
 
     [Header("---------- YellowCC Audio ----------")]
     [SerializeField] public AudioClip[] yellowCCAlert;
-    [Range(0, 1)][SerializeField] public float yellowCCAlertVolMulti;
     [SerializeField] public AudioClip[] yellowCCHurt;
-    [Range(0, 1)][SerializeField] public float yellowCCHurtVolMulti;
     
     [Header("---------- WhiteCC Audio ----------")]
     [SerializeField] public AudioClip[] whiteCCAlert;
-    [Range(0, 1)][SerializeField] public float whiteCCAlertVolMulti;
     [SerializeField] public AudioClip[] whiteCCHurt;
-    [Range(0, 1)][SerializeField] public float whiteCCHurtVolMulti;
 
     [Header("---------- BlackCC Audio ----------")]
     [SerializeField] public AudioClip[] blackCCAlert;
-    [Range(0, 1)][SerializeField] public float blackCCAlertVolMulti;
     [SerializeField] public AudioClip[] blackCCHurt;
-    [Range(0, 1)][SerializeField] public float blackCCHurtVolMulti;
 
     [Header("---------- Humanoid Specimen Audio ----------")]
     [SerializeField] public AudioClip[] humanoidSpecimenAlert;
-    [Range(0, 1)][SerializeField] public float humanoidSpecimenAlertVolMulti;
     [SerializeField] public AudioClip[] humanoidSpecimenAttack;
-    [Range(0, 1)][SerializeField] public float humanoidSpecimenAttackVolMulti;
     [SerializeField] public AudioClip[] humanoidSpecimenHurt;
-    [Range(0, 1)][SerializeField] public float humanoidSpecimenHurtVolMulti;
 
     [Header("---------- Exploding Specimen Audio ----------")]
     [SerializeField] public AudioClip[] explodingSpecimenHiss;
-    [Range(0, 1)][SerializeField] public float explodingSpecimenHissVolMulti;
     [SerializeField] public AudioClip[] explodingSpecimenMovement;
-    [Range(0, 1)][SerializeField] public float explodingSpecimenMovementVolMulti;
     [SerializeField] public AudioClip[] explodingSpecimenExplode;
-    [Range(0, 1)][SerializeField] public float explodingSpecimenExplodeVolMulti;
 
     [Header("---------- Slime Audio ----------")]
     [SerializeField] public AudioClip[] slimeAlert;

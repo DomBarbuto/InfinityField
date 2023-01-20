@@ -9,6 +9,7 @@ public class enemyScuttlingSpecimenAI : MonoBehaviour
     [Header("----- External Components -----")]
     [SerializeField] Animator anim;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] AudioSource aud;
 
     [Header("----- Stats -----")]
     [SerializeField] int HP;
@@ -54,7 +55,7 @@ public class enemyScuttlingSpecimenAI : MonoBehaviour
     IEnumerator playSteps()
     {
         stepIsPlaying = true;
-        AudioSource.PlayClipAtPoint(sfxManager.instance.explodingSpecimenMovement[Random.Range(0, sfxManager.instance.explodingSpecimenMovement.Length)], transform.position, sfxManager.instance.aud.volume * sfxManager.instance.explodingSpecimenMovementVolMulti);
+        playMovementSound();
         yield return new WaitForSeconds(0.5f);
         stepIsPlaying = false;
     }
@@ -65,7 +66,7 @@ public class enemyScuttlingSpecimenAI : MonoBehaviour
     {
         // Update animation, leading to animation event
         anim.SetTrigger("Explode");
-        AudioSource.PlayClipAtPoint(sfxManager.instance.explodingSpecimenHiss[Random.Range(0, sfxManager.instance.explodingSpecimenHiss.Length)], transform.position, sfxManager.instance.aud.volume * sfxManager.instance.explodingSpecimenHissVolMulti);
+        playHissSound();
     }
 
     public void animEvent_Explode()
@@ -73,7 +74,7 @@ public class enemyScuttlingSpecimenAI : MonoBehaviour
         GameObject newExplosion = Instantiate(plume, transform.position, transform.rotation);
         newExplosion.transform.SetParent(null);
         Destroy(gameObject);
-        AudioSource.PlayClipAtPoint(sfxManager.instance.explodingSpecimenExplode[Random.Range(0, sfxManager.instance.explodingSpecimenExplode.Length)], transform.position, sfxManager.instance.aud.volume * sfxManager.instance.explodingSpecimenExplodeVolMulti);
+        playExplodeSound();
     }
 
     public void takeDamage(int dmg)
@@ -83,5 +84,22 @@ public class enemyScuttlingSpecimenAI : MonoBehaviour
         {
             animEvent_Explode();
         }
+    }
+
+    //Audio 
+
+    public void playHissSound()
+    {
+        aud.PlayOneShot(sfxManager.instance.explodingSpecimenHiss[Random.Range(0, sfxManager.instance.explodingSpecimenHiss.Length)]);
+    }
+
+    public void playMovementSound()
+    {
+        aud.PlayOneShot(sfxManager.instance.explodingSpecimenMovement[Random.Range(0, sfxManager.instance.explodingSpecimenMovement.Length)]);
+    }
+
+    public void playExplodeSound()
+    {
+        aud.PlayOneShot(sfxManager.instance.explodingSpecimenExplode[Random.Range(0, sfxManager.instance.explodingSpecimenExplode.Length)]);
     }
 }

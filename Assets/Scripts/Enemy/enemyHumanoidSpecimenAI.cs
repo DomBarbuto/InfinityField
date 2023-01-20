@@ -14,6 +14,7 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
     [SerializeField] SphereCollider playerInRangeTrigger;    
     [SerializeField] ragdollDeath ragdoll;
     [SerializeField] Animator anim;
+    [SerializeField] AudioSource aud;
 
     [Header("---- Enemy Stats ----")]
     [SerializeField] int HP;
@@ -97,7 +98,7 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
                 {
                     if (!alertPlayed)
                     {
-                        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.humanoidSpecimenAlert[Random.Range(0, sfxManager.instance.humanoidSpecimenAlert.Length)], sfxManager.instance.humanoidSpecimenAlertVolMulti);
+                        playAlertSound();
                         alertPlayed = true;
                     }
                     isPlayerDetected = true;
@@ -151,7 +152,10 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
         if(isAlive)
         {
             HP -= dmg;
-            sfxManager.instance.aud.PlayOneShot(sfxManager.instance.humanoidSpecimenHurt[Random.Range(0, sfxManager.instance.humanoidSpecimenHurt.Length)], sfxManager.instance.humanoidSpecimenHurtVolMulti);
+
+            //Play Hurt sound
+            playHurtSound();
+
             // Animation Hit Reaction
             anim.SetTrigger("HitReaction");
 
@@ -203,7 +207,9 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
             
         }
 
-        AudioSource.PlayClipAtPoint(sfxManager.instance.humanoidSpecimenAttack[Random.Range(0, sfxManager.instance.humanoidSpecimenAttack.Length)], transform.position, sfxManager.instance.aud.volume * sfxManager.instance.humanoidSpecimenAttackVolMulti);
+        // Play attack sound
+        playAttackSound();
+
         yield return new WaitForSeconds(hitAnimLength);
         isAttacking = false;
     }
@@ -212,6 +218,22 @@ public class enemyHumanoidSpecimenAI : MonoBehaviour , IRagdollDamage
     {
         yield return new WaitForSeconds(10);
         Destroy(gameObject);
+    }
+
+    // Audio 
+    public void playAlertSound()
+    {
+        aud.PlayOneShot(sfxManager.instance.humanoidSpecimenAlert[Random.Range(0, sfxManager.instance.humanoidSpecimenAlert.Length)]);
+    }
+
+    public void playAttackSound()
+    {
+        aud.PlayOneShot(sfxManager.instance.humanoidSpecimenAttack[Random.Range(0, sfxManager.instance.humanoidSpecimenAttack.Length)]);
+    }
+
+    public void playHurtSound()
+    {
+        aud.PlayOneShot(sfxManager.instance.humanoidSpecimenHurt[Random.Range(0, sfxManager.instance.humanoidSpecimenHurt.Length)]);
     }
 
     // Gizmos

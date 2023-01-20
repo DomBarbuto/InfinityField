@@ -14,6 +14,7 @@ public class enemyAI : MonoBehaviour , IRagdollDamage
     [SerializeField] ragdollDeath ragdoll;
     [SerializeField] Animator anim;
     [SerializeField] GameObject hitDetection;
+    [SerializeField] AudioSource aud;
 
     [Header("---- Enemy Stats ----")]
     [SerializeField] int HP;
@@ -51,6 +52,9 @@ public class enemyAI : MonoBehaviour , IRagdollDamage
     float signedAngleToPlayer;
     float origStoppingDistance;
     LayerMask rayMask;
+
+    //Audio
+
 
     void Start()
     {
@@ -114,9 +118,6 @@ public class enemyAI : MonoBehaviour , IRagdollDamage
         angleToPlayer =  Vector3.Angle(playerDir, transform.forward);
         signedAngleToPlayer = Vector3.SignedAngle(playerDir, transform.forward, Vector3.right);
 
-        /*Debug.Log("angle: " + angleToPlayer);
-        Debug.Log("signed angle: " + signedAngleToPlayer);*/
-
         Debug.DrawRay(headPos.position, playerDir);
 
         // If enemy can see player without obstruction
@@ -148,7 +149,7 @@ public class enemyAI : MonoBehaviour , IRagdollDamage
                 //Plays alert sound once when player is spotted
                 if(!alertPlayed)
                 {
-                    pickAlertSound();
+                    playAlertSound();
                     alertPlayed = true;
                 }
 
@@ -193,59 +194,7 @@ public class enemyAI : MonoBehaviour , IRagdollDamage
         }
     }
 
-    void pickAlertSound()
-    {
-        switch (alertSoundType)
-        {
-            case 0:
-                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.redCCAlert[Random.Range(0, sfxManager.instance.redCCAlert.Length)], sfxManager.instance.aud.volume * sfxManager.instance.redCCAlertVolMulti);
-                break;
-            case 1:
-                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.whiteCCAlert[Random.Range(0, sfxManager.instance.whiteCCAlert.Length)], sfxManager.instance.aud.volume * sfxManager.instance.whiteCCAlertVolMulti);
-                break;
-            case 2:
-                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.yellowCCAlert[Random.Range(0, sfxManager.instance.yellowCCAlert.Length)], sfxManager.instance.aud.volume * sfxManager.instance.yellowCCAlertVolMulti);
-                break;
-            case 3:
-                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.blackCCAlert[Random.Range(0, sfxManager.instance.blackCCAlert.Length)], sfxManager.instance.aud.volume * sfxManager.instance.blackCCAlertVolMulti);
-                break;
-            default:
-                break;
-        }
-    }
-
-    private void playShootSound()
-    {
-        AudioClip clipToPlay = null;
-        float shootVolume = 0;
-        switch (thisEnemyWeaponType)
-        {
-            case weaponCreation.WeaponType.Pistol:
-                clipToPlay = sfxManager.instance.pistolShootSound[Random.Range(0, sfxManager.instance.pistolShootSound.Length)];
-                shootVolume = sfxManager.instance.aud.volume * sfxManager.instance.pistolShootVolMulti;
-                break;
-            case weaponCreation.WeaponType.Rifle:
-                clipToPlay = sfxManager.instance.rifleShootSound[Random.Range(0, sfxManager.instance.rifleShootSound.Length)];
-                shootVolume = sfxManager.instance.aud.volume * sfxManager.instance.rifleShootVolMulti;
-                break;
-            case weaponCreation.WeaponType.GrenadeLauncher:
-                clipToPlay = sfxManager.instance.glShootSound[Random.Range(0, sfxManager.instance.glShootSound.Length)];
-                shootVolume = sfxManager.instance.aud.volume * sfxManager.instance.glShootVolMulti;
-                break;
-            case weaponCreation.WeaponType.ArcGun:
-                clipToPlay = sfxManager.instance.arcgunShootSound[Random.Range(0, sfxManager.instance.arcgunShootSound.Length)];
-                shootVolume = sfxManager.instance.aud.volume * sfxManager.instance.arcgunShootVolMulti;
-                break;
-            case weaponCreation.WeaponType.RailGun:
-                clipToPlay = sfxManager.instance.railgunShootSound[Random.Range(0, sfxManager.instance.railgunShootSound.Length)];
-                shootVolume = sfxManager.instance.aud.volume * sfxManager.instance.railgunShootVolMulti;
-                break;
-            default:
-                break;
-        }
-        //sfxManager.instance.aud.PlayOneShot(clipToPlay, shootVolume);
-        AudioSource.PlayClipAtPoint(clipToPlay, transform.position, shootVolume);
-    }
+    
 
     void facePlayer() 
     {
@@ -273,7 +222,7 @@ public class enemyAI : MonoBehaviour , IRagdollDamage
         int playCheck = Random.Range(0, 2);
         if(playCheck == 0)
         {
-            pickHurtSound();
+            playHurtSound();
         }
        
         // Start moving to where enemy was shot from
@@ -297,27 +246,6 @@ public class enemyAI : MonoBehaviour , IRagdollDamage
             }
             else
                 Destroy(gameObject);
-        }
-    }
-
-    void pickHurtSound()
-    {
-        switch (hurtSoundType)
-        {
-            case 0:
-                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.redCCHurt[Random.Range(0, sfxManager.instance.redCCHurt.Length)], sfxManager.instance.redCCHurtVolMulti);
-                break;
-            case 1:
-                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.whiteCCHurt[Random.Range(0, sfxManager.instance.whiteCCHurt.Length)], sfxManager.instance.whiteCCHurtVolMulti);
-                break;
-            case 2:
-                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.yellowCCHurt[Random.Range(0, sfxManager.instance.yellowCCHurt.Length)], sfxManager.instance.yellowCCHurtVolMulti);
-                break;
-            case 3:
-                sfxManager.instance.aud.PlayOneShot(sfxManager.instance.blackCCHurt[Random.Range(0, sfxManager.instance.blackCCHurt.Length)], sfxManager.instance.blackCCHurtVolMulti);
-                break;
-            default:
-                break;
         }
     }
 
@@ -393,6 +321,56 @@ public class enemyAI : MonoBehaviour , IRagdollDamage
             if (isPlayerDetected)
                 undetectPlayer();
         }
+    }
+
+
+    //Audio----------------------------
+
+    void playAlertSound()
+    {
+        switch (alertSoundType)
+        {
+            case 0:
+                aud.PlayOneShot(sfxManager.instance.redCCAlert[Random.Range(0, sfxManager.instance.redCCAlert.Length)]);
+                break;
+            case 1:
+                aud.PlayOneShot(sfxManager.instance.whiteCCAlert[Random.Range(0, sfxManager.instance.whiteCCAlert.Length)]);
+                break;
+            case 2:
+                aud.PlayOneShot(sfxManager.instance.yellowCCAlert[Random.Range(0, sfxManager.instance.yellowCCAlert.Length)]);
+                break;
+            case 3:
+                aud.PlayOneShot(sfxManager.instance.blackCCAlert[Random.Range(0, sfxManager.instance.blackCCAlert.Length)]);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void playShootSound()
+    {
+        AudioClip clipToPlay = null;
+        switch (thisEnemyWeaponType)
+        {
+            case weaponCreation.WeaponType.Pistol:
+                clipToPlay = sfxManager.instance.pistolShootSound[Random.Range(0, sfxManager.instance.pistolShootSound.Length)];
+                break;
+            case weaponCreation.WeaponType.Rifle:
+                clipToPlay = sfxManager.instance.rifleShootSound[Random.Range(0, sfxManager.instance.rifleShootSound.Length)];
+                break;
+            case weaponCreation.WeaponType.GrenadeLauncher:
+                clipToPlay = sfxManager.instance.glShootSound[Random.Range(0, sfxManager.instance.glShootSound.Length)];
+                break;
+            case weaponCreation.WeaponType.ArcGun:
+                clipToPlay = sfxManager.instance.arcgunShootSound[Random.Range(0, sfxManager.instance.arcgunShootSound.Length)];
+                break;
+            case weaponCreation.WeaponType.RailGun:
+                clipToPlay = sfxManager.instance.railgunShootSound[Random.Range(0, sfxManager.instance.railgunShootSound.Length)];
+                break;
+            default:
+                break;
+        }
+        aud.PlayOneShot(clipToPlay);
     }
 
     //Gizmos----------------------------
