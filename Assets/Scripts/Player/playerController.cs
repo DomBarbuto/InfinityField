@@ -13,6 +13,7 @@ public class playerController : MonoBehaviour
     [Header("---- External Components ----")]
     [SerializeField] CharacterController controller;
     public PlayerAnimController animController;
+    [SerializeField] AudioSource aud;
 
     [Header("---- Player Stats ----")]
                                     
@@ -84,7 +85,6 @@ public class playerController : MonoBehaviour
 
         setPlayerPos();
         currentMoveSpeed = walkSpeed;
-        //Debug.Log(sfxManager.instance.sfxVolumeSlider.value);
         characterList[currCharacter].perks.Clear();
         while (characterList[currCharacter].perks.Count > 0)
         {
@@ -238,7 +238,7 @@ public class playerController : MonoBehaviour
         {
             currJumps++;
             playerVelocity.y = jumpHeight;
-            sfxManager.instance.aud.PlayOneShot(sfxManager.instance.playerJump[Random.Range(0, sfxManager.instance.playerJump.Length)], sfxManager.instance.playerJumpVolMulti);
+            playJumpSound();
             characterList[currCharacter].callIPerkOnJump();
             
         }
@@ -323,8 +323,6 @@ public class playerController : MonoBehaviour
                         Instantiate(weaponInventory[currentWeapon].flashFX, currentMuzzlePoint.transform.position, currentMuzzlePoint.transform.rotation);
                     }
 
-                    //TODO: CHANGE THIS VIA SHOOT ANIMATION EVENT
-                    //animController.shootTrigger();
                     playShootSound();
 
                     weaponInventory[currentWeapon].magazineCurrent -= 1;
@@ -343,7 +341,9 @@ public class playerController : MonoBehaviour
             }
             else
             {
-                sfxManager.instance.aud.PlayOneShot(weaponInventory[currentWeapon].emptySound[Random.Range(0, weaponInventory[currentWeapon].emptySound.Length)], weaponInventory[currentWeapon].emptyVol);
+                // Play weapon empty sound
+                playWeaponEmptySound();
+
                 yield return new WaitForSeconds(1);
                 isFiring = false;
             }
@@ -351,102 +351,6 @@ public class playerController : MonoBehaviour
         yield return new WaitForSeconds(0.01f);
         isFiring = false;
 
-    }
-
-    private void playShootSound()
-    {
-        AudioClip clipToPlay = null;
-        float shootVolume = 0;
-        switch (currentWeaponType)
-        {
-            case weaponCreation.WeaponType.Pistol:
-                clipToPlay = sfxManager.instance.pistolShootSound[Random.Range(0, sfxManager.instance.pistolShootSound.Length)];
-                shootVolume = sfxManager.instance.pistolShootVolMulti;
-                break;
-            case weaponCreation.WeaponType.Rifle:
-                clipToPlay = sfxManager.instance.rifleShootSound[Random.Range(0, sfxManager.instance.rifleShootSound.Length)];
-                shootVolume = sfxManager.instance.rifleShootVolMulti;
-                break;
-            case weaponCreation.WeaponType.GrenadeLauncher:
-                clipToPlay = sfxManager.instance.glShootSound[Random.Range(0, sfxManager.instance.glShootSound.Length)];
-                shootVolume = sfxManager.instance.glShootVolMulti;
-                break;
-            case weaponCreation.WeaponType.ArcGun:
-                clipToPlay = sfxManager.instance.arcgunShootSound[Random.Range(0, sfxManager.instance.arcgunShootSound.Length)];
-                shootVolume = sfxManager.instance.arcgunShootVolMulti;
-                break;
-            case weaponCreation.WeaponType.RailGun:
-                clipToPlay = sfxManager.instance.railgunShootSound[Random.Range(0, sfxManager.instance.railgunShootSound.Length)];
-                shootVolume = sfxManager.instance.railgunShootVolMulti;
-                break;
-            default:
-                break;
-        }
-        sfxManager.instance.aud.PlayOneShot(clipToPlay, shootVolume);
-    }
-
-    private void playWeaponPickupSound()
-    {
-        AudioClip clipToPlay = null;
-        float pickupVolume = 0;
-        switch (currentWeaponType)
-        {
-            case weaponCreation.WeaponType.Pistol:
-                clipToPlay = sfxManager.instance.pistolPickupSound[Random.Range(0, sfxManager.instance.pistolPickupSound.Length)];
-                pickupVolume = sfxManager.instance.pistolShootVolMulti;
-                break;
-            case weaponCreation.WeaponType.Rifle:
-                clipToPlay = sfxManager.instance.riflePickupSound[Random.Range(0, sfxManager.instance.riflePickupSound.Length)];
-                pickupVolume = sfxManager.instance.rifleShootVolMulti;
-                break;
-            case weaponCreation.WeaponType.GrenadeLauncher:
-                clipToPlay = sfxManager.instance.glPickupSound[Random.Range(0, sfxManager.instance.glPickupSound.Length)];
-                pickupVolume = sfxManager.instance.glShootVolMulti;
-                break;
-            case weaponCreation.WeaponType.ArcGun:
-                clipToPlay = sfxManager.instance.arcgunPickupSound[Random.Range(0, sfxManager.instance.arcgunPickupSound.Length)];
-                pickupVolume = sfxManager.instance.arcgunShootVolMulti;
-                break;
-            case weaponCreation.WeaponType.RailGun:
-                clipToPlay = sfxManager.instance.railgunPickupSound[Random.Range(0, sfxManager.instance.railgunPickupSound.Length)];
-                pickupVolume = sfxManager.instance.railgunShootVolMulti;
-                break;
-            default:
-                break;
-        }
-        sfxManager.instance.aud.PlayOneShot(clipToPlay, pickupVolume);
-    }
-
-    private void playReloadSound()
-    {
-        AudioClip clipToPlay = null;
-        float pickupVolume = 0;
-        switch (currentWeaponType)
-        {
-            case weaponCreation.WeaponType.Pistol:
-                clipToPlay = sfxManager.instance.pistolReloadSound[Random.Range(0, sfxManager.instance.pistolReloadSound.Length)];
-                pickupVolume = sfxManager.instance.pistolShootVolMulti;
-                break;
-            case weaponCreation.WeaponType.Rifle:
-                clipToPlay = sfxManager.instance.rifleReloadSound[Random.Range(0, sfxManager.instance.rifleReloadSound.Length)];
-                pickupVolume = sfxManager.instance.rifleShootVolMulti;
-                break;
-            case weaponCreation.WeaponType.GrenadeLauncher:
-                clipToPlay = sfxManager.instance.glReloadSound[Random.Range(0, sfxManager.instance.glReloadSound.Length)];
-                pickupVolume = sfxManager.instance.glShootVolMulti;
-                break;
-            case weaponCreation.WeaponType.ArcGun:
-                clipToPlay = sfxManager.instance.arcgunReloadSound[Random.Range(0, sfxManager.instance.arcgunReloadSound.Length)];
-                pickupVolume = sfxManager.instance.arcgunShootVolMulti;
-                break;
-            case weaponCreation.WeaponType.RailGun:
-                clipToPlay = sfxManager.instance.railgunReloadSound[Random.Range(0, sfxManager.instance.railgunReloadSound.Length)];
-                pickupVolume = sfxManager.instance.railgunShootVolMulti;
-                break;
-            default:
-                break;
-        }
-        sfxManager.instance.aud.PlayOneShot(clipToPlay, pickupVolume);
     }
 
     public void useAbility()
@@ -495,7 +399,7 @@ public class playerController : MonoBehaviour
         int playCheck = Random.Range(0, 2);
         if (playCheck == 0)
         {
-            sfxManager.instance.aud.PlayOneShot(sfxManager.instance.playerHurt[Random.Range(0, sfxManager.instance.playerHurt.Length)], sfxManager.instance.aud.volume * sfxManager.instance.playerHurtVolMulti);
+            playHurtSound();
         }
 
         StartCoroutine(playDamageFX());
@@ -592,19 +496,11 @@ public class playerController : MonoBehaviour
         }
     }
 
-    public void perkPickUp(perkCreation perk)
-    {
-
-    }
-
     void pickupWeapon(weaponCreation weapon)
     {
         // Deactivate current weapon model game object if already have a weapon
         if (currentWeaponModel != null)
             currentWeaponModel.SetActive(false);
-
-        //TODO: MAY NEED ADJUSTING HERE WHEN ADDING UNEQUIP AND EQUIP ANIMATIONS
-        // Switch to the appropriate animation state
 
         animController.switchAnimState(currentWeaponType, weapon.weaponType);
         currentWeaponType = weapon.weaponType;      // Stored for animations
@@ -670,29 +566,6 @@ public class playerController : MonoBehaviour
         return characterList[currCharacter].energyMax;
     }
 
-    /*private void rigidBodyMove()
-    {
-        if(Input.GetButton("Sprint"))
-        {
-                Vector3 MoveVectorSprint = transform.TransformDirection(playerMovementInput) * (walkSpeed * sprintMultiplier);
-                playerRB.velocity = new Vector3(MoveVectorSprint.x, playerRB.velocity.y, MoveVectorSprint.z);
-        }
-        else
-        {
-                Vector3 MoveVector = transform.TransformDirection(playerMovementInput) * walkSpeed;
-                playerRB.velocity = new Vector3(MoveVector.x, playerRB.velocity.y, MoveVector.z);
-        }
-
-        if(Input.GetButtonDown("Jump"))
-        {
-            if(playerRB.velocity.y == 0)
-            {
-                playerRB.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
-            }
-            
-        }
-    }*/
-
     public void pushBackInput(Vector3 dir)
     {
         pushBack = dir;
@@ -701,7 +574,7 @@ public class playerController : MonoBehaviour
     IEnumerator playSteps()
     {
         stepIsPlaying = true;
-        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.playerFootstep[Random.Range(0, sfxManager.instance.playerFootstep.Length)], sfxManager.instance.playerFootstepVolMulti);
+        playFootstepSound();
 
         if (isSprinting)
             yield return new WaitForSeconds(0.3f);
@@ -757,5 +630,126 @@ public class playerController : MonoBehaviour
 
             }
         }
+    }
+
+
+    //Audio
+    public void playHurtSound()
+    {
+        aud.PlayOneShot(sfxManager.instance.playerHurt[Random.Range(0, sfxManager.instance.playerHurt.Length)]);
+    }
+
+    public void playJumpSound()
+    {
+        aud.PlayOneShot(sfxManager.instance.playerJump[Random.Range(0, sfxManager.instance.playerJump.Length)]);
+    }
+
+    public void playFootstepSound()
+    {
+        aud.PlayOneShot(sfxManager.instance.playerFootstep[Random.Range(0, sfxManager.instance.playerFootstep.Length)]);
+    }
+
+    private void playShootSound()
+    {
+        AudioClip clipToPlay = null;
+        switch (currentWeaponType)
+        {
+            case weaponCreation.WeaponType.Pistol:
+                clipToPlay = sfxManager.instance.pistolShootSound[Random.Range(0, sfxManager.instance.pistolShootSound.Length)];
+                break;
+            case weaponCreation.WeaponType.Rifle:
+                clipToPlay = sfxManager.instance.rifleShootSound[Random.Range(0, sfxManager.instance.rifleShootSound.Length)];
+                break;
+            case weaponCreation.WeaponType.GrenadeLauncher:
+                clipToPlay = sfxManager.instance.glShootSound[Random.Range(0, sfxManager.instance.glShootSound.Length)];
+                break;
+            case weaponCreation.WeaponType.ArcGun:
+                clipToPlay = sfxManager.instance.arcgunShootSound[Random.Range(0, sfxManager.instance.arcgunShootSound.Length)];
+                break;
+            case weaponCreation.WeaponType.RailGun:
+                clipToPlay = sfxManager.instance.railgunShootSound[Random.Range(0, sfxManager.instance.railgunShootSound.Length)];
+                break;
+            default:
+                break;
+        }
+        aud.PlayOneShot(clipToPlay);
+    }
+
+    private void playReloadSound()
+    {
+        AudioClip clipToPlay = null;
+        switch (currentWeaponType)
+        {
+            case weaponCreation.WeaponType.Pistol:
+                clipToPlay = sfxManager.instance.pistolReloadSound[Random.Range(0, sfxManager.instance.pistolReloadSound.Length)];
+                break;
+            case weaponCreation.WeaponType.Rifle:
+                clipToPlay = sfxManager.instance.rifleReloadSound[Random.Range(0, sfxManager.instance.rifleReloadSound.Length)];
+                break;
+            case weaponCreation.WeaponType.GrenadeLauncher:
+                clipToPlay = sfxManager.instance.glReloadSound[Random.Range(0, sfxManager.instance.glReloadSound.Length)];
+                break;
+            case weaponCreation.WeaponType.ArcGun:
+                clipToPlay = sfxManager.instance.arcgunReloadSound[Random.Range(0, sfxManager.instance.arcgunReloadSound.Length)];
+                break;
+            case weaponCreation.WeaponType.RailGun:
+                clipToPlay = sfxManager.instance.railgunReloadSound[Random.Range(0, sfxManager.instance.railgunReloadSound.Length)];
+                break;
+            default:
+                break;
+        }
+        aud.PlayOneShot(clipToPlay);
+    }
+
+    public void playWeaponEmptySound()
+    {
+        AudioClip clipToPlay = null;
+        switch (currentWeaponType)
+        {
+            case weaponCreation.WeaponType.Pistol:
+                clipToPlay = sfxManager.instance.pistolEmptySound[Random.Range(0, sfxManager.instance.pistolEmptySound.Length)];
+                break;
+            case weaponCreation.WeaponType.Rifle:
+                clipToPlay = sfxManager.instance.rifleEmptySound[Random.Range(0, sfxManager.instance.rifleEmptySound.Length)];
+                break;
+            case weaponCreation.WeaponType.GrenadeLauncher:
+                clipToPlay = sfxManager.instance.glEmptySound[Random.Range(0, sfxManager.instance.glEmptySound.Length)];
+                break;
+            case weaponCreation.WeaponType.ArcGun:
+                clipToPlay = sfxManager.instance.arcgunEmptySound[Random.Range(0, sfxManager.instance.arcgunEmptySound.Length)];
+                break;
+            case weaponCreation.WeaponType.RailGun:
+                clipToPlay = sfxManager.instance.railgunEmptySound[Random.Range(0, sfxManager.instance.railgunEmptySound.Length)];
+                break;
+            default:
+                break;
+        }
+        aud.PlayOneShot(clipToPlay);
+    }
+
+    public void playWeaponPickupSound()
+    {
+        AudioClip clipToPlay = null;
+        switch (currentWeaponType)
+        {
+            case weaponCreation.WeaponType.Pistol:
+                clipToPlay = sfxManager.instance.pistolPickupSound[Random.Range(0, sfxManager.instance.pistolPickupSound.Length)];
+                break;
+            case weaponCreation.WeaponType.Rifle:
+                clipToPlay = sfxManager.instance.riflePickupSound[Random.Range(0, sfxManager.instance.riflePickupSound.Length)];
+                break;
+            case weaponCreation.WeaponType.GrenadeLauncher:
+                clipToPlay = sfxManager.instance.glPickupSound[Random.Range(0, sfxManager.instance.glPickupSound.Length)];
+                break;
+            case weaponCreation.WeaponType.ArcGun:
+                clipToPlay = sfxManager.instance.arcgunPickupSound[Random.Range(0, sfxManager.instance.arcgunPickupSound.Length)];
+                break;
+            case weaponCreation.WeaponType.RailGun:
+                clipToPlay = sfxManager.instance.railgunPickupSound[Random.Range(0, sfxManager.instance.railgunPickupSound.Length)];
+                break;
+            default:
+                break;
+        }
+        aud.PlayOneShot(clipToPlay);
     }
 }

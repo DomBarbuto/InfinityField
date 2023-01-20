@@ -59,7 +59,7 @@ public class playerProjectile : MonoBehaviour
             // VFX at impact point
             Instantiate(gameManager.instance.playerController.weaponInventory[gameManager.instance.playerController.currentWeapon].hitFX, hit.point, transform.rotation);
             // SFX at impact point
-            AudioSource.PlayClipAtPoint(sfxManager.instance.ricochetSound[0], other.transform.position, sfxManager.instance.ricochetSoundVolMulti);
+            //AudioSource.PlayClipAtPoint(sfxManager.instance.ricochetSound[0], other.transform.position, sfxManager.instance.ricochetSoundVolMulti);
 
             if (other.GetComponent<IDamage>() != null)
             {

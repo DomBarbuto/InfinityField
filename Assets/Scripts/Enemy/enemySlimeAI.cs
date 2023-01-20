@@ -18,6 +18,7 @@ public class enemySlimeAI : MonoBehaviour
     [SerializeField] Transform headPos;
     [SerializeField] Material damageFX;
     [SerializeField] SphereCollider playerInRangeTrigger;
+    [SerializeField] AudioSource aud;
 
     [Header("---- Enemy Stats ----")]
     [SerializeField] int HP;
@@ -46,6 +47,8 @@ public class enemySlimeAI : MonoBehaviour
     Vector3 playerDir;
     float angleToPlayer;
     bool isAlive = true;
+    bool stepIsPlaying;
+    bool alertPlayed;
 
     private void Start()
     {
@@ -68,8 +71,10 @@ public class enemySlimeAI : MonoBehaviour
 
     IEnumerator playSteps()
     {
-        //sfxManager.instance.aud.PlayOneShot(sfxManager.instance.slimeMovement[Random.Range(0, sfxManager.instance.slimeMovement.Length)], sfxManager.instance.slimeMovementVol);
+        stepIsPlaying = true;
+        playMovementSound();
         yield return new WaitForSeconds(5.0f);
+        stepIsPlaying = false;
     }
 
     #region Triggers
@@ -181,6 +186,12 @@ public class enemySlimeAI : MonoBehaviour
                 // If player is within field of view
                 if (angleToPlayer <= fieldOfView)
                 {
+
+                    if (!alertPlayed)
+                    {
+                        playAlertSound();
+                        alertPlayed = true;
+                    }
                     isPlayerDetected = true; 
                     facePlayer();
 
@@ -216,7 +227,10 @@ public class enemySlimeAI : MonoBehaviour
         {
             //agent.updatePosition = false;
             agent.speed = 0;
-            sfxManager.instance.aud.PlayOneShot(sfxManager.instance.slimeDeath[Random.Range(0, sfxManager.instance.slimeDeath.Length)], sfxManager.instance.slimeDeathVolMulti);
+
+            //Play hurt sound
+            playHurtSound();
+
             anim.SetTrigger("TriggerDeath");
         }
     }
@@ -234,7 +248,7 @@ public class enemySlimeAI : MonoBehaviour
     IEnumerator attack()
     {
         anim.SetTrigger("TriggerAttack");
-        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.slimeAttack[Random.Range(0, sfxManager.instance.slimeAttack.Length)], sfxManager.instance.slimeAttackVolMulti);
+        playAttackSound();
 
         // Turn off the connection betwen agent's simulated position and transform position
         agent.updatePosition = false;   
@@ -257,6 +271,30 @@ public class enemySlimeAI : MonoBehaviour
         yield return new WaitForSeconds(damageFXLength);
         slimeModel.material.color = origColor;
     }
+
+    //Audio
+
+    public void playAlertSound()
+    {
+        aud.PlayOneShot(sfxManager.instance.slimeAlert[Random.Range(0, sfxManager.instance.slimeAlert.Length)]);
+    }
+
+    public void playHurtSound()
+    {
+        aud.PlayOneShot(sfxManager.instance.slimeDeath[Random.Range(0, sfxManager.instance.slimeDeath.Length)]);
+    }
+
+    public void playAttackSound()
+    {
+        aud.PlayOneShot(sfxManager.instance.slimeAttack[Random.Range(0, sfxManager.instance.slimeAttack.Length)]);
+    }
+
+    public void playMovementSound()
+    {
+
+        aud.PlayOneShot(sfxManager.instance.slimeMovement[Random.Range(0, sfxManager.instance.slimeMovement.Length)]);
+    }
+
 
     #region Gizmos
 

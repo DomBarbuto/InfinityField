@@ -739,26 +739,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8546824593601283538, guid: 439cbd2073acbe340b546b6ae67fdc94, type: 3}
+      propertyPath: mixer
+      value: 
+      objectReference: {fileID: 24100000, guid: 2240efb9b91ea504ba9d9701aa99cb83, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 439cbd2073acbe340b546b6ae67fdc94, type: 3}
---- !u!1 &868900765 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1594884832439750241, guid: 439cbd2073acbe340b546b6ae67fdc94, type: 3}
-  m_PrefabInstance: {fileID: 868900764}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &868900766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 868900765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c93be01cd756e34586dd3ed518bbcd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myAudioMixer: {fileID: 24100000, guid: 2240efb9b91ea504ba9d9701aa99cb83, type: 2}
 --- !u!1001 &921276724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1792,6 +1778,7 @@ MonoBehaviour:
   playerInRangeTrigger: {fileID: 2279469041022842779}
   ragdoll: {fileID: 2279469041022842776}
   anim: {fileID: 2279469041022842795}
+  aud: {fileID: 0}
   HP: 30
   hitAnimLength: 0.8
   damageFXLength: 0.4

@@ -14,20 +14,12 @@ public class sfxManager : MonoBehaviour
     [SerializeField] public Slider sfxVolumeSlider;
     [SerializeField] public AudioMixer mixer;
     
-
-
-
     [Header("---------- Player Audio ----------")]
     [SerializeField] public AudioClip[] playerHurt;
-    [Range(0, 1)][SerializeField] public float playerHurtVolMulti;
     [SerializeField] public AudioClip[] playerJump;
-    [Range(0, 1)][SerializeField] public float playerJumpVolMulti;
     [SerializeField] public AudioClip[] playerFootstep;
-    [Range(0, 1)][SerializeField] public float playerFootstepVolMulti;
     [SerializeField] public AudioClip[] playerSlimedFootstep;
-    [Range(0, 1)][SerializeField] public float playerSlimedFootstepVolMulti;
     [SerializeField] public AudioClip[] ricochetSound;
-    [Range(0, 1)][SerializeField] public float ricochetSoundVolMulti;
 
     [Header("---------- RedCC Audio ----------")]
     [SerializeField] public AudioClip[] redCCAlert;
@@ -57,13 +49,9 @@ public class sfxManager : MonoBehaviour
 
     [Header("---------- Slime Audio ----------")]
     [SerializeField] public AudioClip[] slimeAlert;
-    [Range(0, 1)][SerializeField] public float slimeAlertVolMulti;
     [SerializeField] public AudioClip[] slimeAttack;
-    [Range(0, 1)][SerializeField] public float slimeAttackVolMulti;
     [SerializeField] public AudioClip[] slimeDeath;
-    [Range(0, 1)][SerializeField] public float slimeDeathVolMulti;
     [SerializeField] public AudioClip[] slimeMovement;
-    [Range(0, 1)][SerializeField] public float slimeMovementVolMulti;
 
     [Header("---------- Turret Audio ----------")]
     [SerializeField] public AudioClip[] turretAlert;
