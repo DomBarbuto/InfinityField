@@ -53,12 +53,12 @@ public class mainMenuButtonFunctions : MonoBehaviour
 
     public void pullUpObservationsMenu()
     {
-        Observations ob = observationsMenuObject.GetComponent<Observations>();
-        ob.turnOnModel(ob.currentModel);
-
         // Turn off main menu
         mainMenuObject.SetActive(false);
         observationsMenuObject.SetActive(true);
+
+        Observations ob = observationsMenuObject.GetComponent<Observations>();
+        ob.turnOnModel(ob.currentModel);
     }
 
     public void returnFromObservationsMenu()
