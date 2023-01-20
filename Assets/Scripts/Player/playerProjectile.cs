@@ -63,7 +63,6 @@ public class playerProjectile : MonoBehaviour
 
             if (other.GetComponent<IDamage>() != null)
             {
-
                 doDamage(other.GetComponent<IDamage>());
                 Debug.Log("collided with " + other.gameObject.name);
 
@@ -85,7 +84,6 @@ public class playerProjectile : MonoBehaviour
     {
         enemy.takeDamage(projectileDamage);
         gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].callIPerkOnHit(enemy);
-
     }
 
 

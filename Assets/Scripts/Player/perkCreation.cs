@@ -62,6 +62,7 @@ public class Adrenaline : perkCreation
                 gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].energy = gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].energyMax;
             }
         }
+        gameManager.instance.updatePlayerEnergyBar();
     }
 }
 
@@ -75,10 +76,11 @@ public class TimeHealsWounds : perkCreation
 
     public override void update(playerController player, perkList.PerkRarity rarity)
     {
-        gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].HP += 0.2f + (0.5f * (int)rarity);
-        if (gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].HP > gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].HPMax)
+        Debug.Log("Healing player");
+        player.characterList[player.currCharacter].HP += 0.2f + (0.5f * (int)rarity);
+        if (player.characterList[player.currCharacter].HP > player.characterList[player.currCharacter].HPMax)
         {
-            gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].HP = gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].HPMax;
+            player.characterList[player.currCharacter].HP = player.characterList[player.currCharacter].HPMax;
         }
     }
 }

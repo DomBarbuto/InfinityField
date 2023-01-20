@@ -30,8 +30,9 @@ public class playerCharacter : MonoBehaviour
     {
         if (!isRunning)
         {
+            Debug.Log("perk update tick");
             isRunning = true;
-            if (HP > 0)
+            if (this.HP > 0)
             {
                 foreach (perkList _perk in perks)
                 {
@@ -59,6 +60,7 @@ public class playerCharacter : MonoBehaviour
         {
             _perk.perk.onDeathEnemy(gameManager.instance.playerController, enemy, _perk.rarity);
         }
+        gameManager.instance.updatePlayerEnergyBar();
     }
 
     public void callPerkOnUseAbility()

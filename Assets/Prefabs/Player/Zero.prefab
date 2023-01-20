@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: 
-  HP: 3000
-  HPMax: 3000
+  HP: 200
+  HPMax: 300
   speed: 5
   energy: 150
   energyMax: 150
@@ -57,5 +57,5 @@ MonoBehaviour:
   perks: []
   material: {fileID: 2100000, guid: 04a388365e7d65644868291f1d947c95, type: 2}
   isUsingAbility: 0
-  currSpeed: 0
+  currSpeed: 5
   ability: 2
