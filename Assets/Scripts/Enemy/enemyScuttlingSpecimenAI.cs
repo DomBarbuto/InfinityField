@@ -17,6 +17,7 @@ public class enemyScuttlingSpecimenAI : MonoBehaviour
     
     bool playerInRange;
     int HPMAX;
+    bool stepIsPlaying;
 
     // Start is called before the first frame update
     void Start()
@@ -45,13 +46,17 @@ public class enemyScuttlingSpecimenAI : MonoBehaviour
 
         // Move
         agent.SetDestination(gameManager.instance.player.transform.position);
-        StartCoroutine(playSteps());
+
+        if(!stepIsPlaying)
+            StartCoroutine(playSteps());
     }
 
     IEnumerator playSteps()
     {
-        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.explodingSpecimenMovement[Random.Range(0, sfxManager.instance.explodingSpecimenMovement.Length)], sfxManager.instance.explodingSpecimenMovementVolMulti);
+        stepIsPlaying = true;
+        AudioSource.PlayClipAtPoint(sfxManager.instance.explodingSpecimenMovement[Random.Range(0, sfxManager.instance.explodingSpecimenMovement.Length)], transform.position, sfxManager.instance.aud.volume * sfxManager.instance.explodingSpecimenMovementVolMulti);
         yield return new WaitForSeconds(0.5f);
+        stepIsPlaying = false;
     }
 
     // This is triggered to cause the death animation. 
@@ -60,20 +65,15 @@ public class enemyScuttlingSpecimenAI : MonoBehaviour
     {
         // Update animation, leading to animation event
         anim.SetTrigger("Explode");
-        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.explodingSpecimenHiss[Random.Range(0, sfxManager.instance.explodingSpecimenHiss.Length)], sfxManager.instance.explodingSpecimenHissVolMulti);
-        // Switch to animation event
-        /*GameObject newExplosion = Instantiate(plume, transform.position, transform.rotation);
-        newExplosion.transform.SetParent(null);
-        Destroy(gameObject);*/
+        AudioSource.PlayClipAtPoint(sfxManager.instance.explodingSpecimenHiss[Random.Range(0, sfxManager.instance.explodingSpecimenHiss.Length)], transform.position, sfxManager.instance.aud.volume * sfxManager.instance.explodingSpecimenHissVolMulti);
     }
 
     public void animEvent_Explode()
     {
-        Debug.Log("Anim Event");
         GameObject newExplosion = Instantiate(plume, transform.position, transform.rotation);
         newExplosion.transform.SetParent(null);
         Destroy(gameObject);
-        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.explodingSpecimenExplode[Random.Range(0, sfxManager.instance.explodingSpecimenExplode.Length)], sfxManager.instance.explodingSpecimenExplodeVolMulti);
+        AudioSource.PlayClipAtPoint(sfxManager.instance.explodingSpecimenExplode[Random.Range(0, sfxManager.instance.explodingSpecimenExplode.Length)], transform.position, sfxManager.instance.aud.volume * sfxManager.instance.explodingSpecimenExplodeVolMulti);
     }
 
     public void takeDamage(int dmg)
