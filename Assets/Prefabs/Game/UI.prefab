@@ -1196,8 +1196,8 @@ RectTransform:
   m_Father: {fileID: 171942830}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.1, y: 0}
+  m_AnchorMax: {x: 0.1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1334,6 +1334,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39568a9fd1b52ab47894d4eb94da51a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicSlider: {fileID: 0}
+  sfxSlider: {fileID: 0}
   mixer: {fileID: 0}
   characterSelect: {fileID: 0}
 --- !u!1 &428220306
@@ -2177,6 +2179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39568a9fd1b52ab47894d4eb94da51a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicSlider: {fileID: 0}
+  sfxSlider: {fileID: 0}
   mixer: {fileID: 0}
   characterSelect: {fileID: 0}
 --- !u!1 &651368340
@@ -4295,7 +4299,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5131,7 +5135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2119269587
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5168,6 +5172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39568a9fd1b52ab47894d4eb94da51a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicSlider: {fileID: 0}
+  sfxSlider: {fileID: 0}
   mixer: {fileID: 0}
   characterSelect: {fileID: 0}
 --- !u!1 &250063271101509650
@@ -6686,7 +6692,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39568a9fd1b52ab47894d4eb94da51a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mixer: {fileID: 0}
+  musicSlider: {fileID: 63366506}
+  sfxSlider: {fileID: 1138501427}
+  mixer: {fileID: 24100000, guid: 2240efb9b91ea504ba9d9701aa99cb83, type: 2}
   characterSelect: {fileID: 0}
 --- !u!1 &3672651481252536575
 GameObject:
@@ -9439,8 +9447,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5728713314630191400, guid: 59ee8fc0f5d985144af96dc8fbc7000c, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5728713314630191400, guid: 59ee8fc0f5d985144af96dc8fbc7000c, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -4453098089466293664, guid: 2240efb9b91ea504ba9d9701aa99cb83, type: 2}
     - target: {fileID: 5728713314630191401, guid: 59ee8fc0f5d985144af96dc8fbc7000c, type: 3}
       propertyPath: m_RootOrder
       value: 10
