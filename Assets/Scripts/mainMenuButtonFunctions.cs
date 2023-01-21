@@ -18,12 +18,12 @@ public class mainMenuButtonFunctions : MonoBehaviour
     [SerializeField] Slider sfxSlider;
     [SerializeField] AudioMixer mixer;
 
-    public void SetMasterVolume(float sliderValue)
+    public void SetMusicVolume(float sliderValue)
     {
         mixer.SetFloat("Volume_Music", Mathf.Log10(sliderValue) * 20);
     }
 
-    public void SetMasterSFXVolume(float sliderValue)
+    public void SetSFXVolume(float sliderValue)
     {
         mixer.SetFloat("Volume_SFX", Mathf.Log10(sliderValue) * 20);
     }
@@ -73,16 +73,10 @@ public class mainMenuButtonFunctions : MonoBehaviour
         // Turn off main menu
         mainMenuObject.SetActive(false);
         observationsMenuObject.SetActive(true);
-
-        Observations ob = observationsMenuObject.GetComponent<Observations>();
-        ob.turnOnModel(ob.currentModel);
     }
 
     public void returnFromObservationsMenu()
     {
-        Observations ob = observationsMenuObject.GetComponent<Observations>();
-        ob.turnOffModel(ob.currentModel);
-
         // Turn off controls menu
         observationsMenuObject.SetActive(false);
         mainMenuObject.SetActive(true);
