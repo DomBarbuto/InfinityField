@@ -12,8 +12,9 @@ public class collectableCredits : MonoBehaviour, ICollectable
     [SerializeField] float UIFXLength;
     [SerializeField] int destroyTimer;
     [SerializeField] AudioSource aud;
-    [SerializeField] AudioClip[] pickupSound;
-    [Range(0, 1)][SerializeField] float pickupSoundVol;
+    [SerializeField] AudioClip pickupSound;
+    [SerializeField] GameObject modelOBJ;
+
     private bool hasCollected;
     private Rigidbody rb;
 
@@ -26,6 +27,7 @@ public class collectableCredits : MonoBehaviour, ICollectable
     {
         // Will get thrown up and forward on instantiation
         rb.velocity = transform.forward + (transform.up * throwSpeed);
+        rb.AddTorque(new Vector3(Random.Range(0,4), 0f, 0f));
 
         // Will be destroyed after set time unless already collected by player
         Destroy(gameObject, destroyTimer);
@@ -50,17 +52,20 @@ public class collectableCredits : MonoBehaviour, ICollectable
     public void collect()
     {
         hasCollected = true;
+
+        // UI
         gameManager.instance.addCredits(credits);
         gameManager.instance.updateCreditUI();
-
-        // TODO: Add SFX
-        aud.PlayOneShot(pickupSound[Random.Range(0, pickupSound.Length)], pickupSoundVol);
-
-        // TODO: Add VFX
-
-        // GameManager collectable screen FX
         gameManager.instance.startCollectableUIFX(UIFXLength, 0);
-        Destroy(gameObject);
+
+        // SFX
+        aud.PlayOneShot(pickupSound);
+
+        // Turn off pickup collider and hide the mesh
+        // Not destroying mesh right away because sound is still playing
+        modelOBJ.SetActive(false);
+
+        Destroy(gameObject, 2);
     }
 
     

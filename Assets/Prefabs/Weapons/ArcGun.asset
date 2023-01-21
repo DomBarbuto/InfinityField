@@ -16,28 +16,16 @@ MonoBehaviour:
   weaponDamage: 40
   shootRate: 1
   shootDistance: 50
-  icon: {fileID: 21300000, guid: e2ddc9c62f404204aa0caac657ba4270, type: 3}
+  icon: {fileID: 21300000, guid: cd9ef2e4059189048bb7890ae75ea5b7, type: 3}
   hitFX: {fileID: 1088318192215600, guid: fcb7ef11e81f7264990b58f26051651b, type: 3}
   flashFX: {fileID: 1851657805948188, guid: 48e0fabf2b2853a41aea1b678a158ae5, type: 3}
   weaponProjectile: {fileID: 658642012771460159, guid: be48c8f83bb52bd46b29bca4d5ff7e60, type: 3}
   actualWeaponProjectile: {fileID: 1887302512045466, guid: be48c8f83bb52bd46b29bca4d5ff7e60, type: 3}
   shootAfterReloadTime: 0.8
   magazineMax: 10
-  magazineCurrent: 5
+  magazineCurrent: 9
   maxAmmoPool: 999
   currentAmmoPool: 499
-  shootSound:
-  - {fileID: 8300000, guid: e70eb034c8ae4fe42b00d809716998e4, type: 3}
-  shootVol: 0.5
-  reloadSound:
-  - {fileID: 8300000, guid: f84a2bf3a6b43994a970dab1c4bc6fe8, type: 3}
-  reloadVol: 0.5
-  pickupSound:
-  - {fileID: 8300000, guid: 1ce7890406010c443a54576a00835e5a, type: 3}
-  pickupVol: 0.5
-  emptySound:
-  - {fileID: 8300000, guid: 913afccbd78c3c54f964754f09d90c4a, type: 3}
-  emptyVol: 0.5
   chargeable: 0
   chargeTime: 0
   charge: 0

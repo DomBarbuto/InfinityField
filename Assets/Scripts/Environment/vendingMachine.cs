@@ -15,22 +15,6 @@ public class vendingMachine : MonoBehaviour , IInteractable
 
     bool canPurchase = true;
 
-
-
-    // Start is called before the first frame update
-
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if (other.CompareTag("Player") && Input.GetButtonDown("Interact") && gameManager.instance.credits >= cost && canPurchase)
-    //    {
-    //        StartCoroutine(dispense());
-    //    }
-    //    else if (other.CompareTag("Player") && Input.GetButtonDown("Interact"))
-    //    {
-    //        speaker.PlayOneShot(failSound);
-    //    }
-    //}
-
     public void interact()
     {
         StartCoroutine(dispense());
@@ -48,10 +32,15 @@ public class vendingMachine : MonoBehaviour , IInteractable
         {
             gameManager.instance.credits -= cost;
             gameManager.instance.updateCreditUI();
-            Instantiate(collectable, trayPos.position, transform.rotation);
+
+            Instantiate(collectable, trayPos.position, collectable.transform.rotation);
             speaker.PlayOneShot(jingle);
             yield return new WaitForSeconds(delay);
             canPurchase = true;
+        }
+        else
+        {
+            speaker.PlayOneShot(failSound);
         }
     }
 

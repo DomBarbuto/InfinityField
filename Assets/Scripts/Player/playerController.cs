@@ -195,6 +195,7 @@ public class playerController : MonoBehaviour
                         // Else if hit is a vending machine
                         else if (interactHit.collider.GetComponent<vendingMachine>())
                         {
+                            Debug.Log("Interact from playercontroller");
                             interactHit.collider.GetComponent<IInteractable>().interact();
                         }
                         // Else if hit is a boss button
@@ -424,9 +425,9 @@ public class playerController : MonoBehaviour
     {
         characterList[currCharacter].HP += amount;
 
-        if (characterList[currCharacter].HP > MAXHP)
+        if (characterList[currCharacter].HP > characterList[currCharacter].HPMax)
         {
-            characterList[currCharacter].HP = MAXHP;
+            characterList[currCharacter].HP = characterList[currCharacter].HPMax;
         }
     }
 

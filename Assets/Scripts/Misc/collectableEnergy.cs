@@ -10,8 +10,9 @@ public class collectableEnergy : MonoBehaviour, ICollectable
     [SerializeField] float UIFXLength;
     [SerializeField] int destroyTimer;
     [SerializeField] AudioSource aud;
-    [SerializeField] AudioClip[] pickupSound;
-    [Range(0, 1)][SerializeField] float pickupSoundVol;
+    [SerializeField] AudioClip pickupSound;
+    [SerializeField] GameObject modelOBJ;
+
     float energyToAdd;
     private bool hasCollected;
     private Rigidbody rb;
@@ -44,16 +45,20 @@ public class collectableEnergy : MonoBehaviour, ICollectable
     {
         energyToAdd = gameManager.instance.playerController.getMAXEnergy() * energyPickupRatio;
         hasCollected = true;
+
+        // UI
         gameManager.instance.playerController.addPlayerEnergy(energyToAdd);
         gameManager.instance.updatePlayerEnergyBar();
-
-        // TODO: Add SFX
-        aud.PlayOneShot(pickupSound[Random.Range(0, pickupSound.Length)], pickupSoundVol);
-
-        // TODO: Add VFX
-
         gameManager.instance.startCollectableUIFX(UIFXLength, 2);
-        Destroy(gameObject);
+
+        // SFX
+        aud.PlayOneShot(pickupSound);
+
+        // Turn off pickup collider and hide the mesh
+        // Not destroying mesh right away because sound is still playing
+        modelOBJ.SetActive(false);
+
+        Destroy(gameObject, 2); // not destroying 
     }
 
    

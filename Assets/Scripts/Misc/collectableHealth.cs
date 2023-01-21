@@ -10,8 +10,8 @@ public class collectableHealth : MonoBehaviour, ICollectable
     [SerializeField] float UIFXLength;
     [SerializeField] int destroyTimer;
     [SerializeField] AudioSource aud;
-    [SerializeField] AudioClip[] pickupSound;
-    [Range(0, 1)][SerializeField] float pickupSoundVol;
+    [SerializeField] AudioClip pickupSound;
+    [SerializeField] GameObject modelOBJ;
 
     float healthToAdd;
     private bool hasCollected;
@@ -24,8 +24,6 @@ public class collectableHealth : MonoBehaviour, ICollectable
 
     private void Start()
     {
-        
-
         // Will get thrown up and forward on instantiation
         rb.velocity = transform.forward + (transform.up * throwSpeed);
 
@@ -47,18 +45,20 @@ public class collectableHealth : MonoBehaviour, ICollectable
     {
         healthToAdd = gameManager.instance.playerController.getMAXHP() * hpPickupRatio;
         hasCollected = true;
+
+        // UI
         gameManager.instance.playerController.addPlayerHP(healthToAdd);
         gameManager.instance.updatePlayerHPBar();
-
-        // TODO: Add SFX
-        aud.PlayOneShot(pickupSound[Random.Range(0, pickupSound.Length)], pickupSoundVol);
-
-        // TODO: Add VFX
-
-        // GameManager collectable screen FX
         gameManager.instance.startCollectableUIFX(UIFXLength, 1);
-        
-        Destroy(gameObject);
+
+        // SFX
+        aud.PlayOneShot(pickupSound);
+
+        // Turn off pickup collider and hide the mesh
+        // Not destroying mesh right away because sound is still playing
+        modelOBJ.SetActive(false);
+
+        Destroy(gameObject, 2);
     }
 
 }
