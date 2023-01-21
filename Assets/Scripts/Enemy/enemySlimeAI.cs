@@ -27,6 +27,7 @@ public class enemySlimeAI : MonoBehaviour
     [SerializeField] int facePlayerSpeed;
     [SerializeField] int fieldOfView;
     [SerializeField] bool isPlayerDetected;
+    [SerializeField] float footStepDelay;
     [SerializeField] float damageFXLength;
     [SerializeField] int eyeballPopPushForce;
     [SerializeField] int eyeballPopTorqueForce;
@@ -42,7 +43,7 @@ public class enemySlimeAI : MonoBehaviour
 
     // Misc
     bool isAttacking;
-    bool playerInRange;
+    public bool playerInRange;
     int HPMAX;
     Vector3 playerDir;
     float angleToPlayer;
@@ -60,9 +61,14 @@ public class enemySlimeAI : MonoBehaviour
     private void Update()
     {
         anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed));
-        StartCoroutine(playSteps());
 
-        if (playerInRange && isAlive)
+        if(!stepIsPlaying && agent.updatePosition)
+        {
+            stepIsPlaying = true;
+            StartCoroutine(playSteps());
+        }
+
+        if (playerInRange)
         {
             canSeePlayer();
             inAttackRange();
@@ -71,9 +77,8 @@ public class enemySlimeAI : MonoBehaviour
 
     IEnumerator playSteps()
     {
-        stepIsPlaying = true;
         playMovementSound();
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(footStepDelay);
         stepIsPlaying = false;
     }
 
@@ -86,14 +91,6 @@ public class enemySlimeAI : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = false;
-            isPlayerDetected = false;
-        }
-    }
     #endregion
 
     #region Animation Events
@@ -120,14 +117,17 @@ public class enemySlimeAI : MonoBehaviour
 
     public void animEvent_slimeDropping()
     {
-        // Pick a random dropping prefab and instantiate with a random rotation on the y axis
-        int randDropping = Random.Range(0, slimeDroppingPrefabs.Length);
-        float randYRot = Random.Range(0, 360);
+        if(!agent.updatePosition)
+        {
+            // Pick a random dropping prefab and instantiate with a random rotation on the y axis
+            int randDropping = Random.Range(0, slimeDroppingPrefabs.Length);
+            float randYRot = Random.Range(0, 360);
 
-        Instantiate(slimeDroppingPrefabs[randDropping], transform.position,
-                    Quaternion.Euler(slimeDroppingPrefabs[randDropping].transform.rotation.x,
-                                    randYRot,
-                                    slimeDroppingPrefabs[randDropping].transform.rotation.z));
+            Instantiate(slimeDroppingPrefabs[randDropping], transform.position,
+                        Quaternion.Euler(slimeDroppingPrefabs[randDropping].transform.rotation.x,
+                                        randYRot,
+                                        slimeDroppingPrefabs[randDropping].transform.rotation.z));
+        }
     }
 
     public void animEvent_slimeFootprint()
@@ -183,16 +183,19 @@ public class enemySlimeAI : MonoBehaviour
             // If what was hit was the player
             if (hit.collider.CompareTag("Player"))
             {
+                Debug.Log("angle to player" + angleToPlayer);
                 // If player is within field of view
                 if (angleToPlayer <= fieldOfView)
                 {
-
+                    
                     if (!alertPlayed)
                     {
                         playAlertSound();
                         alertPlayed = true;
                     }
+
                     isPlayerDetected = true; 
+
                     facePlayer();
 
                     if(!isAttacking && agent.updatePosition)
@@ -228,6 +231,8 @@ public class enemySlimeAI : MonoBehaviour
             //agent.updatePosition = false;
             agent.speed = 0;
 
+            dropCredits();
+
             //Play hurt sound
             playHurtSound();
 
@@ -247,6 +252,7 @@ public class enemySlimeAI : MonoBehaviour
 
     IEnumerator attack()
     {
+        Debug.Log("Attack Began");
         anim.SetTrigger("TriggerAttack");
         playAttackSound();
 

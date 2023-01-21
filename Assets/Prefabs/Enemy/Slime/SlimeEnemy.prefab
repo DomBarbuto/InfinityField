@@ -276,7 +276,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -8885040056063243598, guid: 2240efb9b91ea504ba9d9701aa99cb83, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -438,6 +438,7 @@ MonoBehaviour:
   facePlayerSpeed: 30
   fieldOfView: 360
   isPlayerDetected: 0
+  footStepDelay: 1
   damageFXLength: 0.2
   eyeballPopPushForce: 5
   eyeballPopTorqueForce: 10
@@ -446,6 +447,7 @@ MonoBehaviour:
   drawFieldOfView: 1
   drawStoppingDistance: 1
   drawPlayerInRangeRadius: 1
+  playerInRange: 0
 --- !u!135 &3998262730076081999
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -656,7 +658,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5372479415315329814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.704, z: 0.671}
+  m_LocalPosition: {x: 0, y: 0.704, z: 0.837}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

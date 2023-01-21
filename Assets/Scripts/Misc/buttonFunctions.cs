@@ -4,9 +4,12 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class buttonFunctions : MonoBehaviour
 {
+    [SerializeField] Slider musicSlider;
+    [SerializeField] Slider sfxSlider;
     [SerializeField] public AudioMixer mixer;
 
     [SerializeField] CharacterSelectionShowcase characterSelect;
@@ -33,9 +36,9 @@ public class buttonFunctions : MonoBehaviour
 
     public void quit()
     {
-        saveLoad.saveFromPauseMenuOptions();
+        /*saveLoad.saveFromPauseMenuOptions();
         PlayerPrefs.DeleteKey("weaponList");
-        PlayerPrefs.DeleteKey("perkList");
+        PlayerPrefs.DeleteKey("perkList");*/
         Application.Quit();
     }
     public void LoadNextLevel()
@@ -103,9 +106,9 @@ public class buttonFunctions : MonoBehaviour
     }
     public void play()
     {
-        saveLoad.saveFromPauseMenuOptions();
+        /*saveLoad.saveFromPauseMenuOptions();
         PlayerPrefs.DeleteKey("weaponList");
-        PlayerPrefs.DeleteKey("perkList");
+        PlayerPrefs.DeleteKey("perkList");*/
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

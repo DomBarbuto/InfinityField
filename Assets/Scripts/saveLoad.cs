@@ -8,7 +8,7 @@ public class saveLoad : MonoBehaviour
 
     private void Start()
     {
-        loadFromMainMenu();
+        //loadFromMainMenu();
     }
 
     public static void saveFromMainMenuOptions()
@@ -17,7 +17,6 @@ public class saveLoad : MonoBehaviour
         PlayerPrefs.SetFloat("SFXVolume", sfxManager.instance.aud.volume);
         PlayerPrefs.SetFloat("MusicVolumeSliderValue", msuicManager.instance.musicVolumeSlider.value);
         PlayerPrefs.SetFloat("MusicVolume", msuicManager.instance.aud.volume);
-
 
         PlayerPrefs.Save();
         //Save all permament upgrade checks here
@@ -41,7 +40,7 @@ public class saveLoad : MonoBehaviour
             PlayerPrefs.SetString("myObjectList", jsonPerkString);
         }
 
-        if(gameManager.instance.playerController.weaponInventory != null)
+        if (gameManager.instance.playerController.weaponInventory != null)
         {
             List<weaponCreation> weaponList = gameManager.instance.playerController.weaponInventory;
 
@@ -56,7 +55,7 @@ public class saveLoad : MonoBehaviour
 
     public static void loadFromMainMenu()
     {
-        /*if (PlayerPrefs.HasKey("SFXVolumeSliderValue"))
+        if (PlayerPrefs.HasKey("SFXVolumeSliderValue"))
         {
             if (sfxManager.instance == null)
                 Debug.Log("sfx manager is null");
@@ -66,8 +65,6 @@ public class saveLoad : MonoBehaviour
         {
             sfxManager.instance.aud.volume = PlayerPrefs.GetFloat("SFXVolume", 0);
         }
-
-
         if (PlayerPrefs.HasKey("MusicVolumeSliderValue"))
         {
             msuicManager.instance.musicVolumeSlider.value = (PlayerPrefs.GetFloat("MusicVolumeSliderValue", 0));
@@ -75,67 +72,30 @@ public class saveLoad : MonoBehaviour
         if (PlayerPrefs.HasKey("MusicVolume"))
         {
             msuicManager.instance.aud.volume = PlayerPrefs.GetFloat("MusicVolume", 0);
-        }*/
+        }
 
     }
 
     public static void loadFromMainGame()
     {
-        if(PlayerPrefs.HasKey("Character"))
+        if (PlayerPrefs.HasKey("Character"))
         {
-            gameManager.instance.playerController.currCharacter = 
+            gameManager.instance.playerController.currCharacter =
             PlayerPrefs.GetInt("Character", gameManager.instance.playerController.currCharacter);
         }
 
-        if (PlayerPrefs.HasKey("SFXVolumeSliderValue"))
-        {
-            sfxManager.instance.sfxVolumeSlider.value =
-            PlayerPrefs.GetFloat("SFXVolumeSliderValue", sfxManager.instance.sfxVolumeSlider.value);
-        }
-            
-        if(PlayerPrefs.HasKey("SFXVolume"))
-        {
-            sfxManager.instance.aud.volume = 
-            PlayerPrefs.GetFloat("SFXVolume", sfxManager.instance.aud.volume);
-        }
-
-        if(PlayerPrefs.HasKey("MusicVolumeSliderValue"))
-        {
-            gameManager.instance.musicVolumeSlider.value = 
-            PlayerPrefs.GetFloat("MusicVolumeSliderValue", gameManager.instance.musicVolumeSlider.value);
-        }
-
-        if(PlayerPrefs.HasKey("MusicVolume"))
-        {
-            gameManager.instance.composer.speaker.volume =
-            PlayerPrefs.GetFloat("MusicVolume", gameManager.instance.composer.speaker.volume);
-        }
-
-        if (PlayerPrefs.HasKey("MusicVolumeSliderValue"))
-        {
-            gameManager.instance.musicVolumeSlider.value =
-            PlayerPrefs.GetFloat("MusicVolumeSliderValue", gameManager.instance.musicVolumeSlider.value);
-        }
-
-        if (PlayerPrefs.HasKey("MusicVolume"))
-        {
-            gameManager.instance.composer.speaker.volume =
-            PlayerPrefs.GetFloat("MusicVolume", gameManager.instance.composer.speaker.volume);
-        }
-
-        /*if(PlayerPrefs.HasKey("weaponList"))
+        if (PlayerPrefs.HasKey("weaponList"))
         {
             string weaponLoad = PlayerPrefs.GetString("weaponList");
 
             List<weaponCreation> weaponLoadList = JsonUtility.FromJson<List<weaponCreation>>(weaponLoad);
         }
 
-        if(PlayerPrefs.HasKey("perkList"))
+        if (PlayerPrefs.HasKey("perkList"))
         {
             string perkLoad = PlayerPrefs.GetString("perkList");
 
             List<perkList> perkLoadList = JsonUtility.FromJson<List<perkList>>(perkLoad);
-        }*/
-
+        }
     }
 }
