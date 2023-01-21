@@ -5,31 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class saveLoad : MonoBehaviour
 {
-
-    private void Start()
-    {
-        //loadFromMainMenu();
-    }
-
     public static void saveFromMainMenuOptions()
     {
-        PlayerPrefs.SetFloat("SFXVolumeSliderValue", sfxManager.instance.sfxVolumeSlider.value);
-        PlayerPrefs.SetFloat("SFXVolume", sfxManager.instance.aud.volume);
-        PlayerPrefs.SetFloat("MusicVolumeSliderValue", msuicManager.instance.musicVolumeSlider.value);
-        PlayerPrefs.SetFloat("MusicVolume", msuicManager.instance.aud.volume);
-
         PlayerPrefs.Save();
-        //Save all permament upgrade checks here
-
     }
 
     public static void saveFromPauseMenuOptions()
     {
         PlayerPrefs.SetInt("Character", gameManager.instance.playerController.currCharacter);
-        PlayerPrefs.SetFloat("SFXVolumeSliderValue", sfxManager.instance.sfxVolumeSlider.value);
-        PlayerPrefs.SetFloat("SFXVolume", sfxManager.instance.aud.volume);
-        PlayerPrefs.SetFloat("MusicVolumeSliderValue", gameManager.instance.musicVolumeSlider.value);
-        PlayerPrefs.SetFloat("MusicVolume", gameManager.instance.composer.speaker.volume);
 
         if (gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].perks != null)
         {
@@ -50,29 +33,6 @@ public class saveLoad : MonoBehaviour
         }
         PlayerPrefs.Save();
         //Save all permament upgrade checks here
-
-    }
-
-    public static void loadFromMainMenu()
-    {
-        if (PlayerPrefs.HasKey("SFXVolumeSliderValue"))
-        {
-            if (sfxManager.instance == null)
-                Debug.Log("sfx manager is null");
-            sfxManager.instance.sfxVolumeSlider.value = (PlayerPrefs.GetFloat("SFXVolumeSliderValue", 0));
-        }
-        if (PlayerPrefs.HasKey("SFXVolume"))
-        {
-            sfxManager.instance.aud.volume = PlayerPrefs.GetFloat("SFXVolume", 0);
-        }
-        if (PlayerPrefs.HasKey("MusicVolumeSliderValue"))
-        {
-            msuicManager.instance.musicVolumeSlider.value = (PlayerPrefs.GetFloat("MusicVolumeSliderValue", 0));
-        }
-        if (PlayerPrefs.HasKey("MusicVolume"))
-        {
-            msuicManager.instance.aud.volume = PlayerPrefs.GetFloat("MusicVolume", 0);
-        }
 
     }
 
