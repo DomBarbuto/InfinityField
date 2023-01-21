@@ -20,11 +20,13 @@ public class enemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        List<GameObject> copyList = enemies;
         foreach (GameObject baddie in enemies)
         {
             if (baddie == null)
-                enemies.Remove(baddie);
+                copyList.Remove(baddie);
         }
+        enemies = copyList;
         if (startContinuous && canSpawn && enemies.Count < maxEnemies)
         {
             canSpawn = false;
