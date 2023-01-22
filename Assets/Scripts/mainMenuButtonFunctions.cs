@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using UnityEditor;
+using UnityEngine.EventSystems;
 
 public class mainMenuButtonFunctions : MonoBehaviour
 {
@@ -12,11 +14,16 @@ public class mainMenuButtonFunctions : MonoBehaviour
     [SerializeField] GameObject controlsMenuObject;
     [SerializeField] GameObject creditsMenuObject;
     [SerializeField] GameObject observationsMenuObject;
+    [SerializeField] AudioSource aud;
+
+    [SerializeField] public AudioClip buttonSelect;
+    [SerializeField] public AudioClip buttonEnter;
 
     // Settings
     [SerializeField] Slider musicSlider;
     [SerializeField] Slider sfxSlider;
     [SerializeField] AudioMixer mixer;
+    [SerializeField] EventSystem sys;
 
     public void SetMusicVolume(float sliderValue)
     {
@@ -33,6 +40,20 @@ public class mainMenuButtonFunctions : MonoBehaviour
         loadOptions();
     }
 
+    private void Update()
+    {
+        // If nothing is selected, use the keys to reselect 
+        if (sys.currentSelectedGameObject == null && mainMenuObject.activeSelf && (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.UpArrow)))
+        {
+            sys.SetSelectedGameObject(sys.firstSelectedGameObject);
+        }
+
+        // Also hear enter sound when pressing enter on a button
+        else if (sys.currentSelectedGameObject != null && Input.GetButtonDown("Submit"))
+        {
+            aud.PlayOneShot(buttonSelect);
+        }
+    }
 
     // Options
     public void pullUpOptionsMenu()
@@ -44,11 +65,11 @@ public class mainMenuButtonFunctions : MonoBehaviour
 
     public void returnFromOptionsMenu()
     {
+        saveOptions();
+
         // Turn off options menu
         optionsMenuObject.SetActive(false);
         mainMenuObject.SetActive(true);
-
-        saveOptions();
     }
 
     // Controls
@@ -70,14 +91,14 @@ public class mainMenuButtonFunctions : MonoBehaviour
 
     public void pullUpObservationsMenu()
     {
-        // Turn off main menu
+        // Switch menus
         mainMenuObject.SetActive(false);
         observationsMenuObject.SetActive(true);
     }
 
     public void returnFromObservationsMenu()
     {
-        // Turn off controls menu
+        // Switch menus
         observationsMenuObject.SetActive(false);
         mainMenuObject.SetActive(true);
     }
@@ -148,4 +169,6 @@ public class mainMenuButtonFunctions : MonoBehaviour
         float sfxSliderValue = PlayerPrefs.GetFloat("sfxSliderValue", 0.5f);
         sfxSlider.value = sfxSliderValue;
     }
+
+    
 }
