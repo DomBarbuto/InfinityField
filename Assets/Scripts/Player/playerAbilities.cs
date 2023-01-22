@@ -119,6 +119,10 @@ public class playerAbilities : MonoBehaviour
                         {
                             parent.GetComponent<NavMeshAgent>().enabled = false;
                         }
+                        if (parent.GetComponent<enemyTurret>())
+                        {
+                            parent.GetComponent<enemyTurret>().enabled = false;
+                        }
                         StartCoroutine(unfreezeDelay(collider));
 
                     }
@@ -170,6 +174,10 @@ public class playerAbilities : MonoBehaviour
             if (parent.GetComponent<NavMeshAgent>())
             {
                 parent.GetComponent<NavMeshAgent>().enabled = true;
+            }
+            if(parent.GetComponent<enemyTurret>())
+            {
+                parent.GetComponent<enemyTurret>().enabled = true;
             }
         }
         else
