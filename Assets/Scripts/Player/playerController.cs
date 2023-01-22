@@ -273,7 +273,8 @@ public class playerController : MonoBehaviour
                     {
                         if (!hasChargePlayed)
                         {
-                            //sfxManager.instance.aud.PlayOneShot(sfxManager.instance.railgunChargeSound[Random.Range(0, sfxManager.instance.railgunChargeSound.Length)], sfxManager.instance.railgunChargeVol);
+                            //put your railgun charge audio here
+                            hasChargePlayed = true;
                         }
                         if (characterList[currCharacter].ability != playerCharacter.abilityList.bulletTime)
                         {
@@ -322,6 +323,7 @@ public class playerController : MonoBehaviour
                         hasFired = false;
                         Debug.Log("Reset Charge");
                         weaponInventory[currentWeapon].charge = 0;
+                        hasChargePlayed = false;
                     }
 
 

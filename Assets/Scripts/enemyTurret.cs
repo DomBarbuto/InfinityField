@@ -20,9 +20,13 @@ public class enemyTurret : MonoBehaviour
     bool canShoot = true;
     bool alerted = false;
 
+    LayerMask rayMask;
+
     private void Start()
     {
         anim.SetBool("IsIdle", true);
+
+        rayMask = ~LayerMask.GetMask("EnemyBody");
     }
 
     // Update is called once per frame
@@ -36,10 +40,17 @@ public class enemyTurret : MonoBehaviour
                 playAlertSound();
                 alerted = true;
             }
-            if (canShoot)
+            RaycastHit hit;
+            if (Physics.Raycast(GunObj.transform.position, GunObj.transform.forward, out hit, Mathf.Infinity))
             {
-                canShoot = false;
-                StartCoroutine(shoot());
+                if (hit.collider.CompareTag("Player"))
+                {
+                    if (canShoot)
+                    {
+                        canShoot = false;
+                        StartCoroutine(shoot());
+                    }
+                }
             }
         }
     }

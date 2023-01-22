@@ -985,6 +985,7 @@ MonoBehaviour:
   currentMuzzlePoint: {fileID: 0}
   rayDistance: 2.1
   RocketManExplosion: {fileID: 0}
+  canFire: 1
   isReloading: 0
   move: {x: 0, y: 0, z: 0}
 --- !u!114 &1858135744513689573
@@ -1196,6 +1197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df6349451a72d246b2afb9602bc7a15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aud: {fileID: 2701606944332925333}
 --- !u!1 &1301837051665086658
 GameObject:
   m_ObjectHideFlags: 0

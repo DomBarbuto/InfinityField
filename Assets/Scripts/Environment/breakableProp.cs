@@ -5,96 +5,70 @@ using UnityEngine;
 public class breakableProp : MonoBehaviour, IDamage
 {
     [Header("---- Prop Components ----")]
-    [SerializeField] GameObject unBrokenProp;
-    [SerializeField] GameObject brokenProp;
-    [SerializeField] GameObject hitFX;
-    [SerializeField] Collider parentCollider;
+    [SerializeField] GameObject propBase;
+    [SerializeField] GameObject propLid; // Has a rigidbody
+    //[SerializeField] GameObject hitFX;
+    [SerializeField] AudioSource aud;
 
     [Header("---- Prop Stats & Attributes ----")]
     [SerializeField] int HP;
-    [SerializeField] int creditsHeld;       //How much loot is inside
-    [SerializeField] float hitFXLength;
-
-    [Header("Random Forces Settings")]
-    [Range(0, 30)][SerializeField] int randomForceMin;
-    [Range(0, 30)][SerializeField] int randomForceMax;
-
+    [SerializeField] int randCreditsMin;
+    [SerializeField] int randCreditsMax;
+    int creditsHeld;       //How much loot is inside
+    [SerializeField] int launchForce;
 
     [Header("Scaling to Destroy Settings")]
     [SerializeField] int waitToBeginScaling;
     [SerializeField] bool hasBegunScalingDown;
     [SerializeField] float scaleDecreaseRate;
-    float elapsedTimeSinceScaling;
     [SerializeField] int waitToDestroy;         // This is the time to destroy, STARTING after it has begun scaling down
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(hasBegunScalingDown)
-        {
-            // Scale down over time, keep track of elapsed time since started scaling
-            elapsedTimeSinceScaling += Time.deltaTime;
-            brokenProp.transform.localScale -= Time.deltaTime * (brokenProp.transform.localScale / scaleDecreaseRate);
+    bool hasBroken;
 
-            // Destroy after waitToDestroy time has elapsed
-            if (elapsedTimeSinceScaling > waitToDestroy)
-            {
-                Destroy(gameObject);
-            }
-        }
+    private void Start()
+    {
+        // Random number of credits passed off to the collectable
+        creditsHeld = Random.Range(randCreditsMin, randCreditsMax);
+        aud.enabled = false;
     }
 
     public void takeDamage(int dmg)
     {
-        HP -= dmg; //Applies Damage
-
-        StartCoroutine(hitFlash());
-
-        if (HP <= 0) //Checks health
+        if(!hasBroken)
         {
-            sfxManager.instance.aud.PlayOneShot(sfxManager.instance.boxBreak[Random.Range(0, sfxManager.instance.boxBreak.Length)], sfxManager.instance.boxBreakVolMulti);
-            dropCredits();
-            StartCoroutine(waitToBeginScalingDown());   // Turns hasBegunScalingDown to true after timer, begins scaling down
-            unBrokenProp.SetActive(false);
-            brokenProp.SetActive(true);
+            HP -= dmg; //Applies Damage
 
-            // Adds random forces to all child objects of brokenProp and turns off unBrokenProp collider.
-            addRandomForces();
-            parentCollider.enabled = false; // Makes everything a bit smoother
+            if (HP <= 0) //Checks health
+            {
+                hasBroken = true;
+
+                // Play breaking sound
+                /*aud.PlayOneShot(sfxManager.instance.boxBreak[Random.Range(0, sfxManager.instance.boxBreak.Length)]);*/
+                aud.enabled = true;
+
+                // launch lid
+                propLid.GetComponent<Rigidbody>().AddForce((transform.up + transform.forward) * launchForce);
+
+                dropCredits();
+
+            }
+
         }
-    }
-    
-    // Takes each child of the brokenProp and gives each rigidbody a random impulse force
-    private void addRandomForces()
-    {
-        foreach(Rigidbody rb in GetComponentsInChildren<Rigidbody>())
-        {
-            Vector3 randomForce = new Vector3(Random.Range(-randomForceMin, randomForceMax), 1f, Random.Range(-randomForceMin, randomForceMax));
-            rb.AddForce(randomForce, ForceMode.Impulse);
-        }
+        
     }
 
     private void dropCredits()
     {
-        if (unBrokenProp.activeInHierarchy)
-        {
-            // Instantiate the collectableCredits gameObject as well as pass off this enemy's creditsHeld for the amount of credits it has.
-            GameObject collectableCredits = Instantiate(gameManager.instance.collectableCreditsPrefab, transform);
-            collectableCredits.GetComponent<collectableCredits>().setCredits(creditsHeld);
-        }
+        // Instantiate the collectableCredits gameObject as well as pass off this enemy's creditsHeld for the amount of credits it has.
+        GameObject collectableCredits = Instantiate(gameManager.instance.collectableCreditsPrefab, transform);
+        collectableCredits.GetComponent<collectableCredits>().setCredits(creditsHeld);
     }
 
-    IEnumerator waitToBeginScalingDown()
-    {
-        yield return new WaitForSeconds(waitToBeginScaling);
-        hasBegunScalingDown = true;
-    }
-
-    IEnumerator hitFlash()
+   /* IEnumerator hitFlash()
     {
         hitFX.SetActive(true);
         yield return new WaitForSeconds(hitFXLength);
         hitFX.SetActive(false);
-    }
+    }*/
 
 }

@@ -18,38 +18,28 @@ public class explosion : MonoBehaviour
     bool canDamageEnemy = true;
     bool damagedEnemy;
 
-    // Start is called before the first frame update
 
     private void Start()
     {
-        //if (cameFromPlayer)
-        //Debug.Log("Explosion created");
         Collider[] objects = Physics.OverlapSphere(transform.position, explosionRadius);
 
         foreach (Collider inZone in objects)
         {
             if (inZone.GetComponent<enemyHitDetection>() != null)
             {
-                //Debug.Log("isRagdoll");
                 if (inZone.GetComponent<enemyHitDetection>().group == enemyDamageHandler.DamageGroup.Head)
                 {
-                    //Debug.Log("DamageTakenRagdoll " + this.GetInstanceID());
                     if (cameFromPlayer)
                         inZone.GetComponent<enemyHitDetection>().takeDamage(explosionDamage);
-                    else
-                        inZone.GetComponent<enemyHitDetection>().takeDamage(explosionDamage / 4);
                 }
             }
             else if (inZone.GetComponent<IDamage>() != null)
             {
                 if (cameFromPlayer)
                     inZone.GetComponent<IDamage>().takeDamage(explosionDamage);
-                else
-                    inZone.GetComponent<IDamage>().takeDamage(explosionDamage / 4);
             }
         }
 
-        //Play explosion sound
         playExplosionSound();
         Destroy(gameObject, explosionTimer);
 
@@ -61,7 +51,6 @@ public class explosion : MonoBehaviour
 
         if (other.gameObject.CompareTag("Player"))
         {
-            // Apply different damage if came from enemy
             if (!cameFromPlayer && canDamagePlayer && !isRocketMan)
             {
                 StartCoroutine(givePlayerDamage());
@@ -77,13 +66,6 @@ public class explosion : MonoBehaviour
         {
             RigBdy.AddExplosionForce(explosionForce, transform.position, explosionRadius);
         }
-
-        //if (other.GetComponent<IDamage>() != null && canDamageEnemy)
-        //{
-        //    canDamageEnemy = false;
-        //    StartCoroutine(giveEnemyDamage(other.GetComponent<IDamage>()));
-        //}
-
     }
     IEnumerator giveEnemyDamage(IDamage enemy)
     {

@@ -8,6 +8,8 @@ using UnityEngine.Experimental.AI;
 public class playerAbilities : MonoBehaviour
 {
 
+    public AudioSource aud;
+
     public void useAbility()
     {
         switch (gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].ability)
@@ -49,14 +51,14 @@ public class playerAbilities : MonoBehaviour
             Time.timeScale = gameManager.instance.timeScaleOrig / 10;
             gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].speed = gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].speed * 12;
             gameManager.instance.playerController.GetComponent<Animator>().speed = gameManager.instance.playerController.GetComponent<Animator>().speed * 8;
-            gameManager.instance.playerController.aud.PlayOneShot(sfxManager.instance.bulletTimeEnter[Random.Range(0, sfxManager.instance.bulletTimeEnter.Length)]);
+             aud.PlayOneShot(sfxManager.instance.bulletTimeEnter[Random.Range(0, sfxManager.instance.bulletTimeEnter.Length)]);
         }
         else if (!gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].isUsingAbility)
         {
             Time.timeScale = gameManager.instance.timeScaleOrig;
             gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].speed = gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].speed / 12;
             gameManager.instance.playerController.GetComponent<Animator>().speed = gameManager.instance.playerController.GetComponent<Animator>().speed / 8;
-            gameManager.instance.playerController.aud.PlayOneShot(sfxManager.instance.bulletTimeExit[Random.Range(0, sfxManager.instance.bulletTimeExit.Length)], sfxManager.instance.bulletTimeExitVolMulti);
+            aud.PlayOneShot(sfxManager.instance.bulletTimeExit[Random.Range(0, sfxManager.instance.bulletTimeExit.Length)]);
         }
     }
 
@@ -64,8 +66,7 @@ public class playerAbilities : MonoBehaviour
     {
         if (Input.GetButtonDown("Ability"))
         {
-            Debug.Log("FREEEEEEEEEEZE");
-            Debug.Log("Freezing objects");
+
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit))
             {
@@ -119,6 +120,10 @@ public class playerAbilities : MonoBehaviour
                         {
                             parent.GetComponent<NavMeshAgent>().enabled = false;
                         }
+                        if (parent.GetComponent<enemyTurret>())
+                        {
+                            parent.GetComponent<enemyTurret>().enabled = false;
+                        }
                         StartCoroutine(unfreezeDelay(collider));
 
                     }
@@ -129,7 +134,6 @@ public class playerAbilities : MonoBehaviour
 
     public IEnumerator unfreezeDelay(Collider collider)
     {
-        Debug.Log("Starting unfreeze on " + collider.name);
         yield return new WaitForSeconds(10);
         if (collider != null)
         {
@@ -170,6 +174,10 @@ public class playerAbilities : MonoBehaviour
             if (parent.GetComponent<NavMeshAgent>())
             {
                 parent.GetComponent<NavMeshAgent>().enabled = true;
+            }
+            if(parent.GetComponent<enemyTurret>())
+            {
+                parent.GetComponent<enemyTurret>().enabled = true;
             }
         }
         else

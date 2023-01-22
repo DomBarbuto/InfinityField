@@ -8,6 +8,7 @@ public class slidingDoorNew : MonoBehaviour, IInteractable, IRoomEntryListener
     [SerializeField] GameObject interactCanvas;
     private bool isClosed = true;
     [SerializeField] Collider beforeCollider;
+    [SerializeField] AudioSource aud;
 
 
     private void Start()
@@ -21,7 +22,7 @@ public class slidingDoorNew : MonoBehaviour, IInteractable, IRoomEntryListener
         if(isClosed)
         {
             anim.SetTrigger("Open");
-            sfxManager.instance.aud.PlayOneShot(sfxManager.instance.doorOpen[Random.Range(0, sfxManager.instance.doorOpen.Length)], sfxManager.instance.doorOpenVolMulti);
+            aud.PlayOneShot(sfxManager.instance.doorOpen[Random.Range(0, sfxManager.instance.doorOpen.Length)]);
             HideText();
         }
     }
@@ -29,6 +30,7 @@ public class slidingDoorNew : MonoBehaviour, IInteractable, IRoomEntryListener
     public void showText()
     {
         interactCanvas.SetActive(true);
+        StartCoroutine(waitTillHide());
     }
 
     public void HideText()
@@ -39,8 +41,14 @@ public class slidingDoorNew : MonoBehaviour, IInteractable, IRoomEntryListener
     public void notify()
     {
         anim.SetTrigger("Close");
-        sfxManager.instance.aud.PlayOneShot(sfxManager.instance.doorClose[Random.Range(0, sfxManager.instance.doorClose.Length)], sfxManager.instance.doorCloseVolMulti);
+        aud.PlayOneShot(sfxManager.instance.doorClose[Random.Range(0, sfxManager.instance.doorClose.Length)]);
         // Turn on backside collider
         beforeCollider.enabled = true;
+    }
+
+    IEnumerator waitTillHide()
+    {
+        yield return new WaitForSeconds(2.5f);
+        HideText();
     }
 }
