@@ -14,6 +14,7 @@ public class mainMenuButtonFunctions : MonoBehaviour
     [SerializeField] GameObject controlsMenuObject;
     [SerializeField] GameObject creditsMenuObject;
     [SerializeField] GameObject observationsMenuObject;
+    [SerializeField] GameObject spaceShipOBJ;
     [SerializeField] AudioSource aud;
 
     [SerializeField] public AudioClip buttonSelect;
@@ -91,6 +92,8 @@ public class mainMenuButtonFunctions : MonoBehaviour
 
     public void pullUpObservationsMenu()
     {
+        spaceShipOBJ.GetComponent<Animator>().SetTrigger("FadeOut");
+
         // Switch menus
         mainMenuObject.SetActive(false);
         observationsMenuObject.SetActive(true);
@@ -98,6 +101,8 @@ public class mainMenuButtonFunctions : MonoBehaviour
 
     public void returnFromObservationsMenu()
     {
+        spaceShipOBJ.GetComponent<Animator>().SetTrigger("FadeIn");
+
         // Switch menus
         observationsMenuObject.SetActive(false);
         mainMenuObject.SetActive(true);
