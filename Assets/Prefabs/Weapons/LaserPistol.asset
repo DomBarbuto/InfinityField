@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LaserPistol
   m_EditorClassIdentifier: 
   weaponType: 0
-  weaponDamage: 20
+  weaponDamage: 40
   shootRate: 0.7
   shootDistance: 50
   icon: {fileID: 21300000, guid: e2ddc9c62f404204aa0caac657ba4270, type: 3}
@@ -23,21 +23,9 @@ MonoBehaviour:
   actualWeaponProjectile: {fileID: 185111370099596839, guid: a628749b4bc29e04ca57847a760207d4, type: 3}
   shootAfterReloadTime: 0.5
   magazineMax: 10
-  magazineCurrent: 7
-  maxAmmoPool: 999
-  currentAmmoPool: 499
-  shootSound:
-  - {fileID: 8300000, guid: e70eb034c8ae4fe42b00d809716998e4, type: 3}
-  shootVol: 0.5
-  reloadSound:
-  - {fileID: 8300000, guid: f84a2bf3a6b43994a970dab1c4bc6fe8, type: 3}
-  reloadVol: 0.5
-  pickupSound:
-  - {fileID: 8300000, guid: 1ce7890406010c443a54576a00835e5a, type: 3}
-  pickupVol: 0.5
-  emptySound:
-  - {fileID: 8300000, guid: 913afccbd78c3c54f964754f09d90c4a, type: 3}
-  emptyVol: 0.5
+  magazineCurrent: 0
+  maxAmmoPool: 500
+  currentAmmoPool: 0
   chargeable: 0
   chargeTime: 0
   charge: 0

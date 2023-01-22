@@ -20,14 +20,20 @@ public class BossHomeSecuritySystem : MonoBehaviour, IRoomEntryListener
 
 
     private float MAXHP;
-
-
     List<GameObject> nullObjects;
+
+    private void Start()
+    {
+        bossHPBarScript = healthBarPrefab.GetComponent<BossHealthBar>();
+
+        healthBarPrefab.gameObject.SetActive(false);
+    }
+
+
     // Start is called before the first frame update
     public void notify()
     {
-        bossHPBarScript = healthBarPrefab.GetComponent<BossHealthBar>();
-        healthBarPrefab.gameObject.SetActive(false);
+        healthBarPrefab.gameObject.SetActive(true);
         MAXHP = HP;
 
         playIntroSound();

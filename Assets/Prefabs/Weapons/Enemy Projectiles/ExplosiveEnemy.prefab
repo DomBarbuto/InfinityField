@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
-  damage: 10
+  damage: 5
   upLaunchForce: 0
   destroyTime: 5
   explosionOBJ: {fileID: 5569945172861464255, guid: b454afa4f1180544d831f4a52b09fa5a, type: 3}
@@ -149,3 +149,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 600
   rotation: {x: 1, y: 0, z: 1}
+  target: {x: 0, y: 0, z: 0, w: 0}
