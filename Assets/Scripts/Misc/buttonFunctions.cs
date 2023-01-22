@@ -33,7 +33,10 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.unPause();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
+    public void mainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
     public void quit()
     {
         /*saveLoad.saveFromPauseMenuOptions();
