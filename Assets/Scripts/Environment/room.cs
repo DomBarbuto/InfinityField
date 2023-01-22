@@ -20,11 +20,11 @@ public class room : MonoBehaviour, IRoomEntryListener
     {
         OnEnter = new UnityEvent();
 
-        if(parentGeneration.GetComponent<proceduralGeneration>() != null)
+        if (parentGeneration.GetComponent<proceduralGeneration>() != null)
         {
             Generation = parentGeneration.GetComponent<proceduralGeneration>();
         }
-        if(gameObject.GetComponentInChildren<NavMeshSurface>() != null)
+        if (gameObject.GetComponentInChildren<NavMeshSurface>() != null)
         {
             nav = gameObject.GetComponentInChildren<NavMeshSurface>();
             BakeNavMesh();
@@ -65,7 +65,7 @@ public class room : MonoBehaviour, IRoomEntryListener
                 Generation.DestroyRoom();
             }
             Generation.SpawnRoom();
-            
+
         }
     }
 }

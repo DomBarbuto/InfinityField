@@ -18,7 +18,7 @@ public class playerCharacter : MonoBehaviour
     [SerializeField] public Material material;
     public bool isUsingAbility = false;
     public float currSpeed;
-    [SerializeField] public int ability;
+    [SerializeField] public abilityList ability;
     bool isRunning = false;
 
     public void Start()
@@ -30,7 +30,6 @@ public class playerCharacter : MonoBehaviour
     {
         if (!isRunning)
         {
-            Debug.Log("perk update tick");
             isRunning = true;
             if (this.HP > 0)
             {
@@ -78,5 +77,12 @@ public class playerCharacter : MonoBehaviour
         {
             _perk.perk.onJump(gameManager.instance.playerController, _perk.rarity);
         }
+    }
+
+    public enum abilityList
+    {
+        sprint,
+        bulletTime,
+        freeze
     }
 }

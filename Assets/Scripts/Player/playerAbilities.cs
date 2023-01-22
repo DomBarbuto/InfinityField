@@ -6,19 +6,18 @@ using UnityEngine.AI;
 
 public class playerAbilities : MonoBehaviour
 {
-    [SerializeField] AudioSource aud;
 
     public void useAbility()
     {
         switch (gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].ability)
         {
-            case 0:
+            case playerCharacter.abilityList.sprint:
                 sprint();
                 break;
-            case 1:
+            case playerCharacter.abilityList.bulletTime:
                 bulletTime();
                 break;
-            case 2:
+            case playerCharacter.abilityList.freeze:
                 freezeObjects();
                 break;
             default:
@@ -46,17 +45,17 @@ public class playerAbilities : MonoBehaviour
     {
         if (gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].isUsingAbility)
         {
-            aud.PlayOneShot(sfxManager.instance.bulletTimeEnter[Random.Range(0, sfxManager.instance.bulletTimeEnter.Length)]);
             Time.timeScale = gameManager.instance.timeScaleOrig / 10;
             gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].speed = gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].speed * 12;
             gameManager.instance.playerController.GetComponent<Animator>().speed = gameManager.instance.playerController.GetComponent<Animator>().speed * 8;
+            gameManager.instance.playerController.aud.PlayOneShot(sfxManager.instance.bulletTimeEnter[Random.Range(0, sfxManager.instance.bulletTimeEnter.Length)]);
         }
         else if (!gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].isUsingAbility)
         {
-            aud.PlayOneShot(sfxManager.instance.bulletTimeExit[Random.Range(0, sfxManager.instance.bulletTimeExit.Length)], sfxManager.instance.bulletTimeExitVolMulti);
             Time.timeScale = gameManager.instance.timeScaleOrig;
             gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].speed = gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].speed / 12;
             gameManager.instance.playerController.GetComponent<Animator>().speed = gameManager.instance.playerController.GetComponent<Animator>().speed / 8;
+            gameManager.instance.playerController.aud.PlayOneShot(sfxManager.instance.bulletTimeExit[Random.Range(0, sfxManager.instance.bulletTimeExit.Length)], sfxManager.instance.bulletTimeExitVolMulti);
         }
     }
 
