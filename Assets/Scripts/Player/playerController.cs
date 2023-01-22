@@ -222,11 +222,11 @@ public class playerController : MonoBehaviour
         }
 
         //Player Movement
-        if (characterList[currCharacter].ability == 0 && characterList[currCharacter].isUsingAbility == false)
+        if (characterList[currCharacter].ability == playerCharacter.abilityList.sprint && characterList[currCharacter].isUsingAbility == false)
         {
             characterList[currCharacter].currSpeed = characterList[currCharacter].speed;
         }
-        else if (characterList[currCharacter].ability != 0)
+        else if (characterList[currCharacter].ability != playerCharacter.abilityList.sprint)
         {
             characterList[currCharacter].currSpeed = characterList[currCharacter].speed;
         }
