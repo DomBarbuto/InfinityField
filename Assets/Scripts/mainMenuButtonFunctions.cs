@@ -25,6 +25,7 @@ public class mainMenuButtonFunctions : MonoBehaviour
     [SerializeField] Slider musicSlider;
     [SerializeField] Slider sfxSlider;
     [SerializeField] AudioMixer mixer;
+    [SerializeField] AudioMixerSnapshot fadedOutAudioSnapshot;
     [SerializeField] EventSystem sys;
 
     public void SetMusicVolume(float sliderValue)
@@ -140,11 +141,15 @@ public class mainMenuButtonFunctions : MonoBehaviour
 
         // Triggers fade out animation, which triggers load next level by anim event
         fadeInOBJ.GetComponent<Animator>().SetTrigger("FadeOut");
+        fadedOutAudioSnapshot.TransitionTo(2);
+
+        StartCoroutine(loadNextSceneWait());
         
     }
 
-    public void animEvent_LoadNextLevel()
+    public IEnumerator loadNextSceneWait()
     {
+        yield return new WaitForSeconds(3);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

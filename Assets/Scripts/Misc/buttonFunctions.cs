@@ -11,7 +11,6 @@ public class buttonFunctions : MonoBehaviour
     [SerializeField] Slider musicSlider;
     [SerializeField] Slider sfxSlider;
     [SerializeField] public AudioMixer mixer;
-    [SerializeField] CharacterSelectionShowcase characterSelect;
 
     // ----------------- PAUSE MENU -------------------
     public void resume()
@@ -64,8 +63,6 @@ public class buttonFunctions : MonoBehaviour
     public void pullUpOptionsMenu()
     {
         // Turn off main menu
-        /*pauseMenuObject.SetActive(false);
-        optionsMenuObject.SetActive(true);*/
         gameManager.instance.activeMenu.SetActive(false);
         gameManager.instance.SetActiveMenu(gameManager.UIMENUS.optionsMenu);
     }
@@ -75,9 +72,6 @@ public class buttonFunctions : MonoBehaviour
         saveOptions();
 
         // Turn off options menu
-        /*optionsMenuObject.SetActive(false);
-        pauseMenuObject.SetActive(true);*/
-
         gameManager.instance.activeMenu.SetActive(false);
         gameManager.instance.SetActiveMenu(gameManager.UIMENUS.pauseMenu);
     }
@@ -87,9 +81,6 @@ public class buttonFunctions : MonoBehaviour
     public void pullUpControlsMenu()
     {
         // Turn off main menu
-        /*pauseMenuObject.SetActive(false);
-        controlsMenuObject.SetActive(true);*/
-
         gameManager.instance.activeMenu.SetActive(false);
         gameManager.instance.SetActiveMenu(gameManager.UIMENUS.controlsMenu);
     }
@@ -97,41 +88,9 @@ public class buttonFunctions : MonoBehaviour
     public void returnFromControlsMenu()
     {
         // Turn off controls menu
-        /*controlsMenuObject.SetActive(false);
-        pauseMenuObject.SetActive(true);*/
         gameManager.instance.activeMenu.SetActive(false);
         gameManager.instance.SetActiveMenu(gameManager.UIMENUS.pauseMenu);
     }
-
-
-    // ----------------- CHARACTER SELECTION -------------------
-
-    public void next()
-    {
-        if (characterSelect.characterNumber + 1 <= characterSelect.characters.Length - 1)
-        {
-            characterSelect.characterNumber += 1;
-        }
-        else
-        {
-            characterSelect.characterNumber = 0;
-        }
-        characterSelect.changeCharacter();
-    }
-
-    public void previous()
-    {
-        if (characterSelect.characterNumber - 1 >= 0)
-        {   
-            characterSelect.characterNumber -= 1;
-        }   
-        else
-        {   
-            characterSelect.characterNumber = characterSelect.characters.Length - 1;
-        }
-        characterSelect.changeCharacter();
-    }
-
 
     // ----------------- SAVING/LOADING -------------------
 
@@ -208,14 +167,5 @@ public class buttonFunctions : MonoBehaviour
         }
     }
 
-    // Unused 
-    public void play()
-    {
-        // Commented out because keysare already being deleted on quit
-
-        /*saveLoad.saveFromPauseMenuOptions();
-        PlayerPrefs.DeleteKey("weaponList");
-        PlayerPrefs.DeleteKey("perkList");*/
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
+    
 }
