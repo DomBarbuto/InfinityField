@@ -942,7 +942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1213045241389617697}
-  animController: {fileID: 0}
+  animController: {fileID: 3711887547493118225}
   aud: {fileID: 2701606944332925333}
   damageFXLength: 0.1
   playerAbilities: {fileID: 1727157697}
@@ -958,7 +958,8 @@ MonoBehaviour:
   - {fileID: 3598035698707199171, guid: 67cc7e65d6f4ebe4481ba5183d764493, type: 3}
   - {fileID: 7611817807264748463, guid: 2cfdf702c1ba1dc43abcd0c37149c34c, type: 3}
   - {fileID: 862040748817074792, guid: c8fce32b7cf3fd6498cb944c79845b65, type: 3}
-  currCharacter: 0
+  currCharacter: 1
+  currCharacterModel: {fileID: 8013685650154128057}
   weaponInventory:
   - {fileID: 0}
   - {fileID: 0}
@@ -1012,7 +1013,7 @@ MonoBehaviour:
   material: {fileID: 0}
   isUsingAbility: 0
   currSpeed: 0
-  ability: 0
+  ability: 1
 --- !u!143 &1213045241389617697
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1195,7 +1196,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df6349451a72d246b2afb9602bc7a15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aud: {fileID: 0}
 --- !u!1 &1301837051665086658
 GameObject:
   m_ObjectHideFlags: 0

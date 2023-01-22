@@ -31,7 +31,6 @@ public class Bullet : MonoBehaviour
         if(!hasCollided)
         {
             hasCollided = true;
-            Debug.Log("Bullet hit " + other.name);
             if(other.CompareTag("Player"))
             {
                 gameManager.instance.playerController.takeDamage(damage);

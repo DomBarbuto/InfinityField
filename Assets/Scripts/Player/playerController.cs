@@ -33,6 +33,7 @@ public class playerController : MonoBehaviour
     [Header("---- Character ----")]
     [SerializeField] public List<playerCharacter> characterList = new List<playerCharacter>();                    // 0 will be default. List will never be random. Will always be filled
     [SerializeField] public int currCharacter;
+    [SerializeField] public GameObject currCharacterModel;
 
 
     [Header("Inventory")]
@@ -90,6 +91,8 @@ public class playerController : MonoBehaviour
         {
             characterList[currCharacter].perks.RemoveAt(0);
         }
+
+        currCharacterModel.GetComponent<SkinnedMeshRenderer>().material = characterList[currCharacter].material;
     }
 
     void Update()

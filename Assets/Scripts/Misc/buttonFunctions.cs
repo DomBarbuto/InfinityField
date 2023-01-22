@@ -12,6 +12,14 @@ public class buttonFunctions : MonoBehaviour
     [SerializeField] Slider sfxSlider;
     [SerializeField] public AudioMixer mixer;
 
+    private void Start()
+    {
+        loadOptions();
+
+        //Character loadin is done in gamemanaeger
+    }
+
+
     // ----------------- PAUSE MENU -------------------
     public void resume()
     {
@@ -116,6 +124,23 @@ public class buttonFunctions : MonoBehaviour
         PlayerPrefs.SetFloat("sfxSliderValue", sfxSliderValue);
 
         PlayerPrefs.Save();
+    }
+
+    public void loadOptions()
+    {
+        // Music Volume
+        mixer.SetFloat("Volume_Music", PlayerPrefs.GetFloat("MusicVolume", 0.5f));
+
+        // Music slider value
+        float musicSliderValue = PlayerPrefs.GetFloat("MusicSliderValue", 0.5f);
+        musicSlider.value = musicSliderValue;
+
+        // SFX Volume
+        mixer.SetFloat("Volume_SFX", PlayerPrefs.GetFloat("SFXVolume", 0.5f));
+
+        // SFX slider value
+        float sfxSliderValue = PlayerPrefs.GetFloat("sfxSliderValue", 0.5f);
+        sfxSlider.value = sfxSliderValue;
     }
 
     public static void saveCharacterSettings()
