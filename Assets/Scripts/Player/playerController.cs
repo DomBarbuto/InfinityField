@@ -6,6 +6,7 @@ using UnityEditor;
 //using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UI;
+using static gameManager;
 
 [RequireComponent(typeof(PlayerAnimController))]
 public class playerController : MonoBehaviour
@@ -91,8 +92,10 @@ public class playerController : MonoBehaviour
         {
             characterList[currCharacter].perks.RemoveAt(0);
         }
-
-        currCharacterModel.GetComponent<SkinnedMeshRenderer>().material = characterList[currCharacter].material;
+        if(currCharacterModel.GetComponent<SkinnedMeshRenderer>().material != characterList[currCharacter].material)
+        {
+            currCharacterModel.GetComponent<SkinnedMeshRenderer>().material = characterList[currCharacter].material;
+        }
     }
 
     void Update()
@@ -113,7 +116,7 @@ public class playerController : MonoBehaviour
             // Only shoot if not already shooting, not sprinting, and not reloading
             if (!isFiring && !isSprinting && !isReloading && Input.GetButton("Fire1"))
             {
-                if (weaponInventory[currentWeapon] != null)  // Make sure inventory menu is not on
+                if (weaponInventory[currentWeapon] != null && gameManager.instance.activeMenu != gameManager.instance.menus[(int)UIMENUS.inventoryMenu])  // Make sure inventory menu is not on
                 {
                     if (!weaponInventory[currentWeapon].chargeable)
                     {

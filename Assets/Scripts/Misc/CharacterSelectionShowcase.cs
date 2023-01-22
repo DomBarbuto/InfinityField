@@ -35,6 +35,8 @@ public class CharacterSelectionShowcase : MonoBehaviour
 
 
         // Initial character 
+        characterNumber = 0;
+
         currCharacter = Instantiate(characters[characterNumber], transform.position, transform.rotation);
         switch (characterNumber)
         {
