@@ -13,7 +13,7 @@ public class playerController : MonoBehaviour
     [Header("---- External Components ----")]
     [SerializeField] CharacterController controller;
     public PlayerAnimController animController;
-    [SerializeField] AudioSource aud;
+    [SerializeField] public AudioSource aud;
 
     [Header("---- Player Stats ----")]
                                     
@@ -148,7 +148,7 @@ public class playerController : MonoBehaviour
             {
                 if (characterList[currCharacter].energy >= characterList[currCharacter].energyUseRate)
                 {
-                    if (characterList[currCharacter].ability != 1)
+                    if (characterList[currCharacter].ability != playerCharacter.abilityList.bulletTime)
                     {
                         if (Time.time - lastUpdate >= 0.25f)
                         {
@@ -265,7 +265,7 @@ public class playerController : MonoBehaviour
                         {
                             //sfxManager.instance.aud.PlayOneShot(sfxManager.instance.railgunChargeSound[Random.Range(0, sfxManager.instance.railgunChargeSound.Length)], sfxManager.instance.railgunChargeVol);
                         }
-                        if (characterList[currCharacter].ability != 1)
+                        if (characterList[currCharacter].ability != playerCharacter.abilityList.bulletTime)
                         {
                             if (Time.time - lastUpdate >= 0.25f)
                             {
@@ -293,7 +293,7 @@ public class playerController : MonoBehaviour
 
                             weaponInventory[currentWeapon].magazineCurrent -= 1;
                             hasFired = true;
-                            if (characterList[currCharacter].ability == 1 && characterList[currCharacter].isUsingAbility)
+                            if (characterList[currCharacter].ability == playerCharacter.abilityList.bulletTime && characterList[currCharacter].isUsingAbility)
                             {
                                 yield return new WaitForSeconds((float)(weaponInventory[currentWeapon].shootRate / 10));
                             }
@@ -327,7 +327,7 @@ public class playerController : MonoBehaviour
                     playShootSound();
 
                     weaponInventory[currentWeapon].magazineCurrent -= 1;
-                    if (characterList[currCharacter].ability == 1 && characterList[currCharacter].isUsingAbility)
+                    if (characterList[currCharacter].ability == playerCharacter.abilityList.bulletTime && characterList[currCharacter].isUsingAbility)
                     {
                         yield return new WaitForSeconds((float)(weaponInventory[currentWeapon].shootRate / 10));
                     }
