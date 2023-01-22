@@ -250,12 +250,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1213045241389617698, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
       propertyPath: currCharacter
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1213045241389617698, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
       propertyPath: animController
       value: 
       objectReference: {fileID: 738928966}
+    - target: {fileID: 1213045241389617698, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+      propertyPath: currCharacterModel
+      value: 
+      objectReference: {fileID: 1068355857}
+    - target: {fileID: 1213045241389617698, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+      propertyPath: weaponInventory.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1213045241389617702, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -14131,6 +14139,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1068355857 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8013685650154128057, guid: 94371befdaa7d014c8842803cf2eac6f, type: 3}
+  m_PrefabInstance: {fileID: 75401145}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1140097102
 PrefabInstance:
   m_ObjectHideFlags: 0
