@@ -78,7 +78,7 @@ public class playerProjectile : MonoBehaviour
             {
                 Debug.Log("collided with " + other.gameObject.name);
             }
-            Destroy(gameObject);
+            Destroy(gameObject, 1);
         }
     }
 
@@ -90,8 +90,8 @@ public class playerProjectile : MonoBehaviour
 
     public void playRicochetSound()
     {
-        aud.PlayOneShot(sfxManager.instance.ricochetSound[0]);
+        //AudioSource.PlayClipAtPoint(sfxManager.instance.ricochetSound[0], transform.position);
+        gameManager.instance.playerController.aud.PlayOneShot(sfxManager.instance.ricochetSound[0]);
     }
-
 
 }

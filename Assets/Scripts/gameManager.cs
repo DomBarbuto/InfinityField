@@ -60,7 +60,9 @@ public class gameManager : MonoBehaviour
 
     void Awake()
     {
-        // Singleton
+        instance = this;
+
+        /*// Singleton
         if (instance == null)
         {
             Debug.Log("Instance was null");
@@ -71,7 +73,7 @@ public class gameManager : MonoBehaviour
             Debug.Log("new instance destroying");
             Destroy(gameObject);
         }
-        DontDestroyOnLoad(transform.root.gameObject);
+        DontDestroyOnLoad(transform.root.gameObject);*/
 
 
         player = GameObject.FindGameObjectWithTag("Player");
