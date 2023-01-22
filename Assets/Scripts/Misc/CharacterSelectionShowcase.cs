@@ -18,6 +18,7 @@ public class CharacterSelectionShowcase : MonoBehaviour
     [Header("Button Sounds")]
     [SerializeField] AudioMixer mixer; // Main mixer to grab volume from on start (just for this scene)
     [SerializeField] AudioSource aud;  // It's own audio source
+    [SerializeField] AudioMixerSnapshot fadeInSnapShot;
     [SerializeField] AudioMixerSnapshot fadedOutAudioSnapshot;
     [SerializeField] public AudioClip buttonEnter;
     [SerializeField] public AudioClip buttonSelect;
@@ -25,6 +26,8 @@ public class CharacterSelectionShowcase : MonoBehaviour
 
     private void Start()
     {
+        fadeInSnapShot.TransitionTo(2);
+
         fadeInOutOBJ.SetActive(true);
 
         // Grab saved volumes from settings (lightweight copy of regular loadOptions() because there are no sliders in this scene)

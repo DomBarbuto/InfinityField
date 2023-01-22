@@ -63,6 +63,7 @@ public class playerAbilities : MonoBehaviour
     {
         if (Input.GetButtonDown("Ability"))
         {
+            Debug.Log("FREEEEEEEEEEZE");
             Debug.Log("Freezing objects");
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit))

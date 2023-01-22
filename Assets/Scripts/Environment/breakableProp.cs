@@ -69,7 +69,7 @@ public class breakableProp : MonoBehaviour, IDamage
     {
         foreach(Rigidbody rb in GetComponentsInChildren<Rigidbody>())
         {
-            Vector3 randomForce = new Vector3(Random.Range(-randomForceMin, randomForceMax), 2f, Random.Range(-randomForceMin, randomForceMax));
+            Vector3 randomForce = new Vector3(Random.Range(-randomForceMin, randomForceMax), 1f, Random.Range(-randomForceMin, randomForceMax));
             rb.AddForce(randomForce, ForceMode.Impulse);
         }
     }
@@ -97,9 +97,4 @@ public class breakableProp : MonoBehaviour, IDamage
         hitFX.SetActive(false);
     }
 
-    IEnumerator delayedDestroy()
-    {
-        yield return new WaitForSeconds(waitToBeginScaling + waitToDestroy);
-        Destroy(gameObject);
-    }
 }

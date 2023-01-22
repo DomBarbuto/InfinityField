@@ -38,24 +38,27 @@ public class BossHomeSecuritySystem : MonoBehaviour, IRoomEntryListener
         switch (state)
         {
             case 1:
-                playPhase1Sound();
+                if (!stateStarted)
+                    playPhase1Sound();
                 wave(FirstWave);
                 break;
             case 2:
-                playPhase2Sound();
+                if (!stateStarted)
+                    playPhase2Sound();
                 wave(SecondWave);
                 break;
             case 3:
-                playPhase3Sound();
+                if (!stateStarted)
+                    playPhase3Sound();
                 wave(ThirdWave);
                 break;
             case 4:
                 if (!stateStarted)
                 {
+                    playDeathSound();
                     exit.SetActive(true);
                     stateStarted = true;
                 }
-                playDeathSound();
                 //End Stuff
                 break;
         }
@@ -65,7 +68,8 @@ public class BossHomeSecuritySystem : MonoBehaviour, IRoomEntryListener
     void wave(List<GameObject> _wave)
     {
         if (!stateStarted)
-        {
+        { 
+
             foreach (GameObject enemy in _wave)
             {
                 enemy.SetActive(true);

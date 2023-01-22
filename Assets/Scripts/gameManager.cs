@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class gameManager : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class gameManager : MonoBehaviour
     public playerController playerController;            // Reference directly to the script
     public inventory inventory;
     [SerializeField] GameObject playerLastKnownPosition; // Reference to prefab to be instantiated when player loses the enemy
+    [SerializeField] public AudioMixerSnapshot fadeInSnapShot;
+    [SerializeField] public AudioMixerSnapshot fadedOutSnapshot;
 
     [Header("---- UI Components ----")]
     public GameObject reticle;
@@ -101,6 +104,7 @@ public class gameManager : MonoBehaviour
             isPaused = !isPaused;
             SetActiveMenu(UIMENUS.pauseMenu);
 
+            // Pause and fade in/out audio
             if (isPaused)
                 pause();
             else
@@ -134,6 +138,8 @@ public class gameManager : MonoBehaviour
 
     public void pause()
     {
+        fadedOutSnapshot.TransitionTo(1);
+
         if (!isPaused)
             isPaused = true;
 
@@ -144,6 +150,8 @@ public class gameManager : MonoBehaviour
 
     public void unPause()
     {
+        fadeInSnapShot.TransitionTo(1);
+
         if (isPaused)
             isPaused = false;
 
@@ -172,14 +180,6 @@ public class gameManager : MonoBehaviour
 
         yield return new WaitForSeconds(UIFXLength);
         collectableUIFX[index].SetActive(false);
-    }
-    public void playHealthUIFX()
-    {
-
-    }
-    public void playEnergyUIFX()
-    {
-
     }
 
     public void updatePlayerHPBar()

@@ -11,14 +11,18 @@ public class buttonFunctions : MonoBehaviour
     [SerializeField] Slider musicSlider;
     [SerializeField] Slider sfxSlider;
     [SerializeField] public AudioMixer mixer;
+/*    [SerializeField] public AudioMixerSnapshot fadeInSnapShot;
+    [SerializeField] public AudioMixerSnapshot fadedOutAudioSnapshot;*/
+
 
     private void Start()
     {
+        gameManager.instance.fadeInSnapShot.TransitionTo(2);
+
         loadOptions();
 
         //Character loadin is done in gamemanaeger
     }
-
 
     // ----------------- PAUSE MENU -------------------
     public void resume()
@@ -37,6 +41,8 @@ public class buttonFunctions : MonoBehaviour
     }
     public void quit()
     {
+        gameManager.instance.fadedOutSnapshot.TransitionTo(2);
+
         PlayerPrefs.DeleteKey("weaponList");
         PlayerPrefs.DeleteKey("perkList");
         saveCharacterSettings();
