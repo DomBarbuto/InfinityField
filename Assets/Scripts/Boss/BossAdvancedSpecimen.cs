@@ -44,6 +44,7 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
     [SerializeField] GameObject[] buttons;            
     [SerializeField] int buttonsHitThisStage;
     [SerializeField] public int numberOfButtons;    // Incremented from each buttons start
+    [SerializeField] GameObject laser; //laser that hurts enemy
 
     //Misc
     float MAXHP;
@@ -174,14 +175,15 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
 
             //Animation - set triggerdamage
             anim.SetTrigger("TriggerTakeDamage");
+            laser.SetActive(true);
 
             HP -= MAXHP * (1 / 3);
 
             //Drop Platforms
             if (state == 2)
-                platformSections[0].DropPlatformsAtOnce();
+                //platformSections[0].DropPlatformsAtOnce();
             if (state == 3)
-                platformSections[1].DropPlatformsAtOnce();
+                //platformSections[1].DropPlatformsAtOnce();
 
             // Update health bar
             bossHPBarScript.updateHealthFillAmount(prevHealth, HP, MAXHP);
@@ -202,7 +204,7 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
             bossHPBarScript.updateHealthFillAmount(prevHealth, HP, MAXHP);
 
             //Drop Platforms
-            platformSections[2].DropPlatformsAtOnce();
+            //platformSections[2].DropPlatformsAtOnce();
 
             gameManager.instance.pause();
             gameManager.instance.SetActiveMenu(gameManager.UIMENUS.winMenu);
