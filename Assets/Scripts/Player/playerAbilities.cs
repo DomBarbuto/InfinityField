@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Experimental.AI;
 
 public class playerAbilities : MonoBehaviour
 {
@@ -130,45 +131,50 @@ public class playerAbilities : MonoBehaviour
     {
         Debug.Log("Starting unfreeze on " + collider.name);
         yield return new WaitForSeconds(10);
-
-        if (collider.GetComponent<Rigidbody>() != null)
+        if (collider != null)
         {
-            Rigidbody rb = collider.GetComponent<Rigidbody>();
-            rb.constraints = RigidbodyConstraints.None;
+            if (collider.GetComponent<Rigidbody>() != null)
+            {
+                Rigidbody rb = collider.GetComponent<Rigidbody>();
+                rb.constraints = RigidbodyConstraints.None;
+            }
+            Transform parent = collider.transform;
+            while (parent.parent != null)
+            {
+                parent = parent.parent;
+            }
+            if (parent.GetComponent<Animator>())
+            {
+                parent.GetComponent<Animator>().enabled = true;
+            }
+            if (parent.GetComponent<enemyAI>())
+            {
+                parent.GetComponent<enemyAI>().enabled = true;
+            }
+            if (parent.GetComponent<enemySlimeAI>())
+            {
+                parent.GetComponent<enemySlimeAI>().enabled = true;
+            }
+            if (parent.GetComponent<enemyHumanoidSpecimenAI>())
+            {
+                parent.GetComponent<enemyHumanoidSpecimenAI>().enabled = true;
+            }
+            if (parent.GetComponent<enemyScuttlingSpecimenAI>())
+            {
+                parent.GetComponent<enemyScuttlingSpecimenAI>().enabled = true;
+            }
+            if (parent.GetComponent<enemyRCCar>())
+            {
+                parent.GetComponent<enemyRCCar>().enabled = true;
+            }
+            if (parent.GetComponent<NavMeshAgent>())
+            {
+                parent.GetComponent<NavMeshAgent>().enabled = true;
+            }
         }
-        Transform parent = collider.transform;
-        while (parent.parent != null)
+        else
         {
-            parent = parent.parent;
+            yield return new WaitForSeconds(1f);
         }
-        if (parent.GetComponent<Animator>())
-        {
-            parent.GetComponent<Animator>().enabled = true;
-        }
-        if (parent.GetComponent<enemyAI>())
-        {
-            parent.GetComponent<enemyAI>().enabled = true;
-        }
-        if (parent.GetComponent<enemySlimeAI>())
-        {
-            parent.GetComponent<enemySlimeAI>().enabled = true;
-        }
-        if (parent.GetComponent<enemyHumanoidSpecimenAI>())
-        {
-            parent.GetComponent<enemyHumanoidSpecimenAI>().enabled = true;
-        }
-        if (parent.GetComponent<enemyScuttlingSpecimenAI>())
-        {
-            parent.GetComponent<enemyScuttlingSpecimenAI>().enabled = true;
-        }
-        if (parent.GetComponent<enemyRCCar>())
-        {
-            parent.GetComponent<enemyRCCar>().enabled = true;
-        }
-        if (parent.GetComponent<NavMeshAgent>())
-        {
-            parent.GetComponent<NavMeshAgent>().enabled = true;
-        }
-
     }
 }
