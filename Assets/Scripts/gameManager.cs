@@ -249,6 +249,7 @@ public class gameManager : MonoBehaviour
             unPause();
             invWheelPointer.SetActive(false);
             playerController.selectWeapon(playerController.weaponInventory[playerController.currentWeapon]);
+            playerController.canFire = false;
         }
     }
 

@@ -55,7 +55,7 @@ public class playerController : MonoBehaviour
     [Header("Misc Variables")]
     [SerializeField] public GameObject RocketManExplosion;
 
-
+    public bool canFire = true;
     //Private Variables------------------
     bool isFiring;
     bool hasFired = false;  //This is for chargeable weapons
@@ -114,9 +114,9 @@ public class playerController : MonoBehaviour
                 StartCoroutine(playSteps());
 
             // Only shoot if not already shooting, not sprinting, and not reloading
-            if (!isFiring && !isSprinting && !isReloading && Input.GetButton("Fire1"))
+            if (!isFiring && !isSprinting && !isReloading && Input.GetButton("Fire1") && canFire)
             {
-                if (weaponInventory[currentWeapon] != null && gameManager.instance.activeMenu != gameManager.instance.menus[(int)UIMENUS.inventoryMenu])  // Make sure inventory menu is not on
+                if (weaponInventory[currentWeapon] != null)  // Make sure inventory menu is not on
                 {
                     if (!weaponInventory[currentWeapon].chargeable)
                     {
@@ -129,6 +129,10 @@ public class playerController : MonoBehaviour
                         StartCoroutine(fire());
                     }
                 }
+            }
+            else if (Input.GetButtonUp("Fire1") && !canFire)
+            {
+                canFire = true;
             }
 
             // Update ammo text and weapon icon
