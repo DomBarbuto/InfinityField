@@ -15,6 +15,7 @@ public class mainMenuButtonFunctions : MonoBehaviour
     [SerializeField] GameObject creditsMenuObject;
     [SerializeField] GameObject observationsMenuObject;
     [SerializeField] GameObject spaceShipOBJ;
+    [SerializeField] GameObject fadeInOBJ;
     [SerializeField] AudioSource aud;
 
     [SerializeField] public AudioClip buttonSelect;
@@ -39,6 +40,8 @@ public class mainMenuButtonFunctions : MonoBehaviour
     private void Start()
     {
         loadOptions();
+
+        fadeInOBJ.SetActive(true);
     }
 
     private void Update()
@@ -122,14 +125,34 @@ public class mainMenuButtonFunctions : MonoBehaviour
         mainMenuObject.SetActive(true);
     }
 
+    // Start Button
+
     public void LoadNextLevel()
+    {
+        spaceShipOBJ.GetComponent<Animator>().SetTrigger("FlyOff");
+
+        StartCoroutine(waitForNextLevel());
+    }
+
+    IEnumerator waitForNextLevel()
+    {
+        yield return new WaitForSeconds(1.6f);
+
+        // Triggers fade out animation, which triggers load next level by anim event
+        fadeInOBJ.GetComponent<Animator>().SetTrigger("FadeOut");
+        
+    }
+
+    public void animEvent_LoadNextLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    // Quit
+
     public void quit()
     {
-        Application.Quit();
+        Application.Quit(); // Calling this function automatically saves playerPrefs in the background
     }
 
     public void saveOptions()
