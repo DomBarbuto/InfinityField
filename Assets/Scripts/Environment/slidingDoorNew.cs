@@ -29,6 +29,7 @@ public class slidingDoorNew : MonoBehaviour, IInteractable, IRoomEntryListener
     public void showText()
     {
         interactCanvas.SetActive(true);
+        StartCoroutine(waitTillHide());
     }
 
     public void HideText()
@@ -42,5 +43,11 @@ public class slidingDoorNew : MonoBehaviour, IInteractable, IRoomEntryListener
         sfxManager.instance.aud.PlayOneShot(sfxManager.instance.doorClose[Random.Range(0, sfxManager.instance.doorClose.Length)], sfxManager.instance.doorCloseVolMulti);
         // Turn on backside collider
         beforeCollider.enabled = true;
+    }
+
+    IEnumerator waitTillHide()
+    {
+        yield return new WaitForSeconds(2.5f);
+        HideText();
     }
 }
