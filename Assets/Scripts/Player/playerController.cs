@@ -436,7 +436,7 @@ public class playerController : MonoBehaviour
 
     public void resetPlayerHP()
     {
-        characterList[currCharacter].HP = MAXHP;
+        characterList[currCharacter].HP = characterList[currCharacter].HPMax;
     }
 
     public void addPlayerEnergy(float amount)
