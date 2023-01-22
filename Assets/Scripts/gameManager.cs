@@ -57,12 +57,22 @@ public class gameManager : MonoBehaviour
 
     //public bool isPlayerDetected;
     [Range(3, 5)][SerializeField] float playerLastKnownPositionTimeout;
-    public GameObject currentLastKnownPosition = null;
-
 
     void Awake()
     {
-        instance = this;
+        // Singleton
+        if (instance == null)
+        {
+            Debug.Log("Instance was null");
+            instance = this;
+        }
+        else
+        {
+            Debug.Log("new instance destroying");
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(transform.root.gameObject);
+
 
         player = GameObject.FindGameObjectWithTag("Player");
         if(SceneManager.GetActiveScene().name != "Main Menu")
