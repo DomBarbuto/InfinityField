@@ -18,6 +18,7 @@ public class BossHomeSecuritySystem : MonoBehaviour, IRoomEntryListener
     // Start is called before the first frame update
     public void notify()
     {
+        Debug.Log("Notify");
         playIntroSound();
         state = 1;
         stateMachineOn = true;
@@ -100,7 +101,9 @@ public class BossHomeSecuritySystem : MonoBehaviour, IRoomEntryListener
 
     public void playIntroSound()
     {
-        aud.PlayOneShot(sfxManager.instance.HSSIntro);
+        //aud.PlayOneShot(sfxManager.instance.HSSIntro);
+        aud.clip = sfxManager.instance.HSSIntro;
+        aud.Play();
     }
 
     public void playPhase1Sound()

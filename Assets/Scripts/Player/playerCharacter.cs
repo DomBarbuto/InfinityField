@@ -72,7 +72,6 @@ public class playerCharacter : MonoBehaviour
 
     public void callIPerkOnJump()
     {
-        Debug.Log(perks.Count);
         foreach (perkList _perk in this.perks)
         {
             _perk.perk.onJump(gameManager.instance.playerController, _perk.rarity);
