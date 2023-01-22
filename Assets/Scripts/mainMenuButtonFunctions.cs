@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using UnityEditor;
+using UnityEngine.EventSystems;
 
 public class mainMenuButtonFunctions : MonoBehaviour
 {
@@ -12,11 +14,18 @@ public class mainMenuButtonFunctions : MonoBehaviour
     [SerializeField] GameObject controlsMenuObject;
     [SerializeField] GameObject creditsMenuObject;
     [SerializeField] GameObject observationsMenuObject;
+    [SerializeField] GameObject spaceShipOBJ;
+    [SerializeField] GameObject fadeInOBJ;
+    [SerializeField] AudioSource aud;
+
+    [SerializeField] public AudioClip buttonSelect;
+    [SerializeField] public AudioClip buttonEnter;
 
     // Settings
     [SerializeField] Slider musicSlider;
     [SerializeField] Slider sfxSlider;
     [SerializeField] AudioMixer mixer;
+    [SerializeField] EventSystem sys;
 
     public void SetMusicVolume(float sliderValue)
     {
@@ -31,8 +40,24 @@ public class mainMenuButtonFunctions : MonoBehaviour
     private void Start()
     {
         loadOptions();
+
+        fadeInOBJ.SetActive(true);
     }
 
+    private void Update()
+    {
+        // If nothing is selected, use the keys to reselect 
+        if (sys.currentSelectedGameObject == null && mainMenuObject.activeSelf && (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.UpArrow)))
+        {
+            sys.SetSelectedGameObject(sys.firstSelectedGameObject);
+        }
+
+        // Also hear enter sound when pressing enter on a button
+        else if (sys.currentSelectedGameObject != null && Input.GetButtonDown("Submit"))
+        {
+            aud.PlayOneShot(buttonSelect);
+        }
+    }
 
     // Options
     public void pullUpOptionsMenu()
@@ -44,11 +69,11 @@ public class mainMenuButtonFunctions : MonoBehaviour
 
     public void returnFromOptionsMenu()
     {
+        saveOptions();
+
         // Turn off options menu
         optionsMenuObject.SetActive(false);
         mainMenuObject.SetActive(true);
-
-        saveOptions();
     }
 
     // Controls
@@ -70,14 +95,18 @@ public class mainMenuButtonFunctions : MonoBehaviour
 
     public void pullUpObservationsMenu()
     {
-        // Turn off main menu
+        spaceShipOBJ.GetComponent<Animator>().SetTrigger("FadeOut");
+
+        // Switch menus
         mainMenuObject.SetActive(false);
         observationsMenuObject.SetActive(true);
     }
 
     public void returnFromObservationsMenu()
     {
-        // Turn off controls menu
+        spaceShipOBJ.GetComponent<Animator>().SetTrigger("FadeIn");
+
+        // Switch menus
         observationsMenuObject.SetActive(false);
         mainMenuObject.SetActive(true);
     }
@@ -96,14 +125,34 @@ public class mainMenuButtonFunctions : MonoBehaviour
         mainMenuObject.SetActive(true);
     }
 
+    // Start Button
+
     public void LoadNextLevel()
+    {
+        spaceShipOBJ.GetComponent<Animator>().SetTrigger("FlyOff");
+
+        StartCoroutine(waitForNextLevel());
+    }
+
+    IEnumerator waitForNextLevel()
+    {
+        yield return new WaitForSeconds(1.6f);
+
+        // Triggers fade out animation, which triggers load next level by anim event
+        fadeInOBJ.GetComponent<Animator>().SetTrigger("FadeOut");
+        
+    }
+
+    public void animEvent_LoadNextLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    // Quit
+
     public void quit()
     {
-        Application.Quit();
+        Application.Quit(); // Calling this function automatically saves playerPrefs in the background
     }
 
     public void saveOptions()
@@ -148,4 +197,6 @@ public class mainMenuButtonFunctions : MonoBehaviour
         float sfxSliderValue = PlayerPrefs.GetFloat("sfxSliderValue", 0.5f);
         sfxSlider.value = sfxSliderValue;
     }
+
+    
 }
