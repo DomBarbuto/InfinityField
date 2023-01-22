@@ -565,6 +565,7 @@ GameObject:
   - component: {fileID: 3089107840316064705}
   - component: {fileID: 3089107840316064706}
   - component: {fileID: 3089107840316064707}
+  - component: {fileID: 4909617351678283043}
   m_Layer: 0
   m_Name: DoorPieces
   m_TagString: Interactable
@@ -637,6 +638,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!208 &4909617351678283043
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3089107840316064711}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.01159, y: 0.0937867, z: 1.0242125}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.05841007, y: 0.04463817, z: 0.01134474}
+  m_TimeToStationary: 0.5
 --- !u!1 &3089107841043148798
 GameObject:
   m_ObjectHideFlags: 0
