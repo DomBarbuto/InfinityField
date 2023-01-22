@@ -110,22 +110,13 @@ public class sfxManager : MonoBehaviour
     // ------------------------------------------ Environment -----------------------------------------------------
     [Header("---------- Environment Audio ----------")]
     public AudioClip[] boxBreak;
-    public float boxBreakVolMulti;
     public AudioClip[] doorOpen;
-    public float doorOpenVolMulti;
     public AudioClip[] doorClose;
-    public float doorCloseVolMulti;
     public AudioClip[] menuClose;
-    public float menuCloseVolMulti;
     public AudioClip[] menuOpen;
-    public float menuOpenVolMulti;
     public AudioClip[] menuHover;
-    public float menuHoverVolMulti;
     public AudioClip[] bulletTimeEnter;
-    public float bulletTimeEnterVolMulti;
     public AudioClip[] bulletTimeExit;
-    public float bulletTimeExitVolMulti;
-
     private void Start()
     {
         instance = this;
