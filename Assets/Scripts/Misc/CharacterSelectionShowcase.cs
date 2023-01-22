@@ -36,6 +36,7 @@ public class CharacterSelectionShowcase : MonoBehaviour
 
         // Initial character 
         characterNumber = 0;
+        PlayerPrefs.SetInt("Character", characterNumber);
 
         currCharacter = Instantiate(characters[characterNumber], transform.position, transform.rotation);
         switch (characterNumber)
