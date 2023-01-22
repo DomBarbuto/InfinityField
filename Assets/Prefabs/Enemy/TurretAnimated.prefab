@@ -382,8 +382,8 @@ MonoBehaviour:
   projectile: {fileID: 185111370099596839, guid: 09fa574f3b445b248888f144558108e7, type: 3}
   anim: {fileID: 561712170118619281}
   aud: {fileID: 6225105798537114183}
-  HP: 50
-  shootSpeed: 0.5
+  HP: 25
+  shootSpeed: 0.75
   deployed: 0
 --- !u!95 &561712170118619281
 Animator:
@@ -597,10 +597,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.0015193775
+  m_Radius: 0.0020168861
   m_Height: 0.008584604
   m_Direction: 1
-  m_Center: {x: 0.00000000750879, y: 0.0007165595, z: 0.0018747905}
+  m_Center: {x: 0.0000000074505766, y: 0.00071655924, z: 0.0020494026}
 --- !u!114 &3366553406644682318
 MonoBehaviour:
   m_ObjectHideFlags: 0
