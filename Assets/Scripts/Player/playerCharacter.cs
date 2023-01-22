@@ -33,6 +33,7 @@ public class playerCharacter : MonoBehaviour
             isRunning = true;
             if (this.HP > 0)
             {
+                Debug.Log("tick");
                 foreach (perkList _perk in perks)
                 {
                     _perk.perk.update(gameManager.instance.playerController, _perk.rarity);
