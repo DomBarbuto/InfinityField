@@ -78,7 +78,7 @@ public class gameManager : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player");
         if(SceneManager.GetActiveScene().name != "Main Menu")
-            playerController = player.GetComponent<playerController>();
+        playerController = player.GetComponent<playerController>();
         playerSpawnPoint = GameObject.FindGameObjectWithTag("Player Spawn Point");
         composer = GameObject.FindGameObjectWithTag("Composer").GetComponent<dynamicAudio>();
         timeScaleOrig = Time.timeScale;
@@ -91,10 +91,7 @@ public class gameManager : MonoBehaviour
         // Hide reticle on start. Reticle only shows when weapon is selected
         hideReticle();
         buttonFunctions.loadCharacterSettings();
-        if(playerController != null)
-        {
-            playerController.GetComponent<MeshRenderer>().sharedMaterial = playerController.characterList[playerController.currCharacter].material;
-        }
+
     }
 
     void Update()
