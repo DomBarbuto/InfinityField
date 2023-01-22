@@ -982,7 +982,7 @@ MonoBehaviour:
   - {fileID: 3430810873445698727}
   - {fileID: 4365619631860112921}
   currentMuzzlePoint: {fileID: 0}
-  rayDistance: 2
+  rayDistance: 2.1
   RocketManExplosion: {fileID: 0}
   isReloading: 0
   move: {x: 0, y: 0, z: 0}
@@ -1195,6 +1195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df6349451a72d246b2afb9602bc7a15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aud: {fileID: 0}
 --- !u!1 &1301837051665086658
 GameObject:
   m_ObjectHideFlags: 0
@@ -2155,7 +2156,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3022928299942684412}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
-  m_LocalPosition: {x: -0, y: 0.234, z: -0.406}
+  m_LocalPosition: {x: 0, y: 0.234, z: -0.476}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -39,7 +39,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject highlight5;
     [SerializeField] public GameObject[] slots;
 
-    public enum UIMENUS { pauseMenu, winMenu, deathMenu, inventoryMenu, mainMenu, optionsMenu }
+    public enum UIMENUS { pauseMenu, winMenu, deathMenu, inventoryMenu, optionsMenu, controlsMenu }
 
     [Header("---- Inventory -----")]
     public GameObject collectableCreditsPrefab;         // Reference to the collectableCredits prefab
@@ -78,7 +78,7 @@ public class gameManager : MonoBehaviour
     {
         // Hide reticle on start. Reticle only shows when weapon is selected
         hideReticle();
-        /*saveLoad.loadFromMainGame();*/
+        buttonFunctions.loadCharacterSettings();
         if(playerController != null)
         {
             playerController.GetComponent<MeshRenderer>().sharedMaterial = playerController.characterList[playerController.currCharacter].material;

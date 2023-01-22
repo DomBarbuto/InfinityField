@@ -11,7 +11,6 @@ public class sfxManager : MonoBehaviour
 
     [Header("---------- Components ---------")]
     [SerializeField] public AudioSource aud;
-    [SerializeField] public Slider sfxVolumeSlider;
     
     [Header("---------- Player Audio ----------")]
     [SerializeField] public AudioClip[] playerHurt;
@@ -130,11 +129,5 @@ public class sfxManager : MonoBehaviour
     private void Start()
     {
         instance = this;
-    }
-
-    public void setSFXVolume()
-    {
-        float sfxSliderValue = sfxVolumeSlider.value;
-        aud.volume = sfxSliderValue;
     }
 }
