@@ -28,6 +28,7 @@ public abstract class perkCreation
     }
 }
 
+//Chance to deal double damage
 public class criticalStrike : perkCreation
 {
     public override string giveName()
@@ -51,6 +52,7 @@ public class criticalStrike : perkCreation
     }
 }
 
+//Kill an enemy and gain back energy
 public class Adrenaline : perkCreation
 {
     public override string giveName()
