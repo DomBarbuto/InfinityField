@@ -34,6 +34,10 @@ public class buttonFunctions : MonoBehaviour
     {
         gameManager.instance.unPause();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameManager.instance.playerController.resetPlayerHP();
+        gameManager.instance.updatePlayerHPBar();
+        gameManager.instance.playerController.resetPlayerEnergy();
+        gameManager.instance.updatePlayerEnergyBar();
     }
     public void mainMenu()
     {

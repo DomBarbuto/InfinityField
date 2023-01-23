@@ -153,6 +153,7 @@ public class gameManager : MonoBehaviour
 
         if (activeMenu == menus[(int)UIMENUS.inventoryMenu])
         {
+            playerController.canFire = false;
             getSelectedItem();
 
             if (Input.GetAxis("Mouse ScrollWheel") > 0)
