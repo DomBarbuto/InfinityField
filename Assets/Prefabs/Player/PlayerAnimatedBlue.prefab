@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 330380615473838350}
   - component: {fileID: 124317735055399342}
   - component: {fileID: 119156456287334835}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: RailGunModel
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
@@ -457,7 +457,7 @@ GameObject:
   - component: {fileID: 5836545380473323338}
   - component: {fileID: 943201555258910919}
   - component: {fileID: 8440975764924666071}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: GrenadeLauncherModel
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
@@ -720,6 +720,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1256969292079762302}
   - {fileID: 2701606943447222884}
   - {fileID: 4264613236675213999}
   m_Father: {fileID: 1213045241389617702}
@@ -773,7 +774,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1048575
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -944,7 +945,7 @@ MonoBehaviour:
   controller: {fileID: 1213045241389617697}
   animController: {fileID: 3711887547493118225}
   aud: {fileID: 2701606944332925333}
-  damageFXLength: 0.1
+  damageFXLength: 0.2
   playerAbilities: {fileID: 1727157697}
   isSprinting: 0
   currentMoveSpeed: 0
@@ -1534,7 +1535,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3430810873445698727}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: MuzzlePoint_ArcGun
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -1556,6 +1557,90 @@ Transform:
   m_Father: {fileID: 7178127963764685716}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1 &2192577136373544916
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1256969292079762302}
+  - component: {fileID: 2425319901780212463}
+  - component: {fileID: 5805645016081407222}
+  m_Layer: 20
+  m_Name: WeaponsCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1256969292079762302
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2192577136373544916}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1213045240945627262}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &2425319901780212463
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2192577136373544916}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 3
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.01
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 1048576
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!81 &5805645016081407222
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2192577136373544916}
+  m_Enabled: 1
 --- !u!1 &2253988990166963898
 GameObject:
   m_ObjectHideFlags: 0
@@ -1597,7 +1682,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4365619631860112921}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: MuzzlePoint_RailGun
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -1694,7 +1779,7 @@ GameObject:
   - component: {fileID: 661297456928432598}
   - component: {fileID: 554625127169350157}
   - component: {fileID: 6284388511753366469}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: LaserRifleModel
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
@@ -1829,7 +1914,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1213045240945627262}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &2701606943447222885
 Light:
@@ -2029,7 +2114,7 @@ GameObject:
   - component: {fileID: 2701606944561583690}
   - component: {fileID: 2701606944561583691}
   - component: {fileID: 2701606944561583688}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: LaserPistolModel
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
@@ -2143,7 +2228,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8247613497615953873}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: MuzzlePoint_LaserPistol
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -2272,7 +2357,7 @@ GameObject:
   - component: {fileID: 7178127963764685716}
   - component: {fileID: 696383713321283368}
   - component: {fileID: 6014864802494922209}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: ArcGunModel
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
@@ -2377,7 +2462,7 @@ Transform:
   - {fileID: 1980127708448077053}
   - {fileID: 74544285730131564}
   m_Father: {fileID: 1213045240945627262}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3659777916816929841
 GameObject:
@@ -2709,7 +2794,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6479663525475260885}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: MuzzlePoint_GrenadeLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
@@ -3248,7 +3333,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9107195226157511040}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: MuzzlePoint_LaserRifle
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}

@@ -6919,7 +6919,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 15
   rotation: {x: 0, y: 1, z: 0}
-  target: {x: 0, y: 0, z: 0, w: 0}
 --- !u!95 &257626763660583836
 Animator:
   serializedVersion: 4
@@ -7060,7 +7059,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 15
   rotation: {x: 0, y: 1, z: 0}
-  target: {x: 0, y: 0, z: 0, w: 0}
 --- !u!23 &322550388345912645
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7392,7 +7390,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 15
   rotation: {x: 0, y: 1, z: 0}
-  target: {x: 0, y: 0, z: 0, w: 0}
 --- !u!95 &638157261830587331
 Animator:
   serializedVersion: 4
@@ -7718,7 +7715,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 15
   rotation: {x: 0, y: 1, z: 0}
-  target: {x: 0, y: 0, z: 0, w: 0}
 --- !u!33 &972307404505054930
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -7924,7 +7920,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 15
   rotation: {x: 0, y: 1, z: 0}
-  target: {x: 0, y: 0, z: 0, w: 0}
 --- !u!54 &1078291170450986142
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8274,7 +8269,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 15
   rotation: {x: 0, y: 1, z: 0}
-  target: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1376355754853056014
 GameObject:
   m_ObjectHideFlags: 0
@@ -9934,7 +9928,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 15
   rotation: {x: 0, y: 1, z: 0}
-  target: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &2793937968359705763
 GameObject:
   m_ObjectHideFlags: 0
@@ -10176,6 +10169,10 @@ PrefabInstance:
     - target: {fileID: 2916495546559347997, guid: c1131fd0f2ff51a459f1b6e51e3e737e, type: 3}
       propertyPath: m_Name
       value: FadeIn
+      objectReference: {fileID: 0}
+    - target: {fileID: 2916495546559347997, guid: c1131fd0f2ff51a459f1b6e51e3e737e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2916495546559347974, guid: c1131fd0f2ff51a459f1b6e51e3e737e, type: 3}
@@ -33779,7 +33776,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 15
   rotation: {x: 0, y: 1, z: 0}
-  target: {x: 0, y: 0, z: 0, w: 0}
 --- !u!23 &4714385501462126515
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34202,7 +34198,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 15
   rotation: {x: 0, y: 1, z: 0}
-  target: {x: 0, y: 0, z: 0, w: 0}
 --- !u!23 &5079481608662742771
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -35240,7 +35235,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 15
   rotation: {x: 0, y: 1, z: 0}
-  target: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &6156954366880966087
 GameObject:
   m_ObjectHideFlags: 0
@@ -37806,7 +37800,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 15
   rotation: {x: 0, y: 1, z: 0}
-  target: {x: 0, y: 0, z: 0, w: 0}
 --- !u!33 &6615819737178709383
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -40183,7 +40176,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 15
   rotation: {x: 0, y: 0, z: 1}
-  target: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &7201000941216341310
 GameObject:
   m_ObjectHideFlags: 0
@@ -59589,7 +59581,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 15
   rotation: {x: 0, y: 1, z: 0}
-  target: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &7354220307377084938
 GameObject:
   m_ObjectHideFlags: 0
@@ -59745,7 +59736,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 15
   rotation: {x: 0, y: 1, z: 0}
-  target: {x: 0, y: 0, z: 0, w: 0}
 --- !u!4 &7398621064176976391
 Transform:
   m_ObjectHideFlags: 0
@@ -68212,7 +68202,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 15
   rotation: {x: 0, y: 1, z: 0}
-  target: {x: 0, y: 0, z: 0, w: 0}
 --- !u!4 &8135160132641114357
 Transform:
   m_ObjectHideFlags: 0
