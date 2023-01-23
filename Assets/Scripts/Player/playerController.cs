@@ -17,13 +17,13 @@ public class playerController : MonoBehaviour
     [SerializeField] public AudioSource aud;
 
     [Header("---- Player Stats ----")]
-                                    
-    [SerializeField] float damageFXLength;                                          
+
+    [SerializeField] float damageFXLength;
     public playerAbilities playerAbilities;
 
     [Header("---- Player Movement ----")]
-    [SerializeField] public bool isSprinting;                                       
-    [SerializeField] float currentMoveSpeed;                                        
+    [SerializeField] public bool isSprinting;
+    [SerializeField] float currentMoveSpeed;
     [Range(3, 8)][SerializeField] float walkSpeed;
     [Range(1, 4)][SerializeField] float sprintMultiplier;
     [Range(10, 15)][SerializeField] float jumpHeight;
@@ -87,16 +87,18 @@ public class playerController : MonoBehaviour
         characterList[currCharacter].energy = characterList[currCharacter].energyMax;
 
         setPlayerPos();
-        currentMoveSpeed = walkSpeed;   
+        currentMoveSpeed = walkSpeed;
         characterList[currCharacter].perks.Clear();
         while (characterList[currCharacter].perks.Count > 0)
         {
             characterList[currCharacter].perks.RemoveAt(0);
         }
-        if(currCharacterModel.GetComponent<SkinnedMeshRenderer>().material != characterList[currCharacter].material)
+        if (currCharacterModel.GetComponent<SkinnedMeshRenderer>().material != characterList[currCharacter].material)
         {
             currCharacterModel.GetComponent<SkinnedMeshRenderer>().material = characterList[currCharacter].material;
         }
+
+        StartCoroutine(callPerkOnUpdate());
     }
 
     void Update()
@@ -210,7 +212,7 @@ public class playerController : MonoBehaviour
                             interactHit.collider.GetComponent<IInteractable>().interact();
                         }
                         // Else if hit is a boss button
-                        else if(interactHit.collider.GetComponent<BossButton>())
+                        else if (interactHit.collider.GetComponent<BossButton>())
                         {
                             interactHit.collider.GetComponent<IInteractable>().interact();
                         }
@@ -252,7 +254,7 @@ public class playerController : MonoBehaviour
             playerVelocity.y = jumpHeight;
             playJumpSound();
             characterList[currCharacter].callIPerkOnJump();
-            
+
         }
 
         playerVelocity.y -= gravityValue * Time.deltaTime;
@@ -765,5 +767,18 @@ public class playerController : MonoBehaviour
                 break;
         }
         aud.PlayOneShot(clipToPlay);
+    }
+
+
+    public IEnumerator callPerkOnUpdate()
+    {
+        Debug.Log("Update" + characterList[currCharacter].perks.Count);
+        foreach (perkList _perk in characterList[currCharacter].perks)
+        {
+            Debug.Log("we are in the perk list");
+            _perk.perk.update(gameManager.instance.playerController, _perk.rarity);
+        }
+        yield return new WaitForSeconds(1);
+        StartCoroutine(callPerkOnUpdate());
     }
 }
