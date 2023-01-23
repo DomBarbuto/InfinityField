@@ -620,7 +620,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &206563058
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2133,7 +2133,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &841506097
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2245,7 +2245,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -59.292538, w: 0}
+  m_margin: {x: 0, y: 0, z: -36.48599, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2957,7 +2957,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -40.490196, w: 0}
+  m_margin: {x: 0, y: 0, z: -36.864494, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3621,7 +3621,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -21.090582, w: 0}
+  m_margin: {x: 0, y: 0, z: -36.218723, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4602,7 +4602,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -54.715897, w: 0}
+  m_margin: {x: 0, y: 0, z: -36.24212, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4850,7 +4850,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -27.018093, w: 0}
+  m_margin: {x: 0, y: 0, z: -36.171253, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -7801,7 +7801,18 @@ MonoBehaviour:
   - {fileID: 1273325764}
   - {fileID: 1233491517}
   - {fileID: 206563057}
-  perksShownNames: []
+  perksShownNames:
+  - {fileID: 1163152188}
+  - {fileID: 1614345640}
+  - {fileID: 1453556829}
+  - {fileID: 968138216}
+  - {fileID: 841506098}
+  perkIcons:
+  - {fileID: 21300000, guid: 56f4685b1cec32b459b2138b8f451db6, type: 3}
+  - {fileID: 21300000, guid: 0baaabc688efe9b43b02bc2707a581d9, type: 3}
+  - {fileID: 21300000, guid: f3d59bd4c95f7cd48ba1071867a03f61, type: 3}
+  - {fileID: 21300000, guid: 4f7ad973c3625eb4a869630831bc61e7, type: 3}
+  - {fileID: 21300000, guid: 16cc78d7c922bf6459a4ce9b7161bf0e, type: 3}
   collectableCreditsPrefab: {fileID: 7833408565300422018, guid: 968eda8b25fd4144c9d388f354d94ffe, type: 3}
   credits: 0
   upgradeCost: 0
