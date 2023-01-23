@@ -73,6 +73,8 @@ public class sfxManager : MonoBehaviour
     [SerializeField] public AudioClip advSpecDeath;
     [SerializeField] public AudioClip advSpecIntro;
     [SerializeField] public AudioClip advSpecHurt;
+    [SerializeField] public AudioClip laserAttackClip;
+ 
 
     // ------------------------------------------ Player weapons -----------------------------------------------------
 

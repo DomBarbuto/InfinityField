@@ -21,31 +21,6 @@ public class playerCharacter : MonoBehaviour
     [SerializeField] public abilityList ability;
     bool isRunning = false;
 
-    public void Start()
-    {
-        StartCoroutine(callPerkOnUpdate());
-
-    }
-    public IEnumerator callPerkOnUpdate()
-    {
-        if (!isRunning)
-        {
-            isRunning = true;
-            if (this.HP > 0)
-            {
-                Debug.Log("tick");
-                foreach (perkList _perk in perks)
-                {
-                    _perk.perk.update(gameManager.instance.playerController, _perk.rarity);
-                }
-                yield return new WaitForSeconds(1);
-                isRunning = false;
-                StartCoroutine(callPerkOnUpdate());
-                
-            }
-        }
-    }
-
     public void callIPerkOnHit(IDamage enemy)
     {
         foreach(perkList _perk in perks)
