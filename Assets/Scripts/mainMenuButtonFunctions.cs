@@ -13,6 +13,7 @@ public class mainMenuButtonFunctions : MonoBehaviour
     [SerializeField] GameObject optionsMenuObject;
     [SerializeField] GameObject controlsMenuObject;
     [SerializeField] GameObject creditsMenuObject;
+    [SerializeField] creditsSlideUp creditsSlideParent;
     [SerializeField] GameObject observationsMenuObject;
     [SerializeField] GameObject spaceShipOBJ;
     [SerializeField] GameObject fadeInOBJ;
@@ -118,12 +119,18 @@ public class mainMenuButtonFunctions : MonoBehaviour
         // Turn off main menu
         mainMenuObject.SetActive(false);
         creditsMenuObject.SetActive(true);
+
+        creditsSlideParent.gameObject.SetActive(true);
+        creditsSlideParent.startRollingCredits();
     }
 
     public void returnFromCreditsMenu()
     {
+        creditsSlideParent.stopRollingCredits();
+
         creditsMenuObject.SetActive(false);
         mainMenuObject.SetActive(true);
+
     }
 
     // Start Button
