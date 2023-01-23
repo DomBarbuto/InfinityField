@@ -73,8 +73,8 @@ public class enemyScuttlingSpecimenAI : MonoBehaviour
     {
         GameObject newExplosion = Instantiate(plume, transform.position, transform.rotation);
         newExplosion.transform.SetParent(null);
-        Destroy(gameObject);
         playExplodeSound();
+        Destroy(gameObject);
     }
 
     public void takeDamage(int dmg)
