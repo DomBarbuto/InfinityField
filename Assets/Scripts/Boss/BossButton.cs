@@ -5,13 +5,16 @@ using UnityEngine;
 public class BossButton : MonoBehaviour, IInteractable
 {
     [SerializeField] GameObject interactCanvas;
-    [SerializeField] public bool isButtonAllowed; //TODO: Reset all buttons to be allowed after a new boss state has begun
+    [SerializeField] public bool isButtonAllowed;
+    [SerializeField] public Light redLight;
 
     private BossAdvancedSpecimen bossScript;
 
 
     private void Start()
     {
+        redLight.enabled = true;
+
         // Connect to the specimen boss script and increment its button count
         bossScript = GameObject.FindGameObjectWithTag("BossSpecimen").GetComponent<BossAdvancedSpecimen>();
         bossScript.numberOfButtons++;
@@ -29,6 +32,7 @@ public class BossButton : MonoBehaviour, IInteractable
         // Call to boss script and update number of buttons hit
         isButtonAllowed = false;
         HideText();
+        redLight.enabled = false;
         bossScript.incrementButtonsHit();
 
     }

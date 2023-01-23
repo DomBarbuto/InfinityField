@@ -40,11 +40,10 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
     [SerializeField] int nextStateSpawnIntervalDivisor = 2; // If 1, current spawn interval will remain the same when going into next state
 
     [Header("---------- Platforms and Buttons ----------")]
-    [SerializeField] PlatformSection[] platformSections;
     [SerializeField] GameObject[] buttons;            
     [SerializeField] int buttonsHitThisStage;
     [SerializeField] public int numberOfButtons;    // Incremented from each buttons start
-    [SerializeField] GameObject laser; //laser that hurts enemy
+    [SerializeField] ceilingLaserControl laser; //laser that hurts enemy
 
     //Misc
     float MAXHP;
@@ -89,28 +88,6 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
         playIntroSound();
 
         anim.SetTrigger("TriggerIntro");
-    }
-
-    // [DESIGNERS CHOICE] Only for the case of the boss starting the fight upon player entering a trigger.
-    private void OnTriggerEnter(Collider other)
-    {
-        // Start from room entry is the other option, so do nothing if this boss fight begins upon room entry
-        if (startsFromRoomEntry)
-            return;
-
-        if(other.CompareTag("Player"))
-        {
-            Debug.Log("In trigger enter");
-            // Only begin state machine once
-            if (!startStateMachine)
-            {
-                startStateMachine = true;
-                state = 1;
-                anim.SetTrigger("TriggerIntro");
-
-                healthBarPrefab.SetActive(true);
-            }
-        }
     }
 
     public void stateMachine()
@@ -172,15 +149,13 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
 
             //Animation - set triggerdamage
             anim.SetTrigger("TriggerTakeDamage");
-            laser.SetActive(true);
+
+            // Laser damage
+            laser.gameObject.SetActive(true);
+            aud.PlayOneShot(sfxManager.instance.laserAttackClip);
+            laser.GetComponent<Animator>().SetTrigger("TriggerLaser");      // Turned off by animation event
 
             HP -= MAXHP * (1 / 3);
-
-            //Drop Platforms
-            if (state == 2)
-                //platformSections[0].DropPlatformsAtOnce();
-            if (state == 3)
-                //platformSections[1].DropPlatformsAtOnce();
 
             // Update health bar
             bossHPBarScript.updateHealthFillAmount(prevHealth, HP, MAXHP);
@@ -189,24 +164,31 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
         // Else if completed 3rd state, trigger death animation 
         else if (state == 4)
         {
+            prevHealth = HP;
+            HP = 0;
+            bossHPBarScript.turnOffState(3);
+
+            // Update health bar
+            bossHPBarScript.updateHealthFillAmount(prevHealth, HP, MAXHP);
+
             playDeathSound();
 
             // Animation - set triggerdeath
             anim.SetTrigger("TriggerDeath");
 
-            prevHealth = HP;
-            HP = 0;
 
-            // Update health bar
-            bossHPBarScript.updateHealthFillAmount(prevHealth, HP, MAXHP);
 
-            //Drop Platforms
-            //platformSections[2].DropPlatformsAtOnce();
 
-            gameManager.instance.pause();
-            gameManager.instance.SetActiveMenu(gameManager.UIMENUS.winMenu);
+            StartCoroutine(waitToWinMenu());
         }
 
+    }
+
+    IEnumerator waitToWinMenu()
+    {
+        yield return new WaitForSeconds(12f);
+        gameManager.instance.pause();
+        gameManager.instance.SetActiveMenu(gameManager.UIMENUS.winMenu);
     }
 
     // ------------------------- Spawn enemy functions ------------------------------
@@ -244,7 +226,7 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
     public void animEvent_SpawnEnemyLeft()
     {
         Random.InitState(System.DateTime.Now.Millisecond);
-        int randEnemyType = Random.Range(0, 2); // Only 2 main enemy types (scuttling and humanoid)
+        int randEnemyType = Random.Range(0, 3); // Only 2 main enemy types (scuttling and humanoid)
         int spawnPos = 0;
 
         Debug.Log("Spawn Left " + randEnemyType);
@@ -254,9 +236,10 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
             case 0:
                 spawnRandomScuttling(spawnPos);
                 break;
-            
+
             //Spawn a humanoid
             case 1:
+            case 2:
                 spawnRandomHumanoid(spawnPos);
                 break;
 
@@ -266,7 +249,7 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
     public void animEvent_SpawnEnemyRight()
     {
         Random.InitState(System.DateTime.Now.Millisecond);
-        int randEnemyType = Random.Range(0, 2); // Only 2 main enemy types (scuttling and humanoid)
+        int randEnemyType = Random.Range(0, 3); // Only 2 main enemy types (scuttling and humanoid)
         int spawnPos = 1;
 
         Debug.Log("Spawn Right " + randEnemyType);
@@ -279,6 +262,7 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
 
             //Spawn a humanoid
             case 1:
+            case 2:
                 spawnRandomHumanoid(spawnPos);
                 break;
 
@@ -288,7 +272,7 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
     public void animEvent_SpawnEnemyBack()
     {
         Random.InitState(System.DateTime.Now.Millisecond);
-        int randEnemyType = Random.Range(0, 1); // Only 2 main enemy types (scuttling and humanoid)
+        int randEnemyType = Random.Range(0, 3); // Only 2 main enemy types (scuttling and humanoid)
         int spawnPos = 2;
 
         Debug.Log("Spawn Right " + randEnemyType);
@@ -296,11 +280,13 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
         {
             // Spawn a scuttling
             case 0:
+            
                 spawnRandomScuttling(spawnPos);
                 break;
 
             //Spawn a humanoid
             case 1:
+            case 2:
                 spawnRandomHumanoid(spawnPos);
                 break;
 
@@ -310,7 +296,7 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
     public void animEvent_ExplodeEnemy()
     {
         // Explosion object/particle
-        GameObject explosion = Instantiate(explosionOBJ, transform.position + new Vector3(0, 1, 0), transform.rotation);
+        GameObject explosion = Instantiate(explosionOBJ, transform.position + new Vector3(0, 1, 0), transform.rotation, null);
         Destroy(explosion, 10);
 
         // Destroy boss
@@ -366,7 +352,7 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
     {
         buttonsHitThisStage++;
 
-        if(buttonsHitThisStage == numberOfButtons)
+        if(buttonsHitThisStage >= numberOfButtons)
         {
             // Handles incrementing state, taking damage, and changing spawn interval
             advanceState();
@@ -381,6 +367,15 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
     {
         // Reset current number of buttons hit
         buttonsHitThisStage = 0;
+
+        /*        foreach(BossButton btn in buttons)
+                {
+                    btn.redLight.enabled = true;
+                }*/
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            buttons[i].GetComponent<BossButton>().redLight.enabled = true;
+        }
 
         // Allow interaction with all of the buttons again
         allowAllButtons();
