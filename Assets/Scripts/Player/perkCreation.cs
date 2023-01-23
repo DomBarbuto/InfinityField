@@ -5,6 +5,7 @@ public abstract class perkCreation
 {
 
     public abstract string giveName();
+    public abstract Sprite giveIcon();
     public virtual void update(playerController player, perkList.PerkRarity rarity)
     {
 
@@ -33,6 +34,11 @@ public class criticalStrike : perkCreation
     {
         return "Precision Synchronizer";
     }
+    public override Sprite giveIcon()
+    {
+        Sprite icon = (Sprite)Resources.Load("PerkIcons/CriticalStrikeSprite", typeof(Sprite));
+        return icon;
+    }
 
     public override void onHit(playerController player, IDamage enemy, perkList.PerkRarity rarity)
     {
@@ -50,6 +56,11 @@ public class Adrenaline : perkCreation
     public override string giveName()
     {
         return "Adrenaline";
+    }
+    public override Sprite giveIcon()
+    {
+        Sprite icon = (Sprite)Resources.Load("PerkIcons/adrenaline", typeof(Sprite));
+        return icon;
     }
 
     public override void onDeathEnemy(playerController player, IDamage enemy, perkList.PerkRarity rarity)
@@ -73,6 +84,11 @@ public class TimeHealsWounds : perkCreation
     {
         return "Time Heals Wounds";
     }
+    public override Sprite giveIcon()
+    {
+        Sprite icon = (Sprite)Resources.Load("PerkIcons/TimeHealsWound", typeof(Sprite));
+        return icon;
+    }
 
     public override void update(playerController player, perkList.PerkRarity rarity)
     {
@@ -90,6 +106,11 @@ public class Rejuvination : perkCreation
     public override string giveName()
     {
         return "Rejuvination";
+    }
+    public override Sprite giveIcon()
+    {
+        Sprite icon = (Sprite)Resources.Load("PerkIcons/Rejuvination", typeof(Sprite));
+        return icon;
     }
 
     public override void onUseAbility(playerController player, perkList.PerkRarity rarity)
@@ -110,7 +131,12 @@ public class RocketMan : perkCreation
     public override string giveName()
     {
         return "Rocket Man";
-    }   
+    }
+    public override Sprite giveIcon()
+    {
+        Sprite icon = (Sprite)Resources.Load("PerkIcons/RocketManSprite", typeof(Sprite));
+        return icon;
+    }
 
     public override void update(playerController player, perkList.PerkRarity rarity)
     {
