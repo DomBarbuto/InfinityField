@@ -5754,6 +5754,8 @@ MonoBehaviour:
   playerController: {fileID: 0}
   inventory: {fileID: 0}
   playerLastKnownPosition: {fileID: 3729662176865368105, guid: 9d86998320140c34cb59a9f18ccc8e77, type: 3}
+  fadeInSnapShot: {fileID: 24500006, guid: 2240efb9b91ea504ba9d9701aa99cb83, type: 2}
+  fadedOutSnapshot: {fileID: -2448294946562081760, guid: 2240efb9b91ea504ba9d9701aa99cb83, type: 2}
   reticle: {fileID: 3672651480112506778}
   menus:
   - {fileID: 4577075866443194917}
@@ -5797,7 +5799,6 @@ MonoBehaviour:
   playerSpawnPoint: {fileID: 0}
   composer: {fileID: 0}
   playerLastKnownPositionTimeout: 5
-  currentLastKnownPosition: {fileID: 0}
 --- !u!114 &6569654245911344055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5813,7 +5814,6 @@ MonoBehaviour:
   musicSlider: {fileID: 63366506}
   sfxSlider: {fileID: 1138501427}
   mixer: {fileID: 24100000, guid: 2240efb9b91ea504ba9d9701aa99cb83, type: 2}
-  characterSelect: {fileID: 0}
 --- !u!1 &3672651481252536575
 GameObject:
   m_ObjectHideFlags: 0
