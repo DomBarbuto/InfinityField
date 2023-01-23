@@ -164,7 +164,7 @@ public class gameManager : MonoBehaviour
 
     public void pause()
     {
-        fadedOutSnapshot.TransitionTo(1);
+        fadedOutSnapshot.TransitionTo(2);
 
         if (!isPaused)
             isPaused = true;
