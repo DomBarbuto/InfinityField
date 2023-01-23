@@ -81,12 +81,13 @@ public class playerController : MonoBehaviour
 
     void Start()
     {
+        Debug.Log(characterList[currCharacter]);
         // Set orginal stats
         characterList[currCharacter].HP = characterList[currCharacter].HPMax;
         characterList[currCharacter].energy = characterList[currCharacter].energyMax;
 
         setPlayerPos();
-        currentMoveSpeed = walkSpeed;
+        currentMoveSpeed = walkSpeed;   
         characterList[currCharacter].perks.Clear();
         while (characterList[currCharacter].perks.Count > 0)
         {

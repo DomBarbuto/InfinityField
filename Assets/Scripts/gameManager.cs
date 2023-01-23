@@ -98,6 +98,11 @@ public class gameManager : MonoBehaviour
         // Hide reticle on start. Reticle only shows when weapon is selected
         hideReticle();
         buttonFunctions.loadCharacterSettings();
+        playerController.characterList[playerController.currCharacter].perks.Clear();
+        while (playerController.characterList[playerController.currCharacter].perks.Count > 0)
+        {
+            playerController.characterList[playerController.currCharacter].perks.RemoveAt(0);
+        }
 
     }
 
@@ -128,8 +133,6 @@ public class gameManager : MonoBehaviour
         {
             if (activeMenu == menus[(int)UIMENUS.perksMenu])
             {
-                activeMenu.SetActive(false);
-                activeMenu = null;
                 unPause();
             }
             else if(activeMenu == null)
