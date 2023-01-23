@@ -10,6 +10,8 @@ public class sceneChanger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            PlayerPrefs.SetInt("Credits", gameManager.instance.credits);
+            PlayerPrefs.Save();
             SceneManager.LoadScene(scene);
         }
     }

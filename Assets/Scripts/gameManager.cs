@@ -91,13 +91,6 @@ public class gameManager : MonoBehaviour
         timeScaleOrig = Time.timeScale;
         currentWeaponUI.SetActive(false);
         updateCreditUI();
-    }
-
-    private void Start()
-    {
-        // Hide reticle on start. Reticle only shows when weapon is selected
-        hideReticle();
-        buttonFunctions.loadCharacterSettings();
         playerController.characterList[playerController.currCharacter].perks.Clear();
         while (playerController.characterList[playerController.currCharacter].perks.Count > 0)
         {
@@ -107,6 +100,17 @@ public class gameManager : MonoBehaviour
         {
             playerController.currCharacterModel.GetComponent<SkinnedMeshRenderer>().material = playerController.characterList[playerController.currCharacter].material;
         }
+
+        credits = PlayerPrefs.GetInt("Credits");
+        creditsCounterText.text = credits.ToString();
+    }
+
+    private void Start()
+    {
+        // Hide reticle on start. Reticle only shows when weapon is selected
+        hideReticle();
+        buttonFunctions.loadCharacterSettings();
+        
 
     }
 
