@@ -620,7 +620,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &206563058
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1871,13 +1871,14 @@ GameObject:
   - component: {fileID: 678241931}
   - component: {fileID: 678241930}
   - component: {fileID: 678241929}
+  - component: {fileID: 573440809013381441}
   m_Layer: 5
   m_Name: PerksMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &678241928
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1962,6 +1963,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &573440809013381441
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678241927}
+  m_Enabled: 1
+  m_Alpha: 0.48
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &712193190
 GameObject:
   m_ObjectHideFlags: 0
@@ -7758,8 +7771,8 @@ MonoBehaviour:
   playerController: {fileID: 0}
   inventory: {fileID: 0}
   playerLastKnownPosition: {fileID: 3729662176865368105, guid: 9d86998320140c34cb59a9f18ccc8e77, type: 3}
-  fadeInSnapShot: {fileID: 0}
-  fadedOutSnapshot: {fileID: 0}
+  fadeInSnapShot: {fileID: 24500006, guid: 2240efb9b91ea504ba9d9701aa99cb83, type: 2}
+  fadedOutSnapshot: {fileID: -2448294946562081760, guid: 2240efb9b91ea504ba9d9701aa99cb83, type: 2}
   reticle: {fileID: 3672651480112506778}
   menus:
   - {fileID: 4577075866443194917}
