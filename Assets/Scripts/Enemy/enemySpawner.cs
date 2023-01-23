@@ -21,10 +21,16 @@ public class enemySpawner : MonoBehaviour
     void Update()
     {
         List<GameObject> copyList = enemies;
-        foreach (GameObject baddie in enemies)
+        /*foreach (GameObject baddie in enemies)
         {
             if (baddie == null)
                 copyList.Remove(baddie);
+        }*/
+
+        for(int i = 0; i < enemies.Count; i++)
+        {
+            if (enemies[i] == null)
+                copyList.Remove(enemies[i]);
         }
         enemies = copyList;
         if (startContinuous && canSpawn && enemies.Count < maxEnemies)

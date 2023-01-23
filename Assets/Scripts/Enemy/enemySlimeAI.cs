@@ -50,6 +50,7 @@ public class enemySlimeAI : MonoBehaviour
     bool isAlive = true;
     bool stepIsPlaying;
     bool alertPlayed;
+    bool alreadyDroppedCredit;
 
     private void Start()
     {
@@ -61,6 +62,7 @@ public class enemySlimeAI : MonoBehaviour
     private void Update()
     {
         anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed));
+        RaycastHit hit;
 
         if(!stepIsPlaying && agent.updatePosition)
         {
@@ -119,14 +121,18 @@ public class enemySlimeAI : MonoBehaviour
     {
         if(!agent.updatePosition)
         {
-            // Pick a random dropping prefab and instantiate with a random rotation on the y axis
-            int randDropping = Random.Range(0, slimeDroppingPrefabs.Length);
-            float randYRot = Random.Range(0, 360);
+            int rand = Random.Range(0, 1);
+            if(rand == 0)
+            {
+                // Pick a random dropping prefab and instantiate with a random rotation on the y axis
+                int randDropping = Random.Range(0, slimeDroppingPrefabs.Length);
+                float randYRot = Random.Range(0, 360);
 
-            Instantiate(slimeDroppingPrefabs[randDropping], transform.position,
-                        Quaternion.Euler(slimeDroppingPrefabs[randDropping].transform.rotation.x,
-                                        randYRot,
-                                        slimeDroppingPrefabs[randDropping].transform.rotation.z));
+                Instantiate(slimeDroppingPrefabs[randDropping], transform.position,
+                            Quaternion.Euler(slimeDroppingPrefabs[randDropping].transform.rotation.x,
+                                            randYRot,
+                                            slimeDroppingPrefabs[randDropping].transform.rotation.z));
+            }
         }
     }
 
@@ -134,14 +140,20 @@ public class enemySlimeAI : MonoBehaviour
     {
         if(dropsSlimeFootprints)
         {
-            // Pick a random dropping prefab and instantiate with a random rotation on the y axis
-            int randDropping = Random.Range(0, slimeFootprintPrefabs.Length);
-            float randYRot = Random.Range(0, 360);
 
-            Instantiate(slimeFootprintPrefabs[randDropping], transform.position,
-                        Quaternion.Euler(slimeFootprintPrefabs[randDropping].transform.rotation.x,
-                                        randYRot,
-                                        slimeFootprintPrefabs[randDropping].transform.rotation.z));
+            int rand = Random.Range(0, 2);
+
+            if(rand == 0)
+            {
+                // Pick a random dropping prefab and instantiate with a random rotation on the y axis
+                int randDropping = Random.Range(0, slimeFootprintPrefabs.Length);
+                float randYRot = Random.Range(0, 360);
+
+                Instantiate(slimeFootprintPrefabs[randDropping], transform.position + new Vector3(0, 0.05f, 0),
+                            Quaternion.Euler(slimeFootprintPrefabs[randDropping].transform.rotation.x,
+                                            randYRot,
+                                            slimeFootprintPrefabs[randDropping].transform.rotation.z)); ;
+            }
         }
     }
 
@@ -231,7 +243,11 @@ public class enemySlimeAI : MonoBehaviour
             //agent.updatePosition = false;
             agent.speed = 0;
 
-            dropCredits();
+            if(!alreadyDroppedCredit)
+            {
+                dropCredits();
+                alreadyDroppedCredit = true;
+            }
 
             //Play hurt sound
             playHurtSound();

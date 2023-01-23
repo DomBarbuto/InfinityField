@@ -88,6 +88,7 @@ public class BossSlimeInfusedMech : MonoBehaviour, IRoomEntryListener
     public void takeDamage(int dmg)
     {
         float prevHealth = HP;
+        StartCoroutine(flashDamageFX());
 
         HP -= dmg;
 
@@ -224,13 +225,15 @@ public class BossSlimeInfusedMech : MonoBehaviour, IRoomEntryListener
     public void leftFire()
     {
         Instantiate(projectile, leftMuzz.position, leftMuzz.rotation);
-        //add sfx
+
+        playShootSound();
     }
 
     public void rightFire()
     {
         Instantiate(projectile, rightMuzz.position, rightMuzz.rotation);
-        //add sfx
+
+        playShootSound();
     }
 
     public void animEvent_ExplodeEnemy()
@@ -312,6 +315,11 @@ public class BossSlimeInfusedMech : MonoBehaviour, IRoomEntryListener
         aud.PlayOneShot(sfxManager.instance.slimeMechIntro);
     }
 
+    public void playShootSound()
+    {
+        aud.PlayOneShot(sfxManager.instance.arcgunShootSound[Random.Range(0, sfxManager.instance.arcgunShootSound.Length)]);
+    }
+    
     public void playForceFieldSound()
     {
         aud.PlayOneShot(sfxManager.instance.slimeMechForceFieldSound);

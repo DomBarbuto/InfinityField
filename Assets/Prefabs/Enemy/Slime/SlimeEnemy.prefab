@@ -400,7 +400,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1.2
-  m_BaseOffset: 0
+  m_BaseOffset: -0.1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &3998262730076081998
@@ -432,7 +432,7 @@ MonoBehaviour:
   damageFX: {fileID: 2100000, guid: d44fa6027c7192b4286898765a878ce7, type: 2}
   playerInRangeTrigger: {fileID: 3998262730076081999}
   aud: {fileID: 2553908452233732162}
-  HP: 30
+  HP: 50
   creditsHeld: 10
   dropsSlimeFootprints: 1
   facePlayerSpeed: 30
