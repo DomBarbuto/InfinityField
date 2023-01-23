@@ -271,14 +271,17 @@ public class playerController : MonoBehaviour
             {
                 if (weaponInventory[currentWeapon].chargeable)
                 {
-
-                    if (Input.GetButton("Fire1") && hasFired == false)
+                    // Only shoot if not on main menu
+                    if (gameManager.instance.GetActiveMenu() != gameManager.instance.menus[(int)UIMENUS.inventoryMenu])
                     {
-                        if (!hasChargePlayed)
-                        {
-                            aud.PlayOneShot(sfxManager.instance.railgunChargeSound[Random.Range(0, sfxManager.instance.railgunChargeSound.Length)]);
-                            hasChargePlayed = true;
-                        }
+
+                        if (Input.GetButton("Fire1") && hasFired == false)
+                        { 
+                            if (!hasChargePlayed)
+                            {
+                                aud.PlayOneShot(sfxManager.instance.railgunChargeSound[Random.Range(0, sfxManager.instance.railgunChargeSound.Length)]);
+                                hasChargePlayed = true;
+                            }
                         if (characterList[currCharacter].ability != playerCharacter.abilityList.bulletTime)
                         {
                             if (Time.time - lastUpdate >= 0.25f)
@@ -318,7 +321,7 @@ public class playerController : MonoBehaviour
 
                             isFiring = false;
                         }
-
+                    }
 
                     }
                     else if (Input.GetButtonUp("Fire1"))
@@ -333,15 +336,17 @@ public class playerController : MonoBehaviour
                 }
                 else
                 {
-                    Instantiate(weaponInventory[currentWeapon].actualWeaponProjectile.gameObject, currentMuzzlePoint.transform.position, currentMuzzlePoint.transform.rotation);
-                    if (weaponInventory[currentWeapon].flashFX != null)
-                    {
-                        Instantiate(weaponInventory[currentWeapon].flashFX, currentMuzzlePoint.transform.position, currentMuzzlePoint.transform.rotation);
-                    }
+                   
+                        Instantiate(weaponInventory[currentWeapon].actualWeaponProjectile.gameObject, currentMuzzlePoint.transform.position, currentMuzzlePoint.transform.rotation);
+                        if (weaponInventory[currentWeapon].flashFX != null)
+                        {
+                            Instantiate(weaponInventory[currentWeapon].flashFX, currentMuzzlePoint.transform.position, currentMuzzlePoint.transform.rotation);
+                        }
 
-                    playShootSound();
+                        playShootSound();
 
-                    weaponInventory[currentWeapon].magazineCurrent -= 1;
+                        weaponInventory[currentWeapon].magazineCurrent -= 1;
+
                     if (characterList[currCharacter].ability == playerCharacter.abilityList.bulletTime && characterList[currCharacter].isUsingAbility)
                     {
                         yield return new WaitForSeconds((float)(weaponInventory[currentWeapon].shootRate / 10));
