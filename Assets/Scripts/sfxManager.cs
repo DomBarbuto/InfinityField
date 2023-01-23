@@ -106,6 +106,7 @@ public class sfxManager : MonoBehaviour
     public AudioClip[] railgunPickupSound;
     public AudioClip[] railgunEmptySound;
     public AudioClip[] railgunChargeSound;
+    public AudioClip[] railgunChargeDownSound;
 
     // ------------------------------------------ Environment -----------------------------------------------------
     [Header("---------- Environment Audio ----------")]

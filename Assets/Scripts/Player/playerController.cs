@@ -273,7 +273,7 @@ public class playerController : MonoBehaviour
                     {
                         if (!hasChargePlayed)
                         {
-                            //put your railgun charge audio here
+                            aud.PlayOneShot(sfxManager.instance.railgunChargeSound[Random.Range(0, sfxManager.instance.railgunChargeSound.Length)]);
                             hasChargePlayed = true;
                         }
                         if (characterList[currCharacter].ability != playerCharacter.abilityList.bulletTime)
