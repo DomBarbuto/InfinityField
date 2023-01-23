@@ -43,7 +43,7 @@ public class mainMenuButtonFunctions : MonoBehaviour
     {
         loadOptions();
 
-        fadeInOBJ.SetActive(true);
+        //fadeInOBJ.SetActive(true);
     }
 
     private void Update()
