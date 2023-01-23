@@ -6,7 +6,6 @@ public class constantRotate : MonoBehaviour
 {
     [SerializeField] float rotateSpeed;
     [SerializeField] Vector3 rotation;
-    [SerializeField] Quaternion target;
 
     private void Update()
     {
