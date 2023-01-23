@@ -44,6 +44,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] public GameObject[] slots;
     [SerializeField] public GameObject[] perksShown;
     [SerializeField] public TextMeshProUGUI[] perksShownNames;
+    [SerializeField] public Sprite[] perkIcons;
 
     public enum UIMENUS { pauseMenu, winMenu, deathMenu, inventoryMenu, optionsMenu, controlsMenu, perksMenu }
 
@@ -129,13 +130,13 @@ public class gameManager : MonoBehaviour
             {
                 activeMenu.SetActive(false);
                 activeMenu = null;
-                isPaused= false;
+                unPause();
             }
             else if(activeMenu == null)
             {
                 SetActiveMenu(UIMENUS.perksMenu);
                 showPerks();
-                isPaused = true;
+                pause();
             }
         }
 
@@ -307,31 +308,30 @@ public class gameManager : MonoBehaviour
         for (int i = 0; i < playerController.characterList[playerController.currCharacter].perks.Count; i++)
         {
             perksShown[i].SetActive(true);
-            perksShown[i].GetComponent<Image>().sprite = playerController.characterList[playerController.currCharacter].perks[i].icon;
             perksShownNames[i].text = $"{playerController.characterList[playerController.currCharacter].perks[i].perkName} - {playerController.characterList[playerController.currCharacter].perks[i].rarity}";
 
             switch (playerController.characterList[playerController.currCharacter].perks[i].rarity)
             {
                 case perkList.PerkRarity.common:
-                    perksShown[i].GetComponentInParent<Image>().color = Color.white;
+                    perksShown[i].transform.parent.GetComponent<Image>().color = Color.white;
                     break;
 
                 case perkList.PerkRarity.uncommon:
-                    perksShown[i].GetComponentInParent<Image>().color = Color.green;
+                    perksShown[i].transform.parent.GetComponent<Image>().color = Color.green;
                     break;
 
                 case perkList.PerkRarity.rare:
-                    perksShown[i].GetComponentInParent<Image>().color = Color.blue;
+                    perksShown[i].transform.parent.GetComponent<Image>().color = Color.blue;
                     break;
 
                 case perkList.PerkRarity.epic:
                     Color purple = new Color(0.5f, 0, 0.5f);
-                    perksShown[i].GetComponentInParent<Image>().color = purple;
+                    perksShown[i].transform.parent.GetComponent<Image>().color = purple;
                     break;
 
                 case perkList.PerkRarity.legendary:
                     Color orange = new Color(1f, 0.5f, 0);
-                    perksShown[i].GetComponentInParent<Image>().color = orange;
+                    perksShown[i].transform.parent.GetComponent<Image>().color = orange;
                     break;
 
 
@@ -339,6 +339,29 @@ public class gameManager : MonoBehaviour
                     Debug.Log("Something fucked up");
                     break;
 
+            }
+
+            switch(playerController.characterList[playerController.currCharacter].perks[i].perkName)
+            {
+                case "Precision Synchronizer":
+                    perksShown[i].transform.GetComponent<Image>().sprite = perkIcons[0];
+                    break;
+                case "Adrenaline":
+                    perksShown[i].transform.GetComponent<Image>().sprite = perkIcons[1];
+                    break;
+                case "Time Heals Wounds":
+                    perksShown[i].transform.GetComponent<Image>().sprite = perkIcons[2];
+                    break;
+                case "Rejuvination":
+                    perksShown[i].transform.GetComponent<Image>().sprite = perkIcons[3];
+                    break;
+                case "Rocket Man":
+                    perksShown[i].transform.GetComponent<Image>().sprite = perkIcons[4];
+                    break;
+
+                default:
+                    Debug.Log("Something is not working with names");
+                    break;
             }
         }
     }
