@@ -840,6 +840,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 386096614}
+  - component: {fileID: 386096616}
+  - component: {fileID: 386096615}
   m_Layer: 5
   m_Name: CreditsMain
   m_TagString: Untagged
@@ -871,9 +873,41 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -143.5}
+  m_AnchoredPosition: {x: 0, y: -3563}
   m_SizeDelta: {x: 100, y: 5747}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &386096615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386096613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f260a073718fe1a4fad218487333ef76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &386096616
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386096613}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bba38e6de384aec4b952acf147235336, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &416867335
 GameObject:
   m_ObjectHideFlags: 0
@@ -2589,6 +2623,7 @@ MonoBehaviour:
   optionsMenuObject: {fileID: 8800782992821896456}
   controlsMenuObject: {fileID: 1121253815}
   creditsMenuObject: {fileID: 8800782992152504993}
+  creditsSlideParent: {fileID: 386096615}
   observationsMenuObject: {fileID: 356186990}
   spaceShipOBJ: {fileID: 6156619258457931278}
   fadeInOBJ: {fileID: 161068303}
@@ -4235,7 +4270,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -195, y: 187}
+  m_AnchoredPosition: {x: -219, y: 174}
   m_SizeDelta: {x: 144.0953, y: 281.9537}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1446763709
@@ -9129,6 +9164,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 913afccbd78c3c54f964754f09d90c4a, type: 3}
   railgunChargeSound:
   - {fileID: 8300000, guid: 63641d2f2619a0f4ea45277432af01fb, type: 3}
+  railgunChargeDownSound: []
   boxBreak:
   - {fileID: 8300000, guid: f983a08e33cb74b4896828498bc643d5, type: 3}
   - {fileID: 8300000, guid: 87e4fc1426b2abf45b27431b22966f96, type: 3}
@@ -68638,7 +68674,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8800782991317875509
 RectTransform:
   m_ObjectHideFlags: 0
@@ -69643,7 +69679,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8800782992152504998
 RectTransform:
   m_ObjectHideFlags: 0
