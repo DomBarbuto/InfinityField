@@ -103,6 +103,10 @@ public class gameManager : MonoBehaviour
         {
             playerController.characterList[playerController.currCharacter].perks.RemoveAt(0);
         }
+        if (playerController.currCharacterModel.GetComponent<SkinnedMeshRenderer>().material != playerController.characterList[playerController.currCharacter].material)
+        {
+            playerController.currCharacterModel.GetComponent<SkinnedMeshRenderer>().material = playerController.characterList[playerController.currCharacter].material;
+        }
 
     }
 
