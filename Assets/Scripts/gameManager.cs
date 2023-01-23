@@ -313,25 +313,25 @@ public class gameManager : MonoBehaviour
             switch (playerController.characterList[playerController.currCharacter].perks[i].rarity)
             {
                 case perkList.PerkRarity.common:
-                    perksShown[i].GetComponentInParent<Image>().color = Color.white;
+                    perksShown[i].transform.GetComponent<Image>().color = Color.white;
                     break;
 
                 case perkList.PerkRarity.uncommon:
-                    perksShown[i].GetComponentInParent<Image>().color = Color.green;
+                    perksShown[i].transform.GetComponent<Image>().color = Color.green;
                     break;
 
                 case perkList.PerkRarity.rare:
-                    perksShown[i].GetComponentInParent<Image>().color = Color.blue;
+                    perksShown[i].transform.GetComponent<Image>().color = Color.blue;
                     break;
 
                 case perkList.PerkRarity.epic:
                     Color purple = new Color(0.5f, 0, 0.5f);
-                    perksShown[i].GetComponentInParent<Image>().color = purple;
+                    perksShown[i].transform.GetComponent<Image>().color = purple;
                     break;
 
                 case perkList.PerkRarity.legendary:
                     Color orange = new Color(1f, 0.5f, 0);
-                    perksShown[i].GetComponentInParent<Image>().color = orange;
+                    perksShown[i].transform.GetComponent<Image>().color = orange;
                     break;
 
 
