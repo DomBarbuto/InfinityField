@@ -63,6 +63,12 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.playerController.setPlayerPos();
     }
 
+    public void backtoMainMenu()
+    {
+        gameManager.instance.fadeInSnapShot.TransitionTo(2);
+        SceneManager.LoadScene(0);
+    }
+
     // ----------------- OPTIONS -------------------
 
     public void SetMusicVolume(float sliderValue)
