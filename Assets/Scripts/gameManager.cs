@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
+using Unity.VisualScripting;
 
 public class gameManager : MonoBehaviour
 {
@@ -41,8 +42,10 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject highlight4;
     [SerializeField] GameObject highlight5;
     [SerializeField] public GameObject[] slots;
+    [SerializeField] public GameObject[] perksShown;
+    [SerializeField] public TextMeshProUGUI[] perksShownNames;
 
-    public enum UIMENUS { pauseMenu, winMenu, deathMenu, inventoryMenu, optionsMenu, controlsMenu }
+    public enum UIMENUS { pauseMenu, winMenu, deathMenu, inventoryMenu, optionsMenu, controlsMenu, perksMenu }
 
     [Header("---- Inventory -----")]
     public GameObject collectableCreditsPrefab;         // Reference to the collectableCredits prefab
@@ -80,8 +83,8 @@ public class gameManager : MonoBehaviour
 
 
         player = GameObject.FindGameObjectWithTag("Player");
-        if(SceneManager.GetActiveScene().name != "Main Menu")
-        playerController = player.GetComponent<playerController>();
+        if (SceneManager.GetActiveScene().name != "Main Menu")
+            playerController = player.GetComponent<playerController>();
         playerSpawnPoint = GameObject.FindGameObjectWithTag("Player Spawn Point");
         composer = GameObject.FindGameObjectWithTag("Composer").GetComponent<dynamicAudio>();
         timeScaleOrig = Time.timeScale;
@@ -110,26 +113,41 @@ public class gameManager : MonoBehaviour
             else
                 unPause();
         }
-        else if((Input.GetAxis("Mouse ScrollWheel") > 0 || Input.GetAxis("Mouse ScrollWheel") < 0) && activeMenu == null)
+        else if ((Input.GetAxis("Mouse ScrollWheel") > 0 || Input.GetAxis("Mouse ScrollWheel") < 0) && activeMenu == null)
         {
-            if(activeMenu != menus[(int)UIMENUS.inventoryMenu])
+            if (activeMenu != menus[(int)UIMENUS.inventoryMenu])
             {
-                
+
                 SetActiveMenu(UIMENUS.inventoryMenu);
                 invWheelPointer.SetActive(true);
                 menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles = new Vector3(0, 0, (-72 * playerController.currentWeapon));
             }
         }
+        else if (Input.GetButtonDown("Perks") && (activeMenu == menus[(int)UIMENUS.perksMenu] || activeMenu == null))
+        {
+            if (activeMenu == menus[(int)UIMENUS.perksMenu])
+            {
+                activeMenu.SetActive(false);
+                activeMenu = null;
+                isPaused= false;
+            }
+            else if(activeMenu == null)
+            {
+                SetActiveMenu(UIMENUS.perksMenu);
+                showPerks();
+                isPaused = true;
+            }
+        }
 
-        if(activeMenu == menus[(int)UIMENUS.inventoryMenu])
+        if (activeMenu == menus[(int)UIMENUS.inventoryMenu])
         {
             getSelectedItem();
-            
+
             if (Input.GetAxis("Mouse ScrollWheel") > 0)
             {
                 menus[(int)UIMENUS.inventoryMenu].transform.Rotate(Vector3.forward, +10);
             }
-            else if(Input.GetAxis("Mouse ScrollWheel") < 0)
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0)
             {
                 menus[(int)UIMENUS.inventoryMenu].transform.Rotate(Vector3.forward, -10);
             }
@@ -200,7 +218,7 @@ public class gameManager : MonoBehaviour
     public void showReticle()
     {
         // Only call setActive if it is not active
-        if(!reticle.activeInHierarchy)
+        if (!reticle.activeInHierarchy)
             reticle.SetActive(true);
     }
 
@@ -220,31 +238,46 @@ public class gameManager : MonoBehaviour
         menus[(int)newActiveMenu].SetActive(true);
         activeMenu = menus[(int)newActiveMenu];
     }
-    
+
     public void getSelectedItem()
     {
-        if (menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 36 || menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 324) { highlight1.SetActive(true); //Leave the or statement. It's required
-            if (playerController.weaponInventory[0] != null) { playerController.currentWeapon = 0; }} 
+        if (menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 36 || menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 324)
+        {
+            highlight1.SetActive(true); //Leave the or statement. It's required
+            if (playerController.weaponInventory[0] != null) { playerController.currentWeapon = 0; }
+        }
         else { highlight1.SetActive(false); }
 
-        if (menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 324 && menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 252) { highlight2.SetActive(true);
-            if (playerController.weaponInventory[1] != null) { playerController.currentWeapon = 1; }}
+        if (menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 324 && menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 252)
+        {
+            highlight2.SetActive(true);
+            if (playerController.weaponInventory[1] != null) { playerController.currentWeapon = 1; }
+        }
         else { highlight2.SetActive(false); }
 
-        if (menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 252 && menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 180) { highlight3.SetActive(true);
-            if (playerController.weaponInventory[2] != null) { playerController.currentWeapon = 2; }}
+        if (menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 252 && menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 180)
+        {
+            highlight3.SetActive(true);
+            if (playerController.weaponInventory[2] != null) { playerController.currentWeapon = 2; }
+        }
         else { highlight3.SetActive(false); }
 
-        if (menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 180 && menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 108) { highlight4.SetActive(true);
-            if (playerController.weaponInventory[3] != null) { playerController.currentWeapon = 3; }}
+        if (menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 180 && menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 108)
+        {
+            highlight4.SetActive(true);
+            if (playerController.weaponInventory[3] != null) { playerController.currentWeapon = 3; }
+        }
         else { highlight4.SetActive(false); }
 
-        if (menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 108 && menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 36) { highlight5.SetActive(true);
-            if (playerController.weaponInventory[4] != null) { playerController.currentWeapon = 4; }}
+        if (menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z < 108 && menus[(int)UIMENUS.inventoryMenu].transform.eulerAngles.z > 36)
+        {
+            highlight5.SetActive(true);
+            if (playerController.weaponInventory[4] != null) { playerController.currentWeapon = 4; }
+        }
         else { highlight5.SetActive(false); }
 
         // When player clicks on a weapon slot, unPause, turn off inventory, and select the weapon.
-        if(Input.GetButtonDown("Fire1") || Input.GetButtonDown("Inventory"))
+        if (Input.GetButtonDown("Fire1") || Input.GetButtonDown("Inventory"))
         {
             unPause();
             invWheelPointer.SetActive(false);
@@ -269,4 +302,44 @@ public class gameManager : MonoBehaviour
         composer.speaker.volume = volumeSliderValue;
     }
 
+    public void showPerks()
+    {
+        for (int i = 0; i < playerController.characterList[playerController.currCharacter].perks.Count; i++)
+        {
+            perksShown[i].SetActive(true);
+            perksShown[i].GetComponent<Image>().sprite = playerController.characterList[playerController.currCharacter].perks[i].icon;
+            perksShownNames[i].text = $"{playerController.characterList[playerController.currCharacter].perks[i].perkName} - {playerController.characterList[playerController.currCharacter].perks[i].rarity}";
+
+            switch (playerController.characterList[playerController.currCharacter].perks[i].rarity)
+            {
+                case perkList.PerkRarity.common:
+                    perksShown[i].GetComponentInParent<Image>().color = Color.white;
+                    break;
+
+                case perkList.PerkRarity.uncommon:
+                    perksShown[i].GetComponentInParent<Image>().color = Color.green;
+                    break;
+
+                case perkList.PerkRarity.rare:
+                    perksShown[i].GetComponentInParent<Image>().color = Color.blue;
+                    break;
+
+                case perkList.PerkRarity.epic:
+                    Color purple = new Color(0.5f, 0, 0.5f);
+                    perksShown[i].GetComponentInParent<Image>().color = purple;
+                    break;
+
+                case perkList.PerkRarity.legendary:
+                    Color orange = new Color(1f, 0.5f, 0);
+                    perksShown[i].GetComponentInParent<Image>().color = orange;
+                    break;
+
+
+                default:
+                    Debug.Log("Something fucked up");
+                    break;
+
+            }
+        }
+    }
 }

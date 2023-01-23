@@ -40,7 +40,7 @@ public class perkPickUp : MonoBehaviour
             }
         }
         int randRarity = Random.Range(0, 5);
-        gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].perks.Add(new perkList(perk, perk.giveName(),(perkList.PerkRarity)randRarity));
+        gameManager.instance.playerController.characterList[gameManager.instance.playerController.currCharacter].perks.Add(new perkList(perk, perk.giveName(), perk.giveIcon(), (perkList.PerkRarity)randRarity));
     }
 
     public perkCreation assignPerk(Perks perkAssign)            //For the perk to be able to be created and dropped, add it into the switch statement
