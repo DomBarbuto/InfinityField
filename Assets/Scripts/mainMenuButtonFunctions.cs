@@ -147,7 +147,7 @@ public class mainMenuButtonFunctions : MonoBehaviour
         yield return new WaitForSeconds(1.6f);
 
         // Triggers fade out animation, which triggers load next level by anim event
-        fadeInOBJ.GetComponent<Animator>().SetTrigger("FadeOut");
+        //fadeInOBJ.GetComponent<Animator>().SetTrigger("FadeOut");
         fadedOutAudioSnapshot.TransitionTo(2);
 
         StartCoroutine(loadNextSceneWait());
