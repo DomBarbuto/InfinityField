@@ -173,6 +173,9 @@ public class BossAdvancedSpecimen : MonoBehaviour, IRoomEntryListener
 
             playDeathSound();
 
+            // Laser damage
+            laser.gameObject.SetActive(true);
+            aud.PlayOneShot(sfxManager.instance.laserAttackClip);
             // Animation - set triggerdeath
             anim.SetTrigger("TriggerDeath");
 

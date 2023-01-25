@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6212db9819c97bd4c9680b91c56bb749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionTimer: 0.5
+  explosionTimer: 4
   explosionDamage: 80
   explosionPushBack: {x: 50, y: 50, z: 50}
   explosionForce: 100
@@ -127,7 +127,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.156
       inSlope: 0
       outSlope: 0
       tangentMode: 0

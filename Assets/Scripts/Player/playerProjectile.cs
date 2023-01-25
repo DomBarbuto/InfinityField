@@ -60,9 +60,6 @@ public class playerProjectile : MonoBehaviour
             // VFX at impact point
             Instantiate(gameManager.instance.playerController.weaponInventory[gameManager.instance.playerController.currentWeapon].hitFX, hit.point, transform.rotation);
 
-            // Play ricochet sound
-            playRicochetSound();
-
             if (other.GetComponent<IDamage>() != null)
             {
                 doDamage(other.GetComponent<IDamage>());
@@ -76,6 +73,8 @@ public class playerProjectile : MonoBehaviour
 
             else
             {
+                // Play ricochet sound
+                playRicochetSound();
                 Debug.Log("collided with " + other.gameObject.name);
             }
             Destroy(gameObject, 1);
