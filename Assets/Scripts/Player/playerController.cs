@@ -360,9 +360,10 @@ public class playerController : MonoBehaviour
 
 
             }
-            else
+            else if (weaponInventory[currentWeapon].magazineCurrent <= 0 && !hasFired && !isReloading)
             {
                 // Play weapon empty sound
+                isReloading = true;
                 playWeaponEmptySound();
                 animController.reloadTrigger();
 
