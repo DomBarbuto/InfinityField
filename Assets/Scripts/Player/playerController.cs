@@ -364,6 +364,7 @@ public class playerController : MonoBehaviour
             {
                 // Play weapon empty sound
                 playWeaponEmptySound();
+                animController.reloadTrigger();
 
                 yield return new WaitForSeconds(1);
                 isFiring = false;
@@ -489,7 +490,7 @@ public class playerController : MonoBehaviour
             if (weaponInventory[i] == weapon)
             {
                 Debug.Log("already had weapon");
-                weaponInventory[currentWeapon].currentAmmoPool += weaponInventory[currentWeapon].maxAmmoPool / 5;
+                weaponInventory[i].currentAmmoPool += weaponInventory[i].maxAmmoPool / 5;
                 playWeaponPickupSound();
                 break;
             }
