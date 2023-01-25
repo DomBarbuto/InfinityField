@@ -102,6 +102,7 @@ public class gameManager : MonoBehaviour
         }
 
         credits = PlayerPrefs.GetInt("Credits");
+        playerController.resetPlayerEnergy();
         creditsCounterText.text = credits.ToString();
     }
 

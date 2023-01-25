@@ -41,6 +41,7 @@ public class buttonFunctions : MonoBehaviour
     }
     public void mainMenu()
     {
+        Time.timeScale = gameManager.instance.timeScaleOrig;
         SceneManager.LoadScene(0);
     }
     public void quit()
