@@ -66,7 +66,7 @@ public class BossSlimeInfusedMech : MonoBehaviour, IRoomEntryListener
 
         // Turn on force field
         forceFieldOBJ.SetActive(true);
-        playForceFieldSound();
+        playForceFieldUpSound();
 
         anim.SetTrigger("TriggerIntro");
 
@@ -94,6 +94,8 @@ public class BossSlimeInfusedMech : MonoBehaviour, IRoomEntryListener
 
         // Update health bar
         bossHPBarScript.updateHealthFillAmount(prevHealth, HP, MAXHP);
+
+        // DAMAGE FX
 
         if (state < 4)
         {
@@ -269,7 +271,7 @@ public class BossSlimeInfusedMech : MonoBehaviour, IRoomEntryListener
 
         // Turn on forcefield
         forceFieldOBJ.SetActive(true);
-        playForceFieldSound();
+        playForceFieldUpSound();
 
         yield return new WaitForSeconds(length);
         anim.SetBool("Shooting", false);
@@ -282,6 +284,8 @@ public class BossSlimeInfusedMech : MonoBehaviour, IRoomEntryListener
 
     public IEnumerator vulnerableState(float length)
     {
+        playForceFieldDownSound();
+
         // Update animation
         slimeBodyAnim.SetBool("IsShooting", false);
 
@@ -320,9 +324,14 @@ public class BossSlimeInfusedMech : MonoBehaviour, IRoomEntryListener
         aud.PlayOneShot(sfxManager.instance.arcgunShootSound[Random.Range(0, sfxManager.instance.arcgunShootSound.Length)]);
     }
     
-    public void playForceFieldSound()
+    public void playForceFieldUpSound()
     {
-        aud.PlayOneShot(sfxManager.instance.slimeMechForceFieldSound);
+        aud.PlayOneShot(sfxManager.instance.slimeMechForceFieldUpSound);
+    }
+
+    public void playForceFieldDownSound()
+    {
+        aud.PlayOneShot(sfxManager.instance.slimeMechForceFieldDownSound);
     }
 
     public void playDeathSound()

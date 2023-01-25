@@ -64,7 +64,7 @@ public class enemySlimeAI : MonoBehaviour
         anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed));
         RaycastHit hit;
 
-        if(!stepIsPlaying && agent.updatePosition)
+        if(!stepIsPlaying && agent.velocity.magnitude > 0.5f)
         {
             stepIsPlaying = true;
             StartCoroutine(playSteps());
