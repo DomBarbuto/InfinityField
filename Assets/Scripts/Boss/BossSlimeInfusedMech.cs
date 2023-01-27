@@ -265,6 +265,9 @@ public class BossSlimeInfusedMech : MonoBehaviour, IRoomEntryListener
 
     public IEnumerator timedShoot(float length)
     {
+        if (aud.isPlaying)
+            aud.Stop();
+
         hitBox.canDamage = false;
         anim.SetBool("Shooting", true);
         slimeBodyAnim.SetBool("IsShooting", true);
@@ -326,7 +329,7 @@ public class BossSlimeInfusedMech : MonoBehaviour, IRoomEntryListener
     
     public void playForceFieldUpSound()
     {
-        aud.PlayOneShot(sfxManager.instance.slimeMechForceFieldUpSound);
+        aud.PlayOneShot(sfxManager.instance.slimeMechForceFieldUpSound, aud.volume / 2);
     }
 
     public void playForceFieldDownSound()

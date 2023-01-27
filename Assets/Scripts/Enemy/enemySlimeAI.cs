@@ -119,28 +119,20 @@ public class enemySlimeAI : MonoBehaviour
 
     public void animEvent_slimeDropping()
     {
-        if(!agent.updatePosition)
-        {
-            int rand = Random.Range(0, 1);
-            if(rand == 0)
-            {
-                // Pick a random dropping prefab and instantiate with a random rotation on the y axis
-                int randDropping = Random.Range(0, slimeDroppingPrefabs.Length);
-                float randYRot = Random.Range(0, 360);
+        // Pick a random dropping prefab and instantiate with a random rotation on the y axis
+        int randDropping = Random.Range(0, slimeDroppingPrefabs.Length);
+        float randYRot = Random.Range(0, 360);
 
-                Instantiate(slimeDroppingPrefabs[randDropping], transform.position,
-                            Quaternion.Euler(slimeDroppingPrefabs[randDropping].transform.rotation.x,
-                                            randYRot,
-                                            slimeDroppingPrefabs[randDropping].transform.rotation.z));
-            }
-        }
+        Instantiate(slimeDroppingPrefabs[randDropping], transform.position,
+                    Quaternion.Euler(slimeDroppingPrefabs[randDropping].transform.rotation.x,
+                                    randYRot,
+                                    slimeDroppingPrefabs[randDropping].transform.rotation.z));
     }
 
     public void animEvent_slimeFootprint()
     {
-        if(dropsSlimeFootprints)
+        if(dropsSlimeFootprints && agent.updatePosition)
         {
-
             int rand = Random.Range(0, 2);
 
             if(rand == 0)
@@ -240,8 +232,8 @@ public class enemySlimeAI : MonoBehaviour
 
         if (HP <= 0)
         {
-            //agent.updatePosition = false;
-            agent.speed = 0;
+            agent.updatePosition = false;
+            //agent.speed = 0;
 
             if(!alreadyDroppedCredit)
             {
