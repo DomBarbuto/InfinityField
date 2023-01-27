@@ -17,12 +17,6 @@ public class breakableProp : MonoBehaviour, IDamage
     int creditsHeld;       //How much loot is inside
     [SerializeField] int launchForce;
 
-    [Header("Scaling to Destroy Settings")]
-    [SerializeField] int waitToBeginScaling;
-    [SerializeField] bool hasBegunScalingDown;
-    [SerializeField] float scaleDecreaseRate;
-    [SerializeField] int waitToDestroy;         // This is the time to destroy, STARTING after it has begun scaling down
-
     bool hasBroken;
 
     private void Start()

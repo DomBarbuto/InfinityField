@@ -779,7 +779,7 @@ public class playerController : MonoBehaviour
 
     public IEnumerator callPerkOnUpdate()
     {
-        Debug.Log("Update" + characterList[currCharacter].perks.Count);
+        //Debug.Log("Update" + characterList[currCharacter].perks.Count);
         foreach (perkList _perk in characterList[currCharacter].perks)
         {
             Debug.Log("we are in the perk list");
