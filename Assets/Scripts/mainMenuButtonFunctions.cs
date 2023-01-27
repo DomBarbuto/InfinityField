@@ -44,6 +44,8 @@ public class mainMenuButtonFunctions : MonoBehaviour
         loadOptions();
 
         fadeInOBJ.SetActive(true);
+
+        PlayerPrefs.SetInt("Credits", 0);
     }
 
     private void Update()
