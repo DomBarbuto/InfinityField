@@ -445,9 +445,9 @@ RectTransform:
   m_Father: {fileID: 8800782991317875509}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -71.794754, y: -307}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: -71.794754, y: 56}
   m_SizeDelta: {x: 124.5305, y: 531.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &124149974
@@ -609,9 +609,9 @@ RectTransform:
   m_Father: {fileID: 8800782991317875509}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -71.794754, y: -488}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: -71.794754, y: -125}
   m_SizeDelta: {x: 124.5305, y: 531.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &281718102
@@ -1507,9 +1507,9 @@ RectTransform:
   m_Father: {fileID: 8800782991317875509}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -71.794754, y: -132}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: -71.794754, y: 231}
   m_SizeDelta: {x: 124.5305, y: 531.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &651101468
@@ -2330,9 +2330,9 @@ RectTransform:
   m_Father: {fileID: 8800782991317875509}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -72, y: -577}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: -72, y: -214}
   m_SizeDelta: {x: 124.5305, y: 531.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &845946868
@@ -3673,9 +3673,9 @@ RectTransform:
   m_Father: {fileID: 8800782991317875509}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -71.794754, y: -220}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: -71.794754, y: 143}
   m_SizeDelta: {x: 124.5305, y: 531.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1115934051
@@ -5632,9 +5632,9 @@ RectTransform:
   m_Father: {fileID: 8800782991317875509}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -71.794754, y: -395.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: -71.794754, y: -32.5}
   m_SizeDelta: {x: 124.5305, y: 531.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1779500879
@@ -9426,7 +9426,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 07ed376c86d12d64c92ed99d974cd5bf, type: 3}
   slimeMechDeath: {fileID: 8300000, guid: 3e6c4b38a8cb1c0468300b35e85eeea0, type: 3}
   slimeMechIntro: {fileID: 8300000, guid: 0e09b75db59db4048a39cf1752469775, type: 3}
-  slimeMechForceFieldSound: {fileID: 8300000, guid: edc279b092543bb47afb50f4bb7faa04, type: 3}
+  slimeMechForceFieldUpSound: {fileID: 0}
+  slimeMechForceFieldDownSound: {fileID: 0}
+  slimeMechDamageSound: {fileID: 0}
   HSSDeath: {fileID: 8300000, guid: f1bb3e937875f7d4f9fb847a87422a6f, type: 3}
   HSSIntro: {fileID: 8300000, guid: 069b3575bf4c9884fac0e5b0513b1f1f, type: 3}
   HSSPhase1: {fileID: 8300000, guid: 37ad82d0722853148977e6d8ff3d655a, type: 3}

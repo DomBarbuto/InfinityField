@@ -20,6 +20,10 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.fadeInSnapShot.TransitionTo(2);
 
         loadOptions();
+        gameManager.instance.playerController.resetPlayerHP();
+        gameManager.instance.updatePlayerHPBar();
+        gameManager.instance.playerController.resetPlayerEnergy();
+        gameManager.instance.updatePlayerEnergyBar();
 
         //Character loadin is done in gamemanaeger
     }
